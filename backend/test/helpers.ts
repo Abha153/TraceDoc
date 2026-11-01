@@ -7,6 +7,9 @@ import { mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import request from "supertest";
+import { readFileSync } from "node:fs";
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
 
 export const TEST_USER = "analyst";
 export const TEST_PASSWORD = "correct horse battery staple";
@@ -59,4 +62,51 @@ export async function agentWithCase(app: Parameters<typeof request>[0]) {
 export async function drain(deps: AppDeps, max = 50): Promise<void> {
   for (let i = 0; i < max; i++) if (!(await deps.worker.processNext())) return;
   throw new Error("worker did not drain");
+}
+
+// ---- contract validation: every API body is checked against contracts/contracts.schema.json
+const bundle = JSON.parse(readFileSync(path.join(FIXTURES_DIR, "..", "contracts.schema.json"), "utf8"));
+const ajv = new Ajv({ allErrors: true, strict: false });
+addFormats(ajv);
+
+export function expectMatchesContract(type: string, body: unknown): void {
+  const validate = ajv.compile({ definitions: bundle.definitions, $ref: `#/definitions/${type}` });
+  if (!validate(body)) {
+    throw new Error(`${type} does not match contracts.schema.json:\n${JSON.stringify(validate.errors?.slice(0, 5), null, 2)}`);
+  }
+}
+
+// ---- fixture cases loaded through the real upload + worker path
+import { readFile } from "node:fs/promises";
+import type { ReasoningOutput } from "@contracts/reasoning";
+import type { UploadResponse } from "@contracts/api";
+import { remapIds } from "../src/services/remap.js";
+
+export async function fixtureJson<T>(rel: string): Promise<T> {
+  return JSON.parse(await readFile(path.join(FIXTURES_DIR, rel), "utf8")) as T;
+}
+
+/**
+ * Uploads a fixture case's original files into the (already created) case, runs the worker, and returns the
+ * mapping from fixture document ids (D-01) to the server-generated ids.
+ */
+export async function uploadFixtureDocs(
+  deps: AppDeps,
+  agent: Awaited<ReturnType<typeof loggedInAgent>>,
+  caseId: string,
+  files: string[],
+): Promise<Record<string, string>> {
+  const req = agent.post(`/api/v1/cases/${caseId}/documents`);
+  for (const f of files) req.attach("files", await readFile(path.join(FIXTURES_DIR, "originals", f)), f);
+  const up = (await req.expect(202)).body as UploadResponse;
+  await drain(deps);
+  return Object.fromEntries(files.map((f, i) => [f.replace(/\.[a-z]+$/, ""), up.documents[i]!.docId]));
+}
+
+/** Stores the fixture reasoning output for a case (re-labelled with real document ids) as a new generation. */
+export async function storeFixtureReasoning(deps: AppDeps, caseId: string, mapping: Record<string, string>) {
+  const output = remapIds(await fixtureJson<ReasoningOutput>(`${caseId}.reasoning.json`), mapping);
+  const signals = [];
+  for (const real of Object.values(mapping)) signals.push(...((await deps.analysis.get(real))?.signals ?? []));
+  return deps.evidence.put(caseId, output, signals);
 }

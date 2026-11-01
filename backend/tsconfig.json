@@ -10,9 +10,23 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "baseUrl": ".",
-    "paths": { "@contracts/*": ["../contracts/*"] }
+    "paths": {
+      "@contracts/*": [
+        "../contracts/*"
+      ]
+    }
   },
-  "include": ["src", "test", "scripts", "vitest.config.ts"]
+  "include": [
+    "src",
+    "test",
+    "scripts",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "src/engine"
+  ]
 }

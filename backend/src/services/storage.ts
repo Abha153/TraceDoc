@@ -50,6 +50,13 @@ export class Storage {
     return dir;
   }
 
+  /** Absolute path of a file inside a document's derived folder. The name is a fixed pattern, never user input. */
+  derivedFile(docId: string, name: string): string {
+    assertSafeId(docId, "docId");
+    if (!/^page-[1-9][0-9]{0,3}\.png$/.test(name)) throw new AppError(400, "INVALID_NAME", "Invalid derived file name");
+    return path.join(this.root, "derived", docId, name);
+  }
+
   /**
    * Writes an original exactly once. The 'wx' flag makes the OS refuse if the file exists,
    * so an existing original can never be replaced, even by a race. The file is then made read-only.

@@ -4,6 +4,7 @@ import { AppError } from "../errors.js";
 import type { CaseRepository, DocumentRepository } from "../repo/repositories.js";
 import type { JobService } from "./jobs.js";
 import { Mutex } from "../util/mutex.js";
+import type { EvidenceRepository } from "../repo/evidence.js";
 
 export class CaseService {
   private readonly lock = new Mutex();
@@ -12,6 +13,7 @@ export class CaseService {
     private readonly cases: CaseRepository,
     private readonly documents: DocumentRepository,
     private readonly jobs: JobService,
+    private readonly evidence: EvidenceRepository,
     private readonly now: () => Date = () => new Date(),
   ) {}
 
@@ -40,8 +42,15 @@ export class CaseService {
   async summary(c: Case): Promise<CaseSummary> {
     const documents: DocumentRecord[] = await this.documents.listByCase(c.caseId);
     const jobs: Job[] = (await this.jobs.list()).filter((j) => j.caseId === c.caseId);
-    // priority stays null until reasoning has run for the case (B10)
-    return { case: c, documents, jobs, priority: null, perDocumentPriority: {} };
+    // priority stays null until reasoning has run for the case: no evidence is never reported as "low"
+    const record = await this.evidence.latest(c.caseId);
+    return {
+      case: c,
+      documents,
+      jobs,
+      priority: record?.priority.perCase ?? null,
+      perDocumentPriority: record?.priority.perDocument ?? {},
+    };
   }
 
   async list(): Promise<CaseSummary[]> {

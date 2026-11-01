@@ -60,3 +60,30 @@ npm run typecheck
   server-generated docId. Any other file fails with a clear message. The real HTTP client arrives in B11.
 - The worker (`src/services/worker.ts`) runs one job at a time with a timeout (`JOB_TIMEOUT_MS`) and tells listeners when a job
   finishes (B10 hooks reasoning in there). It starts from `server.ts`; tests call `worker.processNext()` directly.
+
+## Evidence store and read APIs (B8)
+
+- `src/repo/evidence.ts`: findings, evidence, assertions, entities, region events, signals and priority of a case are stored as
+  **generations** under `DATA_DIR/records/evidence/<caseId>/gen-0001.json`, `gen-0002.json`, ... A generation is written once
+  (temp file, then a hard link that fails if the target exists), made read-only, and never modified. A re-run (B10 recompute) writes
+  the next generation and keeps the old ones. The API shows the latest generation; older finding ids stay readable.
+- **Finding ids are namespaced** when stored: the engine's `F-0001` becomes `<caseId>-g<generation>-F-0001`
+  (e.g. `CASE-001-g1-F-0001`). Engine ids repeat across cases and re-runs, and `GET /findings/:findingId` has no case in its path.
+  A new generation starts with fresh, unreviewed findings, and `priority.contributingFindingIds` is renamed to match.
+  Everything else in a finding is stored exactly as the engine produced it.
+- Routes (all behind login, shapes from `contracts/openapi.yaml`):
+  `GET /cases/:id/findings` (filters `category`, `observationStatus`, `reviewStatus`; unknown values are 400),
+  `GET /findings/:id`, `GET /cases/:id/assertions`, `GET /cases/:id/entities`, `GET /cases/:id/graph`,
+  `GET /documents/:docId/pages/:n/render`.
+  A case with no reasoning run yet returns empty lists and a `null` priority, never a "clean" result.
+  `GET /cases/:id` now carries the stored `priority` and `perDocumentPriority`.
+- Review status comes from a `ReviewSource` (`src/services/reviewSource.ts`). Until B9 it reports UNREVIEWED and no history.
+- The graph (`src/services/graph.ts`) is derived from stored evidence: `contains` (entity to each of its documents), `match`
+  (same `id_number` / `account_number` value for one entity across documents), `conflict` (INCONSISTENT findings that span two
+  documents; labelled `(capped)` when `confidenceCapped` is set) and `suggested` (a SUGGESTED entity towards the entity named in
+  its `basis`, e.g. "name similarity 100 to E-001"). It reproduces `contracts/fixtures/CASE-00x.graph.json` exactly.
+- **Page renders** are served from `DATA_DIR/derived/<docId>/page-<n>.png`. The path is built from the validated docId and page
+  number only; the `renderPath` string in an analysis response is never used to open a file. **The Python service must write its
+  canonical renders to that location** (the shared `DATA_DIR`, same convention as `renderPath`). In mock mode the mock client copies
+  the fixture page images there.
+- `tsconfig.json` excludes `src/engine/`: it is its own package with its own tsconfig and tests (Person 1).

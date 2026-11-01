@@ -9,6 +9,10 @@ import { healthRouter } from "./routes/health.js";
 import { authRouter } from "./routes/auth.js";
 import { documentsRouter } from "./routes/documents.js";
 import { casesRouter } from "./routes/cases.js";
+import { evidenceRouter } from "./routes/evidence.js";
+import { pagesRouter } from "./routes/pages.js";
+import { JsonEvidenceRepository, type EvidenceRepository } from "./repo/evidence.js";
+import { NoReviews, type ReviewSource } from "./services/reviewSource.js";
 import { jobsRouter } from "./routes/jobs.js";
 import { Storage } from "./services/storage.js";
 import { Manifest } from "./services/manifest.js";
@@ -42,6 +46,8 @@ export interface AppDeps {
   caseRepo: CaseRepository;
   documents: DocumentRepository;
   analysis: AnalysisRepository;
+  evidence: EvidenceRepository;
+  reviews: ReviewSource;
   jobs: JobService;
   cases: CaseService;
   upload: UploadService;
@@ -52,6 +58,7 @@ export interface AppDeps {
 
 export interface DepOverrides {
   analysisClient?: AnalysisClient;
+  reviews?: ReviewSource;
 }
 
 export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverrides = {}): AppDeps {
@@ -62,12 +69,13 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
   const caseRepo = new JsonCaseRepository(storage.recordsDir);
   const documents = new JsonDocumentRepository(storage.recordsDir);
   const analysis = new JsonAnalysisRepository(storage.recordsDir);
+  const evidence = new JsonEvidenceRepository(storage.recordsDir);
   const jobs = new JobService(new JsonJobRepository(storage.recordsDir), {
     pipelineVersion: config.pipelineVersion,
     maxAttempts: config.jobMaxAttempts,
   });
   const analysisClient =
-    overrides.analysisClient ?? new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest });
+    overrides.analysisClient ?? new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest, storage });
   const worker = new Worker({
     jobs,
     client: analysisClient,
@@ -90,8 +98,10 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     caseRepo,
     documents,
     analysis,
+    evidence,
+    reviews: overrides.reviews ?? new NoReviews(),
     jobs,
-    cases: new CaseService(caseRepo, documents, jobs),
+    cases: new CaseService(caseRepo, documents, jobs, evidence),
     upload: new UploadService(ingest, documents, jobs, config.pipelineVersion),
     analysisClient,
     worker,
@@ -119,6 +129,17 @@ export function createApp(deps: AppDeps): Express {
     }),
   );
   api.use(jobsRouter(deps.jobs, deps.requireAuth));
+  api.use(
+    evidenceRouter({
+      cases: deps.cases,
+      evidence: deps.evidence,
+      documents: deps.documents,
+      analysis: deps.analysis,
+      reviews: deps.reviews,
+      requireAuth: deps.requireAuth,
+    }),
+  );
+  api.use(pagesRouter({ storage: deps.storage, documents: deps.documents, analysis: deps.analysis, requireAuth: deps.requireAuth }));
   // More domain routers (findings, review, graph, ...) are mounted here by later batches.
   app.use("/api/v1", api);
 

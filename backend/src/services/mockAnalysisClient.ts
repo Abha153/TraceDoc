@@ -1,16 +1,19 @@
-import { readFile, readdir } from "node:fs/promises";
+import { copyFile, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import type { AnalyzeResponse } from "@contracts/types";
 import type { CaseFixture } from "@contracts/api";
 import { PermanentAnalysisError, type AnalysisClient } from "./analysisClient.js";
 import type { Manifest } from "./manifest.js";
 import { remapId } from "./remap.js";
+import type { Storage } from "./storage.js";
 
 export interface MockOptions {
   fixturesDir: string;
   manifest: Manifest;
   /** Force a mapping from an uploaded docId to a fixture docId (tests). */
   overrides?: Map<string, string>;
+  /** When given, the recorded page images are copied to derived/<docId>/page-<n>.png, as the real service would. */
+  storage?: Storage;
   delayMs?: number;
 }
 
@@ -53,6 +56,14 @@ export class MockAnalysisClient implements AnalysisClient {
     }
     const file = path.join(this.opts.fixturesDir, "analyze", `${fixtureId}.json`);
     const recorded = JSON.parse(await readFile(file, "utf8")) as AnalyzeResponse;
-    return remapId(recorded, fixtureId, docId);
+    const response = remapId(recorded, fixtureId, docId);
+    if (this.opts.storage) {
+      await this.opts.storage.derivedDir(docId);
+      for (const p of response.pages) {
+        const src = path.join(this.opts.fixturesDir, "pages", `${fixtureId}-page-${p.page}.png`);
+        await copyFile(src, this.opts.storage.derivedFile(docId, `page-${p.page}.png`)).catch(() => undefined);
+      }
+    }
+    return response;
   }
 }
