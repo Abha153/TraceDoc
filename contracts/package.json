@@ -1,0 +1,19 @@
+{
+  "name": "tracedocs-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared contracts: TypeScript types, JSON Schemas, pydantic mirror",
+  "scripts": {
+    "gen": "node scripts/gen-schemas.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check:schemas": "node scripts/check-schemas.mjs",
+    "check:py": "python3 test_analyze_models.py",
+    "test": "npm run typecheck && npm run check:schemas && npm run check:py"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "ts-json-schema-generator": "^2.3.0",
+    "typescript": "^5.6.0"
+  }
+}

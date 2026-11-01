@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/ComparabilityRule",
+  "definitions": {
+    "ComparabilityRule": {
+      "type": "object",
+      "properties": {
+        "ruleId": {
+          "type": "string"
+        },
+        "ruleType": {
+          "type": "string",
+          "enum": [
+            "MUST_AGREE",
+            "MAY_DIFFER",
+            "NOT_COMPARABLE",
+            "ARITHMETIC",
+            "TEMPORAL",
+            "UNIQUENESS"
+          ]
+        },
+        "semanticTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "entityRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityRole"
+          }
+        },
+        "matchMethod": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "name_fuzzy",
+            "date_iso",
+            "amount_exact",
+            "sum_equals",
+            "date_order",
+            "none"
+          ]
+        },
+        "severity": {
+          "$ref": "#/definitions/Severity"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ruleId",
+        "ruleType",
+        "semanticTypes",
+        "entityRoles",
+        "matchMethod",
+        "severity",
+        "note"
+      ],
+      "additionalProperties": false,
+      "description": "One row of backend/config/comparability.json (ARCHITECTURE section 7.2)."
+    },
+    "EntityRole": {
+      "type": "string",
+      "enum": [
+        "applicant",
+        "co_applicant",
+        "guarantor",
+        "nominee",
+        "account_holder",
+        "unknown"
+      ]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "title": "ComparabilityRule"
+}

@@ -1,0 +1,10 @@
+{
+  "docId": "D-01", "page": 1, "widthPx": 1240, "heightPx": 1754, "renderDpi": 150,
+  "engine": "fixture", "engineVersion": "0",
+  "words": [
+    { "text": "12/08/2004", "bbox": [0.12, 0.31, 0.2, 0.04], "ocrConfidence": 0.97, "lineIndex": 0 }
+  ],
+  "lines": [
+    { "text": "12/08/2004", "bbox": [0.12, 0.31, 0.2, 0.04], "ocrConfidence": 0.97, "wordIndices": [0] }
+  ]
+}

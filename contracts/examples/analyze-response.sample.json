@@ -1,0 +1,40 @@
+{
+  "docId": "D-01",
+  "pipelineVersion": "0.1.0",
+  "pages": [
+    {
+      "docId": "D-01", "page": 1, "renderPath": "data/derived/D-01/page-1.png",
+      "renderDpi": 150, "rotationDeg": 0, "deskewDeg": 0.4,
+      "docType": "id_card", "docTypeConfidence": 0.93
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": "FLD-001", "docId": "D-01", "name": "dob",
+      "rawValue": "12/08/2004", "normalizedValue": "2004-08-12",
+      "ocrConfidence": 0.97, "extractionConfidence": 0.9, "validationStatus": "VALID",
+      "region": { "docId": "D-01", "page": 1, "bbox": [0.12, 0.31, 0.2, 0.04], "label": "dob" },
+      "source": "ocr"
+    }
+  ],
+  "signals": [
+    {
+      "signalId": "SIG-001", "detector": "image.ela", "type": "ELA_ANOMALY",
+      "regions": [{ "docId": "D-01", "page": 1, "bbox": [0.5, 0.6, 0.2, 0.05] }],
+      "confidence": 0.62, "measurements": { "residualRatio": 2.4 },
+      "provenance": {
+        "analyzer": "image.ela", "analyzerVersion": "0.1", "config": { "jpegQuality": 90 },
+        "inputSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "processedAt": "2026-11-01T00:00:00Z", "status": "AVAILABLE"
+      }
+    }
+  ],
+  "analyzerStatuses": { "ocr": "AVAILABLE", "image.ela": "AVAILABLE", "pdf.fonts": "NOT_APPLICABLE" },
+  "provenance": [
+    {
+      "analyzer": "ocr", "analyzerVersion": "0.1", "modelVersion": "fixture", "config": {},
+      "inputSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "processedAt": "2026-11-01T00:00:00Z", "status": "AVAILABLE"
+    }
+  ]
+}

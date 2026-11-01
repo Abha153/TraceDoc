@@ -1,0 +1,5 @@
+{
+  "ruleId": "R-DOB-MUST-AGREE", "ruleType": "MUST_AGREE", "semanticTypes": ["dob"],
+  "entityRoles": ["applicant"], "matchMethod": "date_iso", "severity": "high",
+  "note": "Date of birth must agree for the same resolved entity across documents."
+}

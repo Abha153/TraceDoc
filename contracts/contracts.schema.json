@@ -1,0 +1,1187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TraceDocs contracts (all types as definitions)",
+  "definitions": {
+    "AnalyzeResponse": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageRecord"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExtractedField"
+          }
+        },
+        "signals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ForensicSignal"
+          }
+        },
+        "analyzerStatuses": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AnalyzerStatus"
+          }
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Provenance"
+          }
+        }
+      },
+      "required": [
+        "docId",
+        "pipelineVersion",
+        "pages",
+        "fields",
+        "signals",
+        "analyzerStatuses",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "Output of the Python analysis service, POST /analyze."
+    },
+    "PageRecord": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "renderPath": {
+          "type": "string"
+        },
+        "renderDpi": {
+          "type": "number"
+        },
+        "rotationDeg": {
+          "type": "number"
+        },
+        "deskewDeg": {
+          "type": "number"
+        },
+        "docType": {
+          "$ref": "#/definitions/DocType"
+        },
+        "docTypeConfidence": {
+          "type": "number"
+        },
+        "docTypeOverriddenBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "renderPath",
+        "renderDpi",
+        "rotationDeg",
+        "deskewDeg",
+        "docType",
+        "docTypeConfidence"
+      ],
+      "additionalProperties": false
+    },
+    "DocType": {
+      "type": "string",
+      "enum": [
+        "id_card",
+        "application_form",
+        "bank_statement",
+        "other",
+        "UNKNOWN",
+        "AMBIGUOUS"
+      ]
+    },
+    "ExtractedField": {
+      "type": "object",
+      "properties": {
+        "fieldId": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rawValue": {
+          "type": "string"
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "extractionConfidence": {
+          "type": "number"
+        },
+        "validationStatus": {
+          "type": "string",
+          "enum": [
+            "VALID",
+            "INVALID_FORMAT",
+            "NOT_CHECKED"
+          ]
+        },
+        "region": {
+          "$ref": "#/definitions/Region"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "ocr",
+            "pdf_text_layer"
+          ]
+        }
+      },
+      "required": [
+        "fieldId",
+        "docId",
+        "name",
+        "rawValue",
+        "normalizedValue",
+        "ocrConfidence",
+        "extractionConfidence",
+        "validationStatus",
+        "region",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "bbox"
+      ],
+      "additionalProperties": false,
+      "description": "bbox = [x, y, w, h], each normalized 0..1 against the canonical render."
+    },
+    "ForensicSignal": {
+      "type": "object",
+      "properties": {
+        "signalId": {
+          "type": "string"
+        },
+        "detector": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "measurements": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          }
+        },
+        "provenance": {
+          "$ref": "#/definitions/Provenance"
+        }
+      },
+      "required": [
+        "signalId",
+        "detector",
+        "type",
+        "regions",
+        "confidence",
+        "measurements",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "One raw observation from a Python analyzer. `type` examples: ELA_ANOMALY, NOISE_INCONSISTENCY, COPY_MOVE, TEXT_LAYER_MISMATCH, FONT_OUTLIER, PDF_METADATA, PDF_REVISIONS, SIGNATURE_DUPLICATE, SIGNATURE_PLACEMENT. `detector` is the analyzer id (e.g. \"image.ela\"); the engine maps detectors to families via config."
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "analyzer": {
+          "type": "string"
+        },
+        "analyzerVersion": {
+          "type": "string"
+        },
+        "modelVersion": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          }
+        },
+        "inputSha256": {
+          "type": "string"
+        },
+        "processedAt": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/AnalyzerStatus"
+        }
+      },
+      "required": [
+        "analyzer",
+        "analyzerVersion",
+        "config",
+        "inputSha256",
+        "processedAt",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "AnalyzerStatus": {
+      "type": "string",
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE",
+        "ERROR",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "ComparabilityRule": {
+      "type": "object",
+      "properties": {
+        "ruleId": {
+          "type": "string"
+        },
+        "ruleType": {
+          "type": "string",
+          "enum": [
+            "MUST_AGREE",
+            "MAY_DIFFER",
+            "NOT_COMPARABLE",
+            "ARITHMETIC",
+            "TEMPORAL",
+            "UNIQUENESS"
+          ]
+        },
+        "semanticTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "entityRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityRole"
+          }
+        },
+        "matchMethod": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "name_fuzzy",
+            "date_iso",
+            "amount_exact",
+            "sum_equals",
+            "date_order",
+            "none"
+          ]
+        },
+        "severity": {
+          "$ref": "#/definitions/Severity"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ruleId",
+        "ruleType",
+        "semanticTypes",
+        "entityRoles",
+        "matchMethod",
+        "severity",
+        "note"
+      ],
+      "additionalProperties": false,
+      "description": "One row of backend/config/comparability.json (ARCHITECTURE section 7.2)."
+    },
+    "EntityRole": {
+      "type": "string",
+      "enum": [
+        "applicant",
+        "co_applicant",
+        "guarantor",
+        "nominee",
+        "account_holder",
+        "unknown"
+      ]
+    },
+    "Severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "OcrPage": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "widthPx": {
+          "type": "number"
+        },
+        "heightPx": {
+          "type": "number"
+        },
+        "renderDpi": {
+          "type": "number"
+        },
+        "engine": {
+          "type": "string"
+        },
+        "engineVersion": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OcrWord"
+          }
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OcrLine"
+          }
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "widthPx",
+        "heightPx",
+        "renderDpi",
+        "engine",
+        "engineVersion",
+        "words",
+        "lines"
+      ],
+      "additionalProperties": false
+    },
+    "OcrWord": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "lineIndex": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "text",
+        "bbox",
+        "ocrConfidence",
+        "lineIndex"
+      ],
+      "additionalProperties": false,
+      "description": "OCR output shapes shared by the Python service and its tests. Boxes are [x, y, w, h] normalized (0..1) to the canonical render, same space as Region.bbox. OCR output is a claim, not ground truth: ocrConfidence is carried everywhere."
+    },
+    "OcrLine": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "wordIndices": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "required": [
+        "text",
+        "bbox",
+        "ocrConfidence",
+        "wordIndices"
+      ],
+      "additionalProperties": false
+    },
+    "ReasoningInput": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnalyzeResponse"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "documents"
+      ],
+      "additionalProperties": false
+    },
+    "ReasoningOutput": {
+      "type": "object",
+      "properties": {
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentAssertion"
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Finding"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegionEvent"
+          }
+        },
+        "priority": {
+          "$ref": "#/definitions/PriorityOutput"
+        }
+      },
+      "required": [
+        "assertions",
+        "entities",
+        "findings",
+        "events",
+        "priority"
+      ],
+      "additionalProperties": false
+    },
+    "DocumentAssertion": {
+      "type": "object",
+      "properties": {
+        "assertionId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "string"
+        },
+        "fieldId": {
+          "type": "string"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entityRole": {
+          "$ref": "#/definitions/EntityRole"
+        },
+        "semanticType": {
+          "type": "string"
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "documentDate": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "type": "string"
+        },
+        "extractionConfidence": {
+          "type": "number"
+        },
+        "region": {
+          "$ref": "#/definitions/Region"
+        }
+      },
+      "required": [
+        "assertionId",
+        "caseId",
+        "docId",
+        "fieldId",
+        "entityId",
+        "entityRole",
+        "semanticType",
+        "normalizedValue",
+        "extractionConfidence",
+        "region"
+      ],
+      "additionalProperties": false
+    },
+    "Entity": {
+      "type": "object",
+      "properties": {
+        "entityId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/EntityRole"
+        },
+        "resolution": {
+          "type": "string",
+          "enum": [
+            "RESOLVED",
+            "SUGGESTED",
+            "UNRESOLVED"
+          ]
+        },
+        "basis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assertionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "entityId",
+        "caseId",
+        "role",
+        "resolution",
+        "basis",
+        "assertionIds"
+      ],
+      "additionalProperties": false
+    },
+    "Finding": {
+      "type": "object",
+      "properties": {
+        "findingId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "extraction",
+            "visual",
+            "pdf_structure",
+            "context",
+            "cross_document"
+          ]
+        },
+        "type": {
+          "type": "string"
+        },
+        "observationStatus": {
+          "$ref": "#/definitions/ObservationStatus"
+        },
+        "severity": {
+          "$ref": "#/definitions/Severity"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Evidence"
+          }
+        },
+        "explanation": {
+          "$ref": "#/definitions/StructuredExplanation"
+        },
+        "needsVerification": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "findingId",
+        "caseId",
+        "category",
+        "type",
+        "observationStatus",
+        "severity",
+        "confidence",
+        "evidence",
+        "needsVerification"
+      ],
+      "additionalProperties": false
+    },
+    "ObservationStatus": {
+      "type": "string",
+      "enum": [
+        "OBSERVED",
+        "INCONSISTENT",
+        "POTENTIAL_ANOMALY",
+        "INCONCLUSIVE"
+      ],
+      "description": "TraceDocs shared contracts (source of truth: ARCHITECTURE.md section 5). Types only, no logic. Contract changes go through Person 1: update contracts/ and fixtures in one commit. All bounding boxes are normalized (0 to 1) to the CANONICAL RENDER of a page."
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "evidenceId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "assertion_pair",
+            "forensic_signal",
+            "metadata",
+            "rule_result",
+            "text_layer_diff"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        },
+        "assertionIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "measurements": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          }
+        },
+        "provenance": {
+          "$ref": "#/definitions/Provenance"
+        }
+      },
+      "required": [
+        "evidenceId",
+        "kind",
+        "description",
+        "regions",
+        "provenance"
+      ],
+      "additionalProperties": false
+    },
+    "StructuredExplanation": {
+      "type": "object",
+      "properties": {
+        "findingId": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "possibleExplanations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendedReview": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "findingId",
+        "summary",
+        "observations",
+        "possibleExplanations",
+        "recommendedReview",
+        "evidenceIds"
+      ],
+      "additionalProperties": false
+    },
+    "RegionEvent": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        },
+        "signalIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "detectors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "provenance": {
+          "$ref": "#/definitions/Provenance"
+        }
+      },
+      "required": [
+        "eventId",
+        "caseId",
+        "docId",
+        "page",
+        "regions",
+        "signalIds",
+        "detectors",
+        "confidence",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "Several signals on overlapping boxes of one page, merged into one event (ARCHITECTURE section 8)."
+    },
+    "PriorityOutput": {
+      "type": "object",
+      "properties": {
+        "perCase": {
+          "$ref": "#/definitions/PriorityResult"
+        },
+        "perDocument": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PriorityResult"
+          }
+        },
+        "provenance": {
+          "$ref": "#/definitions/Provenance"
+        }
+      },
+      "required": [
+        "perCase",
+        "perDocument",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "Investigation priority. Never a fraud probability and never called \"risk\"."
+    },
+    "PriorityResult": {
+      "type": "object",
+      "properties": {
+        "priorityBand": {
+          "$ref": "#/definitions/PriorityBand"
+        },
+        "score": {
+          "type": "number"
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "coverage": {
+          "type": "number"
+        },
+        "contributingFindingIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "priorityBand",
+        "score",
+        "confidence",
+        "coverage",
+        "contributingFindingIds"
+      ],
+      "additionalProperties": false
+    },
+    "PriorityBand": {
+      "type": "string",
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "critical"
+      ]
+    },
+    "Job": {
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "analyzers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AnalyzerProgress"
+          }
+        },
+        "attempts": {
+          "type": "number"
+        },
+        "maxAttempts": {
+          "type": "number"
+        },
+        "forced": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "jobId",
+        "caseId",
+        "docId",
+        "pipelineVersion",
+        "status",
+        "analyzers",
+        "attempts",
+        "maxAttempts",
+        "createdAt",
+        "updatedAt"
+      ],
+      "additionalProperties": false
+    },
+    "JobStatus": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "PARTIAL",
+        "DONE",
+        "FAILED"
+      ]
+    },
+    "AnalyzerProgress": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/AnalyzerRunState"
+        },
+        "analyzerStatus": {
+          "$ref": "#/definitions/AnalyzerStatus"
+        },
+        "startedAt": {
+          "type": "string"
+        },
+        "finishedAt": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "AnalyzerRunState": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "RUNNING",
+        "DONE",
+        "ERROR",
+        "UNAVAILABLE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "DocumentRecord": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "pageCount": {
+          "type": "number"
+        },
+        "processing": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AnalyzerStatus"
+          }
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "receivedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId",
+        "caseId",
+        "filename",
+        "sha256",
+        "mimeType",
+        "pageCount",
+        "processing",
+        "pipelineVersion",
+        "receivedAt"
+      ],
+      "additionalProperties": false
+    },
+    "InvestigationEvent": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "type": "string"
+        },
+        "caseId": {
+          "type": "string"
+        },
+        "at": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "UPLOAD",
+            "RERUN",
+            "RECLASSIFY",
+            "REVIEW",
+            "COMMENT",
+            "REOPEN",
+            "EXPORT",
+            "VIEW"
+          ]
+        },
+        "targetId": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": {}
+        }
+      },
+      "required": [
+        "eventId",
+        "caseId",
+        "at",
+        "actor",
+        "type",
+        "targetId",
+        "payload"
+      ],
+      "additionalProperties": false,
+      "description": "Append-only analyst/system log entry. Distinct from RegionEvent (grouped forensic signals)."
+    },
+    "ReviewStatus": {
+      "type": "string",
+      "enum": [
+        "UNREVIEWED",
+        "CONFIRMED",
+        "DISMISSED",
+        "INCONCLUSIVE"
+      ]
+    }
+  }
+}

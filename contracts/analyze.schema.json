@@ -1,0 +1,313 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/AnalyzeResponse",
+  "definitions": {
+    "AnalyzeResponse": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageRecord"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExtractedField"
+          }
+        },
+        "signals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ForensicSignal"
+          }
+        },
+        "analyzerStatuses": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AnalyzerStatus"
+          }
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Provenance"
+          }
+        }
+      },
+      "required": [
+        "docId",
+        "pipelineVersion",
+        "pages",
+        "fields",
+        "signals",
+        "analyzerStatuses",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "Output of the Python analysis service, POST /analyze."
+    },
+    "PageRecord": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "renderPath": {
+          "type": "string"
+        },
+        "renderDpi": {
+          "type": "number"
+        },
+        "rotationDeg": {
+          "type": "number"
+        },
+        "deskewDeg": {
+          "type": "number"
+        },
+        "docType": {
+          "$ref": "#/definitions/DocType"
+        },
+        "docTypeConfidence": {
+          "type": "number"
+        },
+        "docTypeOverriddenBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "renderPath",
+        "renderDpi",
+        "rotationDeg",
+        "deskewDeg",
+        "docType",
+        "docTypeConfidence"
+      ],
+      "additionalProperties": false
+    },
+    "DocType": {
+      "type": "string",
+      "enum": [
+        "id_card",
+        "application_form",
+        "bank_statement",
+        "other",
+        "UNKNOWN",
+        "AMBIGUOUS"
+      ]
+    },
+    "ExtractedField": {
+      "type": "object",
+      "properties": {
+        "fieldId": {
+          "type": "string"
+        },
+        "docId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rawValue": {
+          "type": "string"
+        },
+        "normalizedValue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "extractionConfidence": {
+          "type": "number"
+        },
+        "validationStatus": {
+          "type": "string",
+          "enum": [
+            "VALID",
+            "INVALID_FORMAT",
+            "NOT_CHECKED"
+          ]
+        },
+        "region": {
+          "$ref": "#/definitions/Region"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "ocr",
+            "pdf_text_layer"
+          ]
+        }
+      },
+      "required": [
+        "fieldId",
+        "docId",
+        "name",
+        "rawValue",
+        "normalizedValue",
+        "ocrConfidence",
+        "extractionConfidence",
+        "validationStatus",
+        "region",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "bbox"
+      ],
+      "additionalProperties": false,
+      "description": "bbox = [x, y, w, h], each normalized 0..1 against the canonical render."
+    },
+    "ForensicSignal": {
+      "type": "object",
+      "properties": {
+        "signalId": {
+          "type": "string"
+        },
+        "detector": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        },
+        "confidence": {
+          "type": "number"
+        },
+        "measurements": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          }
+        },
+        "provenance": {
+          "$ref": "#/definitions/Provenance"
+        }
+      },
+      "required": [
+        "signalId",
+        "detector",
+        "type",
+        "regions",
+        "confidence",
+        "measurements",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "description": "One raw observation from a Python analyzer. `type` examples: ELA_ANOMALY, NOISE_INCONSISTENCY, COPY_MOVE, TEXT_LAYER_MISMATCH, FONT_OUTLIER, PDF_METADATA, PDF_REVISIONS, SIGNATURE_DUPLICATE, SIGNATURE_PLACEMENT. `detector` is the analyzer id (e.g. \"image.ela\"); the engine maps detectors to families via config."
+    },
+    "Provenance": {
+      "type": "object",
+      "properties": {
+        "analyzer": {
+          "type": "string"
+        },
+        "analyzerVersion": {
+          "type": "string"
+        },
+        "modelVersion": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string"
+            ]
+          }
+        },
+        "inputSha256": {
+          "type": "string"
+        },
+        "processedAt": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/AnalyzerStatus"
+        }
+      },
+      "required": [
+        "analyzer",
+        "analyzerVersion",
+        "config",
+        "inputSha256",
+        "processedAt",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "AnalyzerStatus": {
+      "type": "string",
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE",
+        "ERROR",
+        "NOT_APPLICABLE"
+      ]
+    }
+  },
+  "title": "AnalyzeResponse"
+}

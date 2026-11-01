@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/OcrPage",
+  "definitions": {
+    "OcrPage": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "page": {
+          "type": "number"
+        },
+        "widthPx": {
+          "type": "number"
+        },
+        "heightPx": {
+          "type": "number"
+        },
+        "renderDpi": {
+          "type": "number"
+        },
+        "engine": {
+          "type": "string"
+        },
+        "engineVersion": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OcrWord"
+          }
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OcrLine"
+          }
+        }
+      },
+      "required": [
+        "docId",
+        "page",
+        "widthPx",
+        "heightPx",
+        "renderDpi",
+        "engine",
+        "engineVersion",
+        "words",
+        "lines"
+      ],
+      "additionalProperties": false
+    },
+    "OcrWord": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "lineIndex": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "text",
+        "bbox",
+        "ocrConfidence",
+        "lineIndex"
+      ],
+      "additionalProperties": false,
+      "description": "OCR output shapes shared by the Python service and its tests. Boxes are [x, y, w, h] normalized (0..1) to the canonical render, same space as Region.bbox. OCR output is a claim, not ground truth: ocrConfidence is carried everywhere."
+    },
+    "OcrLine": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "bbox": {
+          "type": "array",
+          "minItems": 4,
+          "items": [
+            {
+              "type": "number",
+              "title": "x"
+            },
+            {
+              "type": "number",
+              "title": "y"
+            },
+            {
+              "type": "number",
+              "title": "w"
+            },
+            {
+              "type": "number",
+              "title": "h"
+            }
+          ],
+          "maxItems": 4
+        },
+        "ocrConfidence": {
+          "type": "number"
+        },
+        "wordIndices": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "required": [
+        "text",
+        "bbox",
+        "ocrConfidence",
+        "wordIndices"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "OcrPage"
+}
