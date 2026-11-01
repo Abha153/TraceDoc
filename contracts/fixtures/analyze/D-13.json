@@ -1,0 +1,285 @@
+{
+  "docId": "D-13",
+  "pipelineVersion": "0.1.0",
+  "pages": [
+    {
+      "docId": "D-13",
+      "page": 1,
+      "renderPath": "contracts/fixtures/pages/D-13-page-1.png",
+      "renderDpi": 150,
+      "rotationDeg": 0,
+      "deskewDeg": 0.0,
+      "docType": "application_form",
+      "docTypeConfidence": 0.93
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": "D-13-F01",
+      "docId": "D-13",
+      "name": "full_name",
+      "rawValue": "Priya Nair",
+      "normalizedValue": "Priya Nair",
+      "ocrConfidence": 0.97,
+      "extractionConfidence": 0.93,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.1995,
+          0.1331,
+          0.0262
+        ],
+        "label": "full_name"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F02",
+      "docId": "D-13",
+      "name": "dob",
+      "rawValue": "05/03/1996",
+      "normalizedValue": "1996-03-05",
+      "ocrConfidence": 0.94,
+      "extractionConfidence": 0.92,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2611,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F03",
+      "docId": "D-13",
+      "name": "id_number",
+      "rawValue": "TD-61020-15",
+      "normalizedValue": "TD-61020-15",
+      "ocrConfidence": 0.96,
+      "extractionConfidence": 0.93,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3227,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F04",
+      "docId": "D-13",
+      "name": "address_permanent",
+      "rawValue": "22 Harbor Lane, Westport",
+      "normalizedValue": "22 Harbor Lane, Westport",
+      "ocrConfidence": 0.96,
+      "extractionConfidence": 0.89,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3843,
+          0.3411,
+          0.0262
+        ],
+        "label": "address_permanent"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F05",
+      "docId": "D-13",
+      "name": "address_current",
+      "rawValue": "22 Harbor Lane, Westport",
+      "normalizedValue": "22 Harbor Lane, Westport",
+      "ocrConfidence": 0.96,
+      "extractionConfidence": 0.89,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.4458,
+          0.3411,
+          0.0262
+        ],
+        "label": "address_current"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F06",
+      "docId": "D-13",
+      "name": "requested_amount",
+      "rawValue": "120,000.00",
+      "normalizedValue": "120000.00",
+      "ocrConfidence": 0.95,
+      "extractionConfidence": 0.94,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.5074,
+          0.1558,
+          0.0262
+        ],
+        "label": "requested_amount"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F07",
+      "docId": "D-13",
+      "name": "application_date",
+      "rawValue": "20/10/2026",
+      "normalizedValue": "2026-10-20",
+      "ocrConfidence": 0.96,
+      "extractionConfidence": 0.93,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.569,
+          0.1568,
+          0.0262
+        ],
+        "label": "application_date"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F08",
+      "docId": "D-13",
+      "name": "guarantor_full_name",
+      "rawValue": "Priya Nayar",
+      "normalizedValue": "Priya Nayar",
+      "ocrConfidence": 0.96,
+      "extractionConfidence": 0.9,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.6306,
+          0.1571,
+          0.0262
+        ],
+        "label": "guarantor_full_name"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-13-F09",
+      "docId": "D-13",
+      "name": "guarantor_id_number",
+      "rawValue": "TD-61020-51",
+      "normalizedValue": "TD-61020-51",
+      "ocrConfidence": 0.95,
+      "extractionConfidence": 0.91,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.6921,
+          0.1773,
+          0.0262
+        ],
+        "label": "guarantor_id_number"
+      },
+      "source": "ocr"
+    }
+  ],
+  "signals": [],
+  "analyzerStatuses": {
+    "ocr": "AVAILABLE",
+    "pdf.textlayer": "NOT_APPLICABLE",
+    "pdf.fonts": "NOT_APPLICABLE",
+    "image.ela": "AVAILABLE",
+    "image.noise": "AVAILABLE",
+    "image.copymove": "AVAILABLE",
+    "signature": "AVAILABLE"
+  },
+  "provenance": [
+    {
+      "analyzer": "ocr",
+      "analyzerVersion": "0.1",
+      "modelVersion": "fixture",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "pdf.textlayer",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "pdf.fonts",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "image.ela",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.noise",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.copymove",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "signature",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    }
+  ]
+}

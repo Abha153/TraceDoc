@@ -1,0 +1,541 @@
+{
+  "assertions": [
+    {
+      "assertionId": "D-11-A01",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "fieldId": "D-11-F01",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "full_name",
+      "normalizedValue": "Priya Nair",
+      "documentDate": "2022-06-17",
+      "extractionConfidence": 0.97,
+      "region": {
+        "docId": "D-11",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1368,
+          0.1513,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-11-A02",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "fieldId": "D-11-F02",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "dob",
+      "normalizedValue": "1996-03-05",
+      "documentDate": "2022-06-17",
+      "extractionConfidence": 0.96,
+      "region": {
+        "docId": "D-11",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1938,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      }
+    },
+    {
+      "assertionId": "D-11-A03",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "fieldId": "D-11-F03",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-61020-15",
+      "documentDate": "2022-06-17",
+      "extractionConfidence": 0.95,
+      "region": {
+        "docId": "D-11",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.2509,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      }
+    },
+    {
+      "assertionId": "D-11-A04",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "fieldId": "D-11-F04",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_permanent",
+      "normalizedValue": "22 Harbor Lane, Westport",
+      "documentDate": "2022-06-17",
+      "extractionConfidence": 0.91,
+      "region": {
+        "docId": "D-11",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3079,
+          0.3411,
+          0.0262
+        ],
+        "label": "address_permanent"
+      }
+    },
+    {
+      "assertionId": "D-11-A05",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "fieldId": "D-11-F05",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "issue_date",
+      "normalizedValue": "2022-06-17",
+      "documentDate": "2022-06-17",
+      "extractionConfidence": 0.94,
+      "region": {
+        "docId": "D-11",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3649,
+          0.1568,
+          0.0262
+        ],
+        "label": "issue_date"
+      }
+    },
+    {
+      "assertionId": "D-12-A01",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "fieldId": "D-12-F01",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "full_name",
+      "normalizedValue": "Priya Nayar",
+      "documentDate": "2021-01-09",
+      "extractionConfidence": 0.96,
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1368,
+          0.1731,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-12-A02",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "fieldId": "D-12-F02",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "dob",
+      "normalizedValue": "1971-11-21",
+      "documentDate": "2021-01-09",
+      "extractionConfidence": 0.95,
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1938,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      }
+    },
+    {
+      "assertionId": "D-12-A03",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "fieldId": "D-12-F03",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-61020-51",
+      "documentDate": "2021-01-09",
+      "extractionConfidence": 0.95,
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.2509,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      }
+    },
+    {
+      "assertionId": "D-12-A04",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "fieldId": "D-12-F04",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "address_permanent",
+      "normalizedValue": "7 Orchard Road, Westport",
+      "documentDate": "2021-01-09",
+      "extractionConfidence": 0.9,
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3079,
+          0.3416,
+          0.0262
+        ],
+        "label": "address_permanent"
+      }
+    },
+    {
+      "assertionId": "D-12-A05",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "fieldId": "D-12-F05",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "issue_date",
+      "normalizedValue": "2021-01-09",
+      "documentDate": "2021-01-09",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3649,
+          0.1568,
+          0.0262
+        ],
+        "label": "issue_date"
+      }
+    },
+    {
+      "assertionId": "D-13-A01",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F01",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "full_name",
+      "normalizedValue": "Priya Nair",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.1995,
+          0.1331,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-13-A02",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F02",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "dob",
+      "normalizedValue": "1996-03-05",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.92,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2611,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      }
+    },
+    {
+      "assertionId": "D-13-A03",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F03",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-61020-15",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3227,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      }
+    },
+    {
+      "assertionId": "D-13-A04",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F04",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_permanent",
+      "normalizedValue": "22 Harbor Lane, Westport",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.89,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3843,
+          0.3411,
+          0.0262
+        ],
+        "label": "address_permanent"
+      }
+    },
+    {
+      "assertionId": "D-13-A05",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F05",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_current",
+      "normalizedValue": "22 Harbor Lane, Westport",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.89,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.4458,
+          0.3411,
+          0.0262
+        ],
+        "label": "address_current"
+      }
+    },
+    {
+      "assertionId": "D-13-A06",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F06",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "requested_amount",
+      "normalizedValue": "120000.00",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.94,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.5074,
+          0.1558,
+          0.0262
+        ],
+        "label": "requested_amount"
+      }
+    },
+    {
+      "assertionId": "D-13-A07",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F07",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "application_date",
+      "normalizedValue": "2026-10-20",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.569,
+          0.1568,
+          0.0262
+        ],
+        "label": "application_date"
+      }
+    },
+    {
+      "assertionId": "D-13-A08",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F08",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "full_name",
+      "normalizedValue": "Priya Nayar",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.9,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.6306,
+          0.1571,
+          0.0262
+        ],
+        "label": "guarantor_full_name"
+      }
+    },
+    {
+      "assertionId": "D-13-A09",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "fieldId": "D-13-F09",
+      "entityId": "E-002",
+      "entityRole": "guarantor",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-61020-51",
+      "documentDate": "2026-10-20",
+      "extractionConfidence": 0.91,
+      "region": {
+        "docId": "D-13",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.6921,
+          0.1773,
+          0.0262
+        ],
+        "label": "guarantor_id_number"
+      }
+    }
+  ],
+  "entities": [
+    {
+      "entityId": "E-001",
+      "caseId": "CASE-002",
+      "role": "applicant",
+      "resolution": "RESOLVED",
+      "basis": [
+        "id_number exact match: TD-61020-15 (D-11, D-13)"
+      ],
+      "assertionIds": [
+        "D-11-A01",
+        "D-11-A02",
+        "D-11-A03",
+        "D-11-A04",
+        "D-11-A05",
+        "D-13-A01",
+        "D-13-A02",
+        "D-13-A03",
+        "D-13-A04",
+        "D-13-A05",
+        "D-13-A06",
+        "D-13-A07"
+      ]
+    },
+    {
+      "entityId": "E-002",
+      "caseId": "CASE-002",
+      "role": "guarantor",
+      "resolution": "RESOLVED",
+      "basis": [
+        "id_number exact match: TD-61020-51 (D-12, D-13 guarantor_id_number)",
+        "different id_number from E-001, kept separate despite similar names"
+      ],
+      "assertionIds": [
+        "D-12-A01",
+        "D-12-A02",
+        "D-12-A03",
+        "D-12-A04",
+        "D-12-A05",
+        "D-13-A08",
+        "D-13-A09"
+      ]
+    }
+  ],
+  "findings": [],
+  "events": [],
+  "priority": {
+    "perCase": {
+      "priorityBand": "low",
+      "score": 0.0,
+      "confidence": 0.0,
+      "coverage": 1.0,
+      "contributingFindingIds": []
+    },
+    "perDocument": {
+      "D-11": {
+        "priorityBand": "low",
+        "score": 0.0,
+        "confidence": 0.0,
+        "coverage": 1.0,
+        "contributingFindingIds": []
+      },
+      "D-12": {
+        "priorityBand": "low",
+        "score": 0.0,
+        "confidence": 0.0,
+        "coverage": 1.0,
+        "contributingFindingIds": []
+      },
+      "D-13": {
+        "priorityBand": "low",
+        "score": 0.0,
+        "confidence": 0.0,
+        "coverage": 1.0,
+        "contributingFindingIds": []
+      }
+    },
+    "provenance": {
+      "analyzer": "priorityEngine",
+      "analyzerVersion": "0.1",
+      "config": {
+        "severityWeight_info": 0.05,
+        "severityWeight_low": 0.15,
+        "severityWeight_medium": 0.4,
+        "severityWeight_high": 0.7,
+        "categoryWeight_cross_document": 1.0,
+        "categoryWeight_context": 0.9,
+        "categoryWeight_visual": 0.8,
+        "categoryWeight_pdf_structure": 0.7,
+        "categoryWeight_extraction": 0.4,
+        "bandLowBelow": 0.25,
+        "bandModerateBelow": 0.5,
+        "bandHighBelow": 0.75,
+        "weakEvidenceCap": 0.49
+      },
+      "inputSha256": "fb060278c713902cd0d99b555ae87655f0019bd13052f3857a9696a0534984f7",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    }
+  }
+}

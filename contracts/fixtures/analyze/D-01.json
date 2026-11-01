@@ -1,0 +1,197 @@
+{
+  "docId": "D-01",
+  "pipelineVersion": "0.1.0",
+  "pages": [
+    {
+      "docId": "D-01",
+      "page": 1,
+      "renderPath": "contracts/fixtures/pages/D-01-page-1.png",
+      "renderDpi": 150,
+      "rotationDeg": 0,
+      "deskewDeg": 0.0,
+      "docType": "id_card",
+      "docTypeConfidence": 0.96
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": "D-01-F01",
+      "docId": "D-01",
+      "name": "full_name",
+      "rawValue": "AARAV KUMAR SHARMA",
+      "normalizedValue": "Aarav Kumar Sharma",
+      "ocrConfidence": 0.99,
+      "extractionConfidence": 0.96,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1368,
+          0.3153,
+          0.0262
+        ],
+        "label": "full_name"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-01-F02",
+      "docId": "D-01",
+      "name": "dob",
+      "rawValue": "12/08/2004",
+      "normalizedValue": "2004-08-12",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.95,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1938,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-01-F03",
+      "docId": "D-01",
+      "name": "id_number",
+      "rawValue": "TD-48213-77",
+      "normalizedValue": "TD-48213-77",
+      "ocrConfidence": 0.98,
+      "extractionConfidence": 0.94,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.2509,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-01-F04",
+      "docId": "D-01",
+      "name": "address_permanent",
+      "rawValue": "14 Maple Court, Riverton",
+      "normalizedValue": "14 Maple Court, Riverton",
+      "ocrConfidence": 0.98,
+      "extractionConfidence": 0.9,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3079,
+          0.3312,
+          0.0262
+        ],
+        "label": "address_permanent"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-01-F05",
+      "docId": "D-01",
+      "name": "issue_date",
+      "rawValue": "03/02/2023",
+      "normalizedValue": "2023-02-03",
+      "ocrConfidence": 0.99,
+      "extractionConfidence": 0.93,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3649,
+          0.1568,
+          0.0262
+        ],
+        "label": "issue_date"
+      },
+      "source": "ocr"
+    }
+  ],
+  "signals": [],
+  "analyzerStatuses": {
+    "ocr": "AVAILABLE",
+    "pdf.textlayer": "NOT_APPLICABLE",
+    "pdf.fonts": "NOT_APPLICABLE",
+    "image.ela": "AVAILABLE",
+    "image.noise": "AVAILABLE",
+    "image.copymove": "AVAILABLE",
+    "signature": "AVAILABLE"
+  },
+  "provenance": [
+    {
+      "analyzer": "ocr",
+      "analyzerVersion": "0.1",
+      "modelVersion": "fixture",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "pdf.textlayer",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "pdf.fonts",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "image.ela",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.noise",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.copymove",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "signature",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    }
+  ]
+}

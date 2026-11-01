@@ -496,6 +496,7 @@ Reviews are events. The machine `observationStatus` is shown next to the review 
 | Method | Route | Description |
 | --- | --- | --- |
 | `POST` | `/auth/login`, `/auth/logout` | Analyst session |
+| `GET` | `/cases` | List cases with case-level priority (needed by the Cases page) |
 | `POST` | `/cases` | Create a case |
 | `POST` | `/cases/:caseId/documents` | Upload documents, returns job IDs |
 | `GET` | `/jobs/:jobId` | Job status, per-analyzer progress, partial results |

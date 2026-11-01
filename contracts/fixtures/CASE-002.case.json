@@ -1,0 +1,260 @@
+{
+  "case": {
+    "caseId": "CASE-002",
+    "title": "Loan application with guarantor, Priya Nair",
+    "createdAt": "2026-11-01T08:50:00Z",
+    "createdBy": "analyst-1"
+  },
+  "documents": [
+    {
+      "docId": "D-11",
+      "caseId": "CASE-002",
+      "filename": "id_card_priya_nair.png",
+      "sha256": "a91f63194629c3cb9b2952d73d1a98b45cc64f9d7f57a9e9a42784ec613f559a",
+      "mimeType": "image/png",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "NOT_APPLICABLE",
+        "pdf.fonts": "NOT_APPLICABLE",
+        "image.ela": "AVAILABLE",
+        "image.noise": "AVAILABLE",
+        "image.copymove": "AVAILABLE",
+        "signature": "AVAILABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:10Z"
+    },
+    {
+      "docId": "D-12",
+      "caseId": "CASE-002",
+      "filename": "id_card_priya_nayar.png",
+      "sha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "mimeType": "image/png",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "NOT_APPLICABLE",
+        "pdf.fonts": "NOT_APPLICABLE",
+        "image.ela": "AVAILABLE",
+        "image.noise": "AVAILABLE",
+        "image.copymove": "AVAILABLE",
+        "signature": "AVAILABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:11Z"
+    },
+    {
+      "docId": "D-13",
+      "caseId": "CASE-002",
+      "filename": "loan_application_priya.png",
+      "sha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045",
+      "mimeType": "image/png",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "NOT_APPLICABLE",
+        "pdf.fonts": "NOT_APPLICABLE",
+        "image.ela": "AVAILABLE",
+        "image.noise": "AVAILABLE",
+        "image.copymove": "AVAILABLE",
+        "signature": "AVAILABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:12Z"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": "JOB-0004",
+      "caseId": "CASE-002",
+      "docId": "D-11",
+      "pipelineVersion": "0.1.0",
+      "status": "DONE",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "pdf.fonts": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.ela": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.noise": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.copymove": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "signature": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    },
+    {
+      "jobId": "JOB-0005",
+      "caseId": "CASE-002",
+      "docId": "D-12",
+      "pipelineVersion": "0.1.0",
+      "status": "DONE",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "pdf.fonts": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.ela": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.noise": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.copymove": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "signature": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    },
+    {
+      "jobId": "JOB-0006",
+      "caseId": "CASE-002",
+      "docId": "D-13",
+      "pipelineVersion": "0.1.0",
+      "status": "DONE",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "pdf.fonts": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.ela": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.noise": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.copymove": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "signature": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    }
+  ],
+  "investigationEvents": [
+    {
+      "eventId": "IE-002-001",
+      "caseId": "CASE-002",
+      "at": "2026-11-01T08:55:10Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-11",
+      "payload": {
+        "filename": "id_card_priya_nair.png",
+        "sha256": "a91f63194629c3cb9b2952d73d1a98b45cc64f9d7f57a9e9a42784ec613f559a"
+      }
+    },
+    {
+      "eventId": "IE-002-002",
+      "caseId": "CASE-002",
+      "at": "2026-11-01T08:55:11Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-12",
+      "payload": {
+        "filename": "id_card_priya_nayar.png",
+        "sha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3"
+      }
+    },
+    {
+      "eventId": "IE-002-003",
+      "caseId": "CASE-002",
+      "at": "2026-11-01T08:55:12Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-13",
+      "payload": {
+        "filename": "loan_application_priya.png",
+        "sha256": "9565f3584140f5641d3ee8871208c7ad26a1ddf0fec1ad4a96e281a276424045"
+      }
+    }
+  ]
+}

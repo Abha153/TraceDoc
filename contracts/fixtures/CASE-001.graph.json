@@ -1,0 +1,95 @@
+{
+  "caseId": "CASE-001",
+  "nodes": [
+    {
+      "id": "D-01",
+      "kind": "document",
+      "label": "D-01 id_card",
+      "docType": "id_card"
+    },
+    {
+      "id": "D-02",
+      "kind": "document",
+      "label": "D-02 application_form",
+      "docType": "application_form"
+    },
+    {
+      "id": "D-03",
+      "kind": "document",
+      "label": "D-03 bank_statement",
+      "docType": "bank_statement"
+    },
+    {
+      "id": "E-001",
+      "kind": "entity",
+      "label": "applicant (E-001)",
+      "role": "applicant",
+      "resolution": "RESOLVED"
+    },
+    {
+      "id": "E-002",
+      "kind": "entity",
+      "label": "account_holder (E-002)",
+      "role": "account_holder",
+      "resolution": "SUGGESTED"
+    }
+  ],
+  "edges": [
+    {
+      "id": "G-001",
+      "source": "E-001",
+      "target": "D-01",
+      "kind": "contains"
+    },
+    {
+      "id": "G-002",
+      "source": "E-001",
+      "target": "D-02",
+      "kind": "contains"
+    },
+    {
+      "id": "G-003",
+      "source": "E-002",
+      "target": "D-03",
+      "kind": "contains"
+    },
+    {
+      "id": "G-004",
+      "source": "D-01",
+      "target": "D-02",
+      "kind": "match",
+      "label": "id_number"
+    },
+    {
+      "id": "G-005",
+      "source": "D-01",
+      "target": "D-02",
+      "kind": "conflict",
+      "findingId": "F-0001",
+      "label": "DOB_CONFLICT"
+    },
+    {
+      "id": "G-006",
+      "source": "D-01",
+      "target": "D-02",
+      "kind": "conflict",
+      "findingId": "F-0002",
+      "label": "NAME_VARIANT_SPELLING"
+    },
+    {
+      "id": "G-007",
+      "source": "D-02",
+      "target": "D-03",
+      "kind": "conflict",
+      "findingId": "F-0003",
+      "label": "NAME_VARIANT_SPELLING (capped)"
+    },
+    {
+      "id": "G-008",
+      "source": "E-002",
+      "target": "E-001",
+      "kind": "suggested",
+      "label": "name similarity only"
+    }
+  ]
+}

@@ -32,4 +32,9 @@ assert rejected(lambda d: d["fields"][0].update(extra=1)), "unknown field must b
 assert rejected(lambda d: d["analyzerStatuses"].update(ocr="CLEAN")), "CLEAN is not an analyzer status"
 assert rejected(lambda d: d["fields"][0]["region"].update(bbox=[0.1, 0.2, 0.3])), "bbox needs 4 numbers"
 assert rejected(lambda d: d["pages"][0].update(docType="passport")), "unknown docType must be rejected"
-print("pydantic mirror: all checks passed")
+# every recorded fixture must load into the mirror too
+for f in sorted((here / "fixtures/analyze").glob("*.json")):
+    AnalyzeResponse.model_validate_json(f.read_text())
+for f in sorted((here / "fixtures/ocr").glob("*.json")):
+    OcrPage.model_validate_json(f.read_text())
+print("pydantic mirror: all checks passed (samples + fixtures)")

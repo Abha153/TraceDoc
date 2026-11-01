@@ -1,0 +1,84 @@
+{
+  "CASE-001": [
+    {
+      "expectedId": "EF-001",
+      "type": "DOB_CONFLICT",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "high",
+      "assertionIds": [
+        "D-01-A02",
+        "D-02-A02"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "notes": "Same resolved applicant, ID card vs form, year differs (not a day/month swap)"
+    },
+    {
+      "expectedId": "EF-002",
+      "type": "NAME_VARIANT_SPELLING",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "assertionIds": [
+        "D-01-A01",
+        "D-02-A01"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "notes": "Token-sort ratio 80: middle name missing on the form, between 75 and 92"
+    },
+    {
+      "expectedId": "EF-003",
+      "type": "NAME_VARIANT_SPELLING",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "assertionIds": [
+        "D-02-A01",
+        "D-03-A01"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "maxConfidence": 0.3,
+      "notes": "Account holder E-002 is only a SUGGESTED link to the applicant, so the finding must be capped at low confidence and say so"
+    },
+    {
+      "expectedId": "EF-004",
+      "type": "STATEMENT_TOTAL_MISMATCH",
+      "category": "context",
+      "observationStatus": "INCONSISTENT",
+      "severity": "medium",
+      "assertionIds": [
+        "D-03-A08",
+        "D-03-A04",
+        "D-03-A05",
+        "D-03-A06",
+        "D-03-A07"
+      ],
+      "ruleId": "R-STMT-TOTAL-ARITH",
+      "notes": "Printed total 49,562.75 vs sum of deposits 48,562.75"
+    },
+    {
+      "expectedId": "EF-005",
+      "type": "REGION_EVENT",
+      "category": "visual",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "signalIds": [
+        "D-02-S01",
+        "D-02-S02"
+      ],
+      "notes": "ELA and noise signals overlap on the requested amount region: ONE event, not two findings"
+    },
+    {
+      "expectedId": "EF-006",
+      "type": "TEXT_LAYER_MISMATCH",
+      "category": "pdf_structure",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "signalIds": [
+        "D-03-S01"
+      ],
+      "notes": "Rendered total differs from the PDF text layer"
+    }
+  ],
+  "CASE-002": []
+}

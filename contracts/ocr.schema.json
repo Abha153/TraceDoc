@@ -61,24 +61,9 @@
         "bbox": {
           "type": "array",
           "minItems": 4,
-          "items": [
-            {
-              "type": "number",
-              "title": "x"
-            },
-            {
-              "type": "number",
-              "title": "y"
-            },
-            {
-              "type": "number",
-              "title": "w"
-            },
-            {
-              "type": "number",
-              "title": "h"
-            }
-          ],
+          "items": {
+            "type": "number"
+          },
           "maxItems": 4
         },
         "ocrConfidence": {
@@ -106,24 +91,9 @@
         "bbox": {
           "type": "array",
           "minItems": 4,
-          "items": [
-            {
-              "type": "number",
-              "title": "x"
-            },
-            {
-              "type": "number",
-              "title": "y"
-            },
-            {
-              "type": "number",
-              "title": "w"
-            },
-            {
-              "type": "number",
-              "title": "h"
-            }
-          ],
+          "items": {
+            "type": "number"
+          },
           "maxItems": 4
         },
         "ocrConfidence": {
