@@ -9,6 +9,13 @@ const schema = z.object({
   PORT: z.coerce.number().int().min(1).max(65535).default(4000),
   DATA_DIR: z.string().min(1).default("./data"),
   MAX_UPLOAD_BYTES: z.coerce.number().int().positive().default(25 * 1024 * 1024),
+  PIPELINE_VERSION: z.string().min(1).default("0.1.0"),
+  ANALYSIS_MODE: z.enum(["mock"]).default("mock"), // "http" arrives with B11
+  FIXTURES_DIR: z.string().min(1).default("../contracts/fixtures"),
+  JOB_TIMEOUT_MS: z.coerce.number().int().positive().default(120_000),
+  JOB_MAX_ATTEMPTS: z.coerce.number().int().min(1).max(10).default(3),
+  JOB_RETRY_DELAY_MS: z.coerce.number().int().min(0).default(1000),
+  WORKER_POLL_MS: z.coerce.number().int().min(10).default(500),
   LOG_LEVEL: z
     .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
     .default("info"),
@@ -26,6 +33,13 @@ export interface AppConfig {
   port: number;
   logLevel: string;
   dataDir: string;
+  pipelineVersion: string;
+  analysisMode: "mock";
+  fixturesDir: string;
+  jobTimeoutMs: number;
+  jobMaxAttempts: number;
+  jobRetryDelayMs: number;
+  workerPollMs: number;
   maxUploadBytes: number;
   analystId: string;
   analystDisplayName: string;
@@ -51,6 +65,13 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     port: e.PORT,
     logLevel: e.LOG_LEVEL,
     dataDir: e.DATA_DIR,
+    pipelineVersion: e.PIPELINE_VERSION,
+    analysisMode: e.ANALYSIS_MODE,
+    fixturesDir: e.FIXTURES_DIR,
+    jobTimeoutMs: e.JOB_TIMEOUT_MS,
+    jobMaxAttempts: e.JOB_MAX_ATTEMPTS,
+    jobRetryDelayMs: e.JOB_RETRY_DELAY_MS,
+    workerPollMs: e.WORKER_POLL_MS,
     maxUploadBytes: e.MAX_UPLOAD_BYTES,
     analystId: e.ANALYST_ID,
     analystDisplayName: e.ANALYST_DISPLAY_NAME,

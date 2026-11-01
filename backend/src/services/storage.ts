@@ -2,7 +2,8 @@ import { chmod, mkdir, open, rm } from "node:fs/promises";
 import path from "node:path";
 import { AppError } from "../errors.js";
 
-const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
+export const SAFE_ID_RE = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
+const SAFE_ID = SAFE_ID_RE;
 const SAFE_EXT = /^[a-z0-9]{2,5}$/;
 
 export function assertSafeId(id: string, what = "id"): void {

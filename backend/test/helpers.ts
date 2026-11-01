@@ -1,6 +1,7 @@
 import { loadConfig, type AppConfig } from "../src/config.js";
 import { createLogger } from "../src/logger.js";
-import { buildDeps, createApp, type AppDeps } from "../src/app.js";
+import { buildDeps, createApp, type AppDeps, type DepOverrides } from "../src/app.js";
+import { fileURLToPath } from "node:url";
 import { hashPassword } from "../src/auth/password.js";
 import { mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -25,9 +26,11 @@ export async function testConfig(overrides: Record<string, string> = {}): Promis
   });
 }
 
-export async function testApp(overrides: Record<string, string> = {}) {
-  const config = await testConfig(overrides);
-  const deps: AppDeps = buildDeps(config, createLogger("silent"));
+export const FIXTURES_DIR = fileURLToPath(new URL("../../contracts/fixtures", import.meta.url));
+
+export async function testApp(overrides: Record<string, string> = {}, depOverrides: DepOverrides = {}) {
+  const config = await testConfig({ FIXTURES_DIR, JOB_RETRY_DELAY_MS: "0", ...overrides });
+  const deps: AppDeps = buildDeps(config, createLogger("silent"), depOverrides);
   return { app: createApp(deps), deps, config };
 }
 
@@ -44,3 +47,16 @@ export const JPG_BYTES = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), B
 export const TIFF_LE_BYTES = Buffer.concat([Buffer.from([0x49, 0x49, 0x2a, 0x00]), Buffer.from("rest")]);
 export const TIFF_BE_BYTES = Buffer.concat([Buffer.from([0x4d, 0x4d, 0x00, 0x2a]), Buffer.from("rest")]);
 export const EXE_BYTES = Buffer.concat([Buffer.from("MZ"), Buffer.alloc(200, 0x90)]);
+
+/** A logged-in agent with CASE-001 already created (uploads need an existing case). */
+export async function agentWithCase(app: Parameters<typeof request>[0]) {
+  const agent = await loggedInAgent(app);
+  await agent.post("/api/v1/cases").send({ title: "Test case" }).expect(201);
+  return agent;
+}
+
+/** Runs the worker until no queued job is left (retries included). */
+export async function drain(deps: AppDeps, max = 50): Promise<void> {
+  for (let i = 0; i < max; i++) if (!(await deps.worker.processNext())) return;
+  throw new Error("worker did not drain");
+}

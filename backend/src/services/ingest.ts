@@ -17,6 +17,7 @@ export interface IngestedDocument {
   sha256: string;
   bytes: number;
   mimeType: string;
+  receivedAt: string;
 }
 
 export function newDocId(): string {
@@ -78,13 +79,14 @@ export class IngestService {
       throw err;
     }
 
-    return entries.map(({ docId, caseId: c, filename, sha256, bytes, mimeType }) => ({
+    return entries.map(({ docId, caseId: c, filename, sha256, bytes, mimeType, receivedAt }) => ({
       docId,
       caseId: c,
       filename,
       sha256,
       bytes,
       mimeType,
+      receivedAt,
     }));
   }
 }

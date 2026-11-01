@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import request from "supertest";
 import {
-  EXE_BYTES, JPG_BYTES, PDF_BYTES, PNG_BYTES, TIFF_BE_BYTES, TIFF_LE_BYTES, loggedInAgent, testApp,
+  EXE_BYTES, JPG_BYTES, PDF_BYTES, PNG_BYTES, TIFF_BE_BYTES, TIFF_LE_BYTES, agentWithCase, testApp,
 } from "./helpers.js";
 import { detectFileType } from "../src/services/fileType.js";
 import { sanitizeFilename } from "../src/services/filename.js";
@@ -36,11 +36,11 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("stores a PDF write-once, hashes it and appends to the manifest", async () => {
     const { app, config } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).attach("files", PDF_BYTES, "statement.pdf");
-    expect(res.status).toBe(201);
-    expect(res.body.docIds).toHaveLength(1);
-    const docId: string = res.body.docIds[0];
+    expect(res.status).toBe(202);
+    expect(res.body.documents).toHaveLength(1);
+    const docId: string = res.body.documents[0].docId;
     expect(docId).toMatch(/^D-[0-9a-f]{12}$/);
 
     const stored = path.join(config.dataDir, "evidence", docId, "original.pdf");
@@ -62,15 +62,15 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("accepts PNG, JPEG and both TIFF byte orders in one request, with distinct docIds", async () => {
     const { app } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent
       .post(URL)
       .attach("files", PNG_BYTES, "a.png")
       .attach("files", JPG_BYTES, "b.jpg")
       .attach("files", TIFF_LE_BYTES, "c.tif")
       .attach("files", TIFF_BE_BYTES, "d.tiff");
-    expect(res.status).toBe(201);
-    expect(new Set(res.body.docIds).size).toBe(4);
+    expect(res.status).toBe(202);
+    expect(new Set(res.body.documents.map((d: { docId: string }) => d.docId)).size).toBe(4);
     expect(res.body.documents.map((d: { mimeType: string }) => d.mimeType)).toEqual([
       "image/png", "image/jpeg", "image/tiff", "image/tiff",
     ]);
@@ -78,7 +78,7 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("rejects a renamed .exe, whatever its extension or declared type, and stores nothing", async () => {
     const { app, config } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     for (const name of ["invoice.pdf", "photo.png", "scan.jpg"]) {
       const res = await agent.post(URL).attach("files", EXE_BYTES, { filename: name, contentType: "application/pdf" });
       expect(res.status).toBe(400);
@@ -90,7 +90,7 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("rejects the whole request when any file is bad", async () => {
     const { app, config } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).attach("files", PDF_BYTES, "ok.pdf").attach("files", EXE_BYTES, "bad.pdf");
     expect(res.status).toBe(400);
     expect(res.body.error.message).toContain("bad.pdf");
@@ -100,14 +100,14 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("rejects an empty file", async () => {
     const { app } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).attach("files", Buffer.alloc(0), "empty.pdf");
     expect(res.status).toBe(400);
   });
 
   it("rejects a file over MAX_UPLOAD_BYTES with 413 and stores nothing", async () => {
     const { app, config } = await testApp({ MAX_UPLOAD_BYTES: "1024" });
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const big = Buffer.concat([PDF_BYTES, Buffer.alloc(2048, 0x20)]);
     const res = await agent.post(URL).attach("files", big, "big.pdf");
     expect(res.status).toBe(400);
@@ -117,7 +117,7 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("returns 400 when no files are sent", async () => {
     const { app } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).field("note", "nothing attached");
     expect(res.status).toBe(400);
     expect(res.body.error.code).toBe("NO_FILES");
@@ -125,24 +125,24 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("returns 400 for an unexpected field name", async () => {
     const { app } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).attach("document", PDF_BYTES, "a.pdf");
     expect(res.status).toBe(400);
   });
 
   it("rejects an unsafe caseId", async () => {
     const { app } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post("/api/v1/cases/..%2F..%2Fetc/documents").attach("files", PDF_BYTES, "a.pdf");
     expect([400, 404]).toContain(res.status);
   });
 
   it("never uses the client filename in a path", async () => {
     const { app, config } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     const res = await agent.post(URL).attach("files", PDF_BYTES, { filename: "../../../etc/passwd.pdf" });
-    expect(res.status).toBe(201);
-    const docId = res.body.docIds[0] as string;
+    expect(res.status).toBe(202);
+    const docId = res.body.documents[0].docId as string;
     expect(res.body.documents[0].filename).toBe("passwd.pdf");
     const files = await allFiles(config.dataDir);
     for (const f of files) expect(f.startsWith(path.resolve(config.dataDir))).toBe(true);
@@ -154,8 +154,8 @@ describe("POST /cases/:caseId/documents", () => {
     const { app, config } = await testApp();
     const server = app.listen(0); // one server for all parallel requests
     try {
-    const agent = await loggedInAgent(server);
-    await Promise.all(Array.from({ length: 10 }, (_, i) => agent.post(URL).attach("files", PDF_BYTES, `f${i}.pdf`).expect(201)));
+    const agent = await agentWithCase(server);
+    await Promise.all(Array.from({ length: 10 }, (_, i) => agent.post(URL).attach("files", PDF_BYTES, `f${i}.pdf`).expect(202)));
     const manifest = JSON.parse(await readFile(path.join(config.dataDir, "audit", "manifest.json"), "utf8")) as ManifestEntry[];
     expect(manifest).toHaveLength(10);
     expect(new Set(manifest.map((m) => m.docId)).size).toBe(10);
@@ -166,7 +166,7 @@ describe("POST /cases/:caseId/documents", () => {
 
   it("rolls back stored originals if the manifest cannot be appended", async () => {
     const { app, config } = await testApp();
-    const agent = await loggedInAgent(app);
+    const agent = await agentWithCase(app);
     await mkdir(path.join(config.dataDir, "audit"), { recursive: true });
     await writeFile(path.join(config.dataDir, "audit", "manifest.json"), "{ corrupt", "utf8");
     const res = await agent.post(URL).attach("files", PDF_BYTES, "a.pdf");
