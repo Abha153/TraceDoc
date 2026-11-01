@@ -7,6 +7,8 @@ const boolFromString = z
 const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().min(1).max(65535).default(4000),
+  DATA_DIR: z.string().min(1).default("./data"),
+  MAX_UPLOAD_BYTES: z.coerce.number().int().positive().default(25 * 1024 * 1024),
   LOG_LEVEL: z
     .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
     .default("info"),
@@ -22,6 +24,8 @@ export interface AppConfig {
   nodeEnv: "development" | "test" | "production";
   port: number;
   logLevel: string;
+  dataDir: string;
+  maxUploadBytes: number;
   analystId: string;
   analystPasswordHash: string;
   sessionTtlMs: number;
@@ -44,6 +48,8 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     nodeEnv: e.NODE_ENV,
     port: e.PORT,
     logLevel: e.LOG_LEVEL,
+    dataDir: e.DATA_DIR,
+    maxUploadBytes: e.MAX_UPLOAD_BYTES,
     analystId: e.ANALYST_ID,
     analystPasswordHash: e.ANALYST_PASSWORD_HASH,
     sessionTtlMs: e.SESSION_TTL_HOURS * 3_600_000,

@@ -7,6 +7,10 @@ import { createRequireAuth } from "./middleware/requireAuth.js";
 import { createRequestLogger } from "./middleware/requestLogger.js";
 import { healthRouter } from "./routes/health.js";
 import { authRouter } from "./routes/auth.js";
+import { documentsRouter } from "./routes/documents.js";
+import { Storage } from "./services/storage.js";
+import { Manifest } from "./services/manifest.js";
+import { IngestService } from "./services/ingest.js";
 
 export interface AppDeps {
   config: AppConfig;
@@ -15,16 +19,24 @@ export interface AppDeps {
   limiter: LoginLimiter;
   /** Protects every route registered after it. Later batches mount their routers behind this. */
   requireAuth: RequestHandler;
+  storage: Storage;
+  manifest: Manifest;
+  ingest: IngestService;
 }
 
 export function buildDeps(config: AppConfig, logger: Logger): AppDeps {
   const sessions = new SessionStore(config.sessionTtlMs);
+  const storage = new Storage(config.dataDir);
+  const manifest = new Manifest(storage.auditDir);
   return {
     config,
     logger,
     sessions,
     limiter: new LoginLimiter(),
     requireAuth: createRequireAuth(sessions),
+    storage,
+    manifest,
+    ingest: new IngestService(storage, manifest),
   };
 }
 
@@ -37,7 +49,8 @@ export function createApp(deps: AppDeps): Express {
   const api = express.Router();
   api.use(healthRouter());
   api.use(authRouter(deps));
-  // Domain routers (cases, documents, findings, ...) are mounted here by later batches.
+  api.use(documentsRouter({ ingest: deps.ingest, requireAuth: deps.requireAuth, maxUploadBytes: deps.config.maxUploadBytes }));
+  // More domain routers (cases, findings, ...) are mounted here by later batches.
   app.use("/api/v1", api);
 
   app.use(notFoundHandler);
