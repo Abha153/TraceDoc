@@ -13,7 +13,7 @@ npm run typecheck
 | Module | Batch | Status |
 | --- | --- | --- |
 | `assertions.ts` | B4 | done: `buildAssertions(fields, pages, caseId)`, plus exported normalizers |
-| `entityResolver.ts` | B5 | todo |
+| `entityResolver.ts`, `nameSimilarity.ts` | B5 | done: `resolveEntities(assertions)`, token-sort ratio |
 | `comparability.ts`, `contextRules.ts` | B6 | todo |
 | `eventGrouper.ts`, `priorityEngine.ts` | B7 | todo |
 | `index.ts` | B7b | todo: `runReasoning` |
@@ -24,3 +24,10 @@ npm run typecheck
 - A role prefix in the field name (`guarantor_`, `co_applicant_`, `nominee_`, `applicant_`) sets the provisional role.
 - Dates parse day-first when both parts could be a month; two-digit years and impossible dates give `null`, never a guess.
 - A value that cannot be normalized gives `normalizedValue: null`; the assertion is kept and downstream rules skip it.
+
+## B5 notes
+- Parties (one document, one provisional role) merge only on an exact `id_number`, then `account_number`. Name similarity never merges.
+- A merge is refused when it would join two id_numbers or two specific roles (applicant, guarantor, ...); the reason goes into `basis`.
+- A party without a cross-document identifier match that resembles exactly one compatible entity (ratio >= 92) is `SUGGESTED` and gets
+  `suggestedLinks` (new optional field on `Entity`); B6 uses it to compare across the link with capped confidence.
+- Typecheck uses the same strict flags as `backend/tsconfig.json` (`noUncheckedIndexedAccess`), because the backend typecheck includes `src/engine`.

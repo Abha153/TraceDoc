@@ -19,7 +19,7 @@ function deepFreeze<T>(o: T): T {
 }
 
 function loadCase(caseId: string) {
-  const docs = CASES[caseId].map((d) => readJson<AnalyzeResponse>(`analyze/${d}.json`));
+  const docs = (CASES[caseId] ?? []).map((d) => readJson<AnalyzeResponse>(`analyze/${d}.json`));
   return { fields: docs.flatMap((d) => d.fields), pages: docs.flatMap((d) => d.pages), expected: readJson<ReasoningOutput>(`${caseId}.reasoning.json`).assertions };
 }
 
@@ -31,7 +31,7 @@ describe("fixtures", () => {
       const { fields, pages, expected } = loadCase(caseId);
       const got = buildAssertions(fields, pages, caseId);
       assert.equal(got.length, expected.length);
-      got.forEach((a, i) => assert.deepStrictEqual(strip(a), strip(expected[i]), `assertion ${expected[i].assertionId}`));
+      got.forEach((a, i) => assert.deepStrictEqual(strip(a), strip(expected[i]!), `assertion ${expected[i]?.assertionId}`));
     });
 
     it(`${caseId}: entityId is null and the role is provisional (docType or prefix only)`, () => {
@@ -51,8 +51,8 @@ describe("fixtures", () => {
     const frozenF = deepFreeze(structuredClone(fields)), frozenP = deepFreeze(structuredClone(pages));
     const a = buildAssertions(frozenF, frozenP, "CASE-001"), b = buildAssertions(frozenF, frozenP, "CASE-001");
     assert.deepStrictEqual(a, b);
-    a[0].region.bbox[0] = 0.999; // output must not alias input
-    assert.notEqual(frozenF[0].region.bbox[0], 0.999);
+    a[0]!.region.bbox[0] = 0.999; // output must not alias input
+    assert.notEqual(frozenF[0]!.region.bbox[0], 0.999);
   });
 });
 
@@ -171,16 +171,16 @@ describe("edge cases", () => {
     const f = [field({ fieldId: "X-1-F01", name: "statement_date", rawValue: "30/09/2026" }),
                field({ fieldId: "X-1-F02", name: "closing_balance", rawValue: "100.00" }),
                field({ fieldId: "X-1-F03", name: "account_holder", rawValue: "A B" })];
-    const [d, bal, who] = buildAssertions(f, [page("bank_statement")], "C");
+    const [d, bal, who] = buildAssertions(f, [page("bank_statement")], "C") as [DocumentAssertion, DocumentAssertion, DocumentAssertion];
     assert.equal(d.documentDate, "2026-09-30");
     assert.equal(bal.documentDate, "2026-09-30");
     assert.equal(bal.effectiveDate, "2026-09-30");
     assert.equal("effectiveDate" in who, false);
     const g = [...f, field({ fieldId: "X-1-F04", name: "effective_date", rawValue: "01/10/2026" })];
-    assert.equal(buildAssertions(g, [page("bank_statement")], "C")[2].effectiveDate, "2026-10-01");
+    assert.equal(buildAssertions(g, [page("bank_statement")], "C")[2]?.effectiveDate, "2026-10-01");
   });
   it("omits date properties when the document states no date", () => {
-    const a = buildAssertions([field({ fieldId: "X-1-F01", name: "full_name", rawValue: "a b" })], [page("id_card")], "C")[0];
+    const a = buildAssertions([field({ fieldId: "X-1-F01", name: "full_name", rawValue: "a b" })], [page("id_card")], "C")[0]!;
     assert.equal("documentDate" in a, false);
     assert.equal("effectiveDate" in a, false);
   });
@@ -191,7 +191,7 @@ describe("edge cases", () => {
     assert.deepEqual(out.map((a) => a.entityRole), ["applicant", "account_holder"]);
   });
   it("a missing page record gives role unknown, not an error", () => {
-    assert.equal(buildAssertions([field({ fieldId: "X-1-F01", name: "full_name", rawValue: "a b" })], [], "C")[0].entityRole, "unknown");
+    assert.equal(buildAssertions([field({ fieldId: "X-1-F01", name: "full_name", rawValue: "a b" })], [], "C")[0]?.entityRole, "unknown");
   });
   it("empty input gives empty output; duplicate field ids are a programming error", () => {
     assert.deepEqual(buildAssertions([], [], "C"), []);

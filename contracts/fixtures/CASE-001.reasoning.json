@@ -516,8 +516,15 @@
       "role": "account_holder",
       "resolution": "SUGGESTED",
       "basis": [
-        "name similarity 100 to E-001 after normalization (suggested only, not merged)",
-        "no shared strong identifier"
+        "name similarity 100 to E-001 (suggested only, not merged)",
+        "no cross-document strong identifier match"
+      ],
+      "suggestedLinks": [
+        {
+          "entityId": "E-001",
+          "score": 100.0,
+          "method": "name_token_sort"
+        }
       ],
       "assertionIds": [
         "D-03-A01",

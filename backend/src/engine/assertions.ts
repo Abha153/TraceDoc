@@ -92,19 +92,20 @@ export function normalizeDate(input: string | null | undefined): string | null {
   if (input == null) return null;
   const s = squash(input);
   if (!s) return null;
+  const month = (name: string): number => MONTHS[name.slice(0, 3).toLowerCase()] ?? 0;
   let m = /^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})$/.exec(s);
-  if (m) return isoIfReal(+m[1], +m[2], +m[3]);
+  if (m) return isoIfReal(Number(m[1]), Number(m[2]), Number(m[3]));
   m = /^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/.exec(s);
   if (m) {
-    const a = +m[1], b = +m[2], y = +m[3];
+    const a = Number(m[1]), b = Number(m[2]), y = Number(m[3]);
     if (a > 12) return isoIfReal(y, b, a);
     if (b > 12) return isoIfReal(y, a, b);
     return isoIfReal(y, b, a); // both <= 12: day-first
   }
   m = /^(\d{1,2})(?:st|nd|rd|th)?[\s-]+([A-Za-z]{3,9})\.?,?[\s-]+(\d{4})$/.exec(s);
-  if (m && MONTHS[m[2].slice(0, 3).toLowerCase()]) return isoIfReal(+m[3], MONTHS[m[2].slice(0, 3).toLowerCase()], +m[1]);
+  if (m && month(m[2] ?? "")) return isoIfReal(Number(m[3]), month(m[2] ?? ""), Number(m[1]));
   m = /^([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})$/.exec(s);
-  if (m && MONTHS[m[1].slice(0, 3).toLowerCase()]) return isoIfReal(+m[3], MONTHS[m[1].slice(0, 3).toLowerCase()], +m[2]);
+  if (m && month(m[1] ?? "")) return isoIfReal(Number(m[3]), month(m[1] ?? ""), Number(m[2]));
   return null;
 }
 
@@ -128,7 +129,7 @@ export function normalizeAmount(input: string | null | undefined): string | null
   else s = s.replace(/,/g, "");
   const m = /^(\d*)(?:\.(\d*))?$/.exec(s);
   if (!m || (m[1] === "" && !m[2])) return null;
-  const whole = m[1].replace(/^0+(?=\d)/, "") || "0";
+  const whole = (m[1] ?? "").replace(/^0+(?=\d)/, "") || "0";
   const frac = (m[2] ?? "").padEnd(2, "0");
   const isZero = /^0*$/.test(whole + frac);
   return `${negative && !isZero ? "-" : ""}${whole}.${frac}`;

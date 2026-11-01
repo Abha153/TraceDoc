@@ -47,9 +47,12 @@ and `guarantor_full_name`, `guarantor_id_number`. A `guarantor_` prefix means th
 numbered by first assertion in input order, findings `F-0001...` (rule findings in rule-table order, then events), evidence `E-0001...`,
 events `EV-001...`. Tests should match findings by `type` plus evidence assertion ids, not by finding id.
 
-**Entities.** Strong identifiers (`id_number`, `account_number`) merge by exact match, `basis` says which. Resolved assertions take the entity's role.
-Two entities with different `id_number`s are never linked, even with similar names. An entity with no strong identifier whose name matches
-(ratio >= 92) an entity of a compatible role gets `resolution: SUGGESTED` (never merged).
+**Entities.** Parties (assertions of one document with the same provisional role) merge by exact `id_number`, then `account_number`; the merged
+entity is `RESOLVED` and `basis` reads `id_number exact match: <value> (<docIds>)`. A merge is refused if it would join two different
+id_numbers or two different specific roles (applicant, co_applicant, guarantor, nominee). Resolved assertions take the entity's role.
+Name similarity never merges: a party with no cross-document identifier match that resembles exactly one compatible entity (token-sort >= 92,
+no conflicting id_number) is `SUGGESTED` and carries `suggestedLinks`; several candidates or none leave it `UNRESOLVED`.
+Entities with different id_numbers and similar names (ratio >= 75) get a note in `basis`.
 
 **Comparison scope.** MUST_AGREE rules compare assertions of the same entity, and across a SUGGESTED link with confidence capped at 0.3.
 Different RESOLVED entities are never compared. ARITHMETIC rules work inside one document and are not entity-dependent.

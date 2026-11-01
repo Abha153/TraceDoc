@@ -630,6 +630,31 @@
             "type": "string"
           }
         },
+        "suggestedLinks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entityId": {
+                "type": "string"
+              },
+              "score": {
+                "type": "number"
+              },
+              "method": {
+                "type": "string",
+                "const": "name_token_sort"
+              }
+            },
+            "required": [
+              "entityId",
+              "score",
+              "method"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Only for resolution SUGGESTED: the entities this one resembles. A suggestion never merges entities."
+        },
         "assertionIds": {
           "type": "array",
           "items": {

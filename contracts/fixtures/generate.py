@@ -3,7 +3,7 @@
 
 Draws every fixture page with Pillow, records OCR words from the same drawing calls (so every box lands on
 visible text), and derives fields, signals, assertions, entities, findings, priority, jobs and expected files.
-Re-run:  python3 generate.py   (needs Pillow; output is byte-for-byte deterministic).
+Re-run:  python3 generate.py   (needs Pillow; output is deterministic; originals/D-03.pdf is created once and kept).
 All people, numbers and ID formats are fictional.
 """
 import hashlib
@@ -246,9 +246,10 @@ DOCS = [
 BASES = {"D-01": 0.985, "D-02": 0.955, "D-03": 0.995, "D-11": 0.98, "D-12": 0.98, "D-13": 0.96}
 
 # --------------------------------------------------------------------------------------------- build pages
-for sub in ("pages", "ocr", "analyze", "originals"):
+for sub in ("pages", "ocr", "analyze"):
     shutil.rmtree(HERE / sub, ignore_errors=True)
     (HERE / sub).mkdir()
+(HERE / "originals").mkdir(exist_ok=True)  # kept between runs: Pillow stamps the current time into PDFs
 
 built = {}
 for d in DOCS:
@@ -264,7 +265,8 @@ for d in DOCS:
     c.img.save(png, optimize=True)
     orig = HERE / "originals" / f"{d['docId']}.{d['ext']}"
     if d["ext"] == "pdf":
-        c.img.save(orig, "PDF", resolution=float(DPI))
+        if not orig.exists():  # created once; its SHA-256 is referenced by many fixtures. Delete it to recreate (hashes change)
+            c.img.save(orig, "PDF", resolution=float(DPI))
     else:
         shutil.copyfile(png, orig)
     d["sha256"] = sha_bytes(orig.read_bytes())
@@ -383,14 +385,15 @@ ENTITIES = {
         {"entityId": "E-001", "caseId": "CASE-001", "role": "applicant", "resolution": "RESOLVED", "basis": ["id_number exact match: TD-48213-77 (D-01, D-02)"],
          "assertionIds": [a["assertionId"] for a in ASSERT["CASE-001"] if a["entityId"] == "E-001"]},
         {"entityId": "E-002", "caseId": "CASE-001", "role": "account_holder", "resolution": "SUGGESTED",
-         "basis": ["name similarity 100 to E-001 after normalization (suggested only, not merged)", "no shared strong identifier"],
+         "basis": ["name similarity 100 to E-001 (suggested only, not merged)", "no cross-document strong identifier match"],
+         "suggestedLinks": [{"entityId": "E-001", "score": 100.0, "method": "name_token_sort"}],
          "assertionIds": [a["assertionId"] for a in ASSERT["CASE-001"] if a["entityId"] == "E-002"]},
     ],
     "CASE-002": [
-        {"entityId": "E-001", "caseId": "CASE-002", "role": "applicant", "resolution": "RESOLVED", "basis": ["id_number exact match: TD-61020-15 (D-11, D-13)"],
+        {"entityId": "E-001", "caseId": "CASE-002", "role": "applicant", "resolution": "RESOLVED", "basis": ["id_number exact match: TD-61020-15 (D-11, D-13)", "different id_number from E-002, kept separate despite similar names (token-sort ratio 85.7)"],
          "assertionIds": [a["assertionId"] for a in ASSERT["CASE-002"] if a["entityId"] == "E-001"]},
         {"entityId": "E-002", "caseId": "CASE-002", "role": "guarantor", "resolution": "RESOLVED",
-         "basis": ["id_number exact match: TD-61020-51 (D-12, D-13 guarantor_id_number)", "different id_number from E-001, kept separate despite similar names"],
+         "basis": ["id_number exact match: TD-61020-51 (D-12, D-13)", "different id_number from E-001, kept separate despite similar names (token-sort ratio 85.7)"],
          "assertionIds": [a["assertionId"] for a in ASSERT["CASE-002"] if a["entityId"] == "E-002"]},
     ],
 }

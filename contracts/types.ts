@@ -92,7 +92,9 @@ export interface Entity {
   caseId: string;
   role: EntityRole;
   resolution: "RESOLVED" | "SUGGESTED" | "UNRESOLVED";
-  basis: string[]; // e.g. ["id_number exact match"]
+  basis: string[]; // e.g. ["id_number exact match: TD-1 (D-01, D-02)"]
+  /** Only for resolution SUGGESTED: the entities this one resembles. A suggestion never merges entities. */
+  suggestedLinks?: Array<{ entityId: string; score: number; method: "name_token_sort" }>;
   assertionIds: string[];
 }
 

@@ -445,7 +445,8 @@
       "role": "applicant",
       "resolution": "RESOLVED",
       "basis": [
-        "id_number exact match: TD-61020-15 (D-11, D-13)"
+        "id_number exact match: TD-61020-15 (D-11, D-13)",
+        "different id_number from E-002, kept separate despite similar names (token-sort ratio 85.7)"
       ],
       "assertionIds": [
         "D-11-A01",
@@ -468,8 +469,8 @@
       "role": "guarantor",
       "resolution": "RESOLVED",
       "basis": [
-        "id_number exact match: TD-61020-51 (D-12, D-13 guarantor_id_number)",
-        "different id_number from E-001, kept separate despite similar names"
+        "id_number exact match: TD-61020-51 (D-12, D-13)",
+        "different id_number from E-001, kept separate despite similar names (token-sort ratio 85.7)"
       ],
       "assertionIds": [
         "D-12-A01",

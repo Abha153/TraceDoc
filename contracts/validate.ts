@@ -102,6 +102,11 @@ for (const [caseId, docIds] of Object.entries(CASES)) {
     ok(f.normalizedValue === a.normalizedValue, `${a.assertionId}: value differs from its field`);
   }
   for (const e of reasoning.entities) e.assertionIds.forEach((id) => ok(assertionIds.has(id), `${e.entityId}: unknown assertion ${id}`));
+  for (const e of reasoning.entities) {
+    ok((e.resolution === "SUGGESTED") === !!e.suggestedLinks?.length, `${e.entityId}: suggestedLinks must exist exactly when resolution is SUGGESTED`);
+    (e.suggestedLinks ?? []).forEach((l) => ok(entityIds.has(l.entityId) && l.entityId !== e.entityId, `${e.entityId}: suggestedLink to unknown or same entity`));
+    ok(e.resolution !== "RESOLVED" || e.basis.some((b) => /exact match/.test(b)), `${e.entityId}: RESOLVED needs an exact-match basis`);
+  }
   const assigned = reasoning.entities.flatMap((e) => e.assertionIds);
   ok(new Set(assigned).size === assigned.length, `${caseId}: an assertion belongs to two entities`);
 
