@@ -2,7 +2,7 @@ declare global {
   namespace Express {
     interface Request {
       /** Set by requireAuth once the session is verified. */
-      analyst?: { id: string };
+      analyst?: { analystId: string; displayName: string };
       requestId?: string;
     }
   }

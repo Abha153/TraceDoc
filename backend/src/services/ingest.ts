@@ -49,7 +49,8 @@ export class IngestService {
       }
     }
     if (rejected.length > 0) {
-      throw new AppError(415, "UNSUPPORTED_FILE_TYPE", "One or more files are not a supported type; nothing was stored", rejected);
+      const list = rejected.map((r) => `${r.filename}: ${r.reason}`).join("; ");
+      throw new AppError(400, "UNSUPPORTED_FILE_TYPE", `Nothing was stored. ${list}`, rejected);
     }
 
     const written: { docId: string; ext: string }[] = [];

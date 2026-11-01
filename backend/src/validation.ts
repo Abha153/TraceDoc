@@ -16,7 +16,10 @@ export function validate<S extends ZodTypeAny>(source: Source, schema: S): Reque
         new AppError(
           400,
           "VALIDATION_ERROR",
-          `Invalid request ${source}`,
+          `Invalid request ${source}: ${result.error.issues
+            .slice(0, 3)
+            .map((i) => `${i.path.join(".") || "(root)"} ${i.message}`)
+            .join("; ")}`,
           result.error.issues.map((i) => ({ path: i.path.join("."), message: i.message })),
         ),
       );

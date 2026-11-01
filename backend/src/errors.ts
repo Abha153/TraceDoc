@@ -22,15 +22,15 @@ export function createErrorHandler(logger: Logger): ErrorRequestHandler {
     if (res.headersSent) return;
 
     if (err instanceof AppError) {
-      res.status(err.status).json({
-        error: { code: err.code, message: err.message, details: err.details },
-      });
+      // contracts ErrorResponse allows only code and message; details stay in the server log
+      if (err.details !== undefined) logger.debug({ code: err.code, details: err.details }, "request rejected");
+      res.status(err.status).json({ error: { code: err.code, message: err.message } });
       return;
     }
 
     if (err instanceof multer.MulterError) {
       if (err.code === "LIMIT_FILE_SIZE") {
-        res.status(413).json({ error: { code: "FILE_TOO_LARGE", message: "File exceeds the upload size limit" } });
+        res.status(400).json({ error: { code: "FILE_TOO_LARGE", message: "File exceeds the upload size limit" } });
       } else {
         res.status(400).json({ error: { code: "UPLOAD_ERROR", message: `Upload rejected: ${err.code}` } });
       }
@@ -44,7 +44,7 @@ export function createErrorHandler(logger: Logger): ErrorRequestHandler {
       return;
     }
     if (type === "entity.too.large") {
-      res.status(413).json({ error: { code: "PAYLOAD_TOO_LARGE", message: "Request body too large" } });
+      res.status(400).json({ error: { code: "PAYLOAD_TOO_LARGE", message: "Request body too large" } });
       return;
     }
 

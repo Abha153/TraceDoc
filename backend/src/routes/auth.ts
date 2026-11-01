@@ -10,6 +10,7 @@ import {
   type SessionStore,
 } from "../auth/sessions.js";
 import type { AppConfig } from "../config.js";
+import type { Session } from "@contracts/api";
 
 const loginBody = z
   .object({ username: z.string().min(1).max(200), password: z.string().min(1).max(1000) })
@@ -47,20 +48,22 @@ export function authRouter({ config, sessions, limiter, requireAuth }: AuthDeps)
       limiter.reset(key);
       const token = sessions.create(config.analystId);
       res.cookie(SESSION_COOKIE, token, { ...cookieOpts, maxAge: config.sessionTtlMs });
-      res.json({ analyst: { id: config.analystId } });
+      const session: Session = { analystId: config.analystId, displayName: config.analystDisplayName };
+      res.json(session);
     } catch (err) {
       next(err);
     }
   });
 
-  r.post("/auth/logout", (req, res) => {
+  // 204 on success, 401 if there is no session (contracts/openapi.yaml)
+  r.post("/auth/logout", requireAuth, (req, res) => {
     sessions.destroy(parseCookies(req.headers.cookie)[SESSION_COOKIE]);
     res.clearCookie(SESSION_COOKIE, cookieOpts);
-    res.json({ ok: true });
+    res.status(204).end();
   });
 
   r.get("/auth/me", requireAuth, (req, res) => {
-    res.json({ analyst: req.analyst });
+    res.json(req.analyst);
   });
 
   return r;

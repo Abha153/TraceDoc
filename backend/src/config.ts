@@ -13,6 +13,7 @@ const schema = z.object({
     .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
     .default("info"),
   ANALYST_ID: z.string().min(1).default("analyst"),
+  ANALYST_DISPLAY_NAME: z.string().min(1).default("Analyst"),
   ANALYST_PASSWORD_HASH: z
     .string()
     .regex(/^scrypt\$[0-9a-f]{32}\$[0-9a-f]{128}$/, "must be produced by `npm run hash-password`"),
@@ -27,6 +28,7 @@ export interface AppConfig {
   dataDir: string;
   maxUploadBytes: number;
   analystId: string;
+  analystDisplayName: string;
   analystPasswordHash: string;
   sessionTtlMs: number;
   cookieSecure: boolean;
@@ -51,6 +53,7 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     dataDir: e.DATA_DIR,
     maxUploadBytes: e.MAX_UPLOAD_BYTES,
     analystId: e.ANALYST_ID,
+    analystDisplayName: e.ANALYST_DISPLAY_NAME,
     analystPasswordHash: e.ANALYST_PASSWORD_HASH,
     sessionTtlMs: e.SESSION_TTL_HOURS * 3_600_000,
     cookieSecure: e.COOKIE_SECURE ?? e.NODE_ENV === "production",

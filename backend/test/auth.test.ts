@@ -21,9 +21,9 @@ describe("login / me / logout", () => {
     const { app } = await testApp();
     const res = await login(app);
     expect(res.status).toBe(200);
-    expect(res.body.analyst.id).toBe(TEST_USER);
+    expect(res.body).toEqual({ analystId: TEST_USER, displayName: "Analyst" });
     const cookie = (res.headers["set-cookie"] as unknown as string[])[0]!;
-    expect(cookie).toMatch(/td_session=/);
+    expect(cookie).toMatch(/tracedocs_session=/);
     expect(cookie).toMatch(/HttpOnly/i);
     expect(cookie).toMatch(/SameSite=Lax/i);
   });
@@ -46,7 +46,7 @@ describe("login / me / logout", () => {
     await agent.post("/api/v1/auth/login").send({ username: TEST_USER, password: TEST_PASSWORD });
     const me = await agent.get("/api/v1/auth/me");
     expect(me.status).toBe(200);
-    expect(me.body.analyst.id).toBe(TEST_USER);
+    expect(me.body.analystId).toBe(TEST_USER);
   });
 
   it("logout invalidates the session server-side", async () => {
@@ -54,9 +54,14 @@ describe("login / me / logout", () => {
     const agent = request.agent(app);
     const l = await agent.post("/api/v1/auth/login").send({ username: TEST_USER, password: TEST_PASSWORD });
     const stolen = (l.headers["set-cookie"] as unknown as string[])[0]!.split(";")[0]!;
-    await agent.post("/api/v1/auth/logout");
+    expect((await agent.post("/api/v1/auth/logout")).status).toBe(204);
     const replay = await request(app).get("/api/v1/auth/me").set("Cookie", stolen);
     expect(replay.status).toBe(401);
+  });
+
+  it("logout without a session is 401", async () => {
+    const { app } = await testApp();
+    expect((await request(app).post("/api/v1/auth/logout")).status).toBe(401);
   });
 
   it("blocks after repeated failures, even with the right password", async () => {
@@ -73,7 +78,8 @@ describe("validation and errors", () => {
     const res = await request(app).post("/api/v1/auth/login").send({ username: "x" });
     expect(res.status).toBe(400);
     expect(res.body.error.code).toBe("VALIDATION_ERROR");
-    expect(res.body.error.details[0].path).toBe("password");
+    expect(res.body.error.message).toMatch(/password/);
+    expect(Object.keys(res.body.error).sort()).toEqual(["code", "message"]);
   });
 
   it("rejects unknown body keys", async () => {

@@ -81,7 +81,7 @@ describe("POST /cases/:caseId/documents", () => {
     const agent = await loggedInAgent(app);
     for (const name of ["invoice.pdf", "photo.png", "scan.jpg"]) {
       const res = await agent.post(URL).attach("files", EXE_BYTES, { filename: name, contentType: "application/pdf" });
-      expect(res.status).toBe(415);
+      expect(res.status).toBe(400);
       expect(res.body.error.code).toBe("UNSUPPORTED_FILE_TYPE");
     }
     expect(await allFiles(path.join(config.dataDir, "evidence"))).toEqual([]);
@@ -92,8 +92,9 @@ describe("POST /cases/:caseId/documents", () => {
     const { app, config } = await testApp();
     const agent = await loggedInAgent(app);
     const res = await agent.post(URL).attach("files", PDF_BYTES, "ok.pdf").attach("files", EXE_BYTES, "bad.pdf");
-    expect(res.status).toBe(415);
-    expect(res.body.error.details).toEqual([expect.objectContaining({ filename: "bad.pdf" })]);
+    expect(res.status).toBe(400);
+    expect(res.body.error.message).toContain("bad.pdf");
+    expect(Object.keys(res.body.error).sort()).toEqual(["code", "message"]);
     expect(await allFiles(path.join(config.dataDir, "evidence"))).toEqual([]);
   });
 
@@ -101,7 +102,7 @@ describe("POST /cases/:caseId/documents", () => {
     const { app } = await testApp();
     const agent = await loggedInAgent(app);
     const res = await agent.post(URL).attach("files", Buffer.alloc(0), "empty.pdf");
-    expect(res.status).toBe(415);
+    expect(res.status).toBe(400);
   });
 
   it("rejects a file over MAX_UPLOAD_BYTES with 413 and stores nothing", async () => {
@@ -109,7 +110,7 @@ describe("POST /cases/:caseId/documents", () => {
     const agent = await loggedInAgent(app);
     const big = Buffer.concat([PDF_BYTES, Buffer.alloc(2048, 0x20)]);
     const res = await agent.post(URL).attach("files", big, "big.pdf");
-    expect(res.status).toBe(413);
+    expect(res.status).toBe(400);
     expect(res.body.error.code).toBe("FILE_TOO_LARGE");
     expect(await allFiles(path.join(config.dataDir, "evidence"))).toEqual([]);
   });

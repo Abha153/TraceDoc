@@ -66,7 +66,7 @@ export class LoginLimiter {
   }
 }
 
-export const SESSION_COOKIE = "td_session";
+export const SESSION_COOKIE = "tracedocs_session"; // name fixed by contracts/openapi.yaml
 
 export function parseCookies(header: string | undefined): Record<string, string> {
   const out: Record<string, string> = {};

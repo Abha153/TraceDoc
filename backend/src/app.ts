@@ -33,7 +33,7 @@ export function buildDeps(config: AppConfig, logger: Logger): AppDeps {
     logger,
     sessions,
     limiter: new LoginLimiter(),
-    requireAuth: createRequireAuth(sessions),
+    requireAuth: createRequireAuth(sessions, config.analystDisplayName),
     storage,
     manifest,
     ingest: new IngestService(storage, manifest),
