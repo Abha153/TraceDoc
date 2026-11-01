@@ -1,0 +1,110 @@
+{
+  "CASE-001": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address (D-01) vs current address (D-02) differ legitimately",
+      "assertionIds": [
+        "D-01-A04",
+        "D-02-A05"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: permanent and current address are different concepts"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Requested loan amount (D-02) vs account balance (D-03)",
+      "assertionIds": [
+        "D-02-A06",
+        "D-03-A09"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: a request is not a balance"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "id_number agrees between D-01 and D-02",
+      "assertionIds": [
+        "D-01-A03",
+        "D-02-A03"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-IDNUM-MUST-AGREE",
+      "reason": "Values are identical after normalization"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "Account holder name (D-03) agrees with the ID card name (D-01)",
+      "assertionIds": [
+        "D-01-A01",
+        "D-03-A01"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Token-sort ratio 100 after normalization"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Permanent address agrees between D-01 and D-02",
+      "assertionIds": [
+        "D-01-A04",
+        "D-02-A04"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MUST-AGREE",
+      "reason": "Identical text"
+    }
+  ],
+  "CASE-002": [
+    {
+      "nonFindingId": "NF-101",
+      "description": "Applicant name (D-11) vs guarantor name (D-12) look similar",
+      "assertionIds": [
+        "D-11-A01",
+        "D-12-A01"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Different entities (different id_number): never compared, never merged"
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "Applicant DOB (D-11) vs guarantor DOB (D-12) differ",
+      "assertionIds": [
+        "D-11-A02",
+        "D-12-A02"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Different people"
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "id_number uniqueness between applicant and guarantor",
+      "assertionIds": [
+        "D-11-A03",
+        "D-12-A03"
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ID-UNIQUENESS",
+      "reason": "Different id_numbers: nothing is shared"
+    }
+  ]
+}

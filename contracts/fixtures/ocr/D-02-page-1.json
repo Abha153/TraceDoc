@@ -1,0 +1,721 @@
+{
+ "docId": "D-02",
+ "page": 1,
+ "widthPx": 1240,
+ "heightPx": 1754,
+ "renderDpi": 150,
+ "engine": "fixture",
+ "engineVersion": "0",
+ "words": [
+  {
+   "text": "LOAN",
+   "bbox": [
+    0.0798,
+    0.057,
+    0.1142,
+    0.0308
+   ],
+   "ocrConfidence": 0.941,
+   "lineIndex": 0
+  },
+  {
+   "text": "APPLICATION",
+   "bbox": [
+    0.2054,
+    0.057,
+    0.2769,
+    0.0308
+   ],
+   "ocrConfidence": 0.957,
+   "lineIndex": 0
+  },
+  {
+   "text": "FORM",
+   "bbox": [
+    0.4935,
+    0.057,
+    0.124,
+    0.0308
+   ],
+   "ocrConfidence": 0.952,
+   "lineIndex": 0
+  },
+  {
+   "text": "Sample",
+   "bbox": [
+    0.0798,
+    0.0969,
+    0.0772,
+    0.0171
+   ],
+   "ocrConfidence": 0.95,
+   "lineIndex": 1
+  },
+  {
+   "text": "form",
+   "bbox": [
+    0.1619,
+    0.0969,
+    0.0486,
+    0.0171
+   ],
+   "ocrConfidence": 0.965,
+   "lineIndex": 1
+  },
+  {
+   "text": "(fictional",
+   "bbox": [
+    0.2153,
+    0.0969,
+    0.0898,
+    0.0171
+   ],
+   "ocrConfidence": 0.956,
+   "lineIndex": 1
+  },
+  {
+   "text": "data)",
+   "bbox": [
+    0.3099,
+    0.0969,
+    0.0549,
+    0.0171
+   ],
+   "ocrConfidence": 0.952,
+   "lineIndex": 1
+  },
+  {
+   "text": "Applicant",
+   "bbox": [
+    0.0798,
+    0.1425,
+    0.131,
+    0.0205
+   ],
+   "ocrConfidence": 0.973,
+   "lineIndex": 2
+  },
+  {
+   "text": "details",
+   "bbox": [
+    0.2177,
+    0.1425,
+    0.0942,
+    0.0205
+   ],
+   "ocrConfidence": 0.95,
+   "lineIndex": 2
+  },
+  {
+   "text": "Full",
+   "bbox": [
+    0.0798,
+    0.1824,
+    0.0361,
+    0.0171
+   ],
+   "ocrConfidence": 0.942,
+   "lineIndex": 3
+  },
+  {
+   "text": "name",
+   "bbox": [
+    0.1207,
+    0.1824,
+    0.0588,
+    0.0171
+   ],
+   "ocrConfidence": 0.941,
+   "lineIndex": 3
+  },
+  {
+   "text": "Aarav",
+   "bbox": [
+    0.0798,
+    0.2018,
+    0.0768,
+    0.0217
+   ],
+   "ocrConfidence": 0.95,
+   "lineIndex": 4
+  },
+  {
+   "text": "Sharma",
+   "bbox": [
+    0.1632,
+    0.2018,
+    0.1013,
+    0.0217
+   ],
+   "ocrConfidence": 0.962,
+   "lineIndex": 4
+  },
+  {
+   "text": "Date",
+   "bbox": [
+    0.0798,
+    0.244,
+    0.0498,
+    0.0171
+   ],
+   "ocrConfidence": 0.964,
+   "lineIndex": 5
+  },
+  {
+   "text": "of",
+   "bbox": [
+    0.1344,
+    0.244,
+    0.021,
+    0.0171
+   ],
+   "ocrConfidence": 0.966,
+   "lineIndex": 5
+  },
+  {
+   "text": "birth",
+   "bbox": [
+    0.1603,
+    0.244,
+    0.049,
+    0.0171
+   ],
+   "ocrConfidence": 0.974,
+   "lineIndex": 5
+  },
+  {
+   "text": "12/08/2001",
+   "bbox": [
+    0.0798,
+    0.2634,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.972,
+   "lineIndex": 6
+  },
+  {
+   "text": "ID",
+   "bbox": [
+    0.0798,
+    0.3056,
+    0.0231,
+    0.0171
+   ],
+   "ocrConfidence": 0.962,
+   "lineIndex": 7
+  },
+  {
+   "text": "number",
+   "bbox": [
+    0.1077,
+    0.3056,
+    0.0803,
+    0.0171
+   ],
+   "ocrConfidence": 0.969,
+   "lineIndex": 7
+  },
+  {
+   "text": "TD-48213-77",
+   "bbox": [
+    0.0798,
+    0.325,
+    0.1708,
+    0.0217
+   ],
+   "ocrConfidence": 0.962,
+   "lineIndex": 8
+  },
+  {
+   "text": "Permanent",
+   "bbox": [
+    0.0798,
+    0.3672,
+    0.1112,
+    0.0171
+   ],
+   "ocrConfidence": 0.95,
+   "lineIndex": 9
+  },
+  {
+   "text": "address",
+   "bbox": [
+    0.1959,
+    0.3672,
+    0.0808,
+    0.0171
+   ],
+   "ocrConfidence": 0.964,
+   "lineIndex": 9
+  },
+  {
+   "text": "14",
+   "bbox": [
+    0.0798,
+    0.3865,
+    0.0345,
+    0.0217
+   ],
+   "ocrConfidence": 0.956,
+   "lineIndex": 10
+  },
+  {
+   "text": "Maple",
+   "bbox": [
+    0.1209,
+    0.3865,
+    0.0791,
+    0.0217
+   ],
+   "ocrConfidence": 0.953,
+   "lineIndex": 10
+  },
+  {
+   "text": "Court,",
+   "bbox": [
+    0.2066,
+    0.3865,
+    0.0807,
+    0.0217
+   ],
+   "ocrConfidence": 0.976,
+   "lineIndex": 10
+  },
+  {
+   "text": "Riverton",
+   "bbox": [
+    0.2939,
+    0.3865,
+    0.1107,
+    0.0217
+   ],
+   "ocrConfidence": 0.963,
+   "lineIndex": 10
+  },
+  {
+   "text": "Current",
+   "bbox": [
+    0.0798,
+    0.4287,
+    0.0773,
+    0.0171
+   ],
+   "ocrConfidence": 0.951,
+   "lineIndex": 11
+  },
+  {
+   "text": "address",
+   "bbox": [
+    0.162,
+    0.4287,
+    0.0808,
+    0.0171
+   ],
+   "ocrConfidence": 0.955,
+   "lineIndex": 11
+  },
+  {
+   "text": "Flat",
+   "bbox": [
+    0.0798,
+    0.4481,
+    0.0496,
+    0.0217
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 12
+  },
+  {
+   "text": "9,",
+   "bbox": [
+    0.136,
+    0.4481,
+    0.0262,
+    0.0217
+   ],
+   "ocrConfidence": 0.953,
+   "lineIndex": 12
+  },
+  {
+   "text": "Lakeview",
+   "bbox": [
+    0.1688,
+    0.4481,
+    0.1211,
+    0.0217
+   ],
+   "ocrConfidence": 0.963,
+   "lineIndex": 12
+  },
+  {
+   "text": "Residency,",
+   "bbox": [
+    0.2965,
+    0.4481,
+    0.1412,
+    0.0217
+   ],
+   "ocrConfidence": 0.962,
+   "lineIndex": 12
+  },
+  {
+   "text": "Riverton",
+   "bbox": [
+    0.4443,
+    0.4481,
+    0.1107,
+    0.0217
+   ],
+   "ocrConfidence": 0.961,
+   "lineIndex": 12
+  },
+  {
+   "text": "Requested",
+   "bbox": [
+    0.0798,
+    0.4903,
+    0.1087,
+    0.0171
+   ],
+   "ocrConfidence": 0.961,
+   "lineIndex": 13
+  },
+  {
+   "text": "loan",
+   "bbox": [
+    0.1933,
+    0.4903,
+    0.0447,
+    0.0171
+   ],
+   "ocrConfidence": 0.951,
+   "lineIndex": 13
+  },
+  {
+   "text": "amount",
+   "bbox": [
+    0.2428,
+    0.4903,
+    0.0794,
+    0.0171
+   ],
+   "ocrConfidence": 0.951,
+   "lineIndex": 13
+  },
+  {
+   "text": "250,000.00",
+   "bbox": [
+    0.0798,
+    0.5097,
+    0.1494,
+    0.0217
+   ],
+   "ocrConfidence": 0.954,
+   "lineIndex": 14
+  },
+  {
+   "text": "Application",
+   "bbox": [
+    0.0798,
+    0.5519,
+    0.1143,
+    0.0171
+   ],
+   "ocrConfidence": 0.952,
+   "lineIndex": 15
+  },
+  {
+   "text": "date",
+   "bbox": [
+    0.1989,
+    0.5519,
+    0.0471,
+    0.0171
+   ],
+   "ocrConfidence": 0.964,
+   "lineIndex": 15
+  },
+  {
+   "text": "15/10/2026",
+   "bbox": [
+    0.0798,
+    0.5713,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.971,
+   "lineIndex": 16
+  },
+  {
+   "text": "Signature",
+   "bbox": [
+    0.0798,
+    0.6249,
+    0.0872,
+    0.0154
+   ],
+   "ocrConfidence": 0.947,
+   "lineIndex": 17
+  }
+ ],
+ "lines": [
+  {
+   "text": "LOAN APPLICATION FORM",
+   "bbox": [
+    0.0798,
+    0.057,
+    0.5377,
+    0.0308
+   ],
+   "ocrConfidence": 0.95,
+   "wordIndices": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "text": "Sample form (fictional data)",
+   "bbox": [
+    0.0798,
+    0.0969,
+    0.285,
+    0.0171
+   ],
+   "ocrConfidence": 0.956,
+   "wordIndices": [
+    3,
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "text": "Applicant details",
+   "bbox": [
+    0.0798,
+    0.1425,
+    0.232,
+    0.0205
+   ],
+   "ocrConfidence": 0.962,
+   "wordIndices": [
+    7,
+    8
+   ]
+  },
+  {
+   "text": "Full name",
+   "bbox": [
+    0.0798,
+    0.1824,
+    0.0997,
+    0.0171
+   ],
+   "ocrConfidence": 0.942,
+   "wordIndices": [
+    9,
+    10
+   ]
+  },
+  {
+   "text": "Aarav Sharma",
+   "bbox": [
+    0.0798,
+    0.2018,
+    0.1846,
+    0.0217
+   ],
+   "ocrConfidence": 0.956,
+   "wordIndices": [
+    11,
+    12
+   ]
+  },
+  {
+   "text": "Date of birth",
+   "bbox": [
+    0.0798,
+    0.244,
+    0.1294,
+    0.0171
+   ],
+   "ocrConfidence": 0.968,
+   "wordIndices": [
+    13,
+    14,
+    15
+   ]
+  },
+  {
+   "text": "12/08/2001",
+   "bbox": [
+    0.0798,
+    0.2634,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.972,
+   "wordIndices": [
+    16
+   ]
+  },
+  {
+   "text": "ID number",
+   "bbox": [
+    0.0798,
+    0.3056,
+    0.1082,
+    0.0171
+   ],
+   "ocrConfidence": 0.966,
+   "wordIndices": [
+    17,
+    18
+   ]
+  },
+  {
+   "text": "TD-48213-77",
+   "bbox": [
+    0.0798,
+    0.325,
+    0.1708,
+    0.0217
+   ],
+   "ocrConfidence": 0.962,
+   "wordIndices": [
+    19
+   ]
+  },
+  {
+   "text": "Permanent address",
+   "bbox": [
+    0.0798,
+    0.3672,
+    0.1969,
+    0.0171
+   ],
+   "ocrConfidence": 0.957,
+   "wordIndices": [
+    20,
+    21
+   ]
+  },
+  {
+   "text": "14 Maple Court, Riverton",
+   "bbox": [
+    0.0798,
+    0.3865,
+    0.3248,
+    0.0217
+   ],
+   "ocrConfidence": 0.962,
+   "wordIndices": [
+    22,
+    23,
+    24,
+    25
+   ]
+  },
+  {
+   "text": "Current address",
+   "bbox": [
+    0.0798,
+    0.4287,
+    0.163,
+    0.0171
+   ],
+   "ocrConfidence": 0.953,
+   "wordIndices": [
+    26,
+    27
+   ]
+  },
+  {
+   "text": "Flat 9, Lakeview Residency, Riverton",
+   "bbox": [
+    0.0798,
+    0.4481,
+    0.4752,
+    0.0217
+   ],
+   "ocrConfidence": 0.964,
+   "wordIndices": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  {
+   "text": "Requested loan amount",
+   "bbox": [
+    0.0798,
+    0.4903,
+    0.2424,
+    0.0171
+   ],
+   "ocrConfidence": 0.954,
+   "wordIndices": [
+    33,
+    34,
+    35
+   ]
+  },
+  {
+   "text": "250,000.00",
+   "bbox": [
+    0.0798,
+    0.5097,
+    0.1494,
+    0.0217
+   ],
+   "ocrConfidence": 0.954,
+   "wordIndices": [
+    36
+   ]
+  },
+  {
+   "text": "Application date",
+   "bbox": [
+    0.0798,
+    0.5519,
+    0.1662,
+    0.0171
+   ],
+   "ocrConfidence": 0.958,
+   "wordIndices": [
+    37,
+    38
+   ]
+  },
+  {
+   "text": "15/10/2026",
+   "bbox": [
+    0.0798,
+    0.5713,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.971,
+   "wordIndices": [
+    39
+   ]
+  },
+  {
+   "text": "Signature",
+   "bbox": [
+    0.0798,
+    0.6249,
+    0.0872,
+    0.0154
+   ],
+   "ocrConfidence": 0.947,
+   "wordIndices": [
+    40
+   ]
+  }
+ ]
+}

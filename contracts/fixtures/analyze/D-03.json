@@ -1,0 +1,320 @@
+{
+  "docId": "D-03",
+  "pipelineVersion": "0.1.0",
+  "pages": [
+    {
+      "docId": "D-03",
+      "page": 1,
+      "renderPath": "contracts/fixtures/pages/D-03-page-1.png",
+      "renderDpi": 150,
+      "rotationDeg": 0,
+      "deskewDeg": 0.0,
+      "docType": "bank_statement",
+      "docTypeConfidence": 0.96
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": "D-03-F01",
+      "docId": "D-03",
+      "name": "full_name",
+      "rawValue": "AARAV KUMAR SHARMA",
+      "normalizedValue": "Aarav Kumar Sharma",
+      "ocrConfidence": 0.99,
+      "extractionConfidence": 0.98,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.171,
+          0.3153,
+          0.0262
+        ],
+        "label": "full_name"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F02",
+      "docId": "D-03",
+      "name": "account_number",
+      "rawValue": "AC-5521-009981",
+      "normalizedValue": "AC-5521-009981",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.98,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2338,
+          0.2261,
+          0.0262
+        ],
+        "label": "account_number"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F03",
+      "docId": "D-03",
+      "name": "statement_date",
+      "rawValue": "30/09/2026",
+      "normalizedValue": "2026-09-30",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2965,
+          0.1568,
+          0.0262
+        ],
+        "label": "statement_date"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F04",
+      "docId": "D-03",
+      "name": "txn_amount",
+      "rawValue": "42,000.00",
+      "normalizedValue": "42000.00",
+      "ocrConfidence": 0.99,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.7923,
+          0.4253,
+          0.123,
+          0.0234
+        ],
+        "label": "txn_amount"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F05",
+      "docId": "D-03",
+      "name": "txn_amount",
+      "rawValue": "1,250.50",
+      "normalizedValue": "1250.50",
+      "ocrConfidence": 0.99,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8067,
+          0.4618,
+          0.1086,
+          0.0234
+        ],
+        "label": "txn_amount"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F06",
+      "docId": "D-03",
+      "name": "txn_amount",
+      "rawValue": "5,000.00",
+      "normalizedValue": "5000.00",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8067,
+          0.4983,
+          0.1086,
+          0.0234
+        ],
+        "label": "txn_amount"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F07",
+      "docId": "D-03",
+      "name": "txn_amount",
+      "rawValue": "312.25",
+      "normalizedValue": "312.25",
+      "ocrConfidence": 0.98,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8283,
+          0.5348,
+          0.0871,
+          0.0234
+        ],
+        "label": "txn_amount"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F08",
+      "docId": "D-03",
+      "name": "statement_total",
+      "rawValue": "49,562.75",
+      "normalizedValue": "49562.75",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.96,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.771,
+          0.5849,
+          0.1443,
+          0.0251
+        ],
+        "label": "statement_total"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-03-F09",
+      "docId": "D-03",
+      "name": "account_balance",
+      "rawValue": "86,430.10",
+      "normalizedValue": "86430.10",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.98,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.771,
+          0.6477,
+          0.1443,
+          0.0251
+        ],
+        "label": "account_balance"
+      },
+      "source": "ocr"
+    }
+  ],
+  "signals": [
+    {
+      "signalId": "D-03-S01",
+      "detector": "pdf.textlayer",
+      "type": "TEXT_LAYER_MISMATCH",
+      "regions": [
+        {
+          "docId": "D-03",
+          "page": 1,
+          "bbox": [
+            0.771,
+            0.5849,
+            0.1443,
+            0.0251
+          ],
+          "label": "statement_total"
+        }
+      ],
+      "confidence": 0.72,
+      "measurements": {
+        "renderedText": "49,562.75",
+        "textLayerText": "48,562.75",
+        "differingChars": 1
+      },
+      "provenance": {
+        "analyzer": "pdf.textlayer",
+        "analyzerVersion": "0.1",
+        "config": {
+          "minWordDiffs": 1
+        },
+        "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+        "processedAt": "2026-11-01T09:00:00Z",
+        "status": "AVAILABLE"
+      }
+    }
+  ],
+  "analyzerStatuses": {
+    "ocr": "AVAILABLE",
+    "pdf.textlayer": "AVAILABLE",
+    "pdf.fonts": "AVAILABLE",
+    "image.ela": "NOT_APPLICABLE",
+    "image.noise": "NOT_APPLICABLE",
+    "image.copymove": "NOT_APPLICABLE",
+    "signature": "NOT_APPLICABLE"
+  },
+  "provenance": [
+    {
+      "analyzer": "ocr",
+      "analyzerVersion": "0.1",
+      "modelVersion": "fixture",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "pdf.textlayer",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "pdf.fonts",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.ela",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "image.noise",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "image.copymove",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "signature",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    }
+  ]
+}

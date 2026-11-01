@@ -180,24 +180,9 @@
         "bbox": {
           "type": "array",
           "minItems": 4,
-          "items": [
-            {
-              "type": "number",
-              "title": "x"
-            },
-            {
-              "type": "number",
-              "title": "y"
-            },
-            {
-              "type": "number",
-              "title": "w"
-            },
-            {
-              "type": "number",
-              "title": "h"
-            }
-          ],
+          "items": {
+            "type": "number"
+          },
           "maxItems": 4
         },
         "label": {
@@ -447,24 +432,9 @@
         "bbox": {
           "type": "array",
           "minItems": 4,
-          "items": [
-            {
-              "type": "number",
-              "title": "x"
-            },
-            {
-              "type": "number",
-              "title": "y"
-            },
-            {
-              "type": "number",
-              "title": "w"
-            },
-            {
-              "type": "number",
-              "title": "h"
-            }
-          ],
+          "items": {
+            "type": "number"
+          },
           "maxItems": 4
         },
         "ocrConfidence": {
@@ -492,24 +462,9 @@
         "bbox": {
           "type": "array",
           "minItems": 4,
-          "items": [
-            {
-              "type": "number",
-              "title": "x"
-            },
-            {
-              "type": "number",
-              "title": "y"
-            },
-            {
-              "type": "number",
-              "title": "w"
-            },
-            {
-              "type": "number",
-              "title": "h"
-            }
-          ],
+          "items": {
+            "type": "number"
+          },
           "maxItems": 4
         },
         "ocrConfidence": {
@@ -1182,6 +1137,670 @@
         "DISMISSED",
         "INCONCLUSIVE"
       ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "error"
+      ],
+      "additionalProperties": false
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ],
+      "additionalProperties": false
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "analystId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "analystId",
+        "displayName"
+      ],
+      "additionalProperties": false
+    },
+    "CreateCaseRequest": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "Case": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "caseId",
+        "title",
+        "createdAt",
+        "createdBy"
+      ],
+      "additionalProperties": false
+    },
+    "UploadResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentRecord"
+          }
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Job"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "documents",
+        "jobs"
+      ],
+      "additionalProperties": false,
+      "description": "202 response of POST /cases/:caseId/documents."
+    },
+    "CaseSummary": {
+      "type": "object",
+      "properties": {
+        "case": {
+          "$ref": "#/definitions/Case"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentRecord"
+          }
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Job"
+          }
+        },
+        "priority": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PriorityResult"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "perDocumentPriority": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PriorityResult"
+          }
+        }
+      },
+      "required": [
+        "case",
+        "documents",
+        "jobs",
+        "priority",
+        "perDocumentPriority"
+      ],
+      "additionalProperties": false,
+      "description": "GET /cases/:caseId. priority is null until reasoning has run for the case."
+    },
+    "DocumentDetail": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "$ref": "#/definitions/DocumentRecord"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PageRecord"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExtractedField"
+          }
+        }
+      },
+      "required": [
+        "document",
+        "pages",
+        "fields"
+      ],
+      "additionalProperties": false,
+      "description": "GET /documents/:docId."
+    },
+    "ReclassifyRequest": {
+      "type": "object",
+      "properties": {
+        "docType": {
+          "$ref": "#/definitions/DocType"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docType"
+      ],
+      "additionalProperties": false
+    },
+    "FindingWithReview": {
+      "type": "object",
+      "properties": {
+        "finding": {
+          "$ref": "#/definitions/Finding"
+        },
+        "reviewStatus": {
+          "$ref": "#/definitions/ReviewStatus"
+        }
+      },
+      "required": [
+        "finding",
+        "reviewStatus"
+      ],
+      "additionalProperties": false,
+      "description": "A finding plus the review state derived by replaying its events. The finding itself is never modified."
+    },
+    "FindingDetail": {
+      "type": "object",
+      "properties": {
+        "finding": {
+          "$ref": "#/definitions/Finding"
+        },
+        "reviewStatus": {
+          "$ref": "#/definitions/ReviewStatus"
+        },
+        "reviewHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InvestigationEvent"
+          }
+        }
+      },
+      "required": [
+        "finding",
+        "reviewHistory",
+        "reviewStatus"
+      ],
+      "additionalProperties": false
+    },
+    "ReviewRequest": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "CONFIRM",
+            "DISMISS",
+            "INCONCLUSIVE",
+            "COMMENT",
+            "REOPEN"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "additionalProperties": false
+    },
+    "AssertionsResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentAssertion"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "assertions"
+      ],
+      "additionalProperties": false
+    },
+    "EntitiesResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "entities"
+      ],
+      "additionalProperties": false
+    },
+    "FindingsResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FindingWithReview"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "findings"
+      ],
+      "additionalProperties": false
+    },
+    "EventsResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InvestigationEvent"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "GraphResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GraphNode"
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GraphEdge"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "nodes",
+        "edges"
+      ],
+      "additionalProperties": false
+    },
+    "GraphNode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "document",
+            "entity"
+          ]
+        },
+        "label": {
+          "type": "string"
+        },
+        "docType": {
+          "$ref": "#/definitions/DocType"
+        },
+        "role": {
+          "$ref": "#/definitions/EntityRole"
+        },
+        "resolution": {
+          "type": "string",
+          "enum": [
+            "RESOLVED",
+            "SUGGESTED",
+            "UNRESOLVED"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "GraphEdge": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "contains",
+            "match",
+            "conflict",
+            "suggested"
+          ]
+        },
+        "findingId": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "target",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "IntegrityReport": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "checkedAt": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IntegrityDocumentResult"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "checkedAt",
+        "status",
+        "documents"
+      ],
+      "additionalProperties": false
+    },
+    "IntegrityDocumentResult": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "expectedSha256": {
+          "type": "string"
+        },
+        "actualSha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        }
+      },
+      "required": [
+        "docId",
+        "expectedSha256",
+        "actualSha256",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "DossierJson": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "generatedAt": {
+          "type": "string"
+        },
+        "summary": {
+          "$ref": "#/definitions/CaseSummary"
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentAssertion"
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Entity"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FindingWithReview"
+          }
+        },
+        "reviewHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InvestigationEvent"
+          }
+        },
+        "analyzerStatuses": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/AnalyzerStatus"
+            }
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "integrity": {
+          "$ref": "#/definitions/IntegrityReport"
+        }
+      },
+      "required": [
+        "caseId",
+        "generatedAt",
+        "summary",
+        "assertions",
+        "entities",
+        "findings",
+        "reviewHistory",
+        "analyzerStatuses",
+        "limitations",
+        "integrity"
+      ],
+      "additionalProperties": false,
+      "description": "GET /cases/:caseId/dossier?format=json. The PDF carries the same content."
+    },
+    "CaseFixture": {
+      "type": "object",
+      "properties": {
+        "case": {
+          "$ref": "#/definitions/Case"
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentRecord"
+          }
+        },
+        "jobs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Job"
+          }
+        },
+        "investigationEvents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InvestigationEvent"
+          }
+        }
+      },
+      "required": [
+        "case",
+        "documents",
+        "jobs",
+        "investigationEvents"
+      ],
+      "additionalProperties": false,
+      "description": "Shape of contracts/fixtures/CASE-00x.case.json: everything the frontend mock server needs besides reasoning output."
+    },
+    "AnalyzeRequest": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "analyzers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "docId"
+      ],
+      "additionalProperties": false,
+      "description": "Python service, POST /analyze. Takes a document ID, never a filesystem path."
+    },
+    "HealthResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "degraded"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "analyzers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AnalyzerStatus"
+          }
+        }
+      },
+      "required": [
+        "status",
+        "version",
+        "analyzers"
+      ],
+      "additionalProperties": false,
+      "description": "Python service, GET /health."
     }
   }
 }

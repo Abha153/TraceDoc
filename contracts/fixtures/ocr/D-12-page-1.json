@@ -1,0 +1,577 @@
+{
+ "docId": "D-12",
+ "page": 1,
+ "widthPx": 1240,
+ "heightPx": 1754,
+ "renderDpi": 150,
+ "engine": "fixture",
+ "engineVersion": "0",
+ "words": [
+  {
+   "text": "SAMPLE",
+   "bbox": [
+    0.096,
+    0.0741,
+    0.1115,
+    0.0205
+   ],
+   "ocrConfidence": 0.985,
+   "lineIndex": 0
+  },
+  {
+   "text": "IDENTITY",
+   "bbox": [
+    0.2143,
+    0.0741,
+    0.127,
+    0.0205
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 0
+  },
+  {
+   "text": "CARD",
+   "bbox": [
+    0.3481,
+    0.0741,
+    0.0768,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 0
+  },
+  {
+   "text": "(FICTIONAL)",
+   "bbox": [
+    0.5637,
+    0.0787,
+    0.1232,
+    0.0171
+   ],
+   "ocrConfidence": 0.985,
+   "lineIndex": 1
+  },
+  {
+   "text": "PHOTO",
+   "bbox": [
+    0.1645,
+    0.2281,
+    0.073,
+    0.0171
+   ],
+   "ocrConfidence": 0.982,
+   "lineIndex": 2
+  },
+  {
+   "text": "Name",
+   "bbox": [
+    0.3379,
+    0.1197,
+    0.0611,
+    0.0171
+   ],
+   "ocrConfidence": 0.985,
+   "lineIndex": 3
+  },
+  {
+   "text": "PRIYA",
+   "bbox": [
+    0.3379,
+    0.1391,
+    0.0741,
+    0.0217
+   ],
+   "ocrConfidence": 0.975,
+   "lineIndex": 4
+  },
+  {
+   "text": "NAYAR",
+   "bbox": [
+    0.4186,
+    0.1391,
+    0.0859,
+    0.0217
+   ],
+   "ocrConfidence": 0.973,
+   "lineIndex": 4
+  },
+  {
+   "text": "Date",
+   "bbox": [
+    0.3379,
+    0.1767,
+    0.0498,
+    0.0171
+   ],
+   "ocrConfidence": 0.986,
+   "lineIndex": 5
+  },
+  {
+   "text": "of",
+   "bbox": [
+    0.3925,
+    0.1767,
+    0.021,
+    0.0171
+   ],
+   "ocrConfidence": 0.975,
+   "lineIndex": 5
+  },
+  {
+   "text": "Birth",
+   "bbox": [
+    0.4183,
+    0.1767,
+    0.05,
+    0.0171
+   ],
+   "ocrConfidence": 0.988,
+   "lineIndex": 5
+  },
+  {
+   "text": "21/11/1971",
+   "bbox": [
+    0.3379,
+    0.1961,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.978,
+   "lineIndex": 6
+  },
+  {
+   "text": "ID",
+   "bbox": [
+    0.3379,
+    0.2338,
+    0.0231,
+    0.0171
+   ],
+   "ocrConfidence": 0.961,
+   "lineIndex": 7
+  },
+  {
+   "text": "Number",
+   "bbox": [
+    0.3658,
+    0.2338,
+    0.0826,
+    0.0171
+   ],
+   "ocrConfidence": 0.966,
+   "lineIndex": 7
+  },
+  {
+   "text": "TD-61020-51",
+   "bbox": [
+    0.3379,
+    0.2531,
+    0.1708,
+    0.0217
+   ],
+   "ocrConfidence": 0.971,
+   "lineIndex": 8
+  },
+  {
+   "text": "Address",
+   "bbox": [
+    0.3379,
+    0.2908,
+    0.0819,
+    0.0171
+   ],
+   "ocrConfidence": 0.959,
+   "lineIndex": 9
+  },
+  {
+   "text": "(permanent)",
+   "bbox": [
+    0.4246,
+    0.2908,
+    0.1283,
+    0.0171
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 9
+  },
+  {
+   "text": "7",
+   "bbox": [
+    0.3379,
+    0.3101,
+    0.018,
+    0.0217
+   ],
+   "ocrConfidence": 0.977,
+   "lineIndex": 10
+  },
+  {
+   "text": "Orchard",
+   "bbox": [
+    0.3625,
+    0.3101,
+    0.1049,
+    0.0217
+   ],
+   "ocrConfidence": 0.99,
+   "lineIndex": 10
+  },
+  {
+   "text": "Road,",
+   "bbox": [
+    0.474,
+    0.3101,
+    0.0746,
+    0.0217
+   ],
+   "ocrConfidence": 0.971,
+   "lineIndex": 10
+  },
+  {
+   "text": "Westport",
+   "bbox": [
+    0.5551,
+    0.3101,
+    0.118,
+    0.0217
+   ],
+   "ocrConfidence": 0.978,
+   "lineIndex": 10
+  },
+  {
+   "text": "Date",
+   "bbox": [
+    0.3379,
+    0.3478,
+    0.0498,
+    0.0171
+   ],
+   "ocrConfidence": 0.986,
+   "lineIndex": 11
+  },
+  {
+   "text": "of",
+   "bbox": [
+    0.3925,
+    0.3478,
+    0.021,
+    0.0171
+   ],
+   "ocrConfidence": 0.988,
+   "lineIndex": 11
+  },
+  {
+   "text": "Issue",
+   "bbox": [
+    0.4183,
+    0.3478,
+    0.0538,
+    0.0171
+   ],
+   "ocrConfidence": 0.969,
+   "lineIndex": 11
+  },
+  {
+   "text": "09/01/2021",
+   "bbox": [
+    0.3379,
+    0.3672,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.996,
+   "lineIndex": 12
+  },
+  {
+   "text": "Signature",
+   "bbox": [
+    0.3379,
+    0.4076,
+    0.0872,
+    0.0154
+   ],
+   "ocrConfidence": 0.973,
+   "lineIndex": 13
+  },
+  {
+   "text": "Specimen",
+   "bbox": [
+    0.0637,
+    0.5017,
+    0.0892,
+    0.0154
+   ],
+   "ocrConfidence": 0.993,
+   "lineIndex": 14
+  },
+  {
+   "text": "document",
+   "bbox": [
+    0.1569,
+    0.5017,
+    0.0911,
+    0.0154
+   ],
+   "ocrConfidence": 0.977,
+   "lineIndex": 14
+  },
+  {
+   "text": "for",
+   "bbox": [
+    0.2521,
+    0.5017,
+    0.026,
+    0.0154
+   ],
+   "ocrConfidence": 0.976,
+   "lineIndex": 14
+  },
+  {
+   "text": "software",
+   "bbox": [
+    0.2821,
+    0.5017,
+    0.0778,
+    0.0154
+   ],
+   "ocrConfidence": 0.967,
+   "lineIndex": 14
+  },
+  {
+   "text": "testing",
+   "bbox": [
+    0.3639,
+    0.5017,
+    0.0631,
+    0.0154
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 14
+  },
+  {
+   "text": "only",
+   "bbox": [
+    0.4311,
+    0.5017,
+    0.0391,
+    0.0154
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 14
+  }
+ ],
+ "lines": [
+  {
+   "text": "SAMPLE IDENTITY CARD",
+   "bbox": [
+    0.096,
+    0.0741,
+    0.3289,
+    0.0205
+   ],
+   "ocrConfidence": 0.988,
+   "wordIndices": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "text": "(FICTIONAL)",
+   "bbox": [
+    0.5637,
+    0.0787,
+    0.1232,
+    0.0171
+   ],
+   "ocrConfidence": 0.985,
+   "wordIndices": [
+    3
+   ]
+  },
+  {
+   "text": "PHOTO",
+   "bbox": [
+    0.1645,
+    0.2281,
+    0.073,
+    0.0171
+   ],
+   "ocrConfidence": 0.982,
+   "wordIndices": [
+    4
+   ]
+  },
+  {
+   "text": "Name",
+   "bbox": [
+    0.3379,
+    0.1197,
+    0.0611,
+    0.0171
+   ],
+   "ocrConfidence": 0.985,
+   "wordIndices": [
+    5
+   ]
+  },
+  {
+   "text": "PRIYA NAYAR",
+   "bbox": [
+    0.3379,
+    0.1391,
+    0.1666,
+    0.0217
+   ],
+   "ocrConfidence": 0.974,
+   "wordIndices": [
+    6,
+    7
+   ]
+  },
+  {
+   "text": "Date of Birth",
+   "bbox": [
+    0.3379,
+    0.1767,
+    0.1305,
+    0.0171
+   ],
+   "ocrConfidence": 0.983,
+   "wordIndices": [
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "text": "21/11/1971",
+   "bbox": [
+    0.3379,
+    0.1961,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.978,
+   "wordIndices": [
+    11
+   ]
+  },
+  {
+   "text": "ID Number",
+   "bbox": [
+    0.3379,
+    0.2338,
+    0.1105,
+    0.0171
+   ],
+   "ocrConfidence": 0.964,
+   "wordIndices": [
+    12,
+    13
+   ]
+  },
+  {
+   "text": "TD-61020-51",
+   "bbox": [
+    0.3379,
+    0.2531,
+    0.1708,
+    0.0217
+   ],
+   "ocrConfidence": 0.971,
+   "wordIndices": [
+    14
+   ]
+  },
+  {
+   "text": "Address (permanent)",
+   "bbox": [
+    0.3379,
+    0.2908,
+    0.2151,
+    0.0171
+   ],
+   "ocrConfidence": 0.969,
+   "wordIndices": [
+    15,
+    16
+   ]
+  },
+  {
+   "text": "7 Orchard Road, Westport",
+   "bbox": [
+    0.3379,
+    0.3101,
+    0.3352,
+    0.0217
+   ],
+   "ocrConfidence": 0.979,
+   "wordIndices": [
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "text": "Date of Issue",
+   "bbox": [
+    0.3379,
+    0.3478,
+    0.1342,
+    0.0171
+   ],
+   "ocrConfidence": 0.981,
+   "wordIndices": [
+    21,
+    22,
+    23
+   ]
+  },
+  {
+   "text": "09/01/2021",
+   "bbox": [
+    0.3379,
+    0.3672,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.996,
+   "wordIndices": [
+    24
+   ]
+  },
+  {
+   "text": "Signature",
+   "bbox": [
+    0.3379,
+    0.4076,
+    0.0872,
+    0.0154
+   ],
+   "ocrConfidence": 0.973,
+   "wordIndices": [
+    25
+   ]
+  },
+  {
+   "text": "Specimen document for software testing only",
+   "bbox": [
+    0.0637,
+    0.5017,
+    0.4065,
+    0.0154
+   ],
+   "ocrConfidence": 0.982,
+   "wordIndices": [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+   ]
+  }
+ ]
+}

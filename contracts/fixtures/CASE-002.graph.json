@@ -1,0 +1,77 @@
+{
+  "caseId": "CASE-002",
+  "nodes": [
+    {
+      "id": "D-11",
+      "kind": "document",
+      "label": "D-11 id_card",
+      "docType": "id_card"
+    },
+    {
+      "id": "D-12",
+      "kind": "document",
+      "label": "D-12 id_card",
+      "docType": "id_card"
+    },
+    {
+      "id": "D-13",
+      "kind": "document",
+      "label": "D-13 application_form",
+      "docType": "application_form"
+    },
+    {
+      "id": "E-001",
+      "kind": "entity",
+      "label": "applicant (E-001)",
+      "role": "applicant",
+      "resolution": "RESOLVED"
+    },
+    {
+      "id": "E-002",
+      "kind": "entity",
+      "label": "guarantor (E-002)",
+      "role": "guarantor",
+      "resolution": "RESOLVED"
+    }
+  ],
+  "edges": [
+    {
+      "id": "G-001",
+      "source": "E-001",
+      "target": "D-11",
+      "kind": "contains"
+    },
+    {
+      "id": "G-002",
+      "source": "E-001",
+      "target": "D-13",
+      "kind": "contains"
+    },
+    {
+      "id": "G-003",
+      "source": "E-002",
+      "target": "D-12",
+      "kind": "contains"
+    },
+    {
+      "id": "G-004",
+      "source": "E-002",
+      "target": "D-13",
+      "kind": "contains"
+    },
+    {
+      "id": "G-005",
+      "source": "D-11",
+      "target": "D-13",
+      "kind": "match",
+      "label": "id_number"
+    },
+    {
+      "id": "G-006",
+      "source": "D-12",
+      "target": "D-13",
+      "kind": "match",
+      "label": "guarantor_id_number"
+    }
+  ]
+}

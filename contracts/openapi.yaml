@@ -1,0 +1,803 @@
+# TraceDocs OpenAPI 3.1. Types are $refs into contracts.schema.json (generated from contracts/*.ts).
+# Lint: npm run lint:openapi
+openapi: 3.1.0
+info:
+  title: TraceDocs API
+  version: 0.1.0
+  description: Backend REST API (/api/v1) and the internal Python analysis service. Findings are observations or
+    potential anomalies, never fraud verdicts. Schemas live in contracts.schema.json, generated from contracts/*.ts.
+  license:
+    name: Hackathon prototype (see repository README)
+    url: https://github.com/yohan-987/TraceDoc
+servers:
+- url: http://localhost:3000/api/v1
+  description: Node backend
+tags:
+- name: auth
+  description: Analyst session
+- name: cases
+  description: Cases and case summaries
+- name: documents
+  description: Upload, document records, page renders, reclassification
+- name: jobs
+  description: Analysis job status
+- name: reasoning
+  description: Assertions, entities, graph, investigation log
+- name: findings
+  description: Findings and analyst review
+- name: reports
+  description: Dossier and integrity verification
+- name: python-service
+  description: Internal Python analysis service (localhost only)
+paths:
+  /auth/login:
+    post:
+      tags:
+      - auth
+      summary: Start an analyst session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./contracts.schema.json#/definitions/LoginRequest
+      responses:
+        '200':
+          description: Logged in; session cookie set
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/Session
+        '401':
+          description: Bad credentials
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security: []
+      operationId: post_auth_login
+  /auth/logout:
+    post:
+      tags:
+      - auth
+      summary: End the session
+      responses:
+        '204':
+          description: Logged out
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: post_auth_logout
+  /cases:
+    get:
+      tags:
+      - cases
+      summary: List cases with case-level priority
+      description: Needed by the Cases page; added to ARCHITECTURE.md section 11.
+      responses:
+        '200':
+          description: Cases
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./contracts.schema.json#/definitions/CaseSummary
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases
+    post:
+      tags:
+      - cases
+      summary: Create a case
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./contracts.schema.json#/definitions/CreateCaseRequest
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/Case
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: post_cases
+  /cases/{caseId}/documents:
+    post:
+      tags:
+      - documents
+      summary: Upload documents (PDF, PNG, JPG, TIFF)
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - files
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '202':
+          description: 'Accepted: originals stored and hashed, one job per document'
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/UploadResponse
+        '400':
+          description: Unsupported type or too large
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: post_cases_caseId_documents
+  /jobs/{jobId}:
+    get:
+      tags:
+      - jobs
+      summary: Job status, per-analyzer progress, partial results
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: Job id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/Job
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_jobs_jobId
+  /cases/{caseId}:
+    get:
+      tags:
+      - cases
+      summary: Case summary, documents, case-level priority
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Summary
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/CaseSummary
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId
+  /documents/{docId}:
+    get:
+      tags:
+      - documents
+      summary: Document record, pages, extracted fields, per-analyzer status
+      parameters:
+      - name: docId
+        in: path
+        required: true
+        description: Document id, e.g. D-01
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Document
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/DocumentDetail
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_documents_docId
+  /documents/{docId}/pages/{n}/type:
+    patch:
+      tags:
+      - documents
+      summary: Analyst reclassification of a page (logged, triggers a re-run)
+      parameters:
+      - name: docId
+        in: path
+        required: true
+        description: Document id, e.g. D-01
+        schema:
+          type: string
+      - name: n
+        in: path
+        required: true
+        description: 1-based page number
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./contracts.schema.json#/definitions/ReclassifyRequest
+      responses:
+        '202':
+          description: Re-run queued
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/Job
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: patch_documents_docId_pages_n_type
+  /documents/{docId}/pages/{n}/render:
+    get:
+      tags:
+      - documents
+      summary: Canonical page render (all boxes use this image's coordinate space)
+      parameters:
+      - name: docId
+        in: path
+        required: true
+        description: Document id, e.g. D-01
+        schema:
+          type: string
+      - name: n
+        in: path
+        required: true
+        description: 1-based page number
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: PNG image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_documents_docId_pages_n_render
+  /cases/{caseId}/assertions:
+    get:
+      tags:
+      - reasoning
+      summary: Assertions with entity links
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assertions
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/AssertionsResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_assertions
+  /cases/{caseId}/entities:
+    get:
+      tags:
+      - reasoning
+      summary: Resolved, suggested and unresolved entities
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Entities
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/EntitiesResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_entities
+  /cases/{caseId}/findings:
+    get:
+      tags:
+      - findings
+      summary: Findings with derived review status
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      - name: category
+        in: query
+        required: false
+        description: Filter by category
+        schema:
+          type: string
+          enum:
+          - extraction
+          - visual
+          - pdf_structure
+          - context
+          - cross_document
+      - name: observationStatus
+        in: query
+        required: false
+        description: Filter by machine observation status
+        schema:
+          type: string
+          enum:
+          - OBSERVED
+          - INCONSISTENT
+          - POTENTIAL_ANOMALY
+          - INCONCLUSIVE
+      - name: reviewStatus
+        in: query
+        required: false
+        description: Filter by derived review status
+        schema:
+          type: string
+          enum:
+          - UNREVIEWED
+          - CONFIRMED
+          - DISMISSED
+          - INCONCLUSIVE
+      responses:
+        '200':
+          description: Findings
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/FindingsResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_findings
+  /findings/{findingId}:
+    get:
+      tags:
+      - findings
+      summary: Finding, evidence, regions, review history
+      parameters:
+      - name: findingId
+        in: path
+        required: true
+        description: Finding id, e.g. F-0001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Finding
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/FindingDetail
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_findings_findingId
+  /findings/{findingId}/review:
+    post:
+      tags:
+      - findings
+      summary: Confirm, dismiss, mark inconclusive, comment or reopen (appends an event; the finding is never modified)
+      parameters:
+      - name: findingId
+        in: path
+        required: true
+        description: Finding id, e.g. F-0001
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./contracts.schema.json#/definitions/ReviewRequest
+      responses:
+        '200':
+          description: Updated finding view
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/FindingDetail
+        '400':
+          description: DISMISS needs a reason; COMMENT needs a comment
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: post_findings_findingId_review
+  /cases/{caseId}/graph:
+    get:
+      tags:
+      - reasoning
+      summary: Entity and document graph
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Graph
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/GraphResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_graph
+  /cases/{caseId}/events:
+    get:
+      tags:
+      - reasoning
+      summary: Append-only investigation log
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Events
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/EventsResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_events
+  /cases/{caseId}/dossier:
+    get:
+      tags:
+      - reports
+      summary: Dossier PDF, or raw structure with ?format=json
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: pdf (default) or json
+        schema:
+          type: string
+          enum:
+          - pdf
+          - json
+      responses:
+        '200':
+          description: Dossier
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/DossierJson
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_dossier
+  /cases/{caseId}/integrity:
+    get:
+      tags:
+      - reports
+      summary: Re-verify document hashes against the manifest
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Integrity report
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/IntegrityReport
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_integrity
+  /analyze:
+    servers:
+    - url: http://localhost:8000
+      description: Python analysis service (internal, localhost only)
+    post:
+      tags:
+      - python-service
+      summary: Analyze one document; analyzer failures are reported per analyzer, never abort the run
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./contracts.schema.json#/definitions/AnalyzeRequest
+      responses:
+        '200':
+          description: AnalyzeResponse; with no analyzers registered a valid empty response
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/AnalyzeResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security: []
+      operationId: post_analyze
+  /health:
+    servers:
+    - url: http://localhost:8000
+      description: Python analysis service (internal, localhost only)
+    get:
+      tags:
+      - python-service
+      summary: Service and per-analyzer availability
+      responses:
+        '200':
+          description: Health
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/HealthResponse
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security: []
+      operationId: get_health
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: tracedocs_session

@@ -1,0 +1,197 @@
+{
+  "docId": "D-12",
+  "pipelineVersion": "0.1.0",
+  "pages": [
+    {
+      "docId": "D-12",
+      "page": 1,
+      "renderPath": "contracts/fixtures/pages/D-12-page-1.png",
+      "renderDpi": 150,
+      "rotationDeg": 0,
+      "deskewDeg": 0.0,
+      "docType": "id_card",
+      "docTypeConfidence": 0.96
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": "D-12-F01",
+      "docId": "D-12",
+      "name": "full_name",
+      "rawValue": "PRIYA NAYAR",
+      "normalizedValue": "Priya Nayar",
+      "ocrConfidence": 0.97,
+      "extractionConfidence": 0.96,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1368,
+          0.1731,
+          0.0262
+        ],
+        "label": "full_name"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-12-F02",
+      "docId": "D-12",
+      "name": "dob",
+      "rawValue": "21/11/1971",
+      "normalizedValue": "1971-11-21",
+      "ocrConfidence": 0.98,
+      "extractionConfidence": 0.95,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1938,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-12-F03",
+      "docId": "D-12",
+      "name": "id_number",
+      "rawValue": "TD-61020-51",
+      "normalizedValue": "TD-61020-51",
+      "ocrConfidence": 0.97,
+      "extractionConfidence": 0.95,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.2509,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-12-F04",
+      "docId": "D-12",
+      "name": "address_permanent",
+      "rawValue": "7 Orchard Road, Westport",
+      "normalizedValue": "7 Orchard Road, Westport",
+      "ocrConfidence": 0.98,
+      "extractionConfidence": 0.9,
+      "validationStatus": "NOT_CHECKED",
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3079,
+          0.3416,
+          0.0262
+        ],
+        "label": "address_permanent"
+      },
+      "source": "ocr"
+    },
+    {
+      "fieldId": "D-12-F05",
+      "docId": "D-12",
+      "name": "issue_date",
+      "rawValue": "09/01/2021",
+      "normalizedValue": "2021-01-09",
+      "ocrConfidence": 1.0,
+      "extractionConfidence": 0.93,
+      "validationStatus": "VALID",
+      "region": {
+        "docId": "D-12",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3649,
+          0.1568,
+          0.0262
+        ],
+        "label": "issue_date"
+      },
+      "source": "ocr"
+    }
+  ],
+  "signals": [],
+  "analyzerStatuses": {
+    "ocr": "AVAILABLE",
+    "pdf.textlayer": "NOT_APPLICABLE",
+    "pdf.fonts": "NOT_APPLICABLE",
+    "image.ela": "AVAILABLE",
+    "image.noise": "AVAILABLE",
+    "image.copymove": "AVAILABLE",
+    "signature": "AVAILABLE"
+  },
+  "provenance": [
+    {
+      "analyzer": "ocr",
+      "analyzerVersion": "0.1",
+      "modelVersion": "fixture",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "pdf.textlayer",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "pdf.fonts",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "analyzer": "image.ela",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.noise",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "image.copymove",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    },
+    {
+      "analyzer": "signature",
+      "analyzerVersion": "0.1",
+      "config": {},
+      "inputSha256": "08d4f54965f05c2e8d3e7dade971f3faa053cb51b0aeed112d812d0b189a56d3",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    }
+  ]
+}

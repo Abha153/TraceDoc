@@ -106,3 +106,19 @@ class OcrPage(_Model):
     engineVersion: str
     words: List[OcrWord]
     lines: List[OcrLine]
+
+
+class AnalyzeRequest(_Model):
+    """POST /analyze body. Takes a document ID, never a filesystem path."""
+
+    docId: str
+    pipelineVersion: Optional[str] = None
+    analyzers: Optional[List[str]] = None
+
+
+class HealthResponse(_Model):
+    """GET /health response."""
+
+    status: Literal["ok", "degraded"]
+    version: str
+    analyzers: Dict[str, AnalyzerStatus]

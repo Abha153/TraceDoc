@@ -1,0 +1,291 @@
+{
+  "case": {
+    "caseId": "CASE-001",
+    "title": "Loan application, Aarav Sharma",
+    "createdAt": "2026-11-01T08:50:00Z",
+    "createdBy": "analyst-1"
+  },
+  "documents": [
+    {
+      "docId": "D-01",
+      "caseId": "CASE-001",
+      "filename": "id_card_aarav.png",
+      "sha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8",
+      "mimeType": "image/png",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "NOT_APPLICABLE",
+        "pdf.fonts": "NOT_APPLICABLE",
+        "image.ela": "AVAILABLE",
+        "image.noise": "AVAILABLE",
+        "image.copymove": "AVAILABLE",
+        "signature": "AVAILABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:10Z"
+    },
+    {
+      "docId": "D-02",
+      "caseId": "CASE-001",
+      "filename": "loan_application_aarav.png",
+      "sha256": "b325057739e4399f3e10d230dcc062dfa65f67922f68fd12c6ca776e6550c65f",
+      "mimeType": "image/png",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "NOT_APPLICABLE",
+        "pdf.fonts": "NOT_APPLICABLE",
+        "image.ela": "AVAILABLE",
+        "image.noise": "AVAILABLE",
+        "image.copymove": "AVAILABLE",
+        "signature": "UNAVAILABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:11Z"
+    },
+    {
+      "docId": "D-03",
+      "caseId": "CASE-001",
+      "filename": "bank_statement_aarav.pdf",
+      "sha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+      "mimeType": "application/pdf",
+      "pageCount": 1,
+      "processing": {
+        "ocr": "AVAILABLE",
+        "pdf.textlayer": "AVAILABLE",
+        "pdf.fonts": "AVAILABLE",
+        "image.ela": "NOT_APPLICABLE",
+        "image.noise": "NOT_APPLICABLE",
+        "image.copymove": "NOT_APPLICABLE",
+        "signature": "NOT_APPLICABLE"
+      },
+      "pipelineVersion": "0.1.0",
+      "receivedAt": "2026-11-01T08:55:12Z"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": "JOB-0001",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "pipelineVersion": "0.1.0",
+      "status": "DONE",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "pdf.fonts": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.ela": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.noise": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.copymove": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "signature": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    },
+    {
+      "jobId": "JOB-0002",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "pipelineVersion": "0.1.0",
+      "status": "PARTIAL",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "pdf.fonts": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.ela": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.noise": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.copymove": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "signature": {
+          "state": "UNAVAILABLE",
+          "analyzerStatus": "UNAVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:06Z",
+          "message": "signature model not loaded (fixture: honest UNAVAILABLE, not clean)"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    },
+    {
+      "jobId": "JOB-0003",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "pipelineVersion": "0.1.0",
+      "status": "DONE",
+      "analyzers": {
+        "ocr": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.textlayer": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "pdf.fonts": {
+          "state": "DONE",
+          "analyzerStatus": "AVAILABLE",
+          "startedAt": "2026-11-01T09:00:05Z",
+          "finishedAt": "2026-11-01T09:00:20Z"
+        },
+        "image.ela": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.noise": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "image.copymove": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        },
+        "signature": {
+          "state": "NOT_APPLICABLE",
+          "analyzerStatus": "NOT_APPLICABLE"
+        }
+      },
+      "attempts": 1,
+      "maxAttempts": 3,
+      "createdAt": "2026-11-01T08:55:30Z",
+      "updatedAt": "2026-11-01T09:00:25Z"
+    }
+  ],
+  "investigationEvents": [
+    {
+      "eventId": "IE-001-001",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T08:55:10Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-01",
+      "payload": {
+        "filename": "id_card_aarav.png",
+        "sha256": "9d1a2b62e22a47c3ebe6628f514a77ade12a57fc840909da05b5b53199cb96a8"
+      }
+    },
+    {
+      "eventId": "IE-001-002",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T08:55:11Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-02",
+      "payload": {
+        "filename": "loan_application_aarav.png",
+        "sha256": "b325057739e4399f3e10d230dcc062dfa65f67922f68fd12c6ca776e6550c65f"
+      }
+    },
+    {
+      "eventId": "IE-001-003",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T08:55:12Z",
+      "actor": "analyst-1",
+      "type": "UPLOAD",
+      "targetId": "D-03",
+      "payload": {
+        "filename": "bank_statement_aarav.pdf",
+        "sha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc"
+      }
+    },
+    {
+      "eventId": "IE-001-004",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T09:10:00Z",
+      "actor": "analyst-1",
+      "type": "REVIEW",
+      "targetId": "F-0001",
+      "payload": {
+        "status": "CONFIRMED"
+      }
+    },
+    {
+      "eventId": "IE-001-005",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T09:11:00Z",
+      "actor": "analyst-1",
+      "type": "COMMENT",
+      "targetId": "F-0001",
+      "payload": {
+        "text": "Year differs on the two documents; asking the applicant for the original."
+      }
+    },
+    {
+      "eventId": "IE-001-006",
+      "caseId": "CASE-001",
+      "at": "2026-11-01T09:12:00Z",
+      "actor": "analyst-1",
+      "type": "REVIEW",
+      "targetId": "F-0002",
+      "payload": {
+        "status": "DISMISSED",
+        "reason": "Middle name omitted on the form"
+      }
+    }
+  ]
+}

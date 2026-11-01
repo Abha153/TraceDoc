@@ -1,0 +1,1112 @@
+{
+  "assertions": [
+    {
+      "assertionId": "D-01-A01",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "fieldId": "D-01-F01",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "full_name",
+      "normalizedValue": "Aarav Kumar Sharma",
+      "documentDate": "2023-02-03",
+      "extractionConfidence": 0.96,
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1368,
+          0.3153,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-01-A02",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "fieldId": "D-01-F02",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "dob",
+      "normalizedValue": "2004-08-12",
+      "documentDate": "2023-02-03",
+      "extractionConfidence": 0.95,
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.1938,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      }
+    },
+    {
+      "assertionId": "D-01-A03",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "fieldId": "D-01-F03",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-48213-77",
+      "documentDate": "2023-02-03",
+      "extractionConfidence": 0.94,
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.2509,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      }
+    },
+    {
+      "assertionId": "D-01-A04",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "fieldId": "D-01-F04",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_permanent",
+      "normalizedValue": "14 Maple Court, Riverton",
+      "documentDate": "2023-02-03",
+      "extractionConfidence": 0.9,
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3079,
+          0.3312,
+          0.0262
+        ],
+        "label": "address_permanent"
+      }
+    },
+    {
+      "assertionId": "D-01-A05",
+      "caseId": "CASE-001",
+      "docId": "D-01",
+      "fieldId": "D-01-F05",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "issue_date",
+      "normalizedValue": "2023-02-03",
+      "documentDate": "2023-02-03",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-01",
+        "page": 1,
+        "bbox": [
+          0.3347,
+          0.3649,
+          0.1568,
+          0.0262
+        ],
+        "label": "issue_date"
+      }
+    },
+    {
+      "assertionId": "D-02-A01",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F01",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "full_name",
+      "normalizedValue": "Aarav Sharma",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.91,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.1995,
+          0.1911,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-02-A02",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F02",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "dob",
+      "normalizedValue": "2001-08-12",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.91,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2611,
+          0.1568,
+          0.0262
+        ],
+        "label": "dob"
+      }
+    },
+    {
+      "assertionId": "D-02-A03",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F03",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "id_number",
+      "normalizedValue": "TD-48213-77",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.92,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3227,
+          0.1773,
+          0.0262
+        ],
+        "label": "id_number"
+      }
+    },
+    {
+      "assertionId": "D-02-A04",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F04",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_permanent",
+      "normalizedValue": "14 Maple Court, Riverton",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.88,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.3843,
+          0.3312,
+          0.0262
+        ],
+        "label": "address_permanent"
+      }
+    },
+    {
+      "assertionId": "D-02-A05",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F05",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "address_current",
+      "normalizedValue": "Flat 9, Lakeview Residency, Riverton",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.86,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.4458,
+          0.4816,
+          0.0262
+        ],
+        "label": "address_current"
+      }
+    },
+    {
+      "assertionId": "D-02-A06",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F06",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "requested_amount",
+      "normalizedValue": "250000.00",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.93,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.5074,
+          0.1558,
+          0.0262
+        ],
+        "label": "requested_amount"
+      }
+    },
+    {
+      "assertionId": "D-02-A07",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "fieldId": "D-02-F07",
+      "entityId": "E-001",
+      "entityRole": "applicant",
+      "semanticType": "application_date",
+      "normalizedValue": "2026-10-15",
+      "documentDate": "2026-10-15",
+      "extractionConfidence": 0.92,
+      "region": {
+        "docId": "D-02",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.569,
+          0.1568,
+          0.0262
+        ],
+        "label": "application_date"
+      }
+    },
+    {
+      "assertionId": "D-03-A01",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F01",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "full_name",
+      "normalizedValue": "Aarav Kumar Sharma",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.171,
+          0.3153,
+          0.0262
+        ],
+        "label": "full_name"
+      }
+    },
+    {
+      "assertionId": "D-03-A02",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F02",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "account_number",
+      "normalizedValue": "AC-5521-009981",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2338,
+          0.2261,
+          0.0262
+        ],
+        "label": "account_number"
+      }
+    },
+    {
+      "assertionId": "D-03-A03",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F03",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "statement_date",
+      "normalizedValue": "2026-09-30",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.0766,
+          0.2965,
+          0.1568,
+          0.0262
+        ],
+        "label": "statement_date"
+      }
+    },
+    {
+      "assertionId": "D-03-A04",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F04",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "txn_amount",
+      "normalizedValue": "42000.00",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.7923,
+          0.4253,
+          0.123,
+          0.0234
+        ],
+        "label": "txn_amount"
+      }
+    },
+    {
+      "assertionId": "D-03-A05",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F05",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "txn_amount",
+      "normalizedValue": "1250.50",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8067,
+          0.4618,
+          0.1086,
+          0.0234
+        ],
+        "label": "txn_amount"
+      }
+    },
+    {
+      "assertionId": "D-03-A06",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F06",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "txn_amount",
+      "normalizedValue": "5000.00",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8067,
+          0.4983,
+          0.1086,
+          0.0234
+        ],
+        "label": "txn_amount"
+      }
+    },
+    {
+      "assertionId": "D-03-A07",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F07",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "txn_amount",
+      "normalizedValue": "312.25",
+      "documentDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.8283,
+          0.5348,
+          0.0871,
+          0.0234
+        ],
+        "label": "txn_amount"
+      }
+    },
+    {
+      "assertionId": "D-03-A08",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F08",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "statement_total",
+      "normalizedValue": "49562.75",
+      "documentDate": "2026-09-30",
+      "effectiveDate": "2026-09-30",
+      "extractionConfidence": 0.96,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.771,
+          0.5849,
+          0.1443,
+          0.0251
+        ],
+        "label": "statement_total"
+      }
+    },
+    {
+      "assertionId": "D-03-A09",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "fieldId": "D-03-F09",
+      "entityId": "E-002",
+      "entityRole": "account_holder",
+      "semanticType": "account_balance",
+      "normalizedValue": "86430.10",
+      "documentDate": "2026-09-30",
+      "effectiveDate": "2026-09-30",
+      "extractionConfidence": 0.98,
+      "region": {
+        "docId": "D-03",
+        "page": 1,
+        "bbox": [
+          0.771,
+          0.6477,
+          0.1443,
+          0.0251
+        ],
+        "label": "account_balance"
+      }
+    }
+  ],
+  "entities": [
+    {
+      "entityId": "E-001",
+      "caseId": "CASE-001",
+      "role": "applicant",
+      "resolution": "RESOLVED",
+      "basis": [
+        "id_number exact match: TD-48213-77 (D-01, D-02)"
+      ],
+      "assertionIds": [
+        "D-01-A01",
+        "D-01-A02",
+        "D-01-A03",
+        "D-01-A04",
+        "D-01-A05",
+        "D-02-A01",
+        "D-02-A02",
+        "D-02-A03",
+        "D-02-A04",
+        "D-02-A05",
+        "D-02-A06",
+        "D-02-A07"
+      ]
+    },
+    {
+      "entityId": "E-002",
+      "caseId": "CASE-001",
+      "role": "account_holder",
+      "resolution": "SUGGESTED",
+      "basis": [
+        "name similarity 100 to E-001 after normalization (suggested only, not merged)",
+        "no shared strong identifier"
+      ],
+      "assertionIds": [
+        "D-03-A01",
+        "D-03-A02",
+        "D-03-A03",
+        "D-03-A04",
+        "D-03-A05",
+        "D-03-A06",
+        "D-03-A07",
+        "D-03-A08",
+        "D-03-A09"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "findingId": "F-0001",
+      "caseId": "CASE-001",
+      "category": "cross_document",
+      "type": "DOB_CONFLICT",
+      "observationStatus": "INCONSISTENT",
+      "severity": "high",
+      "confidence": 0.91,
+      "evidence": [
+        {
+          "evidenceId": "E-0001",
+          "kind": "assertion_pair",
+          "description": "dob differs for the same resolved applicant (rule: R-DOB-MUST-AGREE, MUST_AGREE)",
+          "regions": [
+            {
+              "docId": "D-01",
+              "page": 1,
+              "bbox": [
+                0.3347,
+                0.1938,
+                0.1568,
+                0.0262
+              ],
+              "label": "dob"
+            },
+            {
+              "docId": "D-02",
+              "page": 1,
+              "bbox": [
+                0.0766,
+                0.2611,
+                0.1568,
+                0.0262
+              ],
+              "label": "dob"
+            }
+          ],
+          "assertionIds": [
+            "D-01-A02",
+            "D-02-A02"
+          ],
+          "measurements": {
+            "ruleId": "R-DOB-MUST-AGREE",
+            "ruleType": "MUST_AGREE",
+            "valueA": "2004-08-12",
+            "valueB": "2001-08-12",
+            "entityResolution": "RESOLVED",
+            "dayMonthSwap": "false",
+            "legitimateDifferenceRules": "none apply to semantic type dob"
+          },
+          "provenance": {
+            "analyzer": "comparability",
+            "analyzerVersion": "0.1",
+            "config": {
+              "nameMatchMin": 92,
+              "nameVariantMin": 75,
+              "unresolvedConfidenceCap": 0.3
+            },
+            "inputSha256": "79714597ec16c6aad86aa9a547c2700f035a3aee5f6a8a342ee0389672e6ff86",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Inspect both date-of-birth regions on the original documents"
+      ]
+    },
+    {
+      "findingId": "F-0002",
+      "caseId": "CASE-001",
+      "category": "cross_document",
+      "type": "NAME_VARIANT_SPELLING",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "confidence": 0.91,
+      "evidence": [
+        {
+          "evidenceId": "E-0002",
+          "kind": "assertion_pair",
+          "description": "full_name differs slightly for the same resolved applicant (rule: R-NAME-MUST-AGREE, MUST_AGREE)",
+          "regions": [
+            {
+              "docId": "D-01",
+              "page": 1,
+              "bbox": [
+                0.3347,
+                0.1368,
+                0.3153,
+                0.0262
+              ],
+              "label": "full_name"
+            },
+            {
+              "docId": "D-02",
+              "page": 1,
+              "bbox": [
+                0.0766,
+                0.1995,
+                0.1911,
+                0.0262
+              ],
+              "label": "full_name"
+            }
+          ],
+          "assertionIds": [
+            "D-01-A01",
+            "D-02-A01"
+          ],
+          "measurements": {
+            "ruleId": "R-NAME-MUST-AGREE",
+            "ruleType": "MUST_AGREE",
+            "valueA": "Aarav Kumar Sharma",
+            "valueB": "Aarav Sharma",
+            "tokenSortRatio": 80.0,
+            "entityResolution": "RESOLVED",
+            "legitimateDifferenceRules": "none apply to semantic type full_name"
+          },
+          "provenance": {
+            "analyzer": "comparability",
+            "analyzerVersion": "0.1",
+            "config": {
+              "nameMatchMin": 92,
+              "nameVariantMin": 75,
+              "unresolvedConfidenceCap": 0.3
+            },
+            "inputSha256": "79714597ec16c6aad86aa9a547c2700f035a3aee5f6a8a342ee0389672e6ff86",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Compare the name regions on both documents; a missing middle name is a common variation"
+      ]
+    },
+    {
+      "findingId": "F-0003",
+      "caseId": "CASE-001",
+      "category": "cross_document",
+      "type": "NAME_VARIANT_SPELLING",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "confidence": 0.3,
+      "evidence": [
+        {
+          "evidenceId": "E-0003",
+          "kind": "assertion_pair",
+          "description": "full_name differs slightly; the account holder is only a SUGGESTED link to the applicant, so confidence is capped (rule: R-NAME-MUST-AGREE)",
+          "regions": [
+            {
+              "docId": "D-02",
+              "page": 1,
+              "bbox": [
+                0.0766,
+                0.1995,
+                0.1911,
+                0.0262
+              ],
+              "label": "full_name"
+            },
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.0766,
+                0.171,
+                0.3153,
+                0.0262
+              ],
+              "label": "full_name"
+            }
+          ],
+          "assertionIds": [
+            "D-02-A01",
+            "D-03-A01"
+          ],
+          "measurements": {
+            "ruleId": "R-NAME-MUST-AGREE",
+            "ruleType": "MUST_AGREE",
+            "valueA": "Aarav Sharma",
+            "valueB": "Aarav Kumar Sharma",
+            "tokenSortRatio": 80.0,
+            "entityResolution": "SUGGESTED",
+            "confidenceCapped": "true",
+            "legitimateDifferenceRules": "none apply to semantic type full_name"
+          },
+          "provenance": {
+            "analyzer": "comparability",
+            "analyzerVersion": "0.1",
+            "config": {
+              "nameMatchMin": 92,
+              "nameVariantMin": 75,
+              "unresolvedConfidenceCap": 0.3
+            },
+            "inputSha256": "2e7aedbe29d5568170e63d91d5cd04190193d7eb906f6391c31efacb0fca12bb",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Confirm that the account holder is the same person as the applicant",
+        "Compare the name regions on both documents"
+      ]
+    },
+    {
+      "findingId": "F-0004",
+      "caseId": "CASE-001",
+      "category": "context",
+      "type": "STATEMENT_TOTAL_MISMATCH",
+      "observationStatus": "INCONSISTENT",
+      "severity": "medium",
+      "confidence": 0.96,
+      "evidence": [
+        {
+          "evidenceId": "E-0004",
+          "kind": "rule_result",
+          "description": "Printed total deposits do not equal the sum of listed deposits (rule: R-STMT-TOTAL-ARITH, ARITHMETIC)",
+          "regions": [
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.771,
+                0.5849,
+                0.1443,
+                0.0251
+              ],
+              "label": "statement_total"
+            },
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.7923,
+                0.4253,
+                0.123,
+                0.0234
+              ],
+              "label": "txn_amount"
+            },
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.8067,
+                0.4618,
+                0.1086,
+                0.0234
+              ],
+              "label": "txn_amount"
+            },
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.8067,
+                0.4983,
+                0.1086,
+                0.0234
+              ],
+              "label": "txn_amount"
+            },
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.8283,
+                0.5348,
+                0.0871,
+                0.0234
+              ],
+              "label": "txn_amount"
+            }
+          ],
+          "assertionIds": [
+            "D-03-A08",
+            "D-03-A04",
+            "D-03-A05",
+            "D-03-A06",
+            "D-03-A07"
+          ],
+          "measurements": {
+            "ruleId": "R-STMT-TOTAL-ARITH",
+            "ruleType": "ARITHMETIC",
+            "printedTotal": "49562.75",
+            "computedTotal": "48562.75",
+            "difference": "1000.00",
+            "itemCount": 4
+          },
+          "provenance": {
+            "analyzer": "contextRules",
+            "analyzerVersion": "0.1",
+            "config": {},
+            "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Recompute the listed deposits and compare with the printed total on the original statement"
+      ]
+    },
+    {
+      "findingId": "F-0005",
+      "caseId": "CASE-001",
+      "category": "visual",
+      "type": "REGION_EVENT",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "confidence": 0.67,
+      "evidence": [
+        {
+          "evidenceId": "E-0005",
+          "kind": "forensic_signal",
+          "description": "Two independent detectors flag the requested amount region on D-02 (ELA residual and local noise variance)",
+          "regions": [
+            {
+              "docId": "D-02",
+              "page": 1,
+              "bbox": [
+                0.0718,
+                0.504,
+                0.1655,
+                0.0331
+              ],
+              "label": "requested_amount"
+            },
+            {
+              "docId": "D-02",
+              "page": 1,
+              "bbox": [
+                0.0605,
+                0.5006,
+                0.1961,
+                0.041
+              ],
+              "label": "requested_amount"
+            }
+          ],
+          "assertionIds": [
+            "D-02-A06"
+          ],
+          "measurements": {
+            "eventId": "EV-001",
+            "signalIds": "D-02-S01,D-02-S02",
+            "detectors": "image.ela,image.noise",
+            "boxIou": 0.68,
+            "elaResidualRatio": 2.4,
+            "noiseVarianceRatio": 3.1
+          },
+          "provenance": {
+            "analyzer": "eventGrouper",
+            "analyzerVersion": "0.1",
+            "config": {
+              "iouThreshold": 0.3,
+              "agreementBonus": 0.05
+            },
+            "inputSha256": "b325057739e4399f3e10d230dcc062dfa65f67922f68fd12c6ca776e6550c65f",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Inspect the requested amount region on the original scan",
+        "ELA and noise cues also occur on recompressed images; do not read in isolation"
+      ]
+    },
+    {
+      "findingId": "F-0006",
+      "caseId": "CASE-001",
+      "category": "pdf_structure",
+      "type": "TEXT_LAYER_MISMATCH",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "confidence": 0.72,
+      "evidence": [
+        {
+          "evidenceId": "E-0006",
+          "kind": "text_layer_diff",
+          "description": "Rendered statement total differs from the PDF text layer at the same location",
+          "regions": [
+            {
+              "docId": "D-03",
+              "page": 1,
+              "bbox": [
+                0.771,
+                0.5849,
+                0.1443,
+                0.0251
+              ],
+              "label": "statement_total"
+            }
+          ],
+          "assertionIds": [
+            "D-03-A08"
+          ],
+          "measurements": {
+            "eventId": "EV-002",
+            "signalIds": "D-03-S01",
+            "renderedText": "49,562.75",
+            "textLayerText": "48,562.75",
+            "differingChars": 1
+          },
+          "provenance": {
+            "analyzer": "pdf.textlayer",
+            "analyzerVersion": "0.1",
+            "config": {
+              "minWordDiffs": 1
+            },
+            "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+            "processedAt": "2026-11-01T09:00:00Z",
+            "status": "AVAILABLE"
+          }
+        }
+      ],
+      "needsVerification": [
+        "Compare the printed total with the text layer value in a PDF viewer",
+        "OCR layers added to scans can also cause this signal"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "eventId": "EV-001",
+      "caseId": "CASE-001",
+      "docId": "D-02",
+      "page": 1,
+      "regions": [
+        {
+          "docId": "D-02",
+          "page": 1,
+          "bbox": [
+            0.0605,
+            0.5006,
+            0.1961,
+            0.041
+          ],
+          "label": "requested_amount"
+        }
+      ],
+      "signalIds": [
+        "D-02-S01",
+        "D-02-S02"
+      ],
+      "detectors": [
+        "image.ela",
+        "image.noise"
+      ],
+      "confidence": 0.67,
+      "provenance": {
+        "analyzer": "eventGrouper",
+        "analyzerVersion": "0.1",
+        "config": {
+          "iouThreshold": 0.3,
+          "agreementBonus": 0.05
+        },
+        "inputSha256": "b325057739e4399f3e10d230dcc062dfa65f67922f68fd12c6ca776e6550c65f",
+        "processedAt": "2026-11-01T09:00:00Z",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "eventId": "EV-002",
+      "caseId": "CASE-001",
+      "docId": "D-03",
+      "page": 1,
+      "regions": [
+        {
+          "docId": "D-03",
+          "page": 1,
+          "bbox": [
+            0.771,
+            0.5849,
+            0.1443,
+            0.0251
+          ],
+          "label": "statement_total"
+        }
+      ],
+      "signalIds": [
+        "D-03-S01"
+      ],
+      "detectors": [
+        "pdf.textlayer"
+      ],
+      "confidence": 0.72,
+      "provenance": {
+        "analyzer": "eventGrouper",
+        "analyzerVersion": "0.1",
+        "config": {
+          "iouThreshold": 0.3,
+          "agreementBonus": 0.05
+        },
+        "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
+        "processedAt": "2026-11-01T09:00:00Z",
+        "status": "AVAILABLE"
+      }
+    }
+  ],
+  "priority": {
+    "perCase": {
+      "priorityBand": "critical",
+      "score": 0.877,
+      "confidence": 0.8,
+      "coverage": 0.923,
+      "contributingFindingIds": [
+        "F-0001",
+        "F-0002",
+        "F-0003",
+        "F-0004",
+        "F-0005",
+        "F-0006"
+      ]
+    },
+    "perDocument": {
+      "D-01": {
+        "priorityBand": "high",
+        "score": 0.687,
+        "confidence": 0.91,
+        "coverage": 1.0,
+        "contributingFindingIds": [
+          "F-0001",
+          "F-0002"
+        ]
+      },
+      "D-02": {
+        "priorityBand": "critical",
+        "score": 0.765,
+        "confidence": 0.78,
+        "coverage": 0.8,
+        "contributingFindingIds": [
+          "F-0001",
+          "F-0002",
+          "F-0003",
+          "F-0005"
+        ]
+      },
+      "D-03": {
+        "priorityBand": "high",
+        "score": 0.501,
+        "confidence": 0.75,
+        "coverage": 1.0,
+        "contributingFindingIds": [
+          "F-0003",
+          "F-0004",
+          "F-0006"
+        ]
+      }
+    },
+    "provenance": {
+      "analyzer": "priorityEngine",
+      "analyzerVersion": "0.1",
+      "config": {
+        "severityWeight_info": 0.05,
+        "severityWeight_low": 0.15,
+        "severityWeight_medium": 0.4,
+        "severityWeight_high": 0.7,
+        "categoryWeight_cross_document": 1.0,
+        "categoryWeight_context": 0.9,
+        "categoryWeight_visual": 0.8,
+        "categoryWeight_pdf_structure": 0.7,
+        "categoryWeight_extraction": 0.4,
+        "bandLowBelow": 0.25,
+        "bandModerateBelow": 0.5,
+        "bandHighBelow": 0.75,
+        "weakEvidenceCap": 0.49
+      },
+      "inputSha256": "b227b936a46de4167f746a9e8791fadd185e1e829377fe66ae94e0cdbceb52af",
+      "processedAt": "2026-11-01T09:00:00Z",
+      "status": "AVAILABLE"
+    }
+  }
+}

@@ -1,0 +1,1021 @@
+{
+ "docId": "D-03",
+ "page": 1,
+ "widthPx": 1240,
+ "heightPx": 1754,
+ "renderDpi": 150,
+ "engine": "fixture",
+ "engineVersion": "0",
+ "words": [
+  {
+   "text": "SAMPLE",
+   "bbox": [
+    0.0798,
+    0.057,
+    0.1701,
+    0.0308
+   ],
+   "ocrConfidence": 0.994,
+   "lineIndex": 0
+  },
+  {
+   "text": "BANK",
+   "bbox": [
+    0.2613,
+    0.057,
+    0.1184,
+    0.0308
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 0
+  },
+  {
+   "text": "Statement",
+   "bbox": [
+    0.0798,
+    0.0969,
+    0.1077,
+    0.0171
+   ],
+   "ocrConfidence": 0.987,
+   "lineIndex": 1
+  },
+  {
+   "text": "of",
+   "bbox": [
+    0.1923,
+    0.0969,
+    0.021,
+    0.0171
+   ],
+   "ocrConfidence": 0.977,
+   "lineIndex": 1
+  },
+  {
+   "text": "Account",
+   "bbox": [
+    0.2182,
+    0.0969,
+    0.083,
+    0.0171
+   ],
+   "ocrConfidence": 0.998,
+   "lineIndex": 1
+  },
+  {
+   "text": "(fictional)",
+   "bbox": [
+    0.306,
+    0.0969,
+    0.0977,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 1
+  },
+  {
+   "text": "Account",
+   "bbox": [
+    0.0798,
+    0.1539,
+    0.083,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 2
+  },
+  {
+   "text": "holder",
+   "bbox": [
+    0.1677,
+    0.1539,
+    0.0658,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 2
+  },
+  {
+   "text": "AARAV",
+   "bbox": [
+    0.0798,
+    0.1733,
+    0.0882,
+    0.0217
+   ],
+   "ocrConfidence": 0.994,
+   "lineIndex": 3
+  },
+  {
+   "text": "KUMAR",
+   "bbox": [
+    0.1746,
+    0.1733,
+    0.0946,
+    0.0217
+   ],
+   "ocrConfidence": 0.99,
+   "lineIndex": 3
+  },
+  {
+   "text": "SHARMA",
+   "bbox": [
+    0.2758,
+    0.1733,
+    0.1129,
+    0.0217
+   ],
+   "ocrConfidence": 0.988,
+   "lineIndex": 3
+  },
+  {
+   "text": "Account",
+   "bbox": [
+    0.0798,
+    0.2166,
+    0.083,
+    0.0171
+   ],
+   "ocrConfidence": 0.994,
+   "lineIndex": 4
+  },
+  {
+   "text": "number",
+   "bbox": [
+    0.1677,
+    0.2166,
+    0.0803,
+    0.0171
+   ],
+   "ocrConfidence": 0.992,
+   "lineIndex": 4
+  },
+  {
+   "text": "AC-5521-009981",
+   "bbox": [
+    0.0798,
+    0.236,
+    0.2196,
+    0.0217
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 5
+  },
+  {
+   "text": "Statement",
+   "bbox": [
+    0.0798,
+    0.2794,
+    0.1077,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 6
+  },
+  {
+   "text": "date",
+   "bbox": [
+    0.1923,
+    0.2794,
+    0.0471,
+    0.0171
+   ],
+   "ocrConfidence": 0.983,
+   "lineIndex": 6
+  },
+  {
+   "text": "30/09/2026",
+   "bbox": [
+    0.0798,
+    0.2987,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 7
+  },
+  {
+   "text": "Deposits",
+   "bbox": [
+    0.0798,
+    0.3649,
+    0.1207,
+    0.0205
+   ],
+   "ocrConfidence": 0.996,
+   "lineIndex": 8
+  },
+  {
+   "text": "this",
+   "bbox": [
+    0.2073,
+    0.3649,
+    0.0531,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 8
+  },
+  {
+   "text": "period",
+   "bbox": [
+    0.2673,
+    0.3649,
+    0.0895,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 8
+  },
+  {
+   "text": "Date",
+   "bbox": [
+    0.0879,
+    0.3991,
+    0.0498,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 9
+  },
+  {
+   "text": "Description",
+   "bbox": [
+    0.2653,
+    0.3991,
+    0.1165,
+    0.0171
+   ],
+   "ocrConfidence": 0.978,
+   "lineIndex": 10
+  },
+  {
+   "text": "Amount",
+   "bbox": [
+    0.8313,
+    0.3991,
+    0.0808,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 11
+  },
+  {
+   "text": "03/09/2026",
+   "bbox": [
+    0.0879,
+    0.4276,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.98,
+   "lineIndex": 12
+  },
+  {
+   "text": "Salary",
+   "bbox": [
+    0.2653,
+    0.4276,
+    0.0726,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 13
+  },
+  {
+   "text": "credit",
+   "bbox": [
+    0.3434,
+    0.4276,
+    0.0662,
+    0.0188
+   ],
+   "ocrConfidence": 0.989,
+   "lineIndex": 13
+  },
+  {
+   "text": "42,000.00",
+   "bbox": [
+    0.7956,
+    0.4276,
+    0.1165,
+    0.0188
+   ],
+   "ocrConfidence": 0.994,
+   "lineIndex": 14
+  },
+  {
+   "text": "09/09/2026",
+   "bbox": [
+    0.0879,
+    0.4641,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 15
+  },
+  {
+   "text": "Refund",
+   "bbox": [
+    0.2653,
+    0.4641,
+    0.0811,
+    0.0188
+   ],
+   "ocrConfidence": 0.978,
+   "lineIndex": 16
+  },
+  {
+   "text": "-",
+   "bbox": [
+    0.352,
+    0.4641,
+    0.0098,
+    0.0188
+   ],
+   "ocrConfidence": 0.996,
+   "lineIndex": 16
+  },
+  {
+   "text": "online",
+   "bbox": [
+    0.3673,
+    0.4641,
+    0.0705,
+    0.0188
+   ],
+   "ocrConfidence": 0.985,
+   "lineIndex": 16
+  },
+  {
+   "text": "order",
+   "bbox": [
+    0.4434,
+    0.4641,
+    0.0618,
+    0.0188
+   ],
+   "ocrConfidence": 0.991,
+   "lineIndex": 16
+  },
+  {
+   "text": "1,250.50",
+   "bbox": [
+    0.8099,
+    0.4641,
+    0.1022,
+    0.0188
+   ],
+   "ocrConfidence": 0.988,
+   "lineIndex": 17
+  },
+  {
+   "text": "17/09/2026",
+   "bbox": [
+    0.0879,
+    0.5006,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 18
+  },
+  {
+   "text": "Transfer",
+   "bbox": [
+    0.2653,
+    0.5006,
+    0.0924,
+    0.0188
+   ],
+   "ocrConfidence": 0.993,
+   "lineIndex": 19
+  },
+  {
+   "text": "in",
+   "bbox": [
+    0.3633,
+    0.5006,
+    0.0222,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 19
+  },
+  {
+   "text": "5,000.00",
+   "bbox": [
+    0.8099,
+    0.5006,
+    0.1022,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 20
+  },
+  {
+   "text": "26/09/2026",
+   "bbox": [
+    0.0879,
+    0.5371,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 21
+  },
+  {
+   "text": "Interest",
+   "bbox": [
+    0.2653,
+    0.5371,
+    0.0887,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 22
+  },
+  {
+   "text": "credit",
+   "bbox": [
+    0.3596,
+    0.5371,
+    0.0662,
+    0.0188
+   ],
+   "ocrConfidence": 0.994,
+   "lineIndex": 22
+  },
+  {
+   "text": "312.25",
+   "bbox": [
+    0.8315,
+    0.5371,
+    0.0806,
+    0.0188
+   ],
+   "ocrConfidence": 0.979,
+   "lineIndex": 23
+  },
+  {
+   "text": "Total",
+   "bbox": [
+    0.2653,
+    0.5872,
+    0.0677,
+    0.0205
+   ],
+   "ocrConfidence": 0.989,
+   "lineIndex": 24
+  },
+  {
+   "text": "deposits",
+   "bbox": [
+    0.3398,
+    0.5872,
+    0.1179,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 24
+  },
+  {
+   "text": "49,562.75",
+   "bbox": [
+    0.7743,
+    0.5872,
+    0.1378,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 25
+  },
+  {
+   "text": "Closing",
+   "bbox": [
+    0.2653,
+    0.6499,
+    0.1015,
+    0.0205
+   ],
+   "ocrConfidence": 0.989,
+   "lineIndex": 26
+  },
+  {
+   "text": "balance",
+   "bbox": [
+    0.3736,
+    0.6499,
+    0.1079,
+    0.0205
+   ],
+   "ocrConfidence": 0.997,
+   "lineIndex": 26
+  },
+  {
+   "text": "86,430.10",
+   "bbox": [
+    0.7743,
+    0.6499,
+    0.1378,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 27
+  },
+  {
+   "text": "Computer",
+   "bbox": [
+    0.0798,
+    0.8552,
+    0.0898,
+    0.0154
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 28
+  },
+  {
+   "text": "generated",
+   "bbox": [
+    0.1737,
+    0.8552,
+    0.0932,
+    0.0154
+   ],
+   "ocrConfidence": 0.995,
+   "lineIndex": 28
+  },
+  {
+   "text": "specimen",
+   "bbox": [
+    0.271,
+    0.8552,
+    0.0872,
+    0.0154
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 28
+  },
+  {
+   "text": "statement.",
+   "bbox": [
+    0.3621,
+    0.8552,
+    0.0986,
+    0.0154
+   ],
+   "ocrConfidence": 0.987,
+   "lineIndex": 28
+  },
+  {
+   "text": "Not",
+   "bbox": [
+    0.4648,
+    0.8552,
+    0.0327,
+    0.0154
+   ],
+   "ocrConfidence": 0.989,
+   "lineIndex": 28
+  },
+  {
+   "text": "a",
+   "bbox": [
+    0.5015,
+    0.8552,
+    0.0125,
+    0.0154
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 28
+  },
+  {
+   "text": "real",
+   "bbox": [
+    0.518,
+    0.8552,
+    0.0352,
+    0.0154
+   ],
+   "ocrConfidence": 0.999,
+   "lineIndex": 28
+  },
+  {
+   "text": "account.",
+   "bbox": [
+    0.5573,
+    0.8552,
+    0.0779,
+    0.0154
+   ],
+   "ocrConfidence": 0.996,
+   "lineIndex": 28
+  }
+ ],
+ "lines": [
+  {
+   "text": "SAMPLE BANK",
+   "bbox": [
+    0.0798,
+    0.057,
+    0.2998,
+    0.0308
+   ],
+   "ocrConfidence": 0.996,
+   "wordIndices": [
+    0,
+    1
+   ]
+  },
+  {
+   "text": "Statement of Account (fictional)",
+   "bbox": [
+    0.0798,
+    0.0969,
+    0.3239,
+    0.0171
+   ],
+   "ocrConfidence": 0.99,
+   "wordIndices": [
+    2,
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "text": "Account holder",
+   "bbox": [
+    0.0798,
+    0.1539,
+    0.1537,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    6,
+    7
+   ]
+  },
+  {
+   "text": "AARAV KUMAR SHARMA",
+   "bbox": [
+    0.0798,
+    0.1733,
+    0.3088,
+    0.0217
+   ],
+   "ocrConfidence": 0.991,
+   "wordIndices": [
+    8,
+    9,
+    10
+   ]
+  },
+  {
+   "text": "Account number",
+   "bbox": [
+    0.0798,
+    0.2166,
+    0.1681,
+    0.0171
+   ],
+   "ocrConfidence": 0.993,
+   "wordIndices": [
+    11,
+    12
+   ]
+  },
+  {
+   "text": "AC-5521-009981",
+   "bbox": [
+    0.0798,
+    0.236,
+    0.2196,
+    0.0217
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    13
+   ]
+  },
+  {
+   "text": "Statement date",
+   "bbox": [
+    0.0798,
+    0.2794,
+    0.1596,
+    0.0171
+   ],
+   "ocrConfidence": 0.991,
+   "wordIndices": [
+    14,
+    15
+   ]
+  },
+  {
+   "text": "30/09/2026",
+   "bbox": [
+    0.0798,
+    0.2987,
+    0.1504,
+    0.0217
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    16
+   ]
+  },
+  {
+   "text": "Deposits this period",
+   "bbox": [
+    0.0798,
+    0.3649,
+    0.2769,
+    0.0205
+   ],
+   "ocrConfidence": 0.998,
+   "wordIndices": [
+    17,
+    18,
+    19
+   ]
+  },
+  {
+   "text": "Date",
+   "bbox": [
+    0.0879,
+    0.3991,
+    0.0498,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    20
+   ]
+  },
+  {
+   "text": "Description",
+   "bbox": [
+    0.2653,
+    0.3991,
+    0.1165,
+    0.0171
+   ],
+   "ocrConfidence": 0.978,
+   "wordIndices": [
+    21
+   ]
+  },
+  {
+   "text": "Amount",
+   "bbox": [
+    0.8313,
+    0.3991,
+    0.0808,
+    0.0171
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    22
+   ]
+  },
+  {
+   "text": "03/09/2026",
+   "bbox": [
+    0.0879,
+    0.4276,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.98,
+   "wordIndices": [
+    23
+   ]
+  },
+  {
+   "text": "Salary credit",
+   "bbox": [
+    0.2653,
+    0.4276,
+    0.1443,
+    0.0188
+   ],
+   "ocrConfidence": 0.994,
+   "wordIndices": [
+    24,
+    25
+   ]
+  },
+  {
+   "text": "42,000.00",
+   "bbox": [
+    0.7956,
+    0.4276,
+    0.1165,
+    0.0188
+   ],
+   "ocrConfidence": 0.994,
+   "wordIndices": [
+    26
+   ]
+  },
+  {
+   "text": "09/09/2026",
+   "bbox": [
+    0.0879,
+    0.4641,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    27
+   ]
+  },
+  {
+   "text": "Refund - online order",
+   "bbox": [
+    0.2653,
+    0.4641,
+    0.2399,
+    0.0188
+   ],
+   "ocrConfidence": 0.988,
+   "wordIndices": [
+    28,
+    29,
+    30,
+    31
+   ]
+  },
+  {
+   "text": "1,250.50",
+   "bbox": [
+    0.8099,
+    0.4641,
+    0.1022,
+    0.0188
+   ],
+   "ocrConfidence": 0.988,
+   "wordIndices": [
+    32
+   ]
+  },
+  {
+   "text": "17/09/2026",
+   "bbox": [
+    0.0879,
+    0.5006,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    33
+   ]
+  },
+  {
+   "text": "Transfer in",
+   "bbox": [
+    0.2653,
+    0.5006,
+    0.1202,
+    0.0188
+   ],
+   "ocrConfidence": 0.996,
+   "wordIndices": [
+    34,
+    35
+   ]
+  },
+  {
+   "text": "5,000.00",
+   "bbox": [
+    0.8099,
+    0.5006,
+    0.1022,
+    0.0188
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    36
+   ]
+  },
+  {
+   "text": "26/09/2026",
+   "bbox": [
+    0.0879,
+    0.5371,
+    0.1318,
+    0.0188
+   ],
+   "ocrConfidence": 0.979,
+   "wordIndices": [
+    37
+   ]
+  },
+  {
+   "text": "Interest credit",
+   "bbox": [
+    0.2653,
+    0.5371,
+    0.1604,
+    0.0188
+   ],
+   "ocrConfidence": 0.996,
+   "wordIndices": [
+    38,
+    39
+   ]
+  },
+  {
+   "text": "312.25",
+   "bbox": [
+    0.8315,
+    0.5371,
+    0.0806,
+    0.0188
+   ],
+   "ocrConfidence": 0.979,
+   "wordIndices": [
+    40
+   ]
+  },
+  {
+   "text": "Total deposits",
+   "bbox": [
+    0.2653,
+    0.5872,
+    0.1925,
+    0.0205
+   ],
+   "ocrConfidence": 0.994,
+   "wordIndices": [
+    41,
+    42
+   ]
+  },
+  {
+   "text": "49,562.75",
+   "bbox": [
+    0.7743,
+    0.5872,
+    0.1378,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    43
+   ]
+  },
+  {
+   "text": "Closing balance",
+   "bbox": [
+    0.2653,
+    0.6499,
+    0.2162,
+    0.0205
+   ],
+   "ocrConfidence": 0.993,
+   "wordIndices": [
+    44,
+    45
+   ]
+  },
+  {
+   "text": "86,430.10",
+   "bbox": [
+    0.7743,
+    0.6499,
+    0.1378,
+    0.0205
+   ],
+   "ocrConfidence": 0.999,
+   "wordIndices": [
+    46
+   ]
+  },
+  {
+   "text": "Computer generated specimen statement. Not a real account.",
+   "bbox": [
+    0.0798,
+    0.8552,
+    0.5554,
+    0.0154
+   ],
+   "ocrConfidence": 0.995,
+   "wordIndices": [
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+   ]
+  }
+ ]
+}
