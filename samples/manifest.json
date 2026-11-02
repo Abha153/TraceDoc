@@ -1,0 +1,641 @@
+{
+  "schema_version": "1.0",
+  "seed": 714203,
+  "page": {
+    "width_px": 1240,
+    "height_px": 1754,
+    "dpi": 150
+  },
+  "persons_file": "persons.json",
+  "support_files": [
+    {
+      "path": "persons.json",
+      "kind": "fictional_person_records"
+    }
+  ],
+  "files": [
+    {
+      "doc_id": "D1-ID-001",
+      "doc_type": "id_card",
+      "variant": "digital",
+      "path": "d1-lite/id_card_001.png",
+      "media_type": "image/png",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.419355,
+            0.269099,
+            0.235484,
+            0.015393
+          ]
+        },
+        {
+          "name": "dob",
+          "value": "1983-10-19",
+          "bbox": [
+            0.419355,
+            0.359749,
+            0.140323,
+            0.014253
+          ]
+        },
+        {
+          "name": "id_number",
+          "value": "TDX-APP-7316-KR",
+          "bbox": [
+            0.419355,
+            0.450969,
+            0.237903,
+            0.014253
+          ]
+        },
+        {
+          "name": "address_permanent",
+          "value": "17 Example Lane, Demo District, Sample City, ZZ 00000",
+          "bbox": [
+            0.419355,
+            0.541049,
+            0.364516,
+            0.009692
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "D1-ID-001",
+      "doc_type": "id_card",
+      "variant": "scan",
+      "path": "d1-lite/id_card_001_scan.jpg",
+      "media_type": "image/jpeg",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.416935,
+            0.268529,
+            0.235484,
+            0.016534
+          ]
+        },
+        {
+          "name": "dob",
+          "value": "1983-10-19",
+          "bbox": [
+            0.417742,
+            0.359179,
+            0.140323,
+            0.015393
+          ]
+        },
+        {
+          "name": "id_number",
+          "value": "TDX-APP-7316-KR",
+          "bbox": [
+            0.418548,
+            0.449829,
+            0.23871,
+            0.015964
+          ]
+        },
+        {
+          "name": "address_permanent",
+          "value": "17 Example Lane, Demo District, Sample City, ZZ 00000",
+          "bbox": [
+            0.420161,
+            0.539339,
+            0.364516,
+            0.011973
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "D1-APP-001",
+      "doc_type": "application_form",
+      "variant": "digital",
+      "path": "d1-lite/application_form_001.pdf",
+      "media_type": "application/pdf",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.125,
+            0.202965,
+            0.214516,
+            0.014253
+          ]
+        },
+        {
+          "name": "dob",
+          "value": "1983-10-19",
+          "bbox": [
+            0.125,
+            0.27195,
+            0.125806,
+            0.012543
+          ]
+        },
+        {
+          "name": "id_number",
+          "value": "TDX-APP-7316-KR",
+          "bbox": [
+            0.524194,
+            0.27195,
+            0.214516,
+            0.012543
+          ]
+        },
+        {
+          "name": "address_permanent",
+          "value": "17 Example Lane, Demo District, Sample City, ZZ 00000",
+          "bbox": [
+            0.125,
+            0.339225,
+            0.554839,
+            0.014253
+          ]
+        },
+        {
+          "name": "address_current",
+          "value": "44 Placeholder Road, Fictional Quarter, Sample City, ZZ 00000",
+          "bbox": [
+            0.125,
+            0.401938,
+            0.619355,
+            0.014253
+          ]
+        },
+        {
+          "name": "requested_amount",
+          "value": "SC 28,400.00",
+          "bbox": [
+            0.125,
+            0.470924,
+            0.167742,
+            0.017104
+          ]
+        },
+        {
+          "name": "guarantor_full_name",
+          "value": "Timothy Rios",
+          "bbox": [
+            0.125,
+            0.584949,
+            0.160484,
+            0.018244
+          ]
+        },
+        {
+          "name": "guarantor_id_number",
+          "value": "TDX-GUA-2845-MQ",
+          "bbox": [
+            0.524194,
+            0.585519,
+            0.223387,
+            0.013113
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "D1-APP-001",
+      "doc_type": "application_form",
+      "variant": "scan",
+      "path": "d1-lite/application_form_001_scan.jpg",
+      "media_type": "image/jpeg",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.127419,
+            0.201254,
+            0.214516,
+            0.015393
+          ]
+        },
+        {
+          "name": "dob",
+          "value": "1983-10-19",
+          "bbox": [
+            0.126613,
+            0.270239,
+            0.125806,
+            0.013113
+          ]
+        },
+        {
+          "name": "id_number",
+          "value": "TDX-APP-7316-KR",
+          "bbox": [
+            0.525806,
+            0.27195,
+            0.214516,
+            0.013683
+          ]
+        },
+        {
+          "name": "address_permanent",
+          "value": "17 Example Lane, Demo District, Sample City, ZZ 00000",
+          "bbox": [
+            0.126613,
+            0.337514,
+            0.554839,
+            0.016534
+          ]
+        },
+        {
+          "name": "address_current",
+          "value": "44 Placeholder Road, Fictional Quarter, Sample City, ZZ 00000",
+          "bbox": [
+            0.125806,
+            0.400228,
+            0.619355,
+            0.017104
+          ]
+        },
+        {
+          "name": "requested_amount",
+          "value": "SC 28,400.00",
+          "bbox": [
+            0.125,
+            0.469213,
+            0.167742,
+            0.017674
+          ]
+        },
+        {
+          "name": "guarantor_full_name",
+          "value": "Timothy Rios",
+          "bbox": [
+            0.124194,
+            0.583238,
+            0.160484,
+            0.018814
+          ]
+        },
+        {
+          "name": "guarantor_id_number",
+          "value": "TDX-GUA-2845-MQ",
+          "bbox": [
+            0.523387,
+            0.585519,
+            0.223387,
+            0.014253
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "D1-BANK-001",
+      "doc_type": "bank_statement",
+      "variant": "digital",
+      "path": "d1-lite/bank_statement_001.pdf",
+      "media_type": "application/pdf",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.116935,
+            0.160775,
+            0.195161,
+            0.012543
+          ]
+        },
+        {
+          "name": "account_number",
+          "value": "ACCT-SAMPLE-71Q4-0029",
+          "bbox": [
+            0.116129,
+            0.22577,
+            0.304032,
+            0.013113
+          ]
+        },
+        {
+          "name": "statement_total",
+          "value": "6,925.25",
+          "bbox": [
+            0.53629,
+            0.288483,
+            0.095161,
+            0.015393
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "4,200.00",
+          "bbox": [
+            0.685484,
+            0.366021,
+            0.051613,
+            0.008552
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "125.35",
+          "bbox": [
+            0.564516,
+            0.401368,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "82.40",
+          "bbox": [
+            0.564516,
+            0.436716,
+            0.033065,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "650.25",
+          "bbox": [
+            0.685484,
+            0.472064,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "305.50",
+          "bbox": [
+            0.564516,
+            0.507412,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "1,175.00",
+          "bbox": [
+            0.685484,
+            0.542759,
+            0.051613,
+            0.008552
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "44.80",
+          "bbox": [
+            0.564516,
+            0.578107,
+            0.033065,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "900.00",
+          "bbox": [
+            0.685484,
+            0.613455,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "account_balance",
+          "value": "18,867.20",
+          "bbox": [
+            0.53629,
+            0.690422,
+            0.108871,
+            0.015393
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "D1-BANK-001",
+      "doc_type": "bank_statement",
+      "variant": "scan",
+      "path": "d1-lite/bank_statement_001_scan.jpg",
+      "media_type": "image/jpeg",
+      "page": 1,
+      "width_px": 1240,
+      "height_px": 1754,
+      "dpi": 150,
+      "fields": [
+        {
+          "name": "full_name",
+          "value": "Richard Gutierrez",
+          "bbox": [
+            0.114516,
+            0.161345,
+            0.195968,
+            0.013113
+          ]
+        },
+        {
+          "name": "account_number",
+          "value": "ACCT-SAMPLE-71Q4-0029",
+          "bbox": [
+            0.114516,
+            0.22577,
+            0.304032,
+            0.014253
+          ]
+        },
+        {
+          "name": "statement_total",
+          "value": "6,925.25",
+          "bbox": [
+            0.534677,
+            0.287913,
+            0.095161,
+            0.015964
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "4,200.00",
+          "bbox": [
+            0.684677,
+            0.36545,
+            0.051613,
+            0.008552
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "125.35",
+          "bbox": [
+            0.56371,
+            0.400798,
+            0.040323,
+            0.007412
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "82.40",
+          "bbox": [
+            0.564516,
+            0.436146,
+            0.033065,
+            0.007412
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "650.25",
+          "bbox": [
+            0.685484,
+            0.471494,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "305.50",
+          "bbox": [
+            0.564516,
+            0.506842,
+            0.040323,
+            0.007412
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "1,175.00",
+          "bbox": [
+            0.685484,
+            0.542189,
+            0.051613,
+            0.008552
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "44.80",
+          "bbox": [
+            0.565323,
+            0.577537,
+            0.033065,
+            0.007412
+          ]
+        },
+        {
+          "name": "txn_amount",
+          "value": "900.00",
+          "bbox": [
+            0.68629,
+            0.612885,
+            0.040323,
+            0.006842
+          ]
+        },
+        {
+          "name": "account_balance",
+          "value": "18,867.20",
+          "bbox": [
+            0.537097,
+            0.689852,
+            0.109677,
+            0.015964
+          ]
+        }
+      ]
+    }
+  ],
+  "statement_arithmetic": {
+    "doc_id": "D1-BANK-001",
+    "opening_balance": "12,500.00",
+    "total_debits": "558.05",
+    "statement_total": "6,925.25",
+    "closing_balance": "18,867.20",
+    "transactions": [
+      {
+        "date": "2026-10-01",
+        "description": "Deliver Extensible Convergence",
+        "debit": "0.00",
+        "credit": "4,200.00",
+        "balance": "16,700.00"
+      },
+      {
+        "date": "2026-10-04",
+        "description": "Facilitate Wireless Methodologies",
+        "debit": "125.35",
+        "credit": "0.00",
+        "balance": "16,574.65"
+      },
+      {
+        "date": "2026-10-07",
+        "description": "Orchestrate B2B Experiences",
+        "debit": "82.40",
+        "credit": "0.00",
+        "balance": "16,492.25"
+      },
+      {
+        "date": "2026-10-10",
+        "description": "Architect Vertical Vortals",
+        "debit": "0.00",
+        "credit": "650.25",
+        "balance": "17,142.50"
+      },
+      {
+        "date": "2026-10-13",
+        "description": "Facilitate User-Centric Mindshare",
+        "debit": "305.50",
+        "credit": "0.00",
+        "balance": "16,837.00"
+      },
+      {
+        "date": "2026-10-16",
+        "description": "Mesh Intuitive Functionalities",
+        "debit": "0.00",
+        "credit": "1,175.00",
+        "balance": "18,012.00"
+      },
+      {
+        "date": "2026-10-19",
+        "description": "Strategize One-To-One Supply-Chains",
+        "debit": "44.80",
+        "credit": "0.00",
+        "balance": "17,967.20"
+      },
+      {
+        "date": "2026-10-22",
+        "description": "Synthesize Seamless Communities",
+        "debit": "0.00",
+        "credit": "900.00",
+        "balance": "18,867.20"
+      }
+    ]
+  }
+}
