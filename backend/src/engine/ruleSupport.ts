@@ -58,6 +58,8 @@ export const SEVERITY_RANK: Record<Severity, number> = { info: 0, low: 1, medium
 export const capSeverity = (s: Severity, max: Severity): Severity => (SEVERITY_RANK[s] <= SEVERITY_RANK[max] ? s : max);
 
 export const round2 = (v: number): number => Math.round(v * 100) / 100;
+/** Correctly rounded to `digits` decimals (uses the exact binary value, so it matches Python's round()). */
+export const roundTo = (v: number, digits: number): number => Number(v.toFixed(digits));
 
 /** One doc: its own sha256. Several docs: sha256 of the sorted shas joined by newlines. */
 export function inputDigest(docIds: readonly string[], docSha256: Readonly<Record<string, string>>): string {

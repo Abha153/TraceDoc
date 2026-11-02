@@ -10,5 +10,68 @@
   },
   "contextRules": {
     "arithmeticToleranceCents": 0
+  },
+  "eventGrouper": {
+    "iouThreshold": 0.3,
+    "agreementBonus": 0.05,
+    "detectors": {
+      "image.ela": {
+        "family": "compression",
+        "category": "visual"
+      },
+      "image.noise": {
+        "family": "noise",
+        "category": "visual"
+      },
+      "image.copymove": {
+        "family": "clone",
+        "category": "visual"
+      },
+      "signature": {
+        "family": "signature",
+        "category": "visual"
+      },
+      "pdf.textlayer": {
+        "family": "text_layer",
+        "category": "pdf_structure"
+      },
+      "pdf.fonts": {
+        "family": "typography",
+        "category": "pdf_structure"
+      },
+      "pdf.metadata": {
+        "family": "metadata",
+        "category": "pdf_structure"
+      },
+      "pdf.revisions": {
+        "family": "revisions",
+        "category": "pdf_structure"
+      }
+    }
+  },
+  "eventFinding": {
+    "mediumMinConfidence": 0.4,
+    "highMinConfidence": 0.75
+  },
+  "priority": {
+    "severityWeights": {
+      "info": 0.05,
+      "low": 0.15,
+      "medium": 0.4,
+      "high": 0.7
+    },
+    "categoryWeights": {
+      "cross_document": 1.0,
+      "context": 0.9,
+      "visual": 0.8,
+      "pdf_structure": 0.7,
+      "extraction": 0.4
+    },
+    "bands": {
+      "lowBelow": 0.25,
+      "moderateBelow": 0.5,
+      "highBelow": 0.75
+    },
+    "weakEvidenceCap": 0.49
   }
 }

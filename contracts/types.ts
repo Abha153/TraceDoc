@@ -183,7 +183,7 @@ export interface RegionEvent {
   eventId: string;
   caseId: string;
   docId: string;
-  page: number;
+  page: number; // lowest page among the member regions; 0 for a document-level signal with no region (regions is then empty)
   regions: Region[]; // merged/union boxes of the member signals
   signalIds: string[];
   detectors: string[];
