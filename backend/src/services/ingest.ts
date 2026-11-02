@@ -25,6 +25,19 @@ export function newDocId(): string {
 }
 
 export class IngestService {
+  private lastStamp = 0;
+
+  /**
+   * Strictly increasing timestamps. Documents are ordered by receivedAt (then docId), and docIds are random,
+   * so two documents stamped in the same millisecond would be ordered randomly. Bumping by 1 ms keeps
+   * "upload order" real: it is the order the engine sees documents in and the order of graph nodes.
+   */
+  private stamp(): string {
+    const t = Math.max(this.now().getTime(), this.lastStamp + 1);
+    this.lastStamp = t;
+    return new Date(t).toISOString();
+  }
+
   constructor(
     private readonly storage: Storage,
     private readonly manifest: Manifest,
@@ -69,7 +82,7 @@ export class IngestService {
           bytes: file.buffer.length,
           mimeType: type.mimeType,
           storedAs,
-          receivedAt: this.now().toISOString(),
+          receivedAt: this.stamp(),
         });
       }
       await this.manifest.append(entries);

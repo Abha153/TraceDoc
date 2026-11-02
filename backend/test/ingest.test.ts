@@ -262,3 +262,34 @@ describe("sanitizeFilename", () => {
     expect(out.endsWith(".pdf")).toBe(true);
   });
 });
+
+describe("upload order is preserved", () => {
+  it("receivedAt strictly increases even when the clock does not move", async () => {
+    const dir = await mkdtemp(path.join(tmpdir(), "td-order-"));
+    const storage = new Storage(dir);
+    const { IngestService } = await import("../src/services/ingest.js");
+    const frozen = () => new Date("2026-11-01T09:00:00.000Z");
+    const svc = new IngestService(storage, new Manifest(storage.auditDir), frozen);
+    const docs = await svc.ingest("CASE-001", Array.from({ length: 6 }, (_, i) => ({ originalname: `f${i}.pdf`, buffer: PDF_BYTES })));
+    const stamps = docs.map((d) => d.receivedAt);
+    expect(new Set(stamps).size).toBe(6);
+    expect([...stamps].sort()).toEqual(stamps);
+    // and across requests
+    const more = await svc.ingest("CASE-001", [{ originalname: "g.pdf", buffer: PDF_BYTES }]);
+    expect(more[0]!.receivedAt > stamps[5]!).toBe(true);
+  });
+
+  it("listByCase returns documents in upload order, repeatedly", async () => {
+    const { app, deps } = await testApp();
+    const agent = await agentWithCase(app);
+    for (let round = 0; round < 5; round++) {
+      const req = agent.post(URL);
+      const names = Array.from({ length: 5 }, (_, i) => `r${round}-${i}.pdf`);
+      for (const n of names) req.attach("files", PDF_BYTES, n);
+      await req.expect(202);
+    }
+    const listed = (await deps.documents.listByCase("CASE-001")).map((d) => d.filename);
+    const expected = Array.from({ length: 5 }, (_, r) => Array.from({ length: 5 }, (_, i) => `r${r}-${i}.pdf`)).flat();
+    expect(listed).toEqual(expected);
+  });
+});
