@@ -464,13 +464,13 @@ tot_id = aid(c1, "D-03", "statement_total")
 computed = sum(float(A[i]["normalizedValue"]) for i in txn_ids)
 printed = float(A[tot_id]["normalizedValue"])
 assert abs(printed - computed - 1000.0) < 1e-6
-ev4 = evidence("rule_result", "Printed total deposits do not equal the sum of listed deposits (rule: R-STMT-TOTAL-ARITH, ARITHMETIC)",
+ev4 = evidence("rule_result", "Printed total does not equal the sum of the listed amounts (rule: R-STMT-TOTAL-ARITH, ARITHMETIC)",
                [A[tot_id]["region"]] + [A[i]["region"] for i in txn_ids], [tot_id] + txn_ids,
                {"ruleId": "R-STMT-TOTAL-ARITH", "ruleType": "ARITHMETIC", "printedTotal": A[tot_id]["normalizedValue"], "computedTotal": f"{computed:.2f}",
-                "difference": f"{printed - computed:.2f}", "itemCount": len(txn_ids)}, prov("contextRules", "AVAILABLE", built["D-03"]["sha256"], {}))
+                "difference": f"{printed - computed:.2f}", "itemCount": len(txn_ids)}, prov("contextRules", "AVAILABLE", built["D-03"]["sha256"], {"arithmeticToleranceCents": 0}))
 F4 = {"findingId": "F-0004", "caseId": c1, "category": "context", "type": "STATEMENT_TOTAL_MISMATCH", "observationStatus": "INCONSISTENT", "severity": "medium",
       "confidence": r2(min(A[i]["extractionConfidence"] for i in [tot_id] + txn_ids)), "evidence": [ev4],
-      "needsVerification": ["Recompute the listed deposits and compare with the printed total on the original statement"]}
+      "needsVerification": ["Recompute the listed amounts and compare with the printed total on the original document"]}
 
 # events -> findings
 ev_cfg = {"iouThreshold": 0.3, "agreementBonus": 0.05}

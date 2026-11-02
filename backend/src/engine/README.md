@@ -14,7 +14,7 @@ npm run typecheck
 | --- | --- | --- |
 | `assertions.ts` | B4 | done: `buildAssertions(fields, pages, caseId)`, plus exported normalizers |
 | `entityResolver.ts`, `nameSimilarity.ts` | B5 | done: `resolveEntities(assertions)`, token-sort ratio |
-| `comparability.ts`, `contextRules.ts` | B6 | todo |
+| `comparability.ts`, `contextRules.ts`, `ruleSupport.ts`, `valueCompare.ts` | B6 | done: `evaluate(assertions, entities, options)` |
 | `eventGrouper.ts`, `priorityEngine.ts` | B7 | todo |
 | `index.ts` | B7b | todo: `runReasoning` |
 
@@ -31,3 +31,11 @@ npm run typecheck
 - A party without a cross-document identifier match that resembles exactly one compatible entity (ratio >= 92) is `SUGGESTED` and gets
   `suggestedLinks` (new optional field on `Entity`); B6 uses it to compare across the link with capped confidence.
 - Typecheck uses the same strict flags as `backend/tsconfig.json` (`noUncheckedIndexedAccess`), because the backend typecheck includes `src/engine`.
+
+## B6 notes
+- Rule table: `backend/config/comparability.json` (validated by `contracts/comparability.schema.json`). Thresholds: `backend/config/engine.json`. Change them there, not in code.
+- MUST_AGREE compares assertions of one entity across documents, and across a SUGGESTED link with confidence capped. Different RESOLVED entities are never compared.
+- MAY_DIFFER / NOT_COMPARABLE never produce findings; they guard pairs of different semantic types that a broader rule would compare.
+- ARITHMETIC (row amounts vs printed total, exact decimal arithmetic), TEMPORAL (`semanticTypes[0]` strictly before `[1]`) and UNIQUENESS (one identifier, one entity) are in `contextRules.ts`.
+- An arithmetic check that cannot be done (unreadable or missing rows) yields an INCONCLUSIVE info finding, never silence.
+- `evaluate` has no clock: pass `processedAt` and `docSha256` (docId -> SHA-256) for provenance. `nextIdStart(findings)` lets B7b continue the F-/E- numbering.

@@ -248,4 +248,6 @@ export interface ComparabilityRule {
     | "none";
   severity: Severity;
   note: string;
+  /** Finding type produced when the rule fires, e.g. "DOB_CONFLICT". Variants derive from it (NAME_VARIANT_SPELLING, DOB_DAY_MONTH_SWAP). */
+  findingType?: string;
 }

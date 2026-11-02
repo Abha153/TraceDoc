@@ -19,6 +19,7 @@
  * because two different id_numbers count as hard evidence of different people).
  */
 import type { DocumentAssertion, Entity, EntityRole } from "../../../contracts/types";
+import engineConfig from "../../config/engine.json";
 import { bestNameRatio, formatRatio } from "./nameSimilarity";
 
 export interface ResolverConfig {
@@ -27,7 +28,7 @@ export interface ResolverConfig {
   /** token-sort ratio at or above which two entities with different id_numbers get an explanatory note */
   similarNameMinRatio: number;
 }
-export const DEFAULT_RESOLVER_CONFIG: ResolverConfig = { suggestMinRatio: 92, similarNameMinRatio: 75 };
+export const DEFAULT_RESOLVER_CONFIG: ResolverConfig = engineConfig.entityResolver; // thresholds live in backend/config/engine.json
 
 export interface ResolveResult {
   entities: Entity[];

@@ -194,6 +194,17 @@ for (const [caseId, docIds] of Object.entries(CASES)) {
   }
 }
 
+// ---------------------------------------------------------------- rule table (backend/config/comparability.json)
+{
+  const rules = JSON.parse(readFileSync(resolve(root, "../backend/config/comparability.json"), "utf8")) as Array<{ ruleId: string }>;
+  rules.forEach((r) => schemaCheck("ComparabilityRule", `comparability.json ${r.ruleId}`, r));
+  ok(new Set(rules.map((r) => r.ruleId)).size === rules.length, "comparability.json: duplicate ruleIds");
+  const ids = new Set(rules.map((r) => r.ruleId));
+  for (const file of ["expected_findings.json", "expected_non_findings.json"]) {
+    for (const m of readFileSync(resolve(fx, file), "utf8").matchAll(/"ruleId": "(R-[A-Z-]+)"/g)) ok(ids.has(m[1] ?? ""), `${file}: rule ${m[1]} is not in comparability.json`);
+  }
+}
+
 // ---------------------------------------------------------------- scenario guarantees
 const r1 = read<ReasoningOutput>("CASE-001.reasoning.json");
 const r2 = read<ReasoningOutput>("CASE-002.reasoning.json");

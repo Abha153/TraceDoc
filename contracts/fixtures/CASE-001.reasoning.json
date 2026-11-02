@@ -758,7 +758,7 @@
         {
           "evidenceId": "E-0004",
           "kind": "rule_result",
-          "description": "Printed total deposits do not equal the sum of listed deposits (rule: R-STMT-TOTAL-ARITH, ARITHMETIC)",
+          "description": "Printed total does not equal the sum of the listed amounts (rule: R-STMT-TOTAL-ARITH, ARITHMETIC)",
           "regions": [
             {
               "docId": "D-03",
@@ -834,7 +834,9 @@
           "provenance": {
             "analyzer": "contextRules",
             "analyzerVersion": "0.1",
-            "config": {},
+            "config": {
+              "arithmeticToleranceCents": 0
+            },
             "inputSha256": "777fb9e52de3e7f8773c75532e6a5b0d747ba85c55c53786c0ba8d966e4e8dcc",
             "processedAt": "2026-11-01T09:00:00Z",
             "status": "AVAILABLE"
@@ -842,7 +844,7 @@
         }
       ],
       "needsVerification": [
-        "Recompute the listed deposits and compare with the printed total on the original statement"
+        "Recompute the listed amounts and compare with the printed total on the original document"
       ]
     },
     {

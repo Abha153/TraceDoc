@@ -1,0 +1,14 @@
+{
+  "entityResolver": {
+    "suggestMinRatio": 92,
+    "similarNameMinRatio": 75
+  },
+  "comparability": {
+    "nameMatchMin": 92,
+    "nameVariantMin": 75,
+    "unresolvedConfidenceCap": 0.3
+  },
+  "contextRules": {
+    "arithmeticToleranceCents": 0
+  }
+}

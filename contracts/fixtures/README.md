@@ -64,7 +64,8 @@ Events: max member confidence + 0.05 when a second distinct detector family agre
 (`TEXT_LAYER_MISMATCH`). Severity from event confidence: below 0.4 low, below 0.75 medium, else high. Status `POTENTIAL_ANOMALY`.
 
 **Rule ids used in evidence** (`measurements.ruleId`, must exist in `backend/config/comparability.json`): `R-DOB-MUST-AGREE`,
-`R-NAME-MUST-AGREE`, `R-IDNUM-MUST-AGREE`, `R-ADDR-MUST-AGREE`, `R-ADDR-MAY-DIFFER`, `R-AMOUNT-NOT-COMPARABLE`, `R-STMT-TOTAL-ARITH`, `R-ID-UNIQUENESS`.
+`R-NAME-MUST-AGREE`, `R-IDNUM-MUST-AGREE`, `R-ADDR-MUST-AGREE`, `R-ADDR-MAY-DIFFER`, `R-AMOUNT-NOT-COMPARABLE`, `R-STMT-TOTAL-ARITH`, `R-ID-UNIQUENESS`
+(also `R-TEMP-DOB-BEFORE-ISSUE`, `R-TEMP-DOB-BEFORE-APPLICATION`, `R-ACCT-UNIQUENESS`; the table is `backend/config/comparability.json`).
 
 **Priority (reference calculation in `generate.py`).** Term per finding = `severityWeight * confidence`; noisy-OR within a category;
 categories with only info/low findings capped at 0.49; across categories noisy-OR of `categoryWeight * categoryScore`

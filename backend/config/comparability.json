@@ -1,0 +1,215 @@
+[
+  {
+    "ruleId": "R-DOB-MUST-AGREE",
+    "ruleType": "MUST_AGREE",
+    "semanticTypes": [
+      "dob"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "date_iso",
+    "severity": "high",
+    "note": "Date of birth must agree for the same entity across documents. A day/month swap is reported as its own, milder type.",
+    "findingType": "DOB_CONFLICT"
+  },
+  {
+    "ruleId": "R-NAME-MUST-AGREE",
+    "ruleType": "MUST_AGREE",
+    "semanticTypes": [
+      "full_name"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "name_fuzzy",
+    "severity": "high",
+    "note": "Names of the same entity: token-sort ratio at or above the match threshold agrees, between the variant and match thresholds is a low-severity variant spelling, below is a conflict.",
+    "findingType": "NAME_CONFLICT"
+  },
+  {
+    "ruleId": "R-IDNUM-MUST-AGREE",
+    "ruleType": "MUST_AGREE",
+    "semanticTypes": [
+      "id_number"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "exact",
+    "severity": "high",
+    "note": "id_number must agree exactly (after normalization) for the same entity.",
+    "findingType": "ID_NUMBER_CONFLICT"
+  },
+  {
+    "ruleId": "R-ADDR-MUST-AGREE",
+    "ruleType": "MUST_AGREE",
+    "semanticTypes": [
+      "address_permanent",
+      "address_current"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "exact",
+    "severity": "low",
+    "note": "Addresses of the same kind should agree across documents (text compared after case, punctuation and whitespace normalization). Pairs of different kinds are governed by R-ADDR-MAY-DIFFER.",
+    "findingType": "ADDRESS_CONFLICT"
+  },
+  {
+    "ruleId": "R-ADDR-MAY-DIFFER",
+    "ruleType": "MAY_DIFFER",
+    "semanticTypes": [
+      "address_permanent",
+      "address_current"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "none",
+    "severity": "info",
+    "note": "A permanent and a current address are different concepts and may legitimately differ: no finding."
+  },
+  {
+    "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+    "ruleType": "NOT_COMPARABLE",
+    "semanticTypes": [
+      "requested_amount",
+      "account_balance"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "none",
+    "severity": "info",
+    "note": "A requested amount and an account balance are not comparable: no finding."
+  },
+  {
+    "ruleId": "R-STMT-TOTAL-ARITH",
+    "ruleType": "ARITHMETIC",
+    "semanticTypes": [
+      "txn_amount",
+      "statement_total"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "sum_equals",
+    "severity": "medium",
+    "note": "The printed statement total must equal the sum of the listed row amounts of the same document.",
+    "findingType": "STATEMENT_TOTAL_MISMATCH"
+  },
+  {
+    "ruleId": "R-TEMP-DOB-BEFORE-ISSUE",
+    "ruleType": "TEMPORAL",
+    "semanticTypes": [
+      "dob",
+      "issue_date"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "date_order",
+    "severity": "high",
+    "note": "A document cannot be issued on or before the holder's date of birth.",
+    "findingType": "DOB_NOT_BEFORE_ISSUE_DATE"
+  },
+  {
+    "ruleId": "R-TEMP-DOB-BEFORE-APPLICATION",
+    "ruleType": "TEMPORAL",
+    "semanticTypes": [
+      "dob",
+      "application_date"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "date_order",
+    "severity": "high",
+    "note": "An application cannot be dated on or before the applicant's date of birth.",
+    "findingType": "DOB_NOT_BEFORE_APPLICATION_DATE"
+  },
+  {
+    "ruleId": "R-ID-UNIQUENESS",
+    "ruleType": "UNIQUENESS",
+    "semanticTypes": [
+      "id_number"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "exact",
+    "severity": "high",
+    "note": "One id_number should belong to one entity. The same id_number under two entities (for example applicant and guarantor) is reported.",
+    "findingType": "ID_NUMBER_SHARED"
+  },
+  {
+    "ruleId": "R-ACCT-UNIQUENESS",
+    "ruleType": "UNIQUENESS",
+    "semanticTypes": [
+      "account_number"
+    ],
+    "entityRoles": [
+      "applicant",
+      "co_applicant",
+      "guarantor",
+      "nominee",
+      "account_holder",
+      "unknown"
+    ],
+    "matchMethod": "exact",
+    "severity": "medium",
+    "note": "One account_number should belong to one entity.",
+    "findingType": "ACCOUNT_NUMBER_SHARED"
+  }
+]

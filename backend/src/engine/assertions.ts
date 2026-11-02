@@ -155,9 +155,9 @@ export function normalizeText(input: string | null | undefined): string | null {
   return squash(input) || null;
 }
 
-type ValueKind = "date" | "amount" | "name" | "identifier" | "text";
+export type ValueKind = "date" | "amount" | "name" | "identifier" | "text";
 
-function kindOf(semanticType: string): ValueKind {
+export function valueKindOf(semanticType: string): ValueKind {
   if (semanticType === "full_name") return "name";
   if (semanticType === "id_number" || semanticType === "account_number") return "identifier";
   if (semanticType === "dob" || semanticType.endsWith("_date")) return "date";
@@ -167,7 +167,7 @@ function kindOf(semanticType: string): ValueKind {
 
 /** Normalizes using the extractor's normalizedValue first, then the raw text; null when neither parses. */
 export function normalizeValue(semanticType: string, field: Pick<ExtractedField, "rawValue" | "normalizedValue">): string | null {
-  const fn = { date: normalizeDate, amount: normalizeAmount, name: normalizeName, identifier: normalizeIdentifier, text: normalizeText }[kindOf(semanticType)];
+  const fn = { date: normalizeDate, amount: normalizeAmount, name: normalizeName, identifier: normalizeIdentifier, text: normalizeText }[valueKindOf(semanticType)];
   return fn(field.normalizedValue) ?? fn(field.rawValue);
 }
 

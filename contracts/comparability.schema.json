@@ -48,6 +48,10 @@
         },
         "note": {
           "type": "string"
+        },
+        "findingType": {
+          "type": "string",
+          "description": "Finding type produced when the rule fires, e.g. \"DOB_CONFLICT\". Variants derive from it (NAME_VARIANT_SPELLING, DOB_DAY_MONTH_SWAP)."
         }
       },
       "required": [
