@@ -487,17 +487,19 @@ EV2 = {"eventId": "EV-002", "caseId": c1, "docId": "D-03", "page": 1, "regions":
 sev_of = lambda conf: "low" if conf < 0.4 else ("medium" if conf < 0.75 else "high")
 F5 = {"findingId": "F-0005", "caseId": c1, "category": "visual", "type": "REGION_EVENT", "observationStatus": "POTENTIAL_ANOMALY", "severity": sev_of(EV1["confidence"]),
       "confidence": EV1["confidence"],
-      "evidence": [evidence("forensic_signal", "Two independent detectors flag the requested amount region on D-02 (ELA residual and local noise variance)",
+      "evidence": [evidence("forensic_signal", "Overlapping signals from image.ela and image.noise flag the same region on D-02 page 1 (requested_amount)",
                             [s_ela["regions"][0], s_noise["regions"][0]], [aid(c1, "D-02", "requested_amount")],
-                            {"eventId": "EV-001", "signalIds": "D-02-S01,D-02-S02", "detectors": "image.ela,image.noise", "boxIou": round(iou(ela_box, noise_box), 2),
-                             "elaResidualRatio": 2.4, "noiseVarianceRatio": 3.1}, EV1["provenance"])],
-      "needsVerification": ["Inspect the requested amount region on the original scan", "ELA and noise cues also occur on recompressed images; do not read in isolation"]}
+                            {"D-02-S01.residualRatio": 2.4, "D-02-S01.blockSizePx": 16, "D-02-S02.varianceRatio": 3.1, "D-02-S02.windowPx": 32,
+                             "eventId": "EV-001", "signalIds": "D-02-S01,D-02-S02", "detectors": "image.ela,image.noise"}, EV1["provenance"])],
+      "needsVerification": ["Inspect the flagged region on the original document", "Overlapping cues can share one cause, such as image recompression; do not read them in isolation"]}
 F6 = {"findingId": "F-0006", "caseId": c1, "category": "pdf_structure", "type": "TEXT_LAYER_MISMATCH", "observationStatus": "POTENTIAL_ANOMALY", "severity": sev_of(0.72),
       "confidence": 0.72,
-      "evidence": [evidence("text_layer_diff", "Rendered statement total differs from the PDF text layer at the same location",
-                            signals["D-03"][0]["regions"], [tot_id], {"eventId": "EV-002", "signalIds": "D-03-S01", "renderedText": "49,562.75", "textLayerText": "48,562.75", "differingChars": 1},
+      "evidence": [evidence("text_layer_diff", "Text layer mismatch reported by pdf.textlayer on D-03 page 1 (statement_total)",
+                            signals["D-03"][0]["regions"], [tot_id],
+                            {"renderedText": "49,562.75", "textLayerText": "48,562.75", "differingChars": 1,
+                             "eventId": "EV-002", "signalIds": "D-03-S01", "detectors": "pdf.textlayer"},
                             signals["D-03"][0]["provenance"])],
-      "needsVerification": ["Compare the printed total with the text layer value in a PDF viewer", "OCR layers added to scans can also cause this signal"]}
+      "needsVerification": ["Compare the rendered text with the text layer value in a PDF viewer", "OCR layers added to scans can also cause this signal"]}
 FINDINGS = {"CASE-001": [F1, F2, F3, F4, F5, F6], "CASE-002": []}
 
 # --------------------------------------------------------------------------------------------- priority (reference calculation)

@@ -16,7 +16,7 @@ npm run typecheck
 | `entityResolver.ts`, `nameSimilarity.ts` | B5 | done: `resolveEntities(assertions)`, token-sort ratio |
 | `comparability.ts`, `contextRules.ts`, `ruleSupport.ts`, `valueCompare.ts` | B6 | done: `evaluate(assertions, entities, options)` |
 | `eventGrouper.ts`, `priorityEngine.ts` | B7 | done: `groupEvents`, `computePriority` |
-| `index.ts` | B7b | todo: `runReasoning` |
+| `index.ts`, `eventFindings.ts` | B7b | done: `runReasoning(input)` |
 
 ## B4 notes
 - Canonical semantic types are the fixture field names (`full_name`, `dob`, `id_number`, `address_permanent`, ...). Extractor aliases
@@ -48,3 +48,18 @@ npm run typecheck
   weak-evidence cap (info/low only) per category and overall, coverage reported but never changing the score or band. Result is named priority, never risk.
 - All weights, thresholds and detector families are in `backend/config/engine.json` and echoed into provenance. Like `evaluate`, both functions take `docSha256` and `processedAt` because the engine has no clock.
 - `eventFinding` thresholds (medium from 0.4, high from 0.75) are already in the config for B7b's event-to-finding conversion.
+
+## B7b notes: using the engine from the backend
+```ts
+import { runReasoning } from "../engine";               // backend/src/engine/index.ts
+const output = runReasoning({ caseId, documents });     // documents: AnalyzeResponse[] (one per document of the case)
+// output: { assertions, entities, findings, events, priority }  (contracts/reasoning.ts)
+```
+- Pure and deterministic: no I/O, no clock, no randomness. Provenance hashes and timestamps come from the documents' own provenance
+  (first `inputSha256`, latest `processedAt`). Call it again after every analysis or re-run; same input gives the same output.
+- Signals from analyzers whose status is `UNAVAILABLE`, `ERROR` or `NOT_APPLICABLE` are ignored, and all statuses feed priority coverage.
+- Events become findings: several overlapping signals give one `REGION_EVENT`; a lone signal keeps its own type (e.g. `TEXT_LAYER_MISMATCH`).
+  Status is always `POTENTIAL_ANOMALY`; severity comes from the event confidence (config); the finding links the fields lying under the flagged region.
+- A document-level signal (no region) gets a whole-page evidence region labelled `document`, so it is shown and counted for its document.
+- The engine reads `backend/config/*.json` (import, not file I/O at call time) and imports types from `../../../contracts`, so keep that repo layout.
+- Finding and evidence ids (`F-0001`, `E-0001`) restart for every run. The evidence store namespaces them per generation.

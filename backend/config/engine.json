@@ -17,41 +17,50 @@
     "detectors": {
       "image.ela": {
         "family": "compression",
-        "category": "visual"
+        "category": "visual",
+        "evidenceKind": "forensic_signal"
       },
       "image.noise": {
         "family": "noise",
-        "category": "visual"
+        "category": "visual",
+        "evidenceKind": "forensic_signal"
       },
       "image.copymove": {
         "family": "clone",
-        "category": "visual"
+        "category": "visual",
+        "evidenceKind": "forensic_signal"
       },
       "signature": {
         "family": "signature",
-        "category": "visual"
+        "category": "visual",
+        "evidenceKind": "forensic_signal"
       },
       "pdf.textlayer": {
         "family": "text_layer",
-        "category": "pdf_structure"
+        "category": "pdf_structure",
+        "evidenceKind": "text_layer_diff"
       },
       "pdf.fonts": {
         "family": "typography",
-        "category": "pdf_structure"
+        "category": "pdf_structure",
+        "evidenceKind": "forensic_signal"
       },
       "pdf.metadata": {
         "family": "metadata",
-        "category": "pdf_structure"
+        "category": "pdf_structure",
+        "evidenceKind": "metadata"
       },
       "pdf.revisions": {
         "family": "revisions",
-        "category": "pdf_structure"
+        "category": "pdf_structure",
+        "evidenceKind": "metadata"
       }
     }
   },
   "eventFinding": {
     "mediumMinConfidence": 0.4,
-    "highMinConfidence": 0.75
+    "highMinConfidence": 0.75,
+    "assertionCoverageMin": 0.5
   },
   "priority": {
     "severityWeights": {

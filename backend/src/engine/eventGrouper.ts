@@ -11,11 +11,11 @@
  *  - a signal with no region (document level, e.g. PDF metadata) is its own event with page 0 and no regions.
  *  - events are numbered EV-001... in order of their first signal; thresholds live in backend/config/engine.json.
  */
-import type { ForensicSignal, Provenance, Region, RegionEvent } from "../../../contracts/types";
+import type { Evidence, ForensicSignal, Provenance, Region, RegionEvent } from "../../../contracts/types";
 import engineConfig from "../../config/engine.json";
 import { ANALYZER_VERSION, DEFAULT_PROCESSED_AT, inputDigest, pad, roundTo } from "./ruleSupport";
 
-export interface DetectorInfo { family: string; category: "visual" | "pdf_structure" }
+export interface DetectorInfo { family: string; category: "visual" | "pdf_structure"; evidenceKind?: Evidence["kind"] }
 export interface EventGrouperConfig { iouThreshold: number; agreementBonus: number; detectors: Readonly<Record<string, DetectorInfo>> }
 export const DEFAULT_EVENT_CONFIG: EventGrouperConfig = engineConfig.eventGrouper as EventGrouperConfig;
 

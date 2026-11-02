@@ -859,7 +859,7 @@
         {
           "evidenceId": "E-0005",
           "kind": "forensic_signal",
-          "description": "Two independent detectors flag the requested amount region on D-02 (ELA residual and local noise variance)",
+          "description": "Overlapping signals from image.ela and image.noise flag the same region on D-02 page 1 (requested_amount)",
           "regions": [
             {
               "docId": "D-02",
@@ -888,12 +888,13 @@
             "D-02-A06"
           ],
           "measurements": {
+            "D-02-S01.residualRatio": 2.4,
+            "D-02-S01.blockSizePx": 16,
+            "D-02-S02.varianceRatio": 3.1,
+            "D-02-S02.windowPx": 32,
             "eventId": "EV-001",
             "signalIds": "D-02-S01,D-02-S02",
-            "detectors": "image.ela,image.noise",
-            "boxIou": 0.68,
-            "elaResidualRatio": 2.4,
-            "noiseVarianceRatio": 3.1
+            "detectors": "image.ela,image.noise"
           },
           "provenance": {
             "analyzer": "eventGrouper",
@@ -909,8 +910,8 @@
         }
       ],
       "needsVerification": [
-        "Inspect the requested amount region on the original scan",
-        "ELA and noise cues also occur on recompressed images; do not read in isolation"
+        "Inspect the flagged region on the original document",
+        "Overlapping cues can share one cause, such as image recompression; do not read them in isolation"
       ]
     },
     {
@@ -925,7 +926,7 @@
         {
           "evidenceId": "E-0006",
           "kind": "text_layer_diff",
-          "description": "Rendered statement total differs from the PDF text layer at the same location",
+          "description": "Text layer mismatch reported by pdf.textlayer on D-03 page 1 (statement_total)",
           "regions": [
             {
               "docId": "D-03",
@@ -943,11 +944,12 @@
             "D-03-A08"
           ],
           "measurements": {
-            "eventId": "EV-002",
-            "signalIds": "D-03-S01",
             "renderedText": "49,562.75",
             "textLayerText": "48,562.75",
-            "differingChars": 1
+            "differingChars": 1,
+            "eventId": "EV-002",
+            "signalIds": "D-03-S01",
+            "detectors": "pdf.textlayer"
           },
           "provenance": {
             "analyzer": "pdf.textlayer",
@@ -962,7 +964,7 @@
         }
       ],
       "needsVerification": [
-        "Compare the printed total with the text layer value in a PDF viewer",
+        "Compare the rendered text with the text layer value in a PDF viewer",
         "OCR layers added to scans can also cause this signal"
       ]
     }
