@@ -5,8 +5,8 @@ import { api } from "../api/client";
 import { Button, Icon } from "../components/ui";
 
 export function LoginPage({ mockMode }: { mockMode: boolean }) {
-  const [username, setUsername] = useState("analyst@tracedocs.local");
-  const [password, setPassword] = useState("demo-access");
+  const [username, setUsername] = useState(mockMode ? "analyst@tracedocs.local" : "");
+  const [password, setPassword] = useState(mockMode ? "demo-access" : "");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();

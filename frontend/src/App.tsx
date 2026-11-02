@@ -3,8 +3,8 @@ import { lazy, Suspense, useState } from "react";
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { AppShell } from "./components/AppShell";
 import { Breadcrumbs, LoadingState, PageHeader } from "./components/ui";
+import { mockMode as MOCK_MODE } from "./config";
 
-const MOCK_MODE = import.meta.env.VITE_USE_MOCKS !== "false";
 const CaseDetailPage = lazy(() => import("./pages/Cases").then((module) => ({ default: module.CaseDetailPage })));
 const CasesPage = lazy(() => import("./pages/Cases").then((module) => ({ default: module.CasesPage })));
 const ComparePage = lazy(() => import("./pages/Findings").then((module) => ({ default: module.ComparePage })));
@@ -61,10 +61,10 @@ export function App() {
               <Route path="/cases/:caseId" element={<CaseDetailPage />} />
               <Route path="/upload" element={<UploadPage mockMode={MOCK_MODE} />} />
               <Route path="/documents/:docId" element={<DocumentPage />} />
-              <Route path="/findings" element={MOCK_MODE ? <FindingsPage /> : <BackendUnavailablePage feature="Findings" endpoints={["GET /cases/{caseId}/findings"]} />} />
-              <Route path="/findings/:findingId" element={MOCK_MODE ? <FindingDetailPage /> : <BackendUnavailablePage feature="Finding review" endpoints={["GET /findings/{findingId}", "POST /findings/{findingId}/review"]} />} />
-              <Route path="/compare/:findingId" element={MOCK_MODE ? <ComparePage /> : <BackendUnavailablePage feature="Evidence comparison" endpoints={["GET /findings/{findingId}", "GET /cases/{caseId}/assertions"]} />} />
-              <Route path="/entities" element={MOCK_MODE ? <EntitiesPage /> : <BackendUnavailablePage feature="Entities and assertions" endpoints={["GET /cases/{caseId}/entities", "GET /cases/{caseId}/assertions", "GET /cases/{caseId}/graph"]} />} />
+              <Route path="/findings" element={<FindingsPage />} />
+              <Route path="/findings/:findingId" element={<FindingDetailPage />} />
+              <Route path="/compare/:findingId" element={<ComparePage />} />
+              <Route path="/entities" element={<EntitiesPage />} />
               <Route path="/reports" element={MOCK_MODE ? <ReportsPage /> : <BackendUnavailablePage feature="Reports" endpoints={["GET /cases/{caseId}/dossier", "GET /cases/{caseId}/events", "GET /cases/{caseId}/integrity"]} />} />
             </Route>
             <Route path="*" element={<Navigate to="/cases" replace />} />

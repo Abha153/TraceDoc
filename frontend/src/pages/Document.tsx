@@ -4,6 +4,7 @@ import type { Region } from "../../../contracts/types";
 import { api } from "../api/client";
 import { DocumentViewer } from "../components/DocumentViewer";
 import { Breadcrumbs, EmptyState, ErrorState, LoadingState, PageHeader, StatusBadge } from "../components/ui";
+import { mockMode } from "../config";
 import { fixtureAnalysis } from "../mockData";
 
 export function DocumentPage() {
@@ -11,7 +12,7 @@ export function DocumentPage() {
   const location = useLocation();
   const documentQuery = useQuery({ queryKey: ["document", docId], queryFn: () => api.getDocument(docId) });
   const document = documentQuery.data;
-  const analysis = fixtureAnalysis[docId];
+  const analysis = mockMode ? fixtureAnalysis[docId] : undefined;
   const candidateRegion = location.state && typeof location.state === "object" && "region" in location.state
     ? location.state.region
     : undefined;
@@ -24,8 +25,8 @@ export function DocumentPage() {
       <Breadcrumbs items={[{ label: "Cases", to: "/cases" }, { label: document.document.caseId, to: `/cases/${document.document.caseId}` }, { label: document.document.filename }]} />
       <PageHeader eyebrow={`${document.document.docId} · ${document.document.mimeType}`} title={document.document.filename} description={`${document.document.pageCount} page · Pipeline ${document.document.pipelineVersion}`} actions={<Link className="button button-secondary" to={`/cases/${document.document.caseId}`}>Back to case</Link>} />
       <div className="document-processing-strip">{Object.entries(document.document.processing).map(([name, status]) => <div key={name}><span>{name}</span><StatusBadge status={status} /></div>)}</div>
-      {analysis ? (
-        <DocumentViewer docId={docId} title={document.document.filename} fields={analysis.fields} signals={analysis.signals} initialRegion={initialRegion} pageCount={document.document.pageCount} />
+      {analysis || !mockMode ? (
+        <DocumentViewer docId={docId} title={document.document.filename} fields={analysis?.fields ?? document.fields} signals={analysis?.signals ?? []} initialRegion={initialRegion} pageCount={document.document.pageCount} />
       ) : (
         <div className="panel document-unavailable-note"><strong>Canonical page preview is unavailable</strong><p>This document was added during a fixture-mode upload. No page image or extracted fields were generated.</p></div>
       )}

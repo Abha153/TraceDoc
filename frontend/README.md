@@ -42,6 +42,8 @@ The jsdom suite uses a fetch-backed `XMLHttpRequest` adapter with deterministic 
 
 ## Backend integration boundary
 
-The mounted backend currently implements authentication (`/auth/login`, `/auth/logout`, `/auth/me`), case list/create/detail, document upload/detail, job status, and `/health`. The contract also defines routes that are not mounted in `backend/src/routes/`: page reclassification/rendering; assertions, entities, findings, finding detail/review, and graph; events, dossier, and integrity. Fixture-only screens are gated in backend mode and show the exact unavailable contract paths instead of sending requests to those routes. The upload retry action is local fixture state and does not add or call an API endpoint.
+Run against the real backend with `VITE_USE_MOCKS=false` (for example in `.env.local`). The Vite dev server proxies `/api` to `http://127.0.0.1:4000` (override with `VITE_BACKEND_URL`), so the session cookie stays same-origin. Start the backend first (`backend/`: `npm run dev`, with `ANALYST_PASSWORD_HASH` set) and sign in with the backend's `ANALYST_ID` and password; the login form is not pre-filled in this mode.
 
-No `contracts/`, `samples/`, D1 dataset, or P1–P5 patch files were changed for this frontend work.
+Mounted in `backend/src/routes/` and used live by this frontend: `/auth/login|logout|me`, `/cases` (list/create/detail/recompute), `/cases/{id}/documents` upload, `/documents/{id}`, `/jobs/{id}`, `/cases/{id}/findings`, `/findings/{id}`, `/cases/{id}/assertions`, `/cases/{id}/entities`, `/cases/{id}/graph`, `/documents/{id}/pages/{n}/render`, and `/health`. In live mode the document viewer loads the canonical page render from the backend and shows the extracted fields returned by `GET /documents/{id}`; forensic signals are not exposed by any mounted route, so none are drawn.
+
+Not mounted, so gated or disabled in live mode: `POST /findings/{id}/review` (review controls show a read-only notice), `/cases/{id}/events`, `/dossier`, `/integrity` (Reports shows the unavailable-route page), page reclassification, and an upload retry endpoint (retry is local fixture state only).

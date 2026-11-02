@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import type { ExtractedField, Finding, ForensicSignal, Region } from "../../../contracts/types";
+import { mockMode, pageRenderUrl } from "../config";
 import { fixturePageUrls } from "../mockData";
 import { Button, Icon } from "./ui";
 
@@ -88,7 +89,7 @@ export const DocumentViewer = forwardRef<DocumentViewerHandle, DocumentViewerPro
     ], [docId, fields, findings, signals, showFields, showFindings, showSignals]);
 
     const totalPages = Math.max(1, pageCount ?? 1, ...overlays.map((overlay) => overlay.region.page));
-    const imageUrl = page === 1 ? fixturePageUrls[docId] : undefined;
+    const imageUrl = mockMode ? (page === 1 ? fixturePageUrls[docId] : undefined) : pageRenderUrl(docId, page);
     const pageOverlays = overlays.filter((overlay) => overlay.region.page === page);
 
     useEffect(() => {
