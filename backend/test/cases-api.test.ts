@@ -139,7 +139,8 @@ describe("upload creates a job that completes via the mock client", () => {
     expect(s.documents.map((d) => d.mimeType)).toEqual(["image/png", "application/pdf"]);
     expect(s.jobs).toHaveLength(2);
     expect(s.documents.every((d) => d.pageCount > 0)).toBe(true);
-    expect(s.priority).toBeNull();
+    // reasoning ran by itself when the last job finished (B10)
+    expect(s.priority).toMatchObject({ coverage: expect.any(Number), confidence: expect.any(Number) });
   });
 });
 

@@ -10,6 +10,7 @@ const schema = z.object({
   DATA_DIR: z.string().min(1).default("./data"),
   MAX_UPLOAD_BYTES: z.coerce.number().int().positive().default(25 * 1024 * 1024),
   PIPELINE_VERSION: z.string().min(1).default("0.1.0"),
+  REASONING_MODE: z.enum(["engine", "stub"]).default("engine"), // stub: recorded fixture output, mock analysis only
   ANALYSIS_MODE: z.enum(["mock"]).default("mock"), // "http" arrives with B11
   FIXTURES_DIR: z.string().min(1).default("../contracts/fixtures"),
   JOB_TIMEOUT_MS: z.coerce.number().int().positive().default(120_000),
@@ -34,6 +35,7 @@ export interface AppConfig {
   logLevel: string;
   dataDir: string;
   pipelineVersion: string;
+  reasoningMode: "engine" | "stub";
   analysisMode: "mock";
   fixturesDir: string;
   jobTimeoutMs: number;
@@ -66,6 +68,7 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     logLevel: e.LOG_LEVEL,
     dataDir: e.DATA_DIR,
     pipelineVersion: e.PIPELINE_VERSION,
+    reasoningMode: e.REASONING_MODE,
     analysisMode: e.ANALYSIS_MODE,
     fixturesDir: e.FIXTURES_DIR,
     jobTimeoutMs: e.JOB_TIMEOUT_MS,

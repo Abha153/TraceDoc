@@ -87,3 +87,24 @@ npm run typecheck
   canonical renders to that location** (the shared `DATA_DIR`, same convention as `renderPath`). In mock mode the mock client copies
   the fixture page images there.
 - `tsconfig.json` excludes `src/engine/`: it is its own package with its own tsconfig and tests (Person 1).
+
+## Reasoning pipeline (B10)
+
+- `src/services/reasoning.ts`. When a job finishes and **no job of that case is still QUEUED or RUNNING**, the case's stored analyses
+  (`AnalyzeResponse` per document, in upload order) go to the engine and the result is stored as a new evidence generation.
+  It is hooked to `Worker.onJobFinished`. Reasoning never re-analyses documents, and runs are serialized per case.
+- `REASONING_MODE=engine` (default) uses the real engine, `runReasoning` from `src/engine`. `REASONING_MODE=stub` returns the recorded
+  `contracts/fixtures/<case>.reasoning.json` re-labelled with the real document ids. It only knows the fixture cases and needs
+  `ANALYSIS_MODE=mock` (documents are matched to fixtures by hash). An unknown case gives `409 NO_STUB_REASONING`.
+- **A failed analysis is never read as clean.** A document whose analysis failed completely is still given to the engine, as a document
+  whose analyzers all reported ERROR, so coverage drops (per document it is 0). Documents that are PARTIAL (an analyzer UNAVAILABLE or
+  ERROR) lower coverage the same way, and coverage never changes the band. Confidence and coverage are reported separately in `priority`.
+- If the engine throws, nothing is stored, the worker keeps going, the previous generation stays current, and a case that never had one
+  keeps `priority: null`.
+- `POST /api/v1/cases/:caseId/recompute` re-runs reasoning on the stored analyses and returns the refreshed `CaseSummary`.
+  It writes a new generation (old findings stay readable). `409 NO_DOCUMENTS` if the case is empty, `409 ANALYSIS_PENDING` while jobs
+  are still running, `404` for an unknown case. **This route is not in `contracts/openapi.yaml` yet** (it returns the existing
+  `CaseSummary`); Person 1 owns that file.
+- The graph's `suggested` edges now follow the structured `Entity.suggestedLinks` (best score first) and only fall back to the entity
+  named in `basis` for records without it.
+- `tsconfig.json` no longer excludes `src/engine`: the engine is type-checked with the same strict flags as the rest of the backend.

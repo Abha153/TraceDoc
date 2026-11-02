@@ -13,6 +13,7 @@ import { evidenceRouter } from "./routes/evidence.js";
 import { pagesRouter } from "./routes/pages.js";
 import { JsonEvidenceRepository, type EvidenceRepository } from "./repo/evidence.js";
 import { NoReviews, type ReviewSource } from "./services/reviewSource.js";
+import { ReasoningPipeline, createStubReasoning, engineReasoning, type ReasoningFn } from "./services/reasoning.js";
 import { jobsRouter } from "./routes/jobs.js";
 import { Storage } from "./services/storage.js";
 import { Manifest } from "./services/manifest.js";
@@ -53,12 +54,14 @@ export interface AppDeps {
   upload: UploadService;
   analysisClient: AnalysisClient;
   /** Built but not started: server.ts starts it, tests drive processNext() themselves. */
+  reasoning: ReasoningPipeline;
   worker: Worker;
 }
 
 export interface DepOverrides {
   analysisClient?: AnalysisClient;
   reviews?: ReviewSource;
+  reasoningFn?: ReasoningFn;
 }
 
 export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverrides = {}): AppDeps {
@@ -86,6 +89,19 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     pollMs: config.workerPollMs,
     retryDelayMs: config.jobRetryDelayMs,
   });
+  const reason: ReasoningFn =
+    overrides.reasoningFn ??
+    (config.reasoningMode === "stub"
+      ? createStubReasoning({
+          fixturesDir: config.fixturesDir,
+          fixtureIdFor: (docId) => new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest }).fixtureIdFor(docId),
+        })
+      : engineReasoning);
+  const reasoning = new ReasoningPipeline({
+    documents, jobs, analysis, evidence, reason, logger, pipelineVersion: config.pipelineVersion,
+  });
+  // When a job finishes and nothing else is pending for its case, reasoning runs and the result is stored.
+  worker.onJobFinished((job) => reasoning.onJobFinished(job));
   return {
     config,
     logger,
@@ -104,6 +120,7 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     cases: new CaseService(caseRepo, documents, jobs, evidence),
     upload: new UploadService(ingest, documents, jobs, config.pipelineVersion),
     analysisClient,
+    reasoning,
     worker,
   };
 }
@@ -117,7 +134,7 @@ export function createApp(deps: AppDeps): Express {
   const api = express.Router();
   api.use(healthRouter());
   api.use(authRouter(deps));
-  api.use(casesRouter(deps.cases, deps.requireAuth));
+  api.use(casesRouter(deps.cases, deps.requireAuth, deps.reasoning));
   api.use(
     documentsRouter({
       upload: deps.upload,

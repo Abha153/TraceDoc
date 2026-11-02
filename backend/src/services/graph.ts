@@ -20,7 +20,8 @@ const STRONG_IDENTIFIERS = new Set(["id_number", "account_number"]);
  *  - match: documents that carry the same strong identifier value for one entity.
  *  - conflict: documents joined by an INCONSISTENT finding whose evidence spans them. Single-document findings
  *    (arithmetic, forensic) are not edges. Findings whose confidence was capped say "(capped)".
- *  - suggested: an entity that is only a SUGGESTED link, towards the entity its basis names.
+ *  - suggested: an entity that is only a SUGGESTED link, towards the entity in its structured `suggestedLinks`
+ *    (best score first). Older records without `suggestedLinks` fall back to the entity id named in `basis`.
  */
 export function buildGraph(i: GraphInput): GraphResponse {
   const docOrder = new Map(i.documents.map((d, n) => [d.docId, n]));
@@ -97,9 +98,10 @@ export function buildGraph(i: GraphInput): GraphResponse {
   const entityIds = new Set(i.entities.map((e) => e.entityId));
   for (const e of i.entities) {
     if (e.resolution !== "SUGGESTED") continue;
-    const target = e.basis
-      .flatMap((b) => b.match(/[A-Za-z]+-\d+/g) ?? [])
-      .find((id) => entityIds.has(id) && id !== e.entityId);
+    const linked = [...(e.suggestedLinks ?? [])].sort((a, b) => b.score - a.score).find((l) => entityIds.has(l.entityId) && l.entityId !== e.entityId)?.entityId;
+    const target =
+      linked ??
+      e.basis.flatMap((b) => b.match(/[A-Za-z]+-\d+/g) ?? []).find((id) => entityIds.has(id) && id !== e.entityId);
     if (!target) continue;
     add({
       source: e.entityId,

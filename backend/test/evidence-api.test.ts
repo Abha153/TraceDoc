@@ -15,11 +15,11 @@ const PNG_SIG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
 /** CASE-001 fully loaded: three uploads analysed by the mock, reasoning output stored. */
 async function loadedCase001(depOverrides = {}) {
-  const t = await testApp({}, depOverrides);
+  // stub mode: the automatic reasoning run after the uploads stores the recorded fixture output as generation 1
+  const t = await testApp({ REASONING_MODE: "stub" }, depOverrides);
   const agent = await loggedInAgent(t.app);
   await agent.post("/api/v1/cases").send({ title: "Fixture case 1" }).expect(201);
   const mapping = await uploadFixtureDocs(t.deps, agent, "CASE-001", ["D-01.png", "D-02.png", "D-03.pdf"]);
-  await storeFixtureReasoning(t.deps, "CASE-001", mapping);
   return { ...t, agent, mapping };
 }
 
@@ -167,7 +167,7 @@ describe("CASE-001 read APIs return the fixture data and match the contracts", (
 
   it("a second reasoning run replaces the lists but old finding ids remain readable", async () => {
     const { agent, deps, mapping } = await loadedCase001();
-    await storeFixtureReasoning(deps, "CASE-001", mapping); // generation 2
+    await storeFixtureReasoning(deps, "CASE-001", mapping); // generation 2 (generation 1 came from the automatic run)
     const list = (await agent.get("/api/v1/cases/CASE-001/findings").expect(200)).body as FindingsResponse;
     expect(list.findings[0]!.finding.findingId).toBe("CASE-001-g2-F-0001");
     expect(list.findings).toHaveLength(6); // latest generation only, not 12
@@ -183,7 +183,6 @@ describe("CASE-002 (similar names, different people)", () => {
     await agent.post("/api/v1/cases").send({ title: "one" }).expect(201);
     await agent.post("/api/v1/cases").send({ title: "two" }).expect(201);
     const mapping = await uploadFixtureDocs(t.deps, agent, "CASE-002", ["D-11.png", "D-12.png", "D-13.png"]);
-    await storeFixtureReasoning(t.deps, "CASE-002", mapping);
 
     const ents = (await agent.get("/api/v1/cases/CASE-002/entities").expect(200)).body;
     expectMatchesContract("EntitiesResponse", ents);
