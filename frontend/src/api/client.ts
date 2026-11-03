@@ -25,6 +25,17 @@ export interface UploadProgress {
   percent: number;
 }
 
+/** Error carrying the HTTP status so callers can tell "route not available" (404) from a real failure. */
+export class ApiError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
+/** Dossier as served by GET /cases/:id/dossier, or composed from the live read routes while that route does not exist (B14). */
+export type DossierView = Omit<DossierJson, "integrity"> & { integrity?: IntegrityReport; composedFromLiveRoutes?: boolean };
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${apiBase}${path}`, {
     credentials: "include",
@@ -34,7 +45,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     const body = await response.json().catch(() => null) as
       | { error?: { message?: string } }
       | null;
-    throw new Error(body?.error?.message ?? `Request failed (${response.status})`);
+    throw new ApiError(body?.error?.message ?? `Request failed (${response.status})`, response.status);
   }
   if (response.status === 204) return undefined as T;
   return response.json() as Promise<T>;
@@ -51,7 +62,9 @@ function jsonBody(value: unknown): RequestInit {
 export const api = {
   login: (body: LoginRequest) => request<Session>("/auth/login", jsonBody(body)),
   logout: () => request<void>("/auth/logout", { method: "POST" }),
-  listCases: () => request<Case[]>("/cases"),
+  // GET /cases returns CaseSummary[] (contracts/openapi.yaml). listCases keeps the plain Case view for selectors.
+  listCaseSummaries: () => request<CaseSummary[]>("/cases"),
+  listCases: async (): Promise<Case[]> => (await request<CaseSummary[]>("/cases")).map((summary) => summary.case),
   createCase: (body: CreateCaseRequest) => request<Case>("/cases", jsonBody(body)),
   getCase: (caseId: string) => request<CaseSummary>(`/cases/${encodeURIComponent(caseId)}`),
   getDocument: (docId: string) => request<DocumentDetail>(`/documents/${encodeURIComponent(docId)}`),
@@ -105,6 +118,44 @@ export const api = {
     request<FindingDetail>(`/findings/${encodeURIComponent(findingId)}/review`, jsonBody(body)),
   graph: (caseId: string) => request<GraphResponse>(`/cases/${encodeURIComponent(caseId)}/graph`),
   events: (caseId: string) => request<EventsResponse>(`/cases/${encodeURIComponent(caseId)}/events`),
-  integrity: (caseId: string) => request<IntegrityReport>(`/cases/${encodeURIComponent(caseId)}/integrity`),
-  dossier: (caseId: string) => request<DossierJson>(`/cases/${encodeURIComponent(caseId)}/dossier?format=json`),
+  integrity: async (caseId: string) => {
+    try {
+      return await request<IntegrityReport>(`/cases/${encodeURIComponent(caseId)}/integrity`);
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 404) {
+        throw new Error("The integrity check is not available on this backend yet (batch B12).");
+      }
+      throw error;
+    }
+  },
+  dossier: async (caseId: string): Promise<DossierView> => {
+    try {
+      return await request<DossierJson>(`/cases/${encodeURIComponent(caseId)}/dossier?format=json`);
+    } catch (error) {
+      if (!(error instanceof ApiError) || error.status !== 404) throw error;
+    }
+    // The dossier route (B14) is not mounted: compose the same content from routes that exist, and say so.
+    const [summary, assertions, entities, findings, events] = await Promise.all([
+      api.getCase(caseId),
+      api.assertions(caseId),
+      api.entities(caseId),
+      api.findings(caseId),
+      api.events(caseId),
+    ]);
+    return {
+      caseId,
+      generatedAt: new Date().toISOString(),
+      summary,
+      assertions: assertions.assertions,
+      entities: entities.entities,
+      findings: findings.findings,
+      reviewHistory: events.events.filter((event) => ["REVIEW", "COMMENT", "REOPEN"].includes(event.type)),
+      analyzerStatuses: Object.fromEntries(summary.documents.map((document) => [document.docId, document.processing])),
+      limitations: [
+        "The dossier export route (batch B14) is not available on this backend; this view is composed from the live read routes.",
+        "The document integrity check (batch B12) is not available on this backend, so file hashes have not been re-verified.",
+      ],
+      composedFromLiveRoutes: true,
+    };
+  },
 };

@@ -119,7 +119,7 @@ export function AppShell({ children, mockMode }: { children: ReactNode; mockMode
         </header>
         <div className={`mock-banner ${mockMode ? "" : "backend-banner"}`} role="note">
           <strong>{mockMode ? "Fixture mode" : "Backend mode"}</strong>
-          <span>{mockMode ? "Recorded synthetic outputs only. Uploads are not analyzed and do not produce new findings." : "Backend integration is incomplete; some contract-defined views may not have a live route."}</span>
+          <span>{mockMode ? "Recorded synthetic outputs only. Uploads are not analyzed and do not produce new findings." : "Live backend. The integrity check and dossier export routes are not built yet, so those views are composed or marked unavailable. Analysis runs on recorded fixtures until the Python service is connected."}</span>
         </div>
         <main className="main-content"><ErrorBoundary>{children}</ErrorBoundary></main>
       </section>

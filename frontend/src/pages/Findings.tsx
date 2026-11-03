@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import type { FindingDetail, FindingWithReview, ReviewRequest } from "../../../contracts/api";
-import type { Region, Severity } from "../../../contracts/types";
+import type { InvestigationEvent, Region, Severity } from "../../../contracts/types";
 import { api } from "../api/client";
 import { DocumentViewer } from "../components/DocumentViewer";
 import type { DocumentViewerHandle } from "../components/DocumentViewer";
@@ -168,7 +168,7 @@ export function FindingDetailPage() {
 
   if (detailQuery.isLoading) return <LoadingState label="Loading finding evidence" />;
   if (detailQuery.isError) return <ErrorState error={detailQuery.error} retry={() => void detailQuery.refetch()} />;
-  if (!record || !finding) return <EmptyState title="Finding not available" detail="This finding is not included in the recorded fixtures." />;
+  if (!record || !finding) return <EmptyState title="Finding not available" detail={mockMode ? "This finding is not included in the recorded fixtures." : "This finding does not exist or belongs to an older reasoning run."} />;
 
   const selectedRegions = regionOptions.filter((region) => region.docId === selectedDocId);
   const focusedRegion = selectedRegion?.docId === selectedDocId ? selectedRegion : selectedRegions[0];
@@ -180,7 +180,7 @@ export function FindingDetailPage() {
       <PageHeader
         eyebrow={`${finding.findingId} · ${finding.category.replaceAll("_", " ")}`}
         title={finding.type.replaceAll("_", " ")}
-        description={finding.explanation?.summary ?? leadEvidence?.description ?? "Recorded fixture observation."}
+        description={finding.explanation?.summary ?? leadEvidence?.description ?? "Recorded observation."}
         actions={distinctEvidenceDocs.length > 1 ? <Link className="button button-secondary" to={`/compare/${finding.findingId}`}><Icon name="swap" size={16} /> Compare regions</Link> : undefined}
       />
       <div className="detail-state-row">
@@ -306,7 +306,7 @@ function ReviewPanel({ detail }: { detail: FindingDetail }) {
     <section className="panel review-panel">
       <div className="review-panel-heading"><span className="review-heading-icon"><Icon name="user" /></span><div><h2>Analyst review</h2><p>Review actions are recorded separately from machine output.</p></div></div>
       <div className="review-status-pair"><div><small>Observation</small><StatusBadge status={detail.finding.observationStatus} /></div><div><small>Review state</small><StatusBadge status={detail.reviewStatus} /></div></div>
-      {!mockMode ? <p className="muted-copy" role="status">Review actions are unavailable: the backend does not mount <code>POST /findings/{"{findingId}"}/review</code> yet. Observation status and any recorded review state are shown read-only.</p> : <>
+      <>
       <div className="review-actions">
         <Button onClick={() => submit({ action: "CONFIRM" })} disabled={mutation.isPending}><Icon name="check" size={16} /> Confirm observation</Button>
         <label className="field-label" htmlFor="dismiss-reason">Reason for dismissal</label>
@@ -316,12 +316,12 @@ function ReviewPanel({ detail }: { detail: FindingDetail }) {
         {detail.reviewStatus !== "UNREVIEWED" && <Button variant="quiet" onClick={() => submit({ action: "REOPEN" })} disabled={mutation.isPending}>Reopen review</Button>}
       </div>
       <div className="comment-box"><label className="field-label" htmlFor="review-comment">Add a comment</label><textarea id="review-comment" className="text-input textarea" value={comment} onChange={(event) => setComment(event.target.value)} rows={2} placeholder="Record context for the review history" /><Button variant="secondary" onClick={() => submit({ action: "COMMENT", comment })} disabled={mutation.isPending}>Add comment</Button></div>
-      </>}
+      </>
       {validation && <p className="form-error" role="alert">{validation}</p>}
       <div className="review-history"><div className="section-heading section-heading-tight"><h3>Review history</h3><span>{detail.reviewHistory.length} events</span></div>
         {detail.reviewHistory.length === 0 ? <p className="history-empty">No review activity recorded yet.</p> : (
           <ol className="timeline">{detail.reviewHistory.map((event) => (
-            <li key={event.eventId}><span className="timeline-dot" /><div><strong>{String(event.payload.action ?? event.type).replaceAll("_", " ")}</strong><small>{event.actor} · {new Date(event.at).toLocaleString()}</small>{typeof event.payload.reason === "string" && <p>{event.payload.reason}</p>}{typeof event.payload.comment === "string" && <p>{event.payload.comment}</p>}</div></li>
+            <li key={event.eventId}><span className="timeline-dot" /><div><strong>{reviewEventLabel(event)}</strong><small>{event.actor} · {new Date(event.at).toLocaleString()}</small>{typeof event.payload.reason === "string" && <p>{event.payload.reason}</p>}{typeof event.payload.text === "string" && <p>{event.payload.text}</p>}</div></li>
           ))}</ol>
         )}
       </div>
@@ -351,7 +351,7 @@ export function ComparePage() {
 
   if (findingQuery.isLoading || assertionQuery.isLoading) return <LoadingState label="Preparing evidence comparison" />;
   if (findingQuery.isError) return <ErrorState error={findingQuery.error} retry={() => void findingQuery.refetch()} />;
-  if (!finding) return <EmptyState title="Finding not available" detail="This finding is not included in the recorded fixtures." />;
+  if (!finding) return <EmptyState title="Finding not available" detail={mockMode ? "This finding is not included in the recorded fixtures." : "This finding does not exist or belongs to an older reasoning run."} />;
 
   const measurements = finding.evidence[0]?.measurements ?? {};
   if (distinctDocs.length < 2) {
@@ -377,4 +377,10 @@ export function ComparePage() {
       <div className="compare-note"><Icon name="shield" size={17} /> Difference alone is not a conclusion. Refer to the documented rule, entity resolution and review status.</div>
     </>
   );
+}
+
+/** Label for a review-history row. The backend records REVIEW {status}, COMMENT {text} and REOPEN {previousStatus}. */
+function reviewEventLabel(event: InvestigationEvent): string {
+  if (event.type === "REVIEW" && typeof event.payload.status === "string") return event.payload.status;
+  return event.type;
 }

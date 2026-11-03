@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import type { CaseSummary } from "../../../contracts/api";
 import { api } from "../api/client";
+import { mockMode as MOCK_MODE } from "../config";
 import { Breadcrumbs, Button, EmptyState, ErrorState, Icon, LoadingState, PageHeader, StatusBadge } from "../components/ui";
 
 export function CasesPage({ mockMode }: { mockMode: boolean }) {
@@ -15,10 +16,7 @@ export function CasesPage({ mockMode }: { mockMode: boolean }) {
   const casesQuery = useQuery({ queryKey: ["cases"], queryFn: api.listCases });
   const summariesQuery = useQuery({
     queryKey: ["case-summaries"],
-    queryFn: async () => {
-      const cases = await api.listCases();
-      return Promise.all(cases.map((item) => api.getCase(item.caseId)));
-    },
+    queryFn: api.listCaseSummaries,
     enabled: casesQuery.isSuccess,
   });
   const createMutation = useMutation({
@@ -123,7 +121,7 @@ export function CaseDetailPage() {
   if (summaryQuery.isLoading) return <LoadingState label="Loading case" />;
   if (summaryQuery.isError) return <ErrorState error={summaryQuery.error} retry={() => void summaryQuery.refetch()} />;
   const summary = summaryQuery.data;
-  if (!summary) return <EmptyState title="Case not found" detail="This case is not present in the fixture workspace." />;
+  if (!summary) return <EmptyState title="Case not found" detail={MOCK_MODE ? "This case is not present in the fixture workspace." : "No such case on the backend."} />;
 
   return (
     <>

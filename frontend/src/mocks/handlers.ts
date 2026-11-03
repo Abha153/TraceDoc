@@ -38,6 +38,14 @@ const pollingCounts = new Map<string, number>();
 const reviewStatus = new Map<string, ReviewStatus>();
 const reviewEvents: InvestigationEvent[] = [];
 
+/** Same payload shapes the real backend writes (B9): REVIEW {status, reason?}, COMMENT {text}, REOPEN {previousStatus, reason?}. */
+function reviewPayload(body: ReviewRequest, status: string, previousStatus: string): Record<string, unknown> {
+  const reason = body.reason?.trim();
+  if (body.action === "COMMENT") return { text: body.comment?.trim() ?? "" };
+  if (body.action === "REOPEN") return { previousStatus, ...(reason ? { reason } : {}) };
+  return { status, ...(reason ? { reason } : {}) };
+}
+
 function allCases() {
   return [...caseList(), ...additionalCases.values()];
 }
@@ -203,7 +211,9 @@ export const handlers = [
   http.get(`${API}/auth/me`, () =>
     HttpResponse.json({ analystId: "analyst@tracedocs.local", displayName: "Sample Analyst" }),
   ),
-  http.get(`${API}/cases`, () => HttpResponse.json(allCases())),
+  http.get(`${API}/cases`, () =>
+    HttpResponse.json(allCases().map((item) => caseSummary(item.caseId)).filter((summary): summary is CaseSummary => summary !== null)),
+  ),
   http.post(`${API}/cases`, async ({ request }) => {
     const { title } = await request.json() as CreateCaseRequest;
     const now = new Date().toISOString();
@@ -334,6 +344,7 @@ export const handlers = [
       return HttpResponse.json({ error: { code: "COMMENT_REQUIRED", message: "A comment is required." } }, { status: 400 });
     }
     const caseId = existing.finding.caseId;
+    const previousStatus = reviewStatus.get(findingId) ?? "UNREVIEWED";
     const status = nextReviewStatus(body.action, reviewStatus.get(findingId));
     if (body.action !== "COMMENT") reviewStatus.set(findingId, status);
     const event: InvestigationEvent = {
@@ -341,14 +352,9 @@ export const handlers = [
       caseId,
       at: new Date().toISOString(),
       actor: "fixture-analyst",
-      type: body.action === "COMMENT" ? "COMMENT" : "REVIEW",
+      type: body.action === "COMMENT" ? "COMMENT" : body.action === "REOPEN" ? "REOPEN" : "REVIEW",
       targetId: findingId,
-      payload: {
-        action: body.action,
-        ...(body.reason ? { reason: body.reason } : {}),
-        ...(body.comment ? { comment: body.comment } : {}),
-        ...(body.action === "COMMENT" ? {} : { status }),
-      },
+      payload: reviewPayload(body, status, previousStatus),
     };
     reviewEvents.push(event);
     const detail: FindingDetail = {
