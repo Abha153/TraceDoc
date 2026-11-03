@@ -23,3 +23,13 @@ describe("loadConfig", () => {
     expect(loadConfig({ ANALYST_PASSWORD_HASH: hash, PORT: "" }).port).toBe(4000);
   });
 });
+
+describe("retention config", () => {
+  it("defaults to 90 days and rejects nonsense", async () => {
+    const { loadConfig } = await import("../src/config.js");
+    const base = { ANALYST_PASSWORD_HASH: "scrypt$" + "0".repeat(32) + "$" + "0".repeat(128) };
+    expect(loadConfig(base).retentionDays).toBe(90);
+    expect(loadConfig({ ...base, RETENTION_DAYS: "30" }).retentionDays).toBe(30);
+    expect(() => loadConfig({ ...base, RETENTION_DAYS: "0" })).toThrow();
+  });
+});

@@ -1830,6 +1830,29 @@
       ],
       "additionalProperties": false,
       "description": "Python service, GET /health."
+    },
+    "RetentionPolicy": {
+      "type": "object",
+      "properties": {
+        "rawEvidenceRetentionDays": {
+          "type": "number"
+        },
+        "purgeImplemented": {
+          "type": "boolean",
+          "const": false,
+          "description": "Always false in this prototype: the policy is served, but no purge job exists."
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "rawEvidenceRetentionDays",
+        "purgeImplemented",
+        "note"
+      ],
+      "additionalProperties": false,
+      "description": "GET /compliance/retention-policy. Reports configuration only; nothing is purged automatically."
     }
   }
 }

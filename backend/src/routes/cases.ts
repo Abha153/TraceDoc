@@ -32,6 +32,7 @@ export function casesRouter(cases: CaseService, requireAuth: RequestHandler, rea
   r.get("/cases/:caseId", requireAuth, validate("params", caseParams), async (req, res, next) => {
     try {
       const c = await cases.require((req.params as { caseId: string }).caseId);
+      await log.recordView(c.caseId, req.analyst!.analystId, c.caseId);
       res.json(await cases.summary(c));
     } catch (err) {
       next(err);

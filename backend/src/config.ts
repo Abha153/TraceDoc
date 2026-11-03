@@ -25,6 +25,7 @@ const schema = z.object({
   ANALYST_PASSWORD_HASH: z
     .string()
     .regex(/^scrypt\$[0-9a-f]{32}\$[0-9a-f]{128}$/, "must be produced by `npm run hash-password`"),
+  RETENTION_DAYS: z.coerce.number().int().positive().max(3650).default(90), // reported by /compliance/retention-policy; nothing is purged
   SESSION_TTL_HOURS: z.coerce.number().positive().max(24 * 30).default(8),
   COOKIE_SECURE: boolFromString.optional(),
 });
@@ -46,6 +47,7 @@ export interface AppConfig {
   analystId: string;
   analystDisplayName: string;
   analystPasswordHash: string;
+  retentionDays: number;
   sessionTtlMs: number;
   cookieSecure: boolean;
 }
@@ -79,6 +81,7 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     analystId: e.ANALYST_ID,
     analystDisplayName: e.ANALYST_DISPLAY_NAME,
     analystPasswordHash: e.ANALYST_PASSWORD_HASH,
+    retentionDays: e.RETENTION_DAYS,
     sessionTtlMs: e.SESSION_TTL_HOURS * 3_600_000,
     cookieSecure: e.COOKIE_SECURE ?? e.NODE_ENV === "production",
   };

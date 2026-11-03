@@ -743,6 +743,27 @@ paths:
       security:
       - sessionCookie: []
       operationId: get_cases_caseId_integrity
+  /compliance/retention-policy:
+    get:
+      tags:
+      - reports
+      summary: Configured evidence retention policy (configuration only, no automatic purge)
+      responses:
+        '200':
+          description: Retention policy
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/RetentionPolicy
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_compliance_retention_policy
   /analyze:
     servers:
     - url: http://localhost:8000

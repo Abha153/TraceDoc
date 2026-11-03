@@ -6,6 +6,7 @@ import { LoginLimiter, SessionStore } from "./auth/sessions.js";
 import { createRequireAuth } from "./middleware/requireAuth.js";
 import { createRequestLogger } from "./middleware/requestLogger.js";
 import { healthRouter } from "./routes/health.js";
+import { complianceRouter } from "./routes/compliance.js";
 import { authRouter } from "./routes/auth.js";
 import { documentsRouter } from "./routes/documents.js";
 import { casesRouter } from "./routes/cases.js";
@@ -157,6 +158,7 @@ export function createApp(deps: AppDeps): Express {
   const api = express.Router();
   api.use(healthRouter());
   api.use(authRouter(deps));
+  api.use(complianceRouter(deps.requireAuth, deps.config.retentionDays));
   api.use(casesRouter(deps.cases, deps.requireAuth, deps.reasoning, deps.events));
   api.use(
     documentsRouter({

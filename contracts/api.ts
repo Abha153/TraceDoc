@@ -158,6 +158,14 @@ export interface DossierJson {
   integrity: IntegrityReport;
 }
 
+/** GET /compliance/retention-policy. Reports configuration only; nothing is purged automatically. */
+export interface RetentionPolicy {
+  rawEvidenceRetentionDays: number;
+  /** Always false in this prototype: the policy is served, but no purge job exists. */
+  purgeImplemented: false;
+  note: string;
+}
+
 /** Shape of contracts/fixtures/CASE-00x.case.json: everything the frontend mock server needs besides reasoning output. */
 export interface CaseFixture {
   case: Case;

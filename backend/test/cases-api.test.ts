@@ -180,3 +180,38 @@ describe("remapId", () => {
     });
   });
 });
+
+describe("access log", () => {
+  it("opening a case records a VIEW event (once per minute per analyst), visible in the case event log", async () => {
+    const { app } = await testApp();
+    const agent = await loggedInAgent(app);
+    await agent.post("/api/v1/cases").send({ title: "Viewed" }).expect(201);
+    await agent.get("/api/v1/cases/CASE-001").expect(200);
+    await agent.get("/api/v1/cases/CASE-001").expect(200); // inside the dedupe window: no second event
+    const events = (await agent.get("/api/v1/cases/CASE-001/events").expect(200)).body.events as Array<{ type: string; targetId: string; actor: string }>;
+    const views = events.filter((e) => e.type === "VIEW");
+    expect(views).toHaveLength(1);
+    expect(views[0]).toMatchObject({ targetId: "CASE-001", actor: "analyst" });
+  });
+
+  it("listing cases does not log views, and a missing case logs nothing", async () => {
+    const { app } = await testApp();
+    const agent = await loggedInAgent(app);
+    await agent.post("/api/v1/cases").send({ title: "Quiet" }).expect(201);
+    await agent.get("/api/v1/cases").expect(200);
+    await agent.get("/api/v1/cases/CASE-099").expect(404);
+    const events = (await agent.get("/api/v1/cases/CASE-001/events").expect(200)).body.events as Array<{ type: string }>;
+    expect(events.filter((e) => e.type === "VIEW")).toHaveLength(0);
+  });
+});
+
+describe("retention policy", () => {
+  it("requires login and reports configuration only, never implying a purge happens", async () => {
+    const { app } = await testApp();
+    expect((await request(app).get("/api/v1/compliance/retention-policy")).status).toBe(401);
+    const agent = await loggedInAgent(app);
+    const body = (await agent.get("/api/v1/compliance/retention-policy").expect(200)).body;
+    expect(body).toMatchObject({ rawEvidenceRetentionDays: 90, purgeImplemented: false });
+    expect(body.note).toContain("not implemented");
+  });
+});
