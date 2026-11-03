@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S7b",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S7b",
+        "id_card_S7b"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S7b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "7676 CEDAR AVENUE\nRAVENSWOOD, CO 50330",
+          "value": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.372898,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S7b",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "63 Cedar Court, Ravenswood, GA 98076",
+          "value": "63 Cedar Court, Ravenswood, GA 98076",
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.344879,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S7b-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S7b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "value": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.368928,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S7b",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "63 Cedar Court, Ravenswood, GA 98076",
+          "value": "63 Cedar Court, Ravenswood, GA 98076",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.33095,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S7b-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S7b",
+        "loan_application_S7b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7b",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 28,000.00",
+          "value": "28000.00",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S7b",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "6,041.99",
+          "value": "6041.99",
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S7b-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S7b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Darnell Nakamura",
+          "value": "Darnell Nakamura",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.148084,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S7b",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Rashad Ivanova",
+          "value": "Rashad Ivanova",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.133147,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S7b-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S7b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1980-04-28",
+          "value": "1980-04-28",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S7b",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1966-08-24",
+          "value": "1966-08-24",
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S7b-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S7b",
+      "documents": [
+        "id_card_S7b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S7b",
+      "documents": [
+        "loan_application_S7b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S7b",
+      "documents": [
+        "bank_statement_S7b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}

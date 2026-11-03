@@ -1,0 +1,60 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S2a",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "NAME_VARIANT_SPELLING",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "documents": [
+        "id_card_S2a",
+        "loan_application_S2a"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "evidence": [
+        {
+          "docId": "id_card_S2a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "SAOIRSE WHITLOCK",
+          "value": "Saoirse Whitlock",
+          "region": {
+            "docId": "id_card_S2a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.346192,
+              0.042319
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S2a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Saoirsi Whitloock",
+          "value": "Saoirsi Whitloock",
+          "region": {
+            "docId": "loan_application_S2a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.141092,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        }
+      ],
+      "tokenSortRatio": 90.9,
+      "scoring": "required",
+      "notes": "Spelling variant, token-sort ratio 90.9 (variant band 75-92). The name on the form is a respelling of the ID card name (no id_number on the form to link them). Not a tampering signal: no forensic finding is expected."
+    }
+  ]
+}

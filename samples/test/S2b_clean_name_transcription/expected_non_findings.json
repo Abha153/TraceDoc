@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S2b",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S2b",
+        "id_card_S2b"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S2b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "3947 WILLOW TERRACE\nNORTHGATE, NC 61772",
+          "value": "3947 Willow Terrace, Northgate, NC 61772",
+          "region": {
+            "docId": "id_card_S2b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.353116,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S2b",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "9848 Willow Avenue, Easton Vale, CA 30136",
+          "value": "9848 Willow Avenue, Easton Vale, CA 30136",
+          "region": {
+            "docId": "bank_statement_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.377879,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S2b-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S2b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S2b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "3947 Willow Terrace, Northgate, NC 61772",
+          "value": "3947 Willow Terrace, Northgate, NC 61772",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.346892,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S2b",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "9848 Willow Avenue, Easton Vale, CA 30136",
+          "value": "9848 Willow Avenue, Easton Vale, CA 30136",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.362925,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S2b-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S2b",
+        "loan_application_S2b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S2b",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 14,000.00",
+          "value": "14000.00",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S2b",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "5,567.74",
+          "value": "5567.74",
+          "region": {
+            "docId": "bank_statement_S2b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S2b-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S2b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S2b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Ignatius Verhoeven",
+          "value": "Ignatius Verhoeven",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.158131,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S2b",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Kwabena Nakamura",
+          "value": "Kwabena Nakamura",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.166093,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S2b-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S2b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S2b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1988-07-09",
+          "value": "1988-07-09",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S2b",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1985-03-22",
+          "value": "1985-03-22",
+          "region": {
+            "docId": "loan_application_S2b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S2b-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S2b",
+      "documents": [
+        "id_card_S2b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S2b",
+      "documents": [
+        "loan_application_S2b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S2b",
+      "documents": [
+        "bank_statement_S2b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}

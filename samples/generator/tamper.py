@@ -291,7 +291,8 @@ def _save_image(img: Image.Image, dst: Path, like: Path, quality: int):
 
 # ----------------------------------------------------------------------------- tamper 3
 def tamper_paint_retype_scan(src: Path, dst: Path, doc: dict, field: str, *, base: Path,
-                             new_text: str | None = None, quality: int = 72) -> dict:
+                             new_text: str | None = None, quality: int = 72,
+                             font_file: str = "LiberationSans-Regular.ttf") -> dict:
     """3. Paint over a value in a scanned image with the local paper colour and type new digits."""
     f = field_of(doc, field)
     new_text = new_text or alter_digits(f["text"])
@@ -302,7 +303,7 @@ def tamper_paint_retype_scan(src: Path, dst: Path, doc: dict, field: str, *, bas
     d = ImageDraw.Draw(img)
     d.rectangle(area, fill=_background(img, area))
     h = box[3] - box[1]
-    font = _font("LiberationSans-Regular.ttf", max(8, round(h * 0.80)))
+    font = _font(font_file, max(8, round(h * 0.80)))
     base_y = box[3] - round(h * 0.22)
     d.text((box[0], base_y), new_text, font=font, fill=(24, 24, 28), anchor="ls")
     right = max(box[2], box[0] + round(d.textlength(new_text, font=font)))

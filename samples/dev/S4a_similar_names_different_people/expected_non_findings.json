@@ -1,0 +1,455 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S4a",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S4a",
+        "id_card_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S4a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "3075 SUMMIT DRIVE\nWESTMOOR, TX 52339",
+          "value": "3075 Summit Drive, Westmoor, TX 52339",
+          "region": {
+            "docId": "id_card_S4a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.327399,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S4a",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "2236 Willow Terrace, Ashford Hollow, NC 20807",
+          "value": "2236 Willow Terrace, Ashford Hollow, NC 20807",
+          "region": {
+            "docId": "bank_statement_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.408812,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S4a-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "3075 Summit Drive, Westmoor, TX 52339",
+          "value": "3075 Summit Drive, Westmoor, TX 52339",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.335892,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S4a",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "2236 Willow Terrace, Ashford Hollow, NC 20807",
+          "value": "2236 Willow Terrace, Ashford Hollow, NC 20807",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.388825,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S4a-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S4a",
+        "loan_application_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4a",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 24,500.00",
+          "value": "24500.00",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S4a",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "5,471.44",
+          "value": "5471.44",
+          "region": {
+            "docId": "bank_statement_S4a",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S4a-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Ingrid Hollis",
+          "value": "Ingrid Hollis",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.097146,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4a",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Ingrid Hollus",
+          "value": "Ingrid Hollus",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.103149,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S4a-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1994-05-19",
+          "value": "1994-05-19",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S4a",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1980-03-19",
+          "value": "1980-03-19",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S4a-5"
+    },
+    {
+      "nonFindingId": "NF-050",
+      "description": "Applicant and guarantor have similar names but are different people (token-sort ratio 92.3; different id_number and date of birth).",
+      "documents": [
+        "id_card_S4a",
+        "id_card_guarantor_S4a",
+        "loan_application_S4a"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S4a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "INGRID HOLLIS",
+          "value": "Ingrid Hollis",
+          "region": {
+            "docId": "id_card_S4a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.254204,
+              0.042319
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "id_card_guarantor_S4a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "INGRID HOLLUS",
+          "value": "Ingrid Hollus",
+          "region": {
+            "docId": "id_card_guarantor_S4a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.269041,
+              0.042319
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Ingrid Hollis",
+          "value": "Ingrid Hollis",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.097146,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4a",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Ingrid Hollus",
+          "value": "Ingrid Hollus",
+          "region": {
+            "docId": "loan_application_S4a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.103149,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        },
+        {
+          "docId": "id_card_S4a",
+          "field": "id_number",
+          "semanticType": "id_number",
+          "text": "SMP-1937-4131-XC",
+          "value": "SMP-1937-4131-XC",
+          "region": {
+            "docId": "id_card_S4a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.677116,
+              0.327399,
+              0.040752
+            ],
+            "label": "id_number"
+          }
+        },
+        {
+          "docId": "id_card_guarantor_S4a",
+          "field": "id_number",
+          "semanticType": "id_number",
+          "text": "SMP-4467-3459-VE",
+          "value": "SMP-4467-3459-VE",
+          "region": {
+            "docId": "id_card_guarantor_S4a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.677116,
+              0.327399,
+              0.040752
+            ],
+            "label": "id_number"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Different id_number: the two must stay two separate entities and must not be merged or reported as a name conflict.",
+      "entityExpectations": [
+        {
+          "role": "applicant",
+          "personId": "PS04A1"
+        },
+        {
+          "role": "guarantor",
+          "personId": "PS04A2",
+          "mustNotMergeWith": "PS04A1"
+        }
+      ]
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S4a",
+      "documents": [
+        "id_card_S4a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on id_card_guarantor_S4a",
+      "documents": [
+        "id_card_guarantor_S4a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on loan_application_S4a",
+      "documents": [
+        "loan_application_S4a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-104",
+      "description": "No forensic signal on bank_statement_S4a",
+      "documents": [
+        "bank_statement_S4a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}
