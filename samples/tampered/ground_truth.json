@@ -1,0 +1,493 @@
+{
+  "schema": "tracedocs-tamper-ground-truth-1",
+  "fictional": true,
+  "note": "Synthetic test edits of fictional documents. 'tampered' = an edit was applied for testing; 'control' = a genuine file that must NOT be reported as edited. No intent is implied.",
+  "bbox_format": "xywh",
+  "bbox_note": "bbox and region.bbox are [x, y, w, h], 0-1 fractions of the page, origin top-left.",
+  "entries": [
+    {
+      "id": "T-01",
+      "type": "pdf_value_replaced",
+      "role": "tampered",
+      "file": "tampered/loan_application_001__value_replaced.pdf",
+      "doc_id": "loan_application_001__value_replaced",
+      "page": 1,
+      "bbox": [
+        0.086601,
+        0.40922,
+        0.126156,
+        0.015372
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001__value_replaced",
+        "page": 1,
+        "bbox": [
+          0.086601,
+          0.40922,
+          0.126156,
+          0.015372
+        ],
+        "label": "requested_loan_amount"
+      },
+      "field": "requested_loan_amount",
+      "description": "Printed value of 'requested_loan_amount' changed from 'USD 21,500.00' to 'USD 51,500.00' by rewriting the page content stream; font, size and position unchanged.",
+      "modality": "digital_pdf",
+      "expected_finding": true,
+      "source_doc_id": "loan_application_001",
+      "source_file": "genuine/loan_application_001.pdf",
+      "sha256": "b836374c0031c136f04880ecd23ae7edbe9d145193e4d583a2f10a53674bde2b",
+      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "fictional": true,
+      "original_value": "USD 21,500.00",
+      "edited_value": "USD 51,500.00"
+    },
+    {
+      "id": "T-02",
+      "type": "pdf_font_changed",
+      "role": "tampered",
+      "file": "tampered/bank_statement_001__font_changed.pdf",
+      "doc_id": "bank_statement_001__font_changed",
+      "page": 1,
+      "bbox": [
+        0.846271,
+        0.436001,
+        0.057324,
+        0.016453
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "bank_statement_001__font_changed",
+        "page": 1,
+        "bbox": [
+          0.846271,
+          0.436001,
+          0.057324,
+          0.016453
+        ],
+        "label": "transaction_05_balance"
+      },
+      "field": "transaction_05_balance",
+      "description": "Single value 'transaction_05_balance' re-set from Helvetica 8.5 pt to Times-Roman 9.5 pt; every other value keeps the original font.",
+      "modality": "digital_pdf",
+      "expected_finding": true,
+      "source_doc_id": "bank_statement_001",
+      "source_file": "genuine/bank_statement_001.pdf",
+      "sha256": "1606e01b33e4d58b799a0bb4bc242d0095d8f9f1425d6fb08fb3374d6e45bb1e",
+      "source_sha256": "bb7a3d0f352462202261a62583df5e642db69ed72747399f043b91d951736691",
+      "fictional": true,
+      "original_font": "Helvetica 8.5",
+      "edited_font": "Times-Roman 9.5"
+    },
+    {
+      "id": "T-03",
+      "type": "scan_digits_painted_over",
+      "role": "tampered",
+      "file": "tampered/loan_application_001_scan__digits_retyped.jpg",
+      "doc_id": "loan_application_001_scan__digits_retyped",
+      "page": 1,
+      "bbox": [
+        0.083529,
+        0.412273,
+        0.128824,
+        0.019091
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001_scan__digits_retyped",
+        "page": 1,
+        "bbox": [
+          0.083529,
+          0.412273,
+          0.128824,
+          0.019091
+        ],
+        "label": "requested_loan_amount"
+      },
+      "field": "requested_loan_amount",
+      "description": "Value of 'requested_loan_amount' covered with the local paper colour and retyped as 'USD 51,500.00' (was 'USD 21,500.00'); the new digits are crisper than the scan.",
+      "modality": "scan_image",
+      "expected_finding": true,
+      "source_doc_id": "loan_application_001_scan",
+      "source_file": "genuine/loan_application_001_scan.jpg",
+      "sha256": "6df059ad1e1235d895a632fb355fd88be22a75058b8c21411a717ae65d70c6d1",
+      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "fictional": true,
+      "original_value": "USD 21,500.00",
+      "edited_value": "USD 51,500.00"
+    },
+    {
+      "id": "T-04",
+      "type": "copy_move_region",
+      "role": "tampered",
+      "file": "tampered/bank_statement_001_scan__copy_move.jpg",
+      "doc_id": "bank_statement_001_scan__copy_move",
+      "page": 1,
+      "bbox": [
+        0.095882,
+        0.519545,
+        0.807647,
+        0.02091
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "bank_statement_001_scan__copy_move",
+        "page": 1,
+        "bbox": [
+          0.095882,
+          0.519545,
+          0.807647,
+          0.02091
+        ],
+        "label": "copy_move_region"
+      },
+      "field": null,
+      "description": "A region was copied from the source box and pasted unchanged at the destination box in the same image; the destination bbox is the affected region.",
+      "modality": "scan_image",
+      "expected_finding": true,
+      "source_doc_id": "bank_statement_001_scan",
+      "source_file": "genuine/bank_statement_001_scan.jpg",
+      "sha256": "82af9acd425c4d6061e683879e96420b2cc50f8739c7f87775a0bd89bd4cad64",
+      "source_sha256": "d82131bb9e330cfd9b47ec6612db1607b1556090c7c974049e15c56de4fc7419",
+      "fictional": true,
+      "source_region": {
+        "docId": "bank_statement_001_scan__copy_move",
+        "page": 1,
+        "bbox": [
+          0.09845,
+          0.369373,
+          0.807334,
+          0.020943
+        ],
+        "label": "transaction_row_02_to_09"
+      }
+    },
+    {
+      "id": "T-05",
+      "type": "signature_replaced",
+      "role": "tampered",
+      "file": "tampered/loan_application_001_scan__signature_replaced.jpg",
+      "doc_id": "loan_application_001_scan__signature_replaced",
+      "page": 1,
+      "bbox": [
+        0.104563,
+        0.681494,
+        0.359808,
+        0.062439
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001_scan__signature_replaced",
+        "page": 1,
+        "bbox": [
+          0.104563,
+          0.681494,
+          0.359808,
+          0.062439
+        ],
+        "label": "applicant_signature"
+      },
+      "field": "applicant_signature",
+      "description": "The signature in 'applicant_signature' was erased and a different fictional signature (stroke seed 424242) was drawn in the same box.",
+      "modality": "scan_image",
+      "expected_finding": true,
+      "source_doc_id": "loan_application_001_scan",
+      "source_file": "genuine/loan_application_001_scan.jpg",
+      "sha256": "63106d79e50fa9a7ddd0fad696e7e8fe97d932910d1d4de2354384cd45ed4eed",
+      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "fictional": true,
+      "replacement_signature_seed": 424242
+    },
+    {
+      "id": "T-06",
+      "type": "photo_swapped",
+      "role": "tampered",
+      "file": "tampered/id_card_001__photo_swapped.png",
+      "doc_id": "id_card_001__photo_swapped",
+      "page": 1,
+      "bbox": [
+        0.038576,
+        0.217868,
+        0.249258,
+        0.473355
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "id_card_001__photo_swapped",
+        "page": 1,
+        "bbox": [
+          0.038576,
+          0.217868,
+          0.249258,
+          0.473355
+        ],
+        "label": "photo"
+      },
+      "field": "photo",
+      "description": "The portrait area of the ID image was replaced with a different synthetic portrait (different colours and shapes); the frame and the rest of the card are unchanged.",
+      "modality": "id_image",
+      "expected_finding": true,
+      "source_doc_id": "id_card_001",
+      "source_file": "genuine/id_card_001.png",
+      "sha256": "85ce7ff6ac0338224b5272f2914f68726fa5838f4a57ccd0024ec0e8c03330b6",
+      "source_sha256": "768063ea6326727b25a1e9ce3c0001a97b88ab1613240c9e0cdef51f28f3d640",
+      "fictional": true,
+      "replacement_photo_seed": 91
+    },
+    {
+      "id": "T-07",
+      "type": "pdf_incremental_save",
+      "role": "tampered",
+      "file": "tampered/bank_statement_001__incremental_edit.pdf",
+      "doc_id": "bank_statement_001__incremental_edit",
+      "page": 1,
+      "bbox": [
+        0.836556,
+        0.256992,
+        0.060503,
+        0.013037
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "bank_statement_001__incremental_edit",
+        "page": 1,
+        "bbox": [
+          0.836556,
+          0.256992,
+          0.060503,
+          0.013037
+        ],
+        "label": "closing_balance"
+      },
+      "field": "closing_balance",
+      "description": "Value of 'closing_balance' changed from '6,143.36' to '9,143.36' in an appended revision (incremental update); the original revision is still present in the file.",
+      "modality": "digital_pdf",
+      "expected_finding": true,
+      "source_doc_id": "bank_statement_001",
+      "source_file": "genuine/bank_statement_001.pdf",
+      "sha256": "cb35151f84b724d554200b68db54c3e07fe17bea3f8c4e2a3921ba9a520de4cd",
+      "source_sha256": "bb7a3d0f352462202261a62583df5e642db69ed72747399f043b91d951736691",
+      "fictional": true,
+      "original_value": "6,143.36",
+      "edited_value": "9,143.36",
+      "revisions": 2
+    },
+    {
+      "id": "T-08",
+      "type": "pdf_hidden_text",
+      "role": "tampered",
+      "file": "tampered/loan_application_002__hidden_white_text.pdf",
+      "doc_id": "loan_application_002__hidden_white_text",
+      "page": 1,
+      "bbox": [
+        0.223377,
+        0.40922,
+        0.125339,
+        0.015372
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_002__hidden_white_text",
+        "page": 1,
+        "bbox": [
+          0.223377,
+          0.40922,
+          0.125339,
+          0.015372
+        ],
+        "label": "requested_loan_amount"
+      },
+      "field": "requested_loan_amount",
+      "description": "Text 'USD 56,500.00' was added right of the visible value 'USD 26,500.00' (white on white); it appears in the text layer but not on the rendered page.",
+      "modality": "digital_pdf",
+      "expected_finding": true,
+      "source_doc_id": "loan_application_002",
+      "source_file": "genuine/loan_application_002.pdf",
+      "sha256": "66fbf9ea2a1d880b2a6a8e6b5552ee61eedffba7ccb6148dda55f9b455d99343",
+      "source_sha256": "56ebfb1500dfc9c8490a6c9079bf787f9c25c2c745d89717fd72a5e4b86b43ac",
+      "fictional": true,
+      "visible_value": "USD 26,500.00",
+      "hidden_value": "USD 56,500.00",
+      "method": "white_on_white"
+    },
+    {
+      "id": "T-09",
+      "type": "pdf_hidden_text",
+      "role": "tampered",
+      "file": "tampered/loan_application_002__hidden_invisible_text.pdf",
+      "doc_id": "loan_application_002__hidden_invisible_text",
+      "page": 1,
+      "bbox": [
+        0.712016,
+        0.207199,
+        0.09437,
+        0.015373
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_002__hidden_invisible_text",
+        "page": 1,
+        "bbox": [
+          0.712016,
+          0.207199,
+          0.09437,
+          0.015373
+        ],
+        "label": "date_of_birth"
+      },
+      "field": "date_of_birth",
+      "description": "Text '1969-12-31' was added right of the visible value '1980-08-21' (invisible render mode); it appears in the text layer but not on the rendered page.",
+      "modality": "digital_pdf",
+      "expected_finding": true,
+      "source_doc_id": "loan_application_002",
+      "source_file": "genuine/loan_application_002.pdf",
+      "sha256": "b9ebc7f39b4b5cfe74aac3bbb42f5c336cf6dbc8d38caba387d01aff2760820d",
+      "source_sha256": "56ebfb1500dfc9c8490a6c9079bf787f9c25c2c745d89717fd72a5e4b86b43ac",
+      "fictional": true,
+      "visible_value": "1980-08-21",
+      "hidden_value": "1969-12-31",
+      "method": "invisible_render_mode"
+    },
+    {
+      "id": "C-01",
+      "type": "recompressed_only",
+      "role": "control",
+      "file": "controls/loan_application_001_scan__recompressed.jpg",
+      "doc_id": "loan_application_001_scan__recompressed",
+      "page": 1,
+      "bbox": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001_scan__recompressed",
+        "page": 1,
+        "bbox": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "label": "recompressed_only"
+      },
+      "field": null,
+      "description": "Genuine image only re-saved as JPEG quality 85; content unchanged. Detectors should not report an edit.",
+      "modality": "scan_image",
+      "expected_finding": false,
+      "source_doc_id": "loan_application_001_scan",
+      "source_file": "genuine/loan_application_001_scan.jpg",
+      "sha256": "df2c73ae513df45aa9e37d177f5e4aca898e81be36777946d59fe226e219142c",
+      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "fictional": true,
+      "jpeg_quality": 85
+    },
+    {
+      "id": "C-02",
+      "type": "pdf_resaved_only",
+      "role": "control",
+      "file": "controls/bank_statement_001__resaved.pdf",
+      "doc_id": "bank_statement_001__resaved",
+      "page": 1,
+      "bbox": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "bank_statement_001__resaved",
+        "page": 1,
+        "bbox": [
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "label": "pdf_resaved_only"
+      },
+      "field": null,
+      "description": "Genuine PDF re-saved by a PDF library; page content unchanged. Detectors should not report an edit.",
+      "modality": "digital_pdf",
+      "expected_finding": false,
+      "source_doc_id": "bank_statement_001",
+      "source_file": "genuine/bank_statement_001.pdf",
+      "sha256": "2e09c4959360f07b1cf6f992f4bf3933542b69c69d556cfd1b554f75e2e007d9",
+      "source_sha256": "bb7a3d0f352462202261a62583df5e642db69ed72747399f043b91d951736691",
+      "fictional": true
+    },
+    {
+      "id": "C-03",
+      "type": "legit_bold_value",
+      "role": "control",
+      "file": "controls/loan_application_001__bold_value.pdf",
+      "doc_id": "loan_application_001__bold_value",
+      "page": 1,
+      "bbox": [
+        0.086601,
+        0.207199,
+        0.127144,
+        0.015373
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001__bold_value",
+        "page": 1,
+        "bbox": [
+          0.086601,
+          0.207199,
+          0.127144,
+          0.015373
+        ],
+        "label": "full_name"
+      },
+      "field": "full_name",
+      "description": "Value 'full_name' set in bold for emphasis; the text is unchanged. Legitimate formatting, not an edit of the content.",
+      "modality": "digital_pdf",
+      "expected_finding": false,
+      "source_doc_id": "loan_application_001",
+      "source_file": "genuine/loan_application_001.pdf",
+      "sha256": "8de66e7509a030865bdd442b0bd24842956765fb48744bc0bbcd3d19509a0c88",
+      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "fictional": true
+    },
+    {
+      "id": "C-04",
+      "type": "legit_highlight",
+      "role": "control",
+      "file": "controls/loan_application_001__highlighted_value.pdf",
+      "doc_id": "loan_application_001__highlighted_value",
+      "page": 1,
+      "bbox": [
+        0.083333,
+        0.407326,
+        0.132692,
+        0.01916
+      ],
+      "bbox_format": "xywh",
+      "region": {
+        "docId": "loan_application_001__highlighted_value",
+        "page": 1,
+        "bbox": [
+          0.083333,
+          0.407326,
+          0.132692,
+          0.01916
+        ],
+        "label": "requested_loan_amount"
+      },
+      "field": "requested_loan_amount",
+      "description": "Value 'requested_loan_amount' highlighted with a filled rectangle behind unchanged text. Legitimate markup, not an edit of the content.",
+      "modality": "digital_pdf",
+      "expected_finding": false,
+      "source_doc_id": "loan_application_001",
+      "source_file": "genuine/loan_application_001.pdf",
+      "sha256": "12dc04ffcc7fcc62aee79bff0c938fb7fe31c7793a975311d8ccbbe587273ed7",
+      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "fictional": true
+    }
+  ]
+}

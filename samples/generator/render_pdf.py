@@ -170,11 +170,13 @@ def _dmy(iso: str) -> str:
     return f"{date.fromisoformat(iso):%d %b %Y}"
 
 
-def render_statement(persons: dict, out_path: Path):
+def render_statement(persons: dict, out_path: Path, printed: dict | None = None):
     by_id = {p["person_id"]: p for p in persons["persons"]}
     acct = persons["bank_account"]
     holder = by_id[acct["holder_id"]]
     st = compute_statement(acct)
+    if printed:  # D3 S7 only: print a total that does NOT match the listed transactions (arithmetic error)
+        st = {**st, **{k: Decimal(v) for k, v in printed.items()}}
     pg = Page(out_path, "SAMPLE Account Statement (fictional)")
 
     pg.banner("SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT")

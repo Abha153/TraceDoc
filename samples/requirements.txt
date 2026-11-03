@@ -3,6 +3,8 @@ Pillow>=10.1
 reportlab>=4.0
 Faker>=20.0        # only for --rebuild-persons; rendering uses the committed persons.json
 pypdfium2>=4.0      # rasterise generated PDFs for the scan-like versions (see README)
+pikepdf>=9.0        # D2 tamper.py: edit PDF content streams (MPL-2.0; wraps qpdf, Apache-2.0). Needed because
+                    # a value must be rewritten operator by operator without re-rendering the page
 
 # Tests only
 pytest>=7.0
