@@ -9,3 +9,12 @@ dist/
 
 *.zip
 *.bundle
+
+# TraceDocs sample development artifacts
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+**/.pytest_cache/
+*.py[cod]
+*.patch
+*.bundle
