@@ -1,0 +1,3039 @@
+{
+  "manifest_version": "d1-lite-1",
+  "note": "D1-lite local manifest owned by samples/. Field set is specific to these documents; it is NOT a shared contract schema.",
+  "fictional": true,
+  "seed": 20260101,
+  "persons_file": "persons.json",
+  "coordinate_system": {
+    "bbox_format": "[x_min, y_min, x_max, y_max]",
+    "bbox_space": "normalised 0-1 fraction of the page/image width and height",
+    "origin": "top-left, y increases downward",
+    "scan_bbox_note": "In scan files bboxes are the axis-aligned box enclosing the rotated field rectangle (rotation_deg is given in `scan`)."
+  },
+  "documents": [
+    {
+      "doc_id": "id_card_001",
+      "doc_type": "id_card",
+      "variant": "original",
+      "role": "genuine",
+      "file": "genuine/id_card_001.png",
+      "format": "png",
+      "sha256": "c09367cd07a89c5b95453131418cd99fa649f64e2682ade14a22de2fb3aa43f4",
+      "bytes": 78229,
+      "person_ids": [
+        "P001"
+      ],
+      "derived_from": null,
+      "has_text_layer": false,
+      "size_px": {
+        "width": 1011,
+        "height": 638
+      },
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE",
+          "value": "SAMPLE",
+          "page": 1,
+          "bbox": [
+            0.749753,
+            0.031348,
+            0.962413,
+            0.125392
+          ]
+        },
+        {
+          "name": "photo",
+          "field_type": "photo",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.038576,
+            0.217868,
+            0.287834,
+            0.691223
+          ]
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "text": "BRADLEY EVANS",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.258621,
+            0.613254,
+            0.30094
+          ]
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "text": "05 SEP 1984",
+          "value": "1984-09-05",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.380878,
+            0.526212,
+            0.423197
+          ]
+        },
+        {
+          "name": "issue_date",
+          "field_type": "date",
+          "text": "01 JAN 2024",
+          "value": "2024-01-01",
+          "page": 1,
+          "bbox": [
+            0.710188,
+            0.387147,
+            0.877349,
+            0.423197
+          ]
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "text": "06028 BARRY HARBORS\nPORT JOSEPH, GU 44394",
+          "value": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.5,
+            0.691395,
+            0.603448
+          ]
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.677116,
+            0.65183,
+            0.717868
+          ]
+        },
+        {
+          "name": "expiry_date",
+          "field_type": "date",
+          "text": "01 JAN 2034",
+          "value": "2034-01-01",
+          "page": 1,
+          "bbox": [
+            0.710188,
+            0.681818,
+            0.877349,
+            0.717868
+          ]
+        },
+        {
+          "name": "signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.344214,
+            0.76489,
+            0.654797,
+            0.904389
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "id_card_001_scan",
+      "doc_type": "id_card",
+      "variant": "scan",
+      "role": "genuine",
+      "file": "genuine/id_card_001_scan.jpg",
+      "format": "jpg",
+      "sha256": "f5083292a608c702fcc623d771cd598c7fd547501682e94054e6c9f167993491",
+      "bytes": 91477,
+      "person_ids": [
+        "P001"
+      ],
+      "derived_from": "id_card_001",
+      "has_text_layer": false,
+      "size_px": {
+        "width": 1011,
+        "height": 638
+      },
+      "scan": {
+        "rotation_deg": -0.58,
+        "rotation_direction": "counter-clockwise for positive values",
+        "blur_radius": 0.6,
+        "noise_amplitude": 0.1,
+        "contrast": 0.93,
+        "jpeg_quality": 72,
+        "dpi": 200,
+        "seed": 20260102
+      },
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE",
+          "value": "SAMPLE",
+          "page": 1,
+          "bbox": [
+            0.752133,
+            0.035378,
+            0.965383,
+            0.132829
+          ]
+        },
+        {
+          "name": "photo",
+          "field_type": "photo",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.037378,
+            0.210481,
+            0.289647,
+            0.68781
+          ]
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "text": "BRADLEY EVANS",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.325712,
+            0.255817,
+            0.61479,
+            0.302767
+          ]
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "text": "05 SEP 1984",
+          "value": "1984-09-05",
+          "page": 1,
+          "bbox": [
+            0.324931,
+            0.378068,
+            0.526972,
+            0.423621
+          ]
+        },
+        {
+          "name": "issue_date",
+          "field_type": "date",
+          "text": "01 JAN 2024",
+          "value": "2024-01-01",
+          "page": 1,
+          "bbox": [
+            0.710668,
+            0.390524,
+            0.878051,
+            0.429254
+          ]
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "text": "06028 BARRY HARBORS\nPORT JOSEPH, GU 44394",
+          "value": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "page": 1,
+          "bbox": [
+            0.323779,
+            0.497184,
+            0.691385,
+            0.606513
+          ]
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.323048,
+            0.674291,
+            0.650691,
+            0.720292
+          ]
+        },
+        {
+          "name": "expiry_date",
+          "field_type": "date",
+          "text": "01 JAN 2034",
+          "value": "2034-01-01",
+          "page": 1,
+          "bbox": [
+            0.708785,
+            0.68518,
+            0.876168,
+            0.72391
+          ]
+        },
+        {
+          "name": "signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.341639,
+            0.762377,
+            0.653097,
+            0.906851
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "loan_application_001",
+      "doc_type": "loan_application",
+      "variant": "original",
+      "role": "genuine",
+      "file": "genuine/loan_application_001.pdf",
+      "format": "pdf",
+      "sha256": "b52b70e03a14f99655c2b9f72b09816a0fb5b188ba6d0c92d2f2bd9bd67d6a11",
+      "bytes": 5884,
+      "person_ids": [
+        "P001",
+        "P002"
+      ],
+      "derived_from": null,
+      "has_text_layer": true,
+      "pages": [
+        {
+          "page": 1,
+          "width_pt": 612.0,
+          "height_pt": 792.0
+        }
+      ],
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.013662,
+            0.638154,
+            0.027866
+          ]
+        },
+        {
+          "name": "application_number",
+          "field_type": "identifier",
+          "text": "APP-2026-244884",
+          "value": "APP-2026-244884",
+          "page": 1,
+          "bbox": [
+            0.761271,
+            0.084725,
+            0.913399,
+            0.100097
+          ]
+        },
+        {
+          "name": "application_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.818212,
+            0.122604,
+            0.913399,
+            0.137976
+          ]
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "text": "Bradley Evans",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.207199,
+            0.205747,
+            0.222572
+          ]
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "text": "1984-09-05",
+          "value": "1984-09-05",
+          "page": 1,
+          "bbox": [
+            0.606209,
+            0.207199,
+            0.701395,
+            0.222572
+          ]
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "text": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "value": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.262755,
+            0.454505,
+            0.278128
+          ]
+        },
+        {
+          "name": "current_address",
+          "field_type": "text",
+          "text": "5985 Debbie Spring, North James, HI 84871",
+          "value": "5985 Debbie Spring, North James, HI 84871",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.318311,
+            0.443523,
+            0.333683
+          ]
+        },
+        {
+          "name": "requested_loan_amount",
+          "field_type": "money",
+          "text": "USD 21,500.00",
+          "value": "21500.00",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.40922,
+            0.212757,
+            0.424592
+          ]
+        },
+        {
+          "name": "loan_term_months",
+          "field_type": "integer",
+          "text": "24 months",
+          "value": "24",
+          "page": 1,
+          "bbox": [
+            0.439542,
+            0.40922,
+            0.52673,
+            0.424592
+          ]
+        },
+        {
+          "name": "loan_purpose",
+          "field_type": "text",
+          "text": "Education fees",
+          "value": "Education fees",
+          "page": 1,
+          "bbox": [
+            0.665033,
+            0.40922,
+            0.787198,
+            0.424592
+          ]
+        },
+        {
+          "name": "guarantor_full_name",
+          "field_type": "text",
+          "text": "Jennifer Casey",
+          "value": "Jennifer Casey",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.497604,
+            0.209737,
+            0.512976
+          ]
+        },
+        {
+          "name": "guarantor_date_of_birth",
+          "field_type": "date",
+          "text": "1985-01-29",
+          "value": "1985-01-29",
+          "page": 1,
+          "bbox": [
+            0.606209,
+            0.497604,
+            0.701395,
+            0.512976
+          ]
+        },
+        {
+          "name": "guarantor_relationship",
+          "field_type": "text",
+          "text": "Employer",
+          "value": "Employer",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.553159,
+            0.165773,
+            0.568532
+          ]
+        },
+        {
+          "name": "applicant_signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.100163,
+            0.680934,
+            0.45866,
+            0.738258
+          ]
+        },
+        {
+          "name": "applicant_signature_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.138889,
+            0.780982,
+            0.217363,
+            0.794019
+          ]
+        },
+        {
+          "name": "guarantor_signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.538072,
+            0.680934,
+            0.896569,
+            0.738258
+          ]
+        },
+        {
+          "name": "guarantor_signature_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.576797,
+            0.780982,
+            0.655271,
+            0.794019
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "loan_application_001_scan",
+      "doc_type": "loan_application",
+      "variant": "scan",
+      "role": "genuine",
+      "file": "genuine/loan_application_001_scan.jpg",
+      "format": "jpg",
+      "sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "bytes": 402657,
+      "person_ids": [
+        "P001",
+        "P002"
+      ],
+      "derived_from": "loan_application_001",
+      "has_text_layer": false,
+      "size_px": {
+        "width": 1700,
+        "height": 2200
+      },
+      "scan": {
+        "rotation_deg": 1.06,
+        "rotation_direction": "counter-clockwise for positive values",
+        "blur_radius": 0.6,
+        "noise_amplitude": 0.1,
+        "contrast": 0.93,
+        "jpeg_quality": 72,
+        "dpi": 200,
+        "seed": 20260103
+      },
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "page": 1,
+          "bbox": [
+            0.075029,
+            0.01177,
+            0.626827,
+            0.033856
+          ]
+        },
+        {
+          "name": "application_number",
+          "field_type": "identifier",
+          "text": "APP-2026-244884",
+          "value": "APP-2026-244884",
+          "page": 1,
+          "bbox": [
+            0.751284,
+            0.078887,
+            0.903754,
+            0.096431
+          ]
+        },
+        {
+          "name": "application_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.809123,
+            0.116759,
+            0.904661,
+            0.133489
+          ]
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "text": "Bradley Evans",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.079662,
+            0.211455,
+            0.199156,
+            0.228529
+          ]
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "text": "1984-09-05",
+          "value": "1984-09-05",
+          "page": 1,
+          "bbox": [
+            0.599181,
+            0.20437,
+            0.694719,
+            0.221101
+          ]
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "text": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "value": "06028 Barry Harbors, Port Joseph, GU 44394",
+          "page": 1,
+          "bbox": [
+            0.080992,
+            0.263446,
+            0.449201,
+            0.284076
+          ]
+        },
+        {
+          "name": "current_address",
+          "field_type": "text",
+          "text": "5985 Debbie Spring, North James, HI 84871",
+          "value": "5985 Debbie Spring, North James, HI 84871",
+          "page": 1,
+          "bbox": [
+            0.082322,
+            0.319149,
+            0.439551,
+            0.339621
+          ]
+        },
+        {
+          "name": "requested_loan_amount",
+          "field_type": "money",
+          "text": "USD 21,500.00",
+          "value": "21500.00",
+          "page": 1,
+          "bbox": [
+            0.084498,
+            0.413342,
+            0.211001,
+            0.430514
+          ]
+        },
+        {
+          "name": "loan_term_months",
+          "field_type": "integer",
+          "text": "24 months",
+          "value": "24",
+          "page": 1,
+          "bbox": [
+            0.437379,
+            0.408853,
+            0.52492,
+            0.425469
+          ]
+        },
+        {
+          "name": "loan_purpose",
+          "field_type": "text",
+          "text": "Education fees",
+          "value": "Education fees",
+          "page": 1,
+          "bbox": [
+            0.662831,
+            0.40513,
+            0.785344,
+            0.422246
+          ]
+        },
+        {
+          "name": "guarantor_full_name",
+          "field_type": "text",
+          "text": "Jennifer Casey",
+          "value": "Jennifer Casey",
+          "page": 1,
+          "bbox": [
+            0.086614,
+            0.501754,
+            0.210097,
+            0.518883
+          ]
+        },
+        {
+          "name": "guarantor_date_of_birth",
+          "field_type": "date",
+          "text": "1985-01-29",
+          "value": "1985-01-29",
+          "page": 1,
+          "bbox": [
+            0.606133,
+            0.494725,
+            0.701671,
+            0.511456
+          ]
+        },
+        {
+          "name": "guarantor_relationship",
+          "field_type": "text",
+          "text": "Employer",
+          "value": "Employer",
+          "page": 1,
+          "bbox": [
+            0.087944,
+            0.557928,
+            0.167471,
+            0.57443
+          ]
+        },
+        {
+          "name": "applicant_signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.104563,
+            0.681494,
+            0.464371,
+            0.743933
+          ]
+        },
+        {
+          "name": "applicant_signature_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.145678,
+            0.784974,
+            0.22445,
+            0.799131
+          ]
+        },
+        {
+          "name": "guarantor_signature",
+          "field_type": "signature",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.542397,
+            0.675234,
+            0.902205,
+            0.737673
+          ]
+        },
+        {
+          "name": "guarantor_signature_date",
+          "field_type": "date",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.583511,
+            0.778714,
+            0.662283,
+            0.792871
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "bank_statement_001",
+      "doc_type": "bank_statement",
+      "variant": "original",
+      "role": "genuine",
+      "file": "genuine/bank_statement_001.pdf",
+      "format": "pdf",
+      "sha256": "e06e474ed4ae5ea3f4abce6850d9bb9ce4b0d6ab92ac89d9f2af220f94187f9b",
+      "bytes": 3571,
+      "person_ids": [
+        "P001"
+      ],
+      "derived_from": null,
+      "has_text_layer": true,
+      "pages": [
+        {
+          "page": 1,
+          "width_pt": 612.0,
+          "height_pt": 792.0
+        }
+      ],
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.013662,
+            0.627255,
+            0.027866
+          ]
+        },
+        {
+          "name": "account_holder",
+          "field_type": "text",
+          "text": "Bradley Evans",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.145331,
+            0.213745,
+            0.160703
+          ]
+        },
+        {
+          "name": "account_holder_address",
+          "field_type": "text",
+          "text": "5985 Debbie Spring, North James, HI 84871",
+          "value": "5985 Debbie Spring, North James, HI 84871",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.185735,
+            0.458477,
+            0.201107
+          ]
+        },
+        {
+          "name": "account_number",
+          "field_type": "identifier",
+          "text": "NSB-5404-470671",
+          "value": "NSB-5404-470671",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.226139,
+            0.239717,
+            0.241511
+          ]
+        },
+        {
+          "name": "statement_period",
+          "field_type": "date_range",
+          "text": "01 Feb 2026 - 28 Feb 2026",
+          "value": "2026-02-01/2026-02-28",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.266543,
+            0.309672,
+            0.281915
+          ]
+        },
+        {
+          "name": "opening_balance",
+          "field_type": "money",
+          "text": "4,194.57",
+          "value": "4194.57",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.169871,
+            0.897059,
+            0.182908
+          ]
+        },
+        {
+          "name": "total_debits",
+          "field_type": "money",
+          "text": "2,749.91",
+          "value": "2749.91",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.195124,
+            0.897059,
+            0.20816
+          ]
+        },
+        {
+          "name": "total_credits",
+          "field_type": "money",
+          "text": "4,698.70",
+          "value": "4698.70",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.220376,
+            0.897059,
+            0.233413
+          ]
+        },
+        {
+          "name": "closing_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.256992,
+            0.897059,
+            0.270029
+          ]
+        },
+        {
+          "name": "transaction_01_date",
+          "field_type": "date",
+          "text": "01 Feb 2026",
+          "value": "2026-02-01",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.352143,
+            0.177659,
+            0.364595
+          ]
+        },
+        {
+          "name": "transaction_01_description",
+          "field_type": "text",
+          "text": "Internet - FiberNest Broadband",
+          "value": "Internet - FiberNest Broadband",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.352143,
+            0.405497,
+            0.364595
+          ]
+        },
+        {
+          "name": "transaction_01_debit",
+          "field_type": "money",
+          "text": "48.53",
+          "value": "48.53",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.352143,
+            0.655229,
+            0.364595
+          ]
+        },
+        {
+          "name": "transaction_01_balance",
+          "field_type": "money",
+          "text": "4,146.04",
+          "value": "4146.04",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.352143,
+            0.903595,
+            0.364595
+          ]
+        },
+        {
+          "name": "transaction_02_date",
+          "field_type": "date",
+          "text": "03 Feb 2026",
+          "value": "2026-02-03",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.373607,
+            0.177659,
+            0.38606
+          ]
+        },
+        {
+          "name": "transaction_02_description",
+          "field_type": "text",
+          "text": "Salary - Brightwave Logistics Ltd",
+          "value": "Salary - Brightwave Logistics Ltd",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.373607,
+            0.415511,
+            0.38606
+          ]
+        },
+        {
+          "name": "transaction_02_credit",
+          "field_type": "money",
+          "text": "4,495.08",
+          "value": "4495.08",
+          "page": 1,
+          "bbox": [
+            0.712284,
+            0.373607,
+            0.769608,
+            0.38606
+          ]
+        },
+        {
+          "name": "transaction_02_balance",
+          "field_type": "money",
+          "text": "8,641.12",
+          "value": "8641.12",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.373607,
+            0.903595,
+            0.38606
+          ]
+        },
+        {
+          "name": "transaction_03_date",
+          "field_type": "date",
+          "text": "04 Feb 2026",
+          "value": "2026-02-04",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.395072,
+            0.177659,
+            0.407525
+          ]
+        },
+        {
+          "name": "transaction_03_description",
+          "field_type": "text",
+          "text": "Rent - Harbor View Apartments",
+          "value": "Rent - Harbor View Apartments",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.395072,
+            0.407011,
+            0.407525
+          ]
+        },
+        {
+          "name": "transaction_03_debit",
+          "field_type": "money",
+          "text": "1,345.26",
+          "value": "1345.26",
+          "page": 1,
+          "bbox": [
+            0.597905,
+            0.395072,
+            0.655229,
+            0.407525
+          ]
+        },
+        {
+          "name": "transaction_03_balance",
+          "field_type": "money",
+          "text": "7,295.86",
+          "value": "7295.86",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.395072,
+            0.903595,
+            0.407525
+          ]
+        },
+        {
+          "name": "transaction_04_date",
+          "field_type": "date",
+          "text": "07 Feb 2026",
+          "value": "2026-02-07",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.416537,
+            0.177659,
+            0.428989
+          ]
+        },
+        {
+          "name": "transaction_04_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.416537,
+            0.396969,
+            0.428989
+          ]
+        },
+        {
+          "name": "transaction_04_debit",
+          "field_type": "money",
+          "text": "45.23",
+          "value": "45.23",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.416537,
+            0.655229,
+            0.428989
+          ]
+        },
+        {
+          "name": "transaction_04_balance",
+          "field_type": "money",
+          "text": "7,250.63",
+          "value": "7250.63",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.416537,
+            0.903595,
+            0.428989
+          ]
+        },
+        {
+          "name": "transaction_05_date",
+          "field_type": "date",
+          "text": "08 Feb 2026",
+          "value": "2026-02-08",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.438001,
+            0.177659,
+            0.450454
+          ]
+        },
+        {
+          "name": "transaction_05_description",
+          "field_type": "text",
+          "text": "Refund - Pinecrest Outfitters",
+          "value": "Refund - Pinecrest Outfitters",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.438001,
+            0.389275,
+            0.450454
+          ]
+        },
+        {
+          "name": "transaction_05_credit",
+          "field_type": "money",
+          "text": "18.64",
+          "value": "18.64",
+          "page": 1,
+          "bbox": [
+            0.73159,
+            0.438001,
+            0.769608,
+            0.450454
+          ]
+        },
+        {
+          "name": "transaction_05_balance",
+          "field_type": "money",
+          "text": "7,269.27",
+          "value": "7269.27",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.438001,
+            0.903595,
+            0.450454
+          ]
+        },
+        {
+          "name": "transaction_06_date",
+          "field_type": "date",
+          "text": "11 Feb 2026",
+          "value": "2026-02-11",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.459466,
+            0.177659,
+            0.471919
+          ]
+        },
+        {
+          "name": "transaction_06_description",
+          "field_type": "text",
+          "text": "Pharmacy - Wellspring Chemist",
+          "value": "Pharmacy - Wellspring Chemist",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.459466,
+            0.408525,
+            0.471919
+          ]
+        },
+        {
+          "name": "transaction_06_debit",
+          "field_type": "money",
+          "text": "34.14",
+          "value": "34.14",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.459466,
+            0.655229,
+            0.471919
+          ]
+        },
+        {
+          "name": "transaction_06_balance",
+          "field_type": "money",
+          "text": "7,235.13",
+          "value": "7235.13",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.459466,
+            0.903595,
+            0.471919
+          ]
+        },
+        {
+          "name": "transaction_07_date",
+          "field_type": "date",
+          "text": "11 Feb 2026",
+          "value": "2026-02-11",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.480931,
+            0.177659,
+            0.493383
+          ]
+        },
+        {
+          "name": "transaction_07_description",
+          "field_type": "text",
+          "text": "Restaurant - Olive and Thyme",
+          "value": "Restaurant - Olive and Thyme",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.480931,
+            0.399302,
+            0.493383
+          ]
+        },
+        {
+          "name": "transaction_07_debit",
+          "field_type": "money",
+          "text": "49.92",
+          "value": "49.92",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.480931,
+            0.655229,
+            0.493383
+          ]
+        },
+        {
+          "name": "transaction_07_balance",
+          "field_type": "money",
+          "text": "7,185.21",
+          "value": "7185.21",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.480931,
+            0.903595,
+            0.493383
+          ]
+        },
+        {
+          "name": "transaction_08_date",
+          "field_type": "date",
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.502395,
+            0.177659,
+            0.514848
+          ]
+        },
+        {
+          "name": "transaction_08_description",
+          "field_type": "text",
+          "text": "Transfer in - ref 5521",
+          "value": "Transfer in - ref 5521",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.502395,
+            0.343733,
+            0.514848
+          ]
+        },
+        {
+          "name": "transaction_08_credit",
+          "field_type": "money",
+          "text": "184.98",
+          "value": "184.98",
+          "page": 1,
+          "bbox": [
+            0.723868,
+            0.502395,
+            0.769608,
+            0.514848
+          ]
+        },
+        {
+          "name": "transaction_08_balance",
+          "field_type": "money",
+          "text": "7,370.19",
+          "value": "7370.19",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.502395,
+            0.903595,
+            0.514848
+          ]
+        },
+        {
+          "name": "transaction_09_date",
+          "field_type": "date",
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.52386,
+            0.177659,
+            0.536312
+          ]
+        },
+        {
+          "name": "transaction_09_description",
+          "field_type": "text",
+          "text": "Restaurant - Olive and Thyme",
+          "value": "Restaurant - Olive and Thyme",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.52386,
+            0.399302,
+            0.536312
+          ]
+        },
+        {
+          "name": "transaction_09_debit",
+          "field_type": "money",
+          "text": "24.67",
+          "value": "24.67",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.52386,
+            0.655229,
+            0.536312
+          ]
+        },
+        {
+          "name": "transaction_09_balance",
+          "field_type": "money",
+          "text": "7,345.52",
+          "value": "7345.52",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.52386,
+            0.903595,
+            0.536312
+          ]
+        },
+        {
+          "name": "transaction_10_date",
+          "field_type": "date",
+          "text": "15 Feb 2026",
+          "value": "2026-02-15",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.545324,
+            0.177659,
+            0.557777
+          ]
+        },
+        {
+          "name": "transaction_10_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.545324,
+            0.396969,
+            0.557777
+          ]
+        },
+        {
+          "name": "transaction_10_debit",
+          "field_type": "money",
+          "text": "51.00",
+          "value": "51.00",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.545324,
+            0.655229,
+            0.557777
+          ]
+        },
+        {
+          "name": "transaction_10_balance",
+          "field_type": "money",
+          "text": "7,294.52",
+          "value": "7294.52",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.545324,
+            0.903595,
+            0.557777
+          ]
+        },
+        {
+          "name": "transaction_11_date",
+          "field_type": "date",
+          "text": "19 Feb 2026",
+          "value": "2026-02-19",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.566789,
+            0.177659,
+            0.579242
+          ]
+        },
+        {
+          "name": "transaction_11_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.566789,
+            0.346025,
+            0.579242
+          ]
+        },
+        {
+          "name": "transaction_11_debit",
+          "field_type": "money",
+          "text": "63.69",
+          "value": "63.69",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.566789,
+            0.655229,
+            0.579242
+          ]
+        },
+        {
+          "name": "transaction_11_balance",
+          "field_type": "money",
+          "text": "7,230.83",
+          "value": "7230.83",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.566789,
+            0.903595,
+            0.579242
+          ]
+        },
+        {
+          "name": "transaction_12_date",
+          "field_type": "date",
+          "text": "20 Feb 2026",
+          "value": "2026-02-20",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.588254,
+            0.177659,
+            0.600706
+          ]
+        },
+        {
+          "name": "transaction_12_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.588254,
+            0.396969,
+            0.600706
+          ]
+        },
+        {
+          "name": "transaction_12_debit",
+          "field_type": "money",
+          "text": "72.35",
+          "value": "72.35",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.588254,
+            0.655229,
+            0.600706
+          ]
+        },
+        {
+          "name": "transaction_12_balance",
+          "field_type": "money",
+          "text": "7,158.48",
+          "value": "7158.48",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.588254,
+            0.903595,
+            0.600706
+          ]
+        },
+        {
+          "name": "transaction_13_date",
+          "field_type": "date",
+          "text": "21 Feb 2026",
+          "value": "2026-02-21",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.609718,
+            0.177659,
+            0.622171
+          ]
+        },
+        {
+          "name": "transaction_13_description",
+          "field_type": "text",
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.609718,
+            0.383816,
+            0.622171
+          ]
+        },
+        {
+          "name": "transaction_13_debit",
+          "field_type": "money",
+          "text": "28.54",
+          "value": "28.54",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.609718,
+            0.655229,
+            0.622171
+          ]
+        },
+        {
+          "name": "transaction_13_balance",
+          "field_type": "money",
+          "text": "7,129.94",
+          "value": "7129.94",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.609718,
+            0.903595,
+            0.622171
+          ]
+        },
+        {
+          "name": "transaction_14_date",
+          "field_type": "date",
+          "text": "24 Feb 2026",
+          "value": "2026-02-24",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.631183,
+            0.177659,
+            0.643636
+          ]
+        },
+        {
+          "name": "transaction_14_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.631183,
+            0.346025,
+            0.643636
+          ]
+        },
+        {
+          "name": "transaction_14_debit",
+          "field_type": "money",
+          "text": "89.30",
+          "value": "89.30",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.631183,
+            0.655229,
+            0.643636
+          ]
+        },
+        {
+          "name": "transaction_14_balance",
+          "field_type": "money",
+          "text": "7,040.64",
+          "value": "7040.64",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.631183,
+            0.903595,
+            0.643636
+          ]
+        },
+        {
+          "name": "transaction_15_date",
+          "field_type": "date",
+          "text": "26 Feb 2026",
+          "value": "2026-02-26",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.652648,
+            0.177659,
+            0.6651
+          ]
+        },
+        {
+          "name": "transaction_15_description",
+          "field_type": "text",
+          "text": "Transfer to savings",
+          "value": "Transfer to savings",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.652648,
+            0.33215,
+            0.6651
+          ]
+        },
+        {
+          "name": "transaction_15_debit",
+          "field_type": "money",
+          "text": "329.89",
+          "value": "329.89",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.652648,
+            0.655229,
+            0.6651
+          ]
+        },
+        {
+          "name": "transaction_15_balance",
+          "field_type": "money",
+          "text": "6,710.75",
+          "value": "6710.75",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.652648,
+            0.903595,
+            0.6651
+          ]
+        },
+        {
+          "name": "transaction_16_date",
+          "field_type": "date",
+          "text": "26 Feb 2026",
+          "value": "2026-02-26",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.674112,
+            0.177659,
+            0.686565
+          ]
+        },
+        {
+          "name": "transaction_16_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.674112,
+            0.346025,
+            0.686565
+          ]
+        },
+        {
+          "name": "transaction_16_debit",
+          "field_type": "money",
+          "text": "102.52",
+          "value": "102.52",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.674112,
+            0.655229,
+            0.686565
+          ]
+        },
+        {
+          "name": "transaction_16_balance",
+          "field_type": "money",
+          "text": "6,608.23",
+          "value": "6608.23",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.674112,
+            0.903595,
+            0.686565
+          ]
+        },
+        {
+          "name": "transaction_17_date",
+          "field_type": "date",
+          "text": "27 Feb 2026",
+          "value": "2026-02-27",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.695577,
+            0.177659,
+            0.70803
+          ]
+        },
+        {
+          "name": "transaction_17_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.695577,
+            0.396969,
+            0.70803
+          ]
+        },
+        {
+          "name": "transaction_17_debit",
+          "field_type": "money",
+          "text": "81.98",
+          "value": "81.98",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.695577,
+            0.655229,
+            0.70803
+          ]
+        },
+        {
+          "name": "transaction_17_balance",
+          "field_type": "money",
+          "text": "6,526.25",
+          "value": "6526.25",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.695577,
+            0.903595,
+            0.70803
+          ]
+        },
+        {
+          "name": "transaction_18_date",
+          "field_type": "date",
+          "text": "28 Feb 2026",
+          "value": "2026-02-28",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.717042,
+            0.177659,
+            0.729494
+          ]
+        },
+        {
+          "name": "transaction_18_description",
+          "field_type": "text",
+          "text": "Transfer to savings",
+          "value": "Transfer to savings",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.717042,
+            0.33215,
+            0.729494
+          ]
+        },
+        {
+          "name": "transaction_18_debit",
+          "field_type": "money",
+          "text": "382.89",
+          "value": "382.89",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.717042,
+            0.655229,
+            0.729494
+          ]
+        },
+        {
+          "name": "transaction_18_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.717042,
+            0.903595,
+            0.729494
+          ]
+        },
+        {
+          "name": "table_total_debits",
+          "field_type": "money",
+          "text": "2,749.91",
+          "value": "2749.91",
+          "page": 1,
+          "bbox": [
+            0.597905,
+            0.746082,
+            0.655229,
+            0.758535
+          ]
+        },
+        {
+          "name": "table_total_credits",
+          "field_type": "money",
+          "text": "4,698.70",
+          "value": "4698.70",
+          "page": 1,
+          "bbox": [
+            0.712284,
+            0.746082,
+            0.769608,
+            0.758535
+          ]
+        },
+        {
+          "name": "table_closing_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.746082,
+            0.903595,
+            0.758535
+          ]
+        }
+      ]
+    },
+    {
+      "doc_id": "bank_statement_001_scan",
+      "doc_type": "bank_statement",
+      "variant": "scan",
+      "role": "genuine",
+      "file": "genuine/bank_statement_001_scan.jpg",
+      "format": "jpg",
+      "sha256": "d82131bb9e330cfd9b47ec6612db1607b1556090c7c974049e15c56de4fc7419",
+      "bytes": 428718,
+      "person_ids": [
+        "P001"
+      ],
+      "derived_from": "bank_statement_001",
+      "has_text_layer": false,
+      "size_px": {
+        "width": 1700,
+        "height": 2200
+      },
+      "scan": {
+        "rotation_deg": -0.78,
+        "rotation_direction": "counter-clockwise for positive values",
+        "blur_radius": 0.6,
+        "noise_amplitude": 0.1,
+        "contrast": 0.93,
+        "jpeg_quality": 72,
+        "dpi": 200,
+        "seed": 20260104
+      },
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "page": 1,
+          "bbox": [
+            0.094957,
+            0.009358,
+            0.635811,
+            0.029248
+          ]
+        },
+        {
+          "name": "account_holder",
+          "field_type": "text",
+          "text": "Bradley Evans",
+          "value": "Bradley Evans",
+          "page": 1,
+          "bbox": [
+            0.092617,
+            0.141015,
+            0.22002,
+            0.157723
+          ]
+        },
+        {
+          "name": "account_holder_address",
+          "field_type": "text",
+          "text": "5985 Debbie Spring, North James, HI 84871",
+          "value": "5985 Debbie Spring, North James, HI 84871",
+          "page": 1,
+          "bbox": [
+            0.091905,
+            0.181415,
+            0.464017,
+            0.200698
+          ]
+        },
+        {
+          "name": "account_number",
+          "field_type": "identifier",
+          "text": "NSB-5404-470671",
+          "value": "NSB-5404-470671",
+          "page": 1,
+          "bbox": [
+            0.091193,
+            0.221816,
+            0.244566,
+            0.238797
+          ]
+        },
+        {
+          "name": "statement_period",
+          "field_type": "date_range",
+          "text": "01 Feb 2026 - 28 Feb 2026",
+          "value": "2026-02-01/2026-02-28",
+          "page": 1,
+          "bbox": [
+            0.090481,
+            0.262216,
+            0.313802,
+            0.279933
+          ]
+        },
+        {
+          "name": "opening_balance",
+          "field_type": "money",
+          "text": "4,194.57",
+          "value": "4194.57",
+          "page": 1,
+          "bbox": [
+            0.842111,
+            0.173442,
+            0.902838,
+            0.187114
+          ]
+        },
+        {
+          "name": "total_debits",
+          "field_type": "money",
+          "text": "2,749.91",
+          "value": "2749.91",
+          "page": 1,
+          "bbox": [
+            0.841666,
+            0.198693,
+            0.902393,
+            0.212364
+          ]
+        },
+        {
+          "name": "total_credits",
+          "field_type": "money",
+          "text": "4,698.70",
+          "value": "4698.70",
+          "page": 1,
+          "bbox": [
+            0.841221,
+            0.223942,
+            0.901948,
+            0.237614
+          ]
+        },
+        {
+          "name": "closing_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.840576,
+            0.260555,
+            0.901303,
+            0.274227
+          ]
+        },
+        {
+          "name": "transaction_01_date",
+          "field_type": "date",
+          "text": "01 Feb 2026",
+          "value": "2026-02-01",
+          "page": 1,
+          "bbox": [
+            0.098828,
+            0.347911,
+            0.180294,
+            0.361217
+          ]
+        },
+        {
+          "name": "transaction_01_description",
+          "field_type": "text",
+          "text": "Internet - FiberNest Broadband",
+          "value": "Internet - FiberNest Broadband",
+          "page": 1,
+          "bbox": [
+            0.213196,
+            0.349114,
+            0.408111,
+            0.363613
+          ]
+        },
+        {
+          "name": "transaction_01_debit",
+          "field_type": "money",
+          "text": "48.53",
+          "value": "48.53",
+          "page": 1,
+          "bbox": [
+            0.619586,
+            0.35339,
+            0.657819,
+            0.36624
+          ]
+        },
+        {
+          "name": "transaction_01_balance",
+          "field_type": "money",
+          "text": "4,146.04",
+          "value": "4146.04",
+          "page": 1,
+          "bbox": [
+            0.848624,
+            0.355799,
+            0.906162,
+            0.368853
+          ]
+        },
+        {
+          "name": "transaction_02_date",
+          "field_type": "date",
+          "text": "03 Feb 2026",
+          "value": "2026-02-03",
+          "page": 1,
+          "bbox": [
+            0.09845,
+            0.369373,
+            0.179916,
+            0.38268
+          ]
+        },
+        {
+          "name": "transaction_02_description",
+          "field_type": "text",
+          "text": "Salary - Brightwave Logistics Ltd",
+          "value": "Salary - Brightwave Logistics Ltd",
+          "page": 1,
+          "bbox": [
+            0.212818,
+            0.370576,
+            0.417745,
+            0.385182
+          ]
+        },
+        {
+          "name": "transaction_02_credit",
+          "field_type": "money",
+          "text": "4,495.08",
+          "value": "4495.08",
+          "page": 1,
+          "bbox": [
+            0.714272,
+            0.375852,
+            0.77181,
+            0.388907
+          ]
+        },
+        {
+          "name": "transaction_02_balance",
+          "field_type": "money",
+          "text": "8,641.12",
+          "value": "8641.12",
+          "page": 1,
+          "bbox": [
+            0.848246,
+            0.377261,
+            0.905784,
+            0.390316
+          ]
+        },
+        {
+          "name": "transaction_03_date",
+          "field_type": "date",
+          "text": "04 Feb 2026",
+          "value": "2026-02-04",
+          "page": 1,
+          "bbox": [
+            0.098072,
+            0.390836,
+            0.179537,
+            0.404143
+          ]
+        },
+        {
+          "name": "transaction_03_description",
+          "field_type": "text",
+          "text": "Rent - Harbor View Apartments",
+          "value": "Rent - Harbor View Apartments",
+          "page": 1,
+          "bbox": [
+            0.21244,
+            0.392039,
+            0.408868,
+            0.406555
+          ]
+        },
+        {
+          "name": "transaction_03_debit",
+          "field_type": "money",
+          "text": "1,345.26",
+          "value": "1345.26",
+          "page": 1,
+          "bbox": [
+            0.599525,
+            0.396112,
+            0.657063,
+            0.409166
+          ]
+        },
+        {
+          "name": "transaction_03_balance",
+          "field_type": "money",
+          "text": "7,295.86",
+          "value": "7295.86",
+          "page": 1,
+          "bbox": [
+            0.847868,
+            0.398724,
+            0.905406,
+            0.411779
+          ]
+        },
+        {
+          "name": "transaction_04_date",
+          "field_type": "date",
+          "text": "07 Feb 2026",
+          "value": "2026-02-07",
+          "page": 1,
+          "bbox": [
+            0.097693,
+            0.412299,
+            0.179159,
+            0.425605
+          ]
+        },
+        {
+          "name": "transaction_04_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.212062,
+            0.413502,
+            0.398449,
+            0.427912
+          ]
+        },
+        {
+          "name": "transaction_04_debit",
+          "field_type": "money",
+          "text": "45.23",
+          "value": "45.23",
+          "page": 1,
+          "bbox": [
+            0.618451,
+            0.417778,
+            0.656685,
+            0.430628
+          ]
+        },
+        {
+          "name": "transaction_04_balance",
+          "field_type": "money",
+          "text": "7,250.63",
+          "value": "7250.63",
+          "page": 1,
+          "bbox": [
+            0.84749,
+            0.420187,
+            0.905028,
+            0.433241
+          ]
+        },
+        {
+          "name": "transaction_05_date",
+          "field_type": "date",
+          "text": "08 Feb 2026",
+          "value": "2026-02-08",
+          "page": 1,
+          "bbox": [
+            0.097315,
+            0.433761,
+            0.178781,
+            0.447068
+          ]
+        },
+        {
+          "name": "transaction_05_description",
+          "field_type": "text",
+          "text": "Refund - Pinecrest Outfitters",
+          "value": "Refund - Pinecrest Outfitters",
+          "page": 1,
+          "bbox": [
+            0.211684,
+            0.434964,
+            0.390377,
+            0.449294
+          ]
+        },
+        {
+          "name": "transaction_05_credit",
+          "field_type": "money",
+          "text": "18.64",
+          "value": "18.64",
+          "page": 1,
+          "bbox": [
+            0.732441,
+            0.440443,
+            0.770675,
+            0.453295
+          ]
+        },
+        {
+          "name": "transaction_05_balance",
+          "field_type": "money",
+          "text": "7,269.27",
+          "value": "7269.27",
+          "page": 1,
+          "bbox": [
+            0.847112,
+            0.441649,
+            0.90465,
+            0.454704
+          ]
+        },
+        {
+          "name": "transaction_06_date",
+          "field_type": "date",
+          "text": "11 Feb 2026",
+          "value": "2026-02-11",
+          "page": 1,
+          "bbox": [
+            0.096937,
+            0.455224,
+            0.178403,
+            0.468531
+          ]
+        },
+        {
+          "name": "transaction_06_description",
+          "field_type": "text",
+          "text": "Pharmacy - Wellspring Chemist",
+          "value": "Pharmacy - Wellspring Chemist",
+          "page": 1,
+          "bbox": [
+            0.211306,
+            0.456427,
+            0.409248,
+            0.470959
+          ]
+        },
+        {
+          "name": "transaction_06_debit",
+          "field_type": "money",
+          "text": "34.14",
+          "value": "34.14",
+          "page": 1,
+          "bbox": [
+            0.617695,
+            0.460703,
+            0.655929,
+            0.473554
+          ]
+        },
+        {
+          "name": "transaction_06_balance",
+          "field_type": "money",
+          "text": "7,235.13",
+          "value": "7235.13",
+          "page": 1,
+          "bbox": [
+            0.846734,
+            0.463112,
+            0.904272,
+            0.476167
+          ]
+        },
+        {
+          "name": "transaction_07_date",
+          "field_type": "date",
+          "text": "11 Feb 2026",
+          "value": "2026-02-11",
+          "page": 1,
+          "bbox": [
+            0.096559,
+            0.476687,
+            0.178025,
+            0.489993
+          ]
+        },
+        {
+          "name": "transaction_07_description",
+          "field_type": "text",
+          "text": "Restaurant - Olive and Thyme",
+          "value": "Restaurant - Olive and Thyme",
+          "page": 1,
+          "bbox": [
+            0.210927,
+            0.47789,
+            0.399647,
+            0.492324
+          ]
+        },
+        {
+          "name": "transaction_07_debit",
+          "field_type": "money",
+          "text": "49.92",
+          "value": "49.92",
+          "page": 1,
+          "bbox": [
+            0.617317,
+            0.482166,
+            0.655551,
+            0.495017
+          ]
+        },
+        {
+          "name": "transaction_07_balance",
+          "field_type": "money",
+          "text": "7,185.21",
+          "value": "7185.21",
+          "page": 1,
+          "bbox": [
+            0.846355,
+            0.484575,
+            0.903894,
+            0.497629
+          ]
+        },
+        {
+          "name": "transaction_08_date",
+          "field_type": "date",
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096181,
+            0.498149,
+            0.177647,
+            0.511456
+          ]
+        },
+        {
+          "name": "transaction_08_description",
+          "field_type": "text",
+          "text": "Transfer in - ref 5521",
+          "value": "Transfer in - ref 5521",
+          "page": 1,
+          "bbox": [
+            0.210549,
+            0.499352,
+            0.343705,
+            0.513203
+          ]
+        },
+        {
+          "name": "transaction_08_credit",
+          "field_type": "money",
+          "text": "184.98",
+          "value": "184.98",
+          "page": 1,
+          "bbox": [
+            0.723586,
+            0.50475,
+            0.769541,
+            0.517683
+          ]
+        },
+        {
+          "name": "transaction_08_balance",
+          "field_type": "money",
+          "text": "7,370.19",
+          "value": "7370.19",
+          "page": 1,
+          "bbox": [
+            0.845977,
+            0.506037,
+            0.903515,
+            0.519092
+          ]
+        },
+        {
+          "name": "transaction_09_date",
+          "field_type": "date",
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.095803,
+            0.519612,
+            0.177269,
+            0.532918
+          ]
+        },
+        {
+          "name": "transaction_09_description",
+          "field_type": "text",
+          "text": "Restaurant - Olive and Thyme",
+          "value": "Restaurant - Olive and Thyme",
+          "page": 1,
+          "bbox": [
+            0.210171,
+            0.520815,
+            0.398891,
+            0.535249
+          ]
+        },
+        {
+          "name": "transaction_09_debit",
+          "field_type": "money",
+          "text": "24.67",
+          "value": "24.67",
+          "page": 1,
+          "bbox": [
+            0.61656,
+            0.525091,
+            0.654794,
+            0.537942
+          ]
+        },
+        {
+          "name": "transaction_09_balance",
+          "field_type": "money",
+          "text": "7,345.52",
+          "value": "7345.52",
+          "page": 1,
+          "bbox": [
+            0.845599,
+            0.5275,
+            0.903137,
+            0.540554
+          ]
+        },
+        {
+          "name": "transaction_10_date",
+          "field_type": "date",
+          "text": "15 Feb 2026",
+          "value": "2026-02-15",
+          "page": 1,
+          "bbox": [
+            0.095425,
+            0.541074,
+            0.17689,
+            0.554381
+          ]
+        },
+        {
+          "name": "transaction_10_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.209793,
+            0.542277,
+            0.39618,
+            0.556688
+          ]
+        },
+        {
+          "name": "transaction_10_debit",
+          "field_type": "money",
+          "text": "51.00",
+          "value": "51.00",
+          "page": 1,
+          "bbox": [
+            0.616182,
+            0.546553,
+            0.654416,
+            0.559405
+          ]
+        },
+        {
+          "name": "transaction_10_balance",
+          "field_type": "money",
+          "text": "7,294.52",
+          "value": "7294.52",
+          "page": 1,
+          "bbox": [
+            0.845221,
+            0.548962,
+            0.902759,
+            0.562017
+          ]
+        },
+        {
+          "name": "transaction_11_date",
+          "field_type": "date",
+          "text": "19 Feb 2026",
+          "value": "2026-02-19",
+          "page": 1,
+          "bbox": [
+            0.095046,
+            0.562537,
+            0.176512,
+            0.575844
+          ]
+        },
+        {
+          "name": "transaction_11_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.209415,
+            0.56374,
+            0.344863,
+            0.577615
+          ]
+        },
+        {
+          "name": "transaction_11_debit",
+          "field_type": "money",
+          "text": "63.69",
+          "value": "63.69",
+          "page": 1,
+          "bbox": [
+            0.615804,
+            0.568016,
+            0.654038,
+            0.580868
+          ]
+        },
+        {
+          "name": "transaction_11_balance",
+          "field_type": "money",
+          "text": "7,230.83",
+          "value": "7230.83",
+          "page": 1,
+          "bbox": [
+            0.844843,
+            0.570425,
+            0.902381,
+            0.58348
+          ]
+        },
+        {
+          "name": "transaction_12_date",
+          "field_type": "date",
+          "text": "20 Feb 2026",
+          "value": "2026-02-20",
+          "page": 1,
+          "bbox": [
+            0.094668,
+            0.584,
+            0.176134,
+            0.597306
+          ]
+        },
+        {
+          "name": "transaction_12_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.209037,
+            0.585203,
+            0.395424,
+            0.599613
+          ]
+        },
+        {
+          "name": "transaction_12_debit",
+          "field_type": "money",
+          "text": "72.35",
+          "value": "72.35",
+          "page": 1,
+          "bbox": [
+            0.615426,
+            0.589479,
+            0.65366,
+            0.60233
+          ]
+        },
+        {
+          "name": "transaction_12_balance",
+          "field_type": "money",
+          "text": "7,158.48",
+          "value": "7158.48",
+          "page": 1,
+          "bbox": [
+            0.844465,
+            0.591888,
+            0.902003,
+            0.604942
+          ]
+        },
+        {
+          "name": "transaction_13_date",
+          "field_type": "date",
+          "text": "21 Feb 2026",
+          "value": "2026-02-21",
+          "page": 1,
+          "bbox": [
+            0.09429,
+            0.605462,
+            0.175756,
+            0.618769
+          ]
+        },
+        {
+          "name": "transaction_13_description",
+          "field_type": "text",
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.208659,
+            0.606665,
+            0.381894,
+            0.620938
+          ]
+        },
+        {
+          "name": "transaction_13_debit",
+          "field_type": "money",
+          "text": "28.54",
+          "value": "28.54",
+          "page": 1,
+          "bbox": [
+            0.615048,
+            0.610941,
+            0.653282,
+            0.623793
+          ]
+        },
+        {
+          "name": "transaction_13_balance",
+          "field_type": "money",
+          "text": "7,129.94",
+          "value": "7129.94",
+          "page": 1,
+          "bbox": [
+            0.844087,
+            0.61335,
+            0.901625,
+            0.626405
+          ]
+        },
+        {
+          "name": "transaction_14_date",
+          "field_type": "date",
+          "text": "24 Feb 2026",
+          "value": "2026-02-24",
+          "page": 1,
+          "bbox": [
+            0.093912,
+            0.626925,
+            0.175378,
+            0.640232
+          ]
+        },
+        {
+          "name": "transaction_14_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.20828,
+            0.628129,
+            0.343728,
+            0.642003
+          ]
+        },
+        {
+          "name": "transaction_14_debit",
+          "field_type": "money",
+          "text": "89.30",
+          "value": "89.30",
+          "page": 1,
+          "bbox": [
+            0.61467,
+            0.632404,
+            0.652904,
+            0.645256
+          ]
+        },
+        {
+          "name": "transaction_14_balance",
+          "field_type": "money",
+          "text": "7,040.64",
+          "value": "7040.64",
+          "page": 1,
+          "bbox": [
+            0.843708,
+            0.634813,
+            0.901247,
+            0.647868
+          ]
+        },
+        {
+          "name": "transaction_15_date",
+          "field_type": "date",
+          "text": "26 Feb 2026",
+          "value": "2026-02-26",
+          "page": 1,
+          "bbox": [
+            0.093534,
+            0.648388,
+            0.175,
+            0.661694
+          ]
+        },
+        {
+          "name": "transaction_15_description",
+          "field_type": "text",
+          "text": "Transfer to savings",
+          "value": "Transfer to savings",
+          "page": 1,
+          "bbox": [
+            0.207902,
+            0.649592,
+            0.329476,
+            0.663319
+          ]
+        },
+        {
+          "name": "transaction_15_debit",
+          "field_type": "money",
+          "text": "329.89",
+          "value": "329.89",
+          "page": 1,
+          "bbox": [
+            0.60657,
+            0.653786,
+            0.652525,
+            0.666718
+          ]
+        },
+        {
+          "name": "transaction_15_balance",
+          "field_type": "money",
+          "text": "6,710.75",
+          "value": "6710.75",
+          "page": 1,
+          "bbox": [
+            0.84333,
+            0.656276,
+            0.900868,
+            0.66933
+          ]
+        },
+        {
+          "name": "transaction_16_date",
+          "field_type": "date",
+          "text": "26 Feb 2026",
+          "value": "2026-02-26",
+          "page": 1,
+          "bbox": [
+            0.093156,
+            0.66985,
+            0.174622,
+            0.683157
+          ]
+        },
+        {
+          "name": "transaction_16_description",
+          "field_type": "text",
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.207524,
+            0.671054,
+            0.342972,
+            0.684928
+          ]
+        },
+        {
+          "name": "transaction_16_debit",
+          "field_type": "money",
+          "text": "102.52",
+          "value": "102.52",
+          "page": 1,
+          "bbox": [
+            0.606192,
+            0.675248,
+            0.652147,
+            0.688181
+          ]
+        },
+        {
+          "name": "transaction_16_balance",
+          "field_type": "money",
+          "text": "6,608.23",
+          "value": "6608.23",
+          "page": 1,
+          "bbox": [
+            0.842952,
+            0.677738,
+            0.90049,
+            0.690793
+          ]
+        },
+        {
+          "name": "transaction_17_date",
+          "field_type": "date",
+          "text": "27 Feb 2026",
+          "value": "2026-02-27",
+          "page": 1,
+          "bbox": [
+            0.092778,
+            0.691313,
+            0.174243,
+            0.70462
+          ]
+        },
+        {
+          "name": "transaction_17_description",
+          "field_type": "text",
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.207146,
+            0.692517,
+            0.393533,
+            0.706927
+          ]
+        },
+        {
+          "name": "transaction_17_debit",
+          "field_type": "money",
+          "text": "81.98",
+          "value": "81.98",
+          "page": 1,
+          "bbox": [
+            0.613535,
+            0.696792,
+            0.651769,
+            0.709644
+          ]
+        },
+        {
+          "name": "transaction_17_balance",
+          "field_type": "money",
+          "text": "6,526.25",
+          "value": "6526.25",
+          "page": 1,
+          "bbox": [
+            0.842574,
+            0.699201,
+            0.900112,
+            0.712256
+          ]
+        },
+        {
+          "name": "transaction_18_date",
+          "field_type": "date",
+          "text": "28 Feb 2026",
+          "value": "2026-02-28",
+          "page": 1,
+          "bbox": [
+            0.092399,
+            0.712776,
+            0.173865,
+            0.726082
+          ]
+        },
+        {
+          "name": "transaction_18_description",
+          "field_type": "text",
+          "text": "Transfer to savings",
+          "value": "Transfer to savings",
+          "page": 1,
+          "bbox": [
+            0.206768,
+            0.71398,
+            0.328342,
+            0.727707
+          ]
+        },
+        {
+          "name": "transaction_18_debit",
+          "field_type": "money",
+          "text": "382.89",
+          "value": "382.89",
+          "page": 1,
+          "bbox": [
+            0.605436,
+            0.718174,
+            0.651391,
+            0.731106
+          ]
+        },
+        {
+          "name": "transaction_18_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.842196,
+            0.720664,
+            0.899734,
+            0.733718
+          ]
+        },
+        {
+          "name": "table_total_debits",
+          "field_type": "money",
+          "text": "2,749.91",
+          "value": "2749.91",
+          "page": 1,
+          "bbox": [
+            0.593341,
+            0.747089,
+            0.650879,
+            0.760144
+          ]
+        },
+        {
+          "name": "table_total_credits",
+          "field_type": "money",
+          "text": "4,698.70",
+          "value": "4698.70",
+          "page": 1,
+          "bbox": [
+            0.70771,
+            0.748292,
+            0.765248,
+            0.761347
+          ]
+        },
+        {
+          "name": "table_closing_balance",
+          "field_type": "money",
+          "text": "6,143.36",
+          "value": "6143.36",
+          "page": 1,
+          "bbox": [
+            0.841684,
+            0.749702,
+            0.899222,
+            0.762757
+          ]
+        }
+      ]
+    }
+  ]
+}
