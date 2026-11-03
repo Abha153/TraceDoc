@@ -108,3 +108,28 @@ npm run typecheck
 - The graph's `suggested` edges now follow the structured `Entity.suggestedLinks` (best score first) and only fall back to the entity
   named in `basis` for records without it.
 - `tsconfig.json` no longer excludes `src/engine`: the engine is type-checked with the same strict flags as the rest of the backend.
+
+## Review workflow and investigation log (B9)
+
+- **Event log** (`src/services/eventLog.ts`): `DATA_DIR/audit/events.jsonl`, one JSON event per line, append-only (no update, no delete).
+  Ids are sequential (`IE-0001`...). A corrupt line stops the log from loading, so audit data is never silently dropped. The one tolerated
+  damage is an unfinished last line from a crash: it is cut off the end and kept in `events.jsonl.discarded`.
+- **Review** (`POST /findings/:findingId/review`, body `{action, reason?, comment?}`): `CONFIRM`, `INCONCLUSIVE` and `DISMISS` append a
+  `REVIEW` event (`payload.status`), `COMMENT` appends a `COMMENT`, `REOPEN` appends a `REOPEN`. `DISMISS` needs a reason and `COMMENT` needs
+  text (400). `REOPEN` on a finding that is not reviewed is 409. Returns the updated `FindingDetail`.
+- **Review status is derived, never stored**: replay of the finding's events in order (`deriveReviewStatus`): REVIEW sets it, REOPEN
+  returns it to UNREVIEWED, COMMENT and VIEW change nothing. The finding and the stored generation file are never modified, so a machine
+  observation cannot be overwritten by a review. `reviewHistory` lists REVIEW, COMMENT and REOPEN events.
+- Reviews attach to the namespaced finding id (B8). Only the **current** generation can be reviewed; an older one is 409 `STALE_GENERATION`
+  but stays readable with the decisions made about it. After a recompute the new findings start UNREVIEWED.
+- **Reclassify** (`PATCH /documents/:docId/pages/:n/type`, body `{docType, reason?}`): stores the analyst's correction, logs `RECLASSIFY`
+  (`from`, `to`, `machineDocType`, `reason`), queues a forced re-run (202 `Job`) and logs `RERUN`; when the job finishes reasoning runs again.
+  The correction lives in `DATA_DIR/records/overrides/` and is overlaid when analyses are read (`OverlayAnalysisRepository`), so every reader
+  sees the analyst's type (confidence 1) while the stored machine output stays exactly as the analyzers produced it. Asking for the type a
+  page already has is 400 `NO_CHANGE`. **Limit:** `AnalyzeRequest` has no field for a type hint, so the analysis service does not re-extract
+  fields for the new type; the corrected type affects classification, roles and reasoning. Real re-extraction needs a contract field
+  (for example `docTypeOverrides`) from Person 1.
+- **Logging from the other routes**: `UPLOAD` per document (filename, sha256, jobId), `RERUN` on recompute (with the new generation) and on
+  reclassify, `VIEW` when a finding (`GET /findings/:id`) or a document (`GET /documents/:docId`) is opened, at most once a minute per actor
+  and target. Lists and page renders are not logged. `EXPORT` events are added by the dossier route (B14) through `deps.events.append`.
+- `GET /cases/:caseId/events` returns the case's log in order (`EventsResponse`).

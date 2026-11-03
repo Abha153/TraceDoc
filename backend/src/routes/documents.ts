@@ -8,6 +8,7 @@ import { SAFE_ID_RE } from "../services/storage.js";
 import type { CaseService } from "../services/cases.js";
 import type { UploadService } from "../services/upload.js";
 import type { AnalysisRepository, DocumentRepository } from "../repo/repositories.js";
+import type { JsonlEventLog } from "../services/eventLog.js";
 
 const MAX_FILES_PER_REQUEST = 20;
 
@@ -21,6 +22,7 @@ export interface DocumentsDeps {
   analysis: AnalysisRepository;
   requireAuth: RequestHandler;
   maxUploadBytes: number;
+  log: JsonlEventLog;
 }
 
 export function documentsRouter(d: DocumentsDeps): Router {
@@ -53,6 +55,7 @@ export function documentsRouter(d: DocumentsDeps): Router {
         const result = await d.upload.upload(
           (req.params as { caseId: string }).caseId,
           files.map((f) => ({ originalname: f.originalname, buffer: f.buffer })),
+          req.analyst!.analystId,
         );
         res.status(202).json(result);
       } catch (err) {
@@ -66,6 +69,7 @@ export function documentsRouter(d: DocumentsDeps): Router {
       const docId = (req.params as { docId: string }).docId;
       const document = await d.documents.get(docId);
       if (!document) throw new AppError(404, "DOCUMENT_NOT_FOUND", "No such document");
+      await d.log.recordView(document.caseId, req.analyst!.analystId, docId);
       const analysis = await d.analysis.get(docId);
       const detail: DocumentDetail = { document, pages: analysis?.pages ?? [], fields: analysis?.fields ?? [] };
       res.json(detail);

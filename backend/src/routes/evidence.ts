@@ -12,6 +12,7 @@ import type { EvidenceRepository } from "../repo/evidence.js";
 import type { AnalysisRepository, DocumentRepository } from "../repo/repositories.js";
 import type { ReviewSource } from "../services/reviewSource.js";
 import { buildGraph } from "../services/graph.js";
+import type { JsonlEventLog } from "../services/eventLog.js";
 
 const caseParams = z.object({ caseId: z.string().regex(SAFE_ID_RE, "invalid case id") });
 const findingParams = z.object({ findingId: z.string().regex(SAFE_ID_RE, "invalid finding id") });
@@ -29,6 +30,7 @@ export interface EvidenceRoutesDeps {
   documents: DocumentRepository;
   analysis: AnalysisRepository;
   reviews: ReviewSource;
+  log: JsonlEventLog;
   requireAuth: RequestHandler;
 }
 
@@ -64,6 +66,7 @@ export function evidenceRouter(d: EvidenceRoutesDeps): Router {
     try {
       const hit = await d.evidence.findFinding((req.params as { findingId: string }).findingId);
       if (!hit) throw new AppError(404, "FINDING_NOT_FOUND", "No such finding");
+      await d.log.recordView(hit.finding.caseId, req.analyst!.analystId, hit.finding.findingId);
       const body: FindingDetail = {
         finding: hit.finding,
         reviewStatus: await d.reviews.statusOf(hit.finding.findingId),

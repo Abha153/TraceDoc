@@ -12,7 +12,11 @@ import { casesRouter } from "./routes/cases.js";
 import { evidenceRouter } from "./routes/evidence.js";
 import { pagesRouter } from "./routes/pages.js";
 import { JsonEvidenceRepository, type EvidenceRepository } from "./repo/evidence.js";
-import { NoReviews, type ReviewSource } from "./services/reviewSource.js";
+import type { ReviewSource } from "./services/reviewSource.js";
+import { EventLogReviews, JsonlEventLog } from "./services/eventLog.js";
+import { ReclassifyService, ReviewService } from "./services/review.js";
+import { reviewRouter } from "./routes/review.js";
+import { JsonOverridesRepository, OverlayAnalysisRepository, type OverridesRepository } from "./repo/overrides.js";
 import { ReasoningPipeline, createStubReasoning, engineReasoning, type ReasoningFn } from "./services/reasoning.js";
 import { jobsRouter } from "./routes/jobs.js";
 import { Storage } from "./services/storage.js";
@@ -46,7 +50,12 @@ export interface AppDeps {
   ingest: IngestService;
   caseRepo: CaseRepository;
   documents: DocumentRepository;
-  analysis: AnalysisRepository;
+  /** Effective analysis: machine output plus analyst page-type corrections. Writes store the machine output unchanged. */
+  analysis: OverlayAnalysisRepository;
+  overrides: OverridesRepository;
+  events: JsonlEventLog;
+  review: ReviewService;
+  reclassify: ReclassifyService;
   evidence: EvidenceRepository;
   reviews: ReviewSource;
   jobs: JobService;
@@ -61,6 +70,8 @@ export interface AppDeps {
 export interface DepOverrides {
   analysisClient?: AnalysisClient;
   reviews?: ReviewSource;
+  /** Clock for the investigation log (tests). */
+  eventsNow?: () => Date;
   reasoningFn?: ReasoningFn;
 }
 
@@ -71,7 +82,9 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
   const ingest = new IngestService(storage, manifest);
   const caseRepo = new JsonCaseRepository(storage.recordsDir);
   const documents = new JsonDocumentRepository(storage.recordsDir);
-  const analysis = new JsonAnalysisRepository(storage.recordsDir);
+  const classificationOverrides = new JsonOverridesRepository(storage.recordsDir);
+  const analysis = new OverlayAnalysisRepository(new JsonAnalysisRepository(storage.recordsDir), classificationOverrides);
+  const events = new JsonlEventLog(storage.auditDir, overrides.eventsNow);
   const evidence = new JsonEvidenceRepository(storage.recordsDir);
   const jobs = new JobService(new JsonJobRepository(storage.recordsDir), {
     pipelineVersion: config.pipelineVersion,
@@ -97,6 +110,8 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
           fixtureIdFor: (docId) => new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest }).fixtureIdFor(docId),
         })
       : engineReasoning);
+  const reviewService = new ReviewService(evidence, events);
+  const reclassify = new ReclassifyService(documents, analysis, classificationOverrides, jobs, events, overrides.eventsNow);
   const reasoning = new ReasoningPipeline({
     documents, jobs, analysis, evidence, reason, logger, pipelineVersion: config.pipelineVersion,
   });
@@ -114,11 +129,15 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     caseRepo,
     documents,
     analysis,
+    overrides: classificationOverrides,
+    events,
+    review: reviewService,
+    reclassify,
     evidence,
-    reviews: overrides.reviews ?? new NoReviews(),
+    reviews: overrides.reviews ?? new EventLogReviews(events),
     jobs,
     cases: new CaseService(caseRepo, documents, jobs, evidence),
-    upload: new UploadService(ingest, documents, jobs, config.pipelineVersion),
+    upload: new UploadService(ingest, documents, jobs, config.pipelineVersion, events),
     analysisClient,
     reasoning,
     worker,
@@ -134,7 +153,7 @@ export function createApp(deps: AppDeps): Express {
   const api = express.Router();
   api.use(healthRouter());
   api.use(authRouter(deps));
-  api.use(casesRouter(deps.cases, deps.requireAuth, deps.reasoning));
+  api.use(casesRouter(deps.cases, deps.requireAuth, deps.reasoning, deps.events));
   api.use(
     documentsRouter({
       upload: deps.upload,
@@ -143,6 +162,7 @@ export function createApp(deps: AppDeps): Express {
       analysis: deps.analysis,
       requireAuth: deps.requireAuth,
       maxUploadBytes: deps.config.maxUploadBytes,
+      log: deps.events,
     }),
   );
   api.use(jobsRouter(deps.jobs, deps.requireAuth));
@@ -153,8 +173,12 @@ export function createApp(deps: AppDeps): Express {
       documents: deps.documents,
       analysis: deps.analysis,
       reviews: deps.reviews,
+      log: deps.events,
       requireAuth: deps.requireAuth,
     }),
+  );
+  api.use(
+    reviewRouter({ review: deps.review, reclassify: deps.reclassify, cases: deps.cases, log: deps.events, requireAuth: deps.requireAuth }),
   );
   api.use(pagesRouter({ storage: deps.storage, documents: deps.documents, analysis: deps.analysis, requireAuth: deps.requireAuth }));
   // More domain routers (findings, review, graph, ...) are mounted here by later batches.

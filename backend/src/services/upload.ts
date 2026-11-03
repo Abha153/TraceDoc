@@ -3,6 +3,7 @@ import type { UploadResponse } from "@contracts/api";
 import type { DocumentRepository } from "../repo/repositories.js";
 import type { IncomingFile, IngestService } from "./ingest.js";
 import type { JobService } from "./jobs.js";
+import type { JsonlEventLog } from "./eventLog.js";
 
 /** Store originals (B2), create a DocumentRecord for each, and queue one analysis job per document. */
 export class UploadService {
@@ -11,9 +12,10 @@ export class UploadService {
     private readonly documents: DocumentRepository,
     private readonly jobs: JobService,
     private readonly pipelineVersion: string,
+    private readonly log: JsonlEventLog,
   ) {}
 
-  async upload(caseId: string, files: IncomingFile[]): Promise<UploadResponse> {
+  async upload(caseId: string, files: IncomingFile[], actor: string): Promise<UploadResponse> {
     const stored = await this.ingest.ingest(caseId, files);
     const documents: DocumentRecord[] = [];
     const jobs: Job[] = [];
@@ -32,7 +34,11 @@ export class UploadService {
       };
       await this.documents.put(record);
       documents.push(record);
-      jobs.push((await this.jobs.enqueue({ caseId, docId: s.docId })).job);
+      const job = (await this.jobs.enqueue({ caseId, docId: s.docId })).job;
+      jobs.push(job);
+      await this.log.append({
+        caseId, actor, type: "UPLOAD", targetId: s.docId, payload: { filename: s.filename, sha256: s.sha256, jobId: job.jobId },
+      });
     }
     return { caseId, documents, jobs };
   }
