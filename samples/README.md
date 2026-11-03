@@ -1,71 +1,50 @@
-# samples/ - D1 genuine fictional documents (set 001 = the D1-lite hand-over)
+# samples/: fictional documents, edits, cases and ground truth
 
-Owner: Person 4 (dataset). Consumer: Person 3 (OCR testing).
-**Everything here is fictional.** Every document is stamped SAMPLE; the ID number format
-(`SMP-1234-5678-AB`) and the issuer ("Republic of Samplia") are invented and imitate no real ID.
+Everything here is fictional and marked SAMPLE. No real person, no real ID format.
 
-## What is delivered
+| Path | What | Batch |
+| --- | --- | --- |
+| `genuine/`, `manifest.json`, `persons*.json` | Two person sets x (ID card, application form, bank statement) x (original, scan, hard scan, recompressed control) = 24 files, with field values, semantic types and boxes | D1 |
+| `tampered/`, `controls/`, `tampered/ground_truth.json` | Eight single edits (value replaced, font changed, digits painted over, copy-move, signature replaced, photo swapped, incremental save, hidden text) and four false-positive controls (recompressed, re-saved, legitimate bold, legitimate highlight) | D2 |
+| `dev/`, `test/` | 16 cases = 8 patterns (S1 to S8) x 2 variants, each with `expected_findings.json` and `expected_non_findings.json` | D3, D4 |
+| `ground-truth.md` | One table per case: documents, intended edit or legitimate difference, expected findings and non-findings (generated) | D4 |
+| `validate.py` | Checks files, hashes, boxes, references and leakage between dev and test | D4 |
+| `d1-lite/` | The original single-set hand-over to Person 3, unchanged; superseded by D1 above | legacy |
 
-Two independent **sets** (`001`, `002`, different fictional people) x 3 documents x 4 variants = **24 files** in
-`samples/genuine/`. Set 001 is the original D1-lite delivery; set 002 is a second applicant/guarantor.
+## dev and test
 
-| File pattern | What it is |
-|---|---|
-| `id_card_NNN.png` | ID card image (1011x638): SAMPLE stamp, photo placeholder, signature, name, DOB, address, ID number, issue/expiry |
-| `loan_application_NNN.pdf` | Loan application, 1 page, **searchable text layer**: name, DOB, permanent + current address, amount, term, purpose, guarantor, 2 signatures |
-| `bank_statement_NNN.pdf` | Statement, 1 page, text layer: holder, account no., period, opening balance, 18 transactions, totals, closing balance |
-| `*_scan.jpg` | Scan-like raster: 0.5-1.2 deg rotation, tint + shading, blur, noise, JPEG q72 (PDFs rasterised at 200 dpi) |
-| `*_scan_hard.jpg` | Harder scan for OCR robustness: 2.0-3.5 deg rotation, more blur/noise, lower contrast, JPEG q45 |
-| `*_recompressed.jpg` | **Control (S8):** the genuine page only re-saved as JPEG q85. No rotation, noise or edit. Forensic detectors must NOT flag it. `control: "recompressed_only"` in the manifest |
+`dev/` (variant a) is for building and tuning. `test/` (variant b) is held out: a different variant of every
+pattern, people drawn from disjoint name pools, never used to tune thresholds. `validate.py` fails if any person,
+id number, account number, document id, file name or file content appears in both, or if `backend/config` refers
+to `samples/test`.
 
-Plus `persons.json` (set 001) / `persons_002.json` (set 002; stdlib-only builder, no Faker) and `manifest.json`.
+## Boxes
 
-## Manifest conventions
+Ground-truth `bbox` and every `region.bbox` are the contract `Region` form `[x, y, w, h]`, fractions of the page,
+origin top-left. The D1 manifest keeps `bbox` as `[x_min, y_min, x_max, y_max]` beside a contract-shaped `region`;
+`generator/bbox.py` converts. Each structure holds one format and says which.
 
-* `bbox = [x_min, y_min, x_max, y_max]`, **0-1 fractions of page/image width and height, origin top-left, y down.**
-* Per field: `name`, `field_type` (`text|date|money|identifier|integer|date_range|signature|photo|marker`),
-  `text` (exactly as printed - ID text is upper-case, addresses on the ID are 2 lines joined by `\n`),
-  `value` (the true/normalised value: ISO dates, plain `1234.50` money, true-case names), `page` (always 1).
-* Signature and photo fields have `text: null, value: null`.
-* Text boxes are the string's advance width + 1 pt (PDF) / 2 px (ID); a trailing `1` can leave ~2 pt blank.
-* **Scan files:** bboxes are the axis-aligned box *enclosing* the rotated field rectangle; the angle is in
-  `scan.rotation_deg` (counter-clockwise positive). Rotating the scan by `-rotation_deg` restores the original layout.
-* Each original is immediately followed by its scan (`derived_from`). Statement transaction fields are
-  `transaction_NN_{date,description,debit,credit,balance}`; an empty debit/credit cell has no field.
-* Every field also carries `semantic_type` (vocabulary of ARCHITECTURE.md: `dob`, `full_name`, `id_number`,
-  `address_permanent`, `address_current`, `requested_amount`, `account_balance`, `statement_total`, ...; `semantic_detail`
-  = `opening|closing|debits|credits`), ground-truth `true_person_id` / `true_entity_role` (null when the field belongs
-  to no person), and `region` = a contract-shaped `Region` `{docId, page, bbox: [x, y, w, h], label}`. `bbox` stays
-  `[x_min, y_min, x_max, y_max]`; `samples/generator/bbox.py` converts both ways.
-* Statement documents have a `tables` entry (`transactions`: columns, rows -> cell field names + row boxes, totals row).
-* `sets.<id>.legitimate_differences` lists values that differ on purpose in a genuine set (permanent vs current address,
-  requested amount vs balance, applicant vs guarantor) with `expected_finding: false`: a correct reasoner must not report them.
-* Variants: `original`, `scan`, `scan_hard`, `recompressed`; each non-original has `derived_from`.
-* This manifest schema is local to D1. It is **not** a shared contract; map it to `contracts/` when those exist.
-
-## Regenerate
+## Commands (repository root)
 
 ```bash
 pip install -r samples/requirements.txt
-python samples/generator/generate.py            # writes into samples/ (fixed seed 20260101)
-python samples/generator/generate.py --out /tmp/x --persons samples/persons.json
-python samples/generator/generate.py --rebuild-persons   # needs Faker; output depends on the Faker version
-python samples/verify_hashes.py                 # stdlib only: every file matches manifest sha256/bytes
+python samples/generator/generate.py          # D1  -> genuine/, manifest.json
+python samples/generator/tamper.py            # D2  -> tampered/, controls/
+python samples/generator/scenarios.py         # D3  -> dev/, test/, scenarios_index.json
+python samples/generator/ground_truth_doc.py  # D4  -> ground-truth.md
+python samples/validate.py                    # D4  -> VALID or a list of problems
+python -m pytest samples/tests -q             # all sample tests
 ```
-Rendering reads the **committed `persons.json`** by default, so Faker is not needed and the data cannot drift with the
-Faker version (a different `--seed` or `--rebuild-persons` rebuilds it with Faker). Fonts: Liberation Sans/Mono
-(`fonts-liberation`); set `TRACEDOCS_FONT_DIR` if they live elsewhere.
 
-Output is deterministic on the same library versions. A different Pillow/libjpeg/reportlab build changes the **bytes**
-of PNG/PDF files (zlib streams), not their content, so the manifest hashes only match files from the same build.
-**Hand over the committed set as a whole** (files + manifest) and run `verify_hashes.py` before sending; never mix
-files regenerated elsewhere with this manifest.
+## Notes and limits
 
-## Tests
-
-```bash
-python -m pytest samples/tests -v        # ~70 s (OCR cross-check is skipped if tesseract is missing)
-```
-Covers: two-run determinism, committed manifest/persons equal a fresh run (bytes only with `TRACEDOCS_STRICT_BYTES=1`), committed files match manifest hashes, both sets, semantic labels + regions, table entries, legitimate differences, hard-scan and control variants, exact file set, sha256, bbox ranges, PDFs open with a
-text layer (pypdf + pdfplumber), values traced to `persons.json`, statement arithmetic (Decimal), bbox == PDF word
-boxes, ink inside every bbox (originals, rasterised PDFs, raw and de-rotated scans), OCR of every cropped bbox.
+* Output is deterministic for a given library build. The original D1-lite bytes were made with different library
+  builds, so `d1-lite/` is kept as committed rather than regenerated. Set `TRACEDOCS_STRICT_BYTES=1` to also compare
+  raw bytes against the committed files on the machine that generated them.
+* `expectedAnalyzers` and `detectability` in the cases are the author's assessment of what each detector class should
+  see, not a guarantee. Photo replacement is listed as unsupported in `ARCHITECTURE.md`, so S-case expectations
+  for it are `optional`.
+* The application form does not print an `id_number`, so an engine can only link form and ID card by name and date of birth.
+* Dependencies: Pillow (HPND), ReportLab (BSD), pypdfium2 (Apache-2.0/BSD), pikepdf (MPL-2.0, wraps qpdf, Apache-2.0;
+  needed for operator-level PDF edits in `tamper.py`), Faker (MIT, only for `--rebuild-persons`); tests use pytest,
+  pypdf and pdfplumber.

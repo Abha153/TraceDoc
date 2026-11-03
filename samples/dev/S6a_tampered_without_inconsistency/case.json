@@ -3380,6 +3380,13 @@
       "source_file": "_genuine_source/bank_statement_S6a.pdf"
     }
   ],
+  "genuine_sources": [
+    {
+      "file": "_genuine_source/bank_statement_S6a.pdf",
+      "sha256": "56d96fc9bb886451f650fdfff419cfe10bfbdcf73ed19bf07fa3f2ded234720a",
+      "note": "unedited original from which a case document was derived"
+    }
+  ],
   "tamper_ground_truth": [
     {
       "type": "pdf_font_changed",

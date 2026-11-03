@@ -3383,6 +3383,13 @@
       "source_file": "_genuine_source/loan_application_S5a.pdf"
     }
   ],
+  "genuine_sources": [
+    {
+      "file": "_genuine_source/loan_application_S5a.pdf",
+      "sha256": "16b7db67d23179cbc856eefc350c514d5db4097e3f1574266a651895b33f8f22",
+      "note": "unedited original from which a case document was derived"
+    }
+  ],
   "tamper_ground_truth": [
     {
       "type": "pdf_incremental_save",

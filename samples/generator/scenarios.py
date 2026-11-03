@@ -548,11 +548,16 @@ def build_case(pattern: str, name: str, variant: str, folder: Path, case_no: int
     persons = make_persons(case_no, variant, used)
     case = Case(folder, case_id, persons)
     findings, non_findings = BUILDERS[pattern](case, variant)
+    src_dir = folder / "_genuine_source"
+    sources = [{"file": f.relative_to(folder).as_posix(), "sha256": T.sha256_file(f),
+                "note": "unedited original from which a case document was derived"}
+               for f in sorted(src_dir.rglob("*"))] if src_dir.is_dir() else []
     people = [{k: p[k] for k in ("person_id", "role", "full_name", "date_of_birth", "id_number")}
               for p in case.persons["persons"]]
     meta = {"schema": SCHEMA, "caseId": case_id, "pattern": pattern, "patternName": name, "variant": variant,
             "split": SPLITS[variant], "fictional": True, "bbox_format": "xywh",
-            "persons": people, "documents": list(case.docs.values()), "tamper_ground_truth": case.tamper_gt,
+            "persons": people, "documents": list(case.docs.values()), "genuine_sources": sources,
+            "tamper_ground_truth": case.tamper_gt,
             "legitimate_differences": [n["legitimateDifferenceId"] for n in non_findings
                                        if "legitimateDifferenceId" in n]}
     write_json(folder / "case.json", meta)

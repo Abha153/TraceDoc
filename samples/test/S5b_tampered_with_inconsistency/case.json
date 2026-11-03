@@ -3393,6 +3393,18 @@
       "source_file": "_genuine_source/_scan_id_card_S5b.jpg"
     }
   ],
+  "genuine_sources": [
+    {
+      "file": "_genuine_source/_scan_id_card_S5b.jpg",
+      "sha256": "3cfd9a05fdf107e00f92a773a67ab3ba4b2593bc9e4d00553ec59378c482bf17",
+      "note": "unedited original from which a case document was derived"
+    },
+    {
+      "file": "_genuine_source/id_card_S5b.png",
+      "sha256": "a6139754a75e814c86b206d2048b1e61184b4b22fc33e1ff245c31834fd6bef6",
+      "note": "unedited original from which a case document was derived"
+    }
+  ],
   "tamper_ground_truth": [
     {
       "type": "scan_digits_painted_over",

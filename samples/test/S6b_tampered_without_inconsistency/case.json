@@ -3387,6 +3387,18 @@
       "source_file": "_genuine_source/_scan_loan_application_S6b.jpg"
     }
   ],
+  "genuine_sources": [
+    {
+      "file": "_genuine_source/_scan_loan_application_S6b.jpg",
+      "sha256": "30406f14946fdb1a7b9eff08c2fde39ea73a93f85aa4295f90f956bb8c5bef88",
+      "note": "unedited original from which a case document was derived"
+    },
+    {
+      "file": "_genuine_source/loan_application_S6b.pdf",
+      "sha256": "a3b96f0023aee8e1297e929ca5ce4671130fa44652e48aa7b691e22d3c08f53a",
+      "note": "unedited original from which a case document was derived"
+    }
+  ],
   "tamper_ground_truth": [
     {
       "type": "signature_replaced",

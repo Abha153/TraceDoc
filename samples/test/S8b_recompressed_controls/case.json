@@ -3394,6 +3394,23 @@
       ]
     }
   ],
+  "genuine_sources": [
+    {
+      "file": "_genuine_source/bank_statement_S8b.pdf",
+      "sha256": "7f941f551092262f8c2b6364d4a173491ac7766647247e99c55c89514b90066a",
+      "note": "unedited original from which a case document was derived"
+    },
+    {
+      "file": "_genuine_source/id_card_S8b.png",
+      "sha256": "aab6ca6a7a9e3f61eb7e02de2e72c33ed75fa9d5d7c4905252a22392eabacc8e",
+      "note": "unedited original from which a case document was derived"
+    },
+    {
+      "file": "_genuine_source/loan_application_S8b.pdf",
+      "sha256": "3d5b580bf5762e58eac479b4c993ce9f965e6f3f22357d300d1d7f9a00389518",
+      "note": "unedited original from which a case document was derived"
+    }
+  ],
   "tamper_ground_truth": [],
   "legitimate_differences": [
     "LD-S8b-1",

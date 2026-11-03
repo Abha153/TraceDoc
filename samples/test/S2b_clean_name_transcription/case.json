@@ -3379,6 +3379,7 @@
       ]
     }
   ],
+  "genuine_sources": [],
   "tamper_ground_truth": [],
   "legitimate_differences": [
     "LD-S2b-1",
