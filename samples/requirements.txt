@@ -1,0 +1,11 @@
+# Generator (D1-lite)
+Pillow>=10.1
+reportlab>=4.0
+Faker>=20.0        # only for --rebuild-persons; rendering uses the committed persons.json
+pypdfium2>=4.0      # rasterise generated PDFs for the scan-like versions (see README)
+
+# Tests only
+pytest>=7.0
+pdfplumber>=0.10    # text-layer + word-box checks
+pypdf>=4.0          # PDF open / page count checks
+pytesseract>=0.3    # optional OCR cross-check (needs the tesseract binary; tests skip if absent)
