@@ -16,6 +16,8 @@ import type { ReviewSource } from "./services/reviewSource.js";
 import { EventLogReviews, JsonlEventLog } from "./services/eventLog.js";
 import { ReclassifyService, ReviewService } from "./services/review.js";
 import { reviewRouter } from "./routes/review.js";
+import { integrityRouter } from "./routes/integrity.js";
+import { IntegrityService } from "./services/integrity.js";
 import { JsonOverridesRepository, OverlayAnalysisRepository, type OverridesRepository } from "./repo/overrides.js";
 import { ReasoningPipeline, createStubReasoning, engineReasoning, type ReasoningFn } from "./services/reasoning.js";
 import { jobsRouter } from "./routes/jobs.js";
@@ -56,6 +58,7 @@ export interface AppDeps {
   events: JsonlEventLog;
   review: ReviewService;
   reclassify: ReclassifyService;
+  integrity: IntegrityService;
   evidence: EvidenceRepository;
   reviews: ReviewSource;
   jobs: JobService;
@@ -133,6 +136,7 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     events,
     review: reviewService,
     reclassify,
+    integrity: new IntegrityService(documents, manifest, storage, logger),
     evidence,
     reviews: overrides.reviews ?? new EventLogReviews(events),
     jobs,
@@ -177,6 +181,7 @@ export function createApp(deps: AppDeps): Express {
       requireAuth: deps.requireAuth,
     }),
   );
+  api.use(integrityRouter({ cases: deps.cases, integrity: deps.integrity, requireAuth: deps.requireAuth }));
   api.use(
     reviewRouter({ review: deps.review, reclassify: deps.reclassify, cases: deps.cases, log: deps.events, requireAuth: deps.requireAuth }),
   );

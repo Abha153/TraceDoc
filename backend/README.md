@@ -133,3 +133,17 @@ npm run typecheck
   reclassify, `VIEW` when a finding (`GET /findings/:id`) or a document (`GET /documents/:docId`) is opened, at most once a minute per actor
   and target. Lists and page renders are not logged. `EXPORT` events are added by the dossier route (B14) through `deps.events.append`.
 - `GET /cases/:caseId/events` returns the case's log in order (`EventsResponse`).
+
+## Integrity verifier (B12)
+
+- `GET /api/v1/cases/:caseId/integrity` returns an `IntegrityReport`. For every document of the case it recomputes the SHA-256 of the stored
+  original (streamed) and compares it with `DATA_DIR/audit/manifest.json`, which B2 wrote at upload.
+- A document **PASSES** only if its file exists and the recomputed hash equals the manifest's. Everything else is **FAIL**, never swallowed:
+  a changed file (both hashes are returned), a missing or unreadable file (`actualSha256: null`), a document with no manifest entry, or an
+  unreadable manifest (`expectedSha256: ""`; every document fails, and the response is still 200 with the report rather than a 500).
+  The case is FAIL if any document fails. A case with no documents has nothing that failed, so it reports PASS with an empty list.
+- The path of each file is rebuilt from the docId and an extension, never read from the manifest's `storedAs`, so a tampered manifest cannot
+  make the check hash another file. The check is read-only: it never repairs or rewrites the manifest or the originals.
+- `src/services/integrity.ts` (`IntegrityService`) is reusable: the dossier route (B14) embeds the same report.
+- **Limit:** this detects changes made after upload. It cannot show that the manifest itself was never rewritten together with a file; for
+  that the manifest would need an external anchor (for example a signed or off-machine copy), which is out of scope for the prototype.
