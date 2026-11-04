@@ -123,7 +123,7 @@ export const api = {
       return await request<IntegrityReport>(`/cases/${encodeURIComponent(caseId)}/integrity`);
     } catch (error) {
       if (error instanceof ApiError && error.status === 404) {
-        throw new Error("The integrity check is not available on this backend yet (batch B12).");
+        throw new Error("The integrity check is not available on this backend.");
       }
       throw error;
     }
@@ -135,12 +135,13 @@ export const api = {
       if (!(error instanceof ApiError) || error.status !== 404) throw error;
     }
     // The dossier route (B14) is not mounted: compose the same content from routes that exist, and say so.
-    const [summary, assertions, entities, findings, events] = await Promise.all([
+    const [summary, assertions, entities, findings, events, integrity] = await Promise.all([
       api.getCase(caseId),
       api.assertions(caseId),
       api.entities(caseId),
       api.findings(caseId),
       api.events(caseId),
+      api.integrity(caseId).catch(() => undefined), // B12 may be absent on an older backend; recorded as a limitation below
     ]);
     return {
       caseId,
@@ -151,9 +152,10 @@ export const api = {
       findings: findings.findings,
       reviewHistory: events.events.filter((event) => ["REVIEW", "COMMENT", "REOPEN"].includes(event.type)),
       analyzerStatuses: Object.fromEntries(summary.documents.map((document) => [document.docId, document.processing])),
+      integrity,
       limitations: [
         "The dossier export route (batch B14) is not available on this backend; this view is composed from the live read routes.",
-        "The document integrity check (batch B12) is not available on this backend, so file hashes have not been re-verified.",
+        ...(integrity ? [] : ["The document integrity check is not available on this backend, so file hashes have not been re-verified."]),
       ],
       composedFromLiveRoutes: true,
     };

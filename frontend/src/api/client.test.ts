@@ -80,9 +80,21 @@ describe("contract alignment with the backend", () => {
     await login();
     const dossier = await api.dossier("CASE-001");
     expect(dossier.composedFromLiveRoutes).toBe(true);
-    expect(dossier.integrity).toBeUndefined();
+    expect(dossier.integrity?.caseId).toBe("CASE-001"); // the integrity route exists (B12), so its report is included
     expect(dossier.limitations.join(" ")).toContain("B14");
+    expect(dossier.limitations.join(" ")).not.toContain("integrity check is not available");
     expect(dossier.findings.length).toBeGreaterThan(0);
+  });
+
+  it("records a limitation when the integrity route is missing from an older backend", async () => {
+    server.use(
+      http.get(`${API}/cases/:caseId/dossier`, () => HttpResponse.json({ error: { code: "NOT_FOUND", message: "Not found" } }, { status: 404 })),
+      http.get(`${API}/cases/:caseId/integrity`, () => HttpResponse.json({ error: { code: "NOT_FOUND", message: "Not found" } }, { status: 404 })),
+    );
+    await login();
+    const dossier = await api.dossier("CASE-001");
+    expect(dossier.integrity).toBeUndefined();
+    expect(dossier.limitations.join(" ")).toContain("integrity check is not available");
   });
 
   it("does not hide a real dossier failure behind the fallback", async () => {
@@ -98,7 +110,7 @@ describe("contract alignment with the backend", () => {
       HttpResponse.json({ error: { code: "NOT_FOUND", message: "Not found" } }, { status: 404 }),
     ));
     await login();
-    await expect(api.integrity("CASE-001")).rejects.toThrow("not available on this backend yet");
+    await expect(api.integrity("CASE-001")).rejects.toThrow("not available on this backend");
   });
 
   it("mock responses validate against contracts.schema.json, like the real backend responses do", async () => {
