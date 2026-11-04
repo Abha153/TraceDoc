@@ -513,6 +513,8 @@ Reviews are events. The machine `observationStatus` is shown next to the review 
 | `GET` | `/cases/:caseId/events` | Append-only investigation log |
 | `GET` | `/cases/:caseId/dossier` | Dossier PDF, `?format=json` for raw structure |
 | `GET` | `/cases/:caseId/integrity` | Re-verify hashes against the manifest |
+| `GET` | `/cases/:caseId/related` | Other cases sharing an id_number, account_number or file hash (a lead, not a finding) |
+| `GET` | `/compliance/retention-policy` | Configured retention policy (reporting only, no purge) |
 
 Python service (internal, localhost only, takes document IDs not paths): `POST /analyze`, `GET /health`.
 
