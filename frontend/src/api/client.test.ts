@@ -124,4 +124,12 @@ describe("contract alignment with the backend", () => {
     parseContractFixture("FindingDetail", await api.review(first, { action: "DISMISS", reason: "checked the original" }));
     parseContractFixture("EventsResponse", await api.events("CASE-001"));
   });
+
+  it("related-cases mock answers with a contract-valid response and 404s for an unknown case", async () => {
+    await login();
+    const body = await api.related("CASE-001");
+    parseContractFixture("RelatedCasesResponse", body);
+    expect(body.basis).toContain("does not indicate wrongdoing");
+    await expect(api.related("CASE-404")).rejects.toThrow("Case not found");
+  });
 });

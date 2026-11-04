@@ -1853,6 +1853,107 @@
       ],
       "additionalProperties": false,
       "description": "GET /compliance/retention-policy. Reports configuration only; nothing is purged automatically."
+    },
+    "RelatedCasesResponse": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RelatedCase"
+          }
+        },
+        "basis": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "caseId",
+        "related",
+        "basis"
+      ],
+      "additionalProperties": false,
+      "description": "GET /cases/:caseId/related."
+    },
+    "RelatedCase": {
+      "type": "object",
+      "properties": {
+        "caseId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "shared": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SharedValue"
+          }
+        }
+      },
+      "required": [
+        "caseId",
+        "title",
+        "shared"
+      ],
+      "additionalProperties": false
+    },
+    "SharedValue": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "identifier",
+            "file_hash"
+          ]
+        },
+        "semanticType": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "thisCase": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CorrelationRef"
+          }
+        },
+        "otherCase": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CorrelationRef"
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "value",
+        "thisCase",
+        "otherCase"
+      ],
+      "additionalProperties": false,
+      "description": "A strong identifier or file hash that also appears in another case. This is an investigative lead, not a finding: the same person can legitimately appear in two cases, and the lead does not change any priority. Names, addresses and amounts are never correlated."
+    },
+    "CorrelationRef": {
+      "type": "object",
+      "properties": {
+        "docId": {
+          "type": "string"
+        },
+        "assertionId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "docId"
+      ],
+      "additionalProperties": false,
+      "description": "One place in a case where a shared value appears."
     }
   }
 }

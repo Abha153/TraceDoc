@@ -50,7 +50,7 @@ const roots = [
   "ErrorResponse", "LoginRequest", "Session", "CreateCaseRequest", "Case", "UploadResponse", "CaseSummary",
   "DocumentDetail", "ReclassifyRequest", "FindingWithReview", "FindingDetail", "ReviewRequest", "AssertionsResponse",
   "EntitiesResponse", "FindingsResponse", "EventsResponse", "GraphResponse", "IntegrityReport", "DossierJson",
-  "CaseFixture", "AnalyzeRequest", "HealthResponse", "RetentionPolicy",
+  "CaseFixture", "AnalyzeRequest", "HealthResponse", "RetentionPolicy", "RelatedCasesResponse",
 ];
 const bundle = { $schema: "http://json-schema.org/draft-07/schema#", title: "TraceDocs contracts (all types as definitions)", definitions: {} };
 for (const name of roots) {

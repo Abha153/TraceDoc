@@ -11,6 +11,7 @@ import type {
   GraphResponse,
   IntegrityReport,
   LoginRequest,
+  RelatedCasesResponse,
   Session,
   UploadResponse,
 } from "../../../contracts/api";
@@ -116,6 +117,7 @@ export const api = {
   finding: (findingId: string) => request<FindingDetail>(`/findings/${encodeURIComponent(findingId)}`),
   review: (findingId: string, body: ReviewRequest) =>
     request<FindingDetail>(`/findings/${encodeURIComponent(findingId)}/review`, jsonBody(body)),
+  related: (caseId: string) => request<RelatedCasesResponse>(`/cases/${encodeURIComponent(caseId)}/related`),
   graph: (caseId: string) => request<GraphResponse>(`/cases/${encodeURIComponent(caseId)}/graph`),
   events: (caseId: string) => request<EventsResponse>(`/cases/${encodeURIComponent(caseId)}/events`),
   integrity: async (caseId: string) => {

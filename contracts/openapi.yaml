@@ -743,6 +743,40 @@ paths:
       security:
       - sessionCookie: []
       operationId: get_cases_caseId_integrity
+  /cases/{caseId}/related:
+    get:
+      tags:
+      - reasoning
+      summary: Other cases that share a strong identifier or an identical file (an investigative lead, not a finding)
+      parameters:
+      - name: caseId
+        in: path
+        required: true
+        description: Case id, e.g. CASE-001
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Related cases
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/RelatedCasesResponse
+        '401':
+          description: Not logged in
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: ./contracts.schema.json#/definitions/ErrorResponse
+      security:
+      - sessionCookie: []
+      operationId: get_cases_caseId_related
   /compliance/retention-policy:
     get:
       tags:

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import type { CaseSummary } from "../../../contracts/api";
+import type { CaseSummary, RelatedCasesResponse } from "../../../contracts/api";
 import { api } from "../api/client";
 import { mockMode as MOCK_MODE } from "../config";
 import { Breadcrumbs, Button, EmptyState, ErrorState, Icon, LoadingState, PageHeader, StatusBadge } from "../components/ui";
@@ -118,6 +118,7 @@ function CaseCard({ summary }: { summary: CaseSummary }) {
 export function CaseDetailPage() {
   const { caseId = "" } = useParams();
   const summaryQuery = useQuery({ queryKey: ["case", caseId], queryFn: () => api.getCase(caseId) });
+  const relatedQuery = useQuery({ queryKey: ["related", caseId], queryFn: () => api.related(caseId), enabled: summaryQuery.isSuccess });
   if (summaryQuery.isLoading) return <LoadingState label="Loading case" />;
   if (summaryQuery.isError) return <ErrorState error={summaryQuery.error} retry={() => void summaryQuery.refetch()} />;
   const summary = summaryQuery.data;
@@ -163,10 +164,35 @@ export function CaseDetailPage() {
       ) : (
         <EmptyState title="No documents yet" detail="Upload a supported file to add it to this local demo case." action={<Link className="button button-primary" to="/upload">Upload document</Link>} />
       )}
+      <RelatedCases query={relatedQuery} />
     </>
   );
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="metric-card"><span>{label}</span><strong>{value}</strong></div>;
+}
+
+function RelatedCases({ query }: { query: ReturnType<typeof useQuery<RelatedCasesResponse>> }) {
+  return (
+    <section className="panel related-cases" aria-labelledby="related-cases-heading">
+      <div className="section-heading"><div><h2 id="related-cases-heading">Related cases</h2><p>Leads to verify, not findings. They do not change the priority.</p></div></div>
+      {query.isLoading && <p className="muted-copy">Checking other cases…</p>}
+      {query.isError && <p className="muted-copy" role="status">Related cases could not be checked: {query.error instanceof Error ? query.error.message : "unknown error"}.</p>}
+      {query.data && query.data.related.length === 0 && <p className="muted-copy">No other case shares an ID number, account number or identical file with this case.</p>}
+      {query.data?.related.map((related) => (
+        <article className="related-case" key={related.caseId}>
+          <p><Link to={`/cases/${related.caseId}`}><strong>{related.caseId}</strong></Link> · {related.title}</p>
+          <ul>{related.shared.map((item) => (
+            <li key={`${item.kind}-${item.semanticType ?? ""}-${item.value}`}>
+              {item.kind === "file_hash" ? "Identical file" : `Same ${item.semanticType === "id_number" ? "ID number" : "account number"}`}
+              {" "}<code>{item.kind === "file_hash" ? `${item.value.slice(0, 12)}…` : item.value}</code>
+              {" "}· here: {item.thisCase.map((ref) => ref.docId).join(", ")} · there: {item.otherCase.map((ref) => ref.docId).join(", ")}
+            </li>
+          ))}</ul>
+        </article>
+      ))}
+      {query.data && <p className="muted-copy">{query.data.basis}</p>}
+    </section>
+  );
 }

@@ -364,6 +364,18 @@ export const handlers = [
     };
     return HttpResponse.json(detail);
   }),
+  http.get(`${API}/cases/:caseId/related`, ({ params }) => {
+    const caseId = String(params.caseId);
+    if (!getCase(caseId)) {
+      return HttpResponse.json({ error: { code: "CASE_NOT_FOUND", message: "Case not found." } }, { status: 404 });
+    }
+    // The recorded fixture cases share no identifier or file, so the honest mock answer is "no related cases".
+    return HttpResponse.json({
+      caseId,
+      related: [],
+      basis: "Compared exact id_number and account_number values and file hashes with every other case. A match is a lead to verify: the same person can appear in more than one case, and a match does not indicate wrongdoing. Names, addresses and amounts are not compared.",
+    });
+  }),
   http.get(`${API}/cases/:caseId/graph`, ({ params }) => {
     const caseId = String(params.caseId);
     const graph = fixtureGraphs[caseId as keyof typeof fixtureGraphs];

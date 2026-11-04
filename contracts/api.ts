@@ -158,6 +158,38 @@ export interface DossierJson {
   integrity: IntegrityReport;
 }
 
+/** One place in a case where a shared value appears. */
+export interface CorrelationRef {
+  docId: string;
+  assertionId?: string; // absent for file-hash matches
+}
+
+/**
+ * A strong identifier or file hash that also appears in another case. This is an investigative lead, not a finding:
+ * the same person can legitimately appear in two cases, and the lead does not change any priority. Names, addresses
+ * and amounts are never correlated.
+ */
+export interface SharedValue {
+  kind: "identifier" | "file_hash";
+  semanticType?: string; // for kind "identifier": id_number or account_number
+  value: string; // normalized identifier, or the SHA-256 hex of the file
+  thisCase: CorrelationRef[];
+  otherCase: CorrelationRef[];
+}
+
+export interface RelatedCase {
+  caseId: string;
+  title: string;
+  shared: SharedValue[];
+}
+
+/** GET /cases/:caseId/related. */
+export interface RelatedCasesResponse {
+  caseId: string;
+  related: RelatedCase[];
+  basis: string; // plain-language statement of what was compared and what a match does and does not mean
+}
+
 /** GET /compliance/retention-policy. Reports configuration only; nothing is purged automatically. */
 export interface RetentionPolicy {
   rawEvidenceRetentionDays: number;

@@ -7,6 +7,7 @@ import { createRequireAuth } from "./middleware/requireAuth.js";
 import { createRequestLogger } from "./middleware/requestLogger.js";
 import { healthRouter } from "./routes/health.js";
 import { complianceRouter } from "./routes/compliance.js";
+import { relatedRouter } from "./routes/related.js";
 import { authRouter } from "./routes/auth.js";
 import { documentsRouter } from "./routes/documents.js";
 import { casesRouter } from "./routes/cases.js";
@@ -159,6 +160,7 @@ export function createApp(deps: AppDeps): Express {
   api.use(healthRouter());
   api.use(authRouter(deps));
   api.use(complianceRouter(deps.requireAuth, deps.config.retentionDays));
+  api.use(relatedRouter({ cases: deps.cases, caseRepo: deps.caseRepo, documents: deps.documents, evidence: deps.evidence, requireAuth: deps.requireAuth }));
   api.use(casesRouter(deps.cases, deps.requireAuth, deps.reasoning, deps.events));
   api.use(
     documentsRouter({
