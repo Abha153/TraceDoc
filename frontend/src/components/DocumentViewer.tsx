@@ -56,6 +56,7 @@ export const DocumentViewer = forwardRef<DocumentViewerHandle, DocumentViewerPro
     const [showSignals, setShowSignals] = useState(true);
     const [showFindings, setShowFindings] = useState(true);
     const [activeRegion, setActiveRegion] = useState<Region | null>(null);
+    const [hovered, setHovered] = useState<OverlayRegion | null>(null);
     const drag = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
 
     const overlays = useMemo<OverlayRegion[]>(() => [
@@ -234,18 +235,35 @@ export const DocumentViewer = forwardRef<DocumentViewerHandle, DocumentViewerPro
                         role="button"
                         aria-label={`${overlay.label}: ${overlay.detail}${overlay.confidence === undefined ? "" : `, ${Math.round(overlay.confidence * 100)} percent confidence`}`}
                         onClick={() => focusRegion(overlay.region)}
+                        onMouseEnter={() => setHovered(overlay)}
+                        onMouseLeave={() => setHovered((current) => current?.id === overlay.id ? null : current)}
+                        onFocus={() => setHovered(overlay)}
+                        onBlur={() => setHovered((current) => current?.id === overlay.id ? null : current)}
                         onKeyDown={(event) => {
                           if (event.key === "Enter" || event.key === " ") {
                             event.preventDefault();
                             focusRegion(overlay.region);
                           }
                         }}
-                      >
-                        <title>{`${overlay.label}: ${overlay.detail}${overlay.confidence === undefined ? "" : ` · ${Math.round(overlay.confidence * 100)}% confidence`}`}</title>
-                      </rect>
+                      />
                     );
                   })}
                 </svg>
+                {hovered && hovered.region.page === page && (
+                  <div
+                    role="tooltip"
+                    className="viewer-tooltip tw-absolute tw-z-20 tw-pointer-events-none tw--translate-x-1/2 tw-mt-2 tw-max-w-xs tw-rounded-md tw-px-2.5 tw-py-1.5 tw-shadow-lg"
+                    style={{
+                      left: `${Math.min(88, Math.max(12, (hovered.region.bbox[0] + hovered.region.bbox[2] / 2) * 100))}%`,
+                      top: `${(hovered.region.bbox[1] + hovered.region.bbox[3]) * 100}%`,
+                    }}
+                  >
+                    <strong>{hovered.label}</strong>
+                    <span>{hovered.detail}</span>
+                    {hovered.confidence !== undefined && <em>{Math.round(hovered.confidence * 100)}% confidence</em>}
+                    <small>{hovered.status ? hovered.status.replaceAll("_", " ").toLowerCase() : hovered.kind}</small>
+                  </div>
+                )}
               </>
             ) : (
               <div className="viewer-no-image">

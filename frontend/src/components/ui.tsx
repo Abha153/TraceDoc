@@ -193,3 +193,8 @@ export function Breadcrumbs({ items }: { items: Array<{ label: string; to?: stri
     </nav>
   );
 }
+
+/** Column or list sort control. The parent owns `aria-sort` on the <th> (or announces the order itself). */
+export function SortButton({ label, active, descending, onClick }: { label: string; active: boolean; descending: boolean; onClick: () => void }) {
+  return <button type="button" className="sort-button" onClick={onClick}>{label}<span aria-hidden="true">{active ? descending ? " ↓" : " ↑" : " ↕"}</span></button>;
+}

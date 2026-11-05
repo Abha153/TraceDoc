@@ -7,6 +7,7 @@ import { api } from "../api/client";
 import { DocumentViewer } from "../components/DocumentViewer";
 import type { DocumentViewerHandle } from "../components/DocumentViewer";
 import {
+  SortButton,
   Breadcrumbs,
   Button,
   Confidence,
@@ -129,9 +130,6 @@ export function FindingsPage() {
   );
 }
 
-function SortButton({ label, active, descending, onClick }: { label: string; active: boolean; descending: boolean; onClick: () => void }) {
-  return <button className="sort-button" onClick={onClick}>{label}<span aria-hidden="true">{active ? descending ? " ↓" : " ↑" : " ↕"}</span></button>;
-}
 
 function FindingRow({ record }: { record: FindingWithReview }) {
   const { finding, reviewStatus } = record;
@@ -211,11 +209,11 @@ export function FindingDetailPage() {
                 />
                 <div className="evidence-jump-list">
                   {selectedRegions.map((region, index) => (
-                    <button className="evidence-jump" key={`${region.docId}-${region.label}-${index}`} onClick={() => {
+                    <button className="evidence-jump" key={`${region.docId}-${region.label}-${index}`} aria-label={`Show in document: ${region.label ?? "evidence region"}, ${region.docId} page ${region.page}`} onClick={() => {
                       setSelectedRegion(region);
                       viewerRef.current?.focusRegion(region);
                     }}>
-                      <span className="evidence-jump-marker">{index + 1}</span><span><strong>{region.label ?? "Evidence region"}</strong><small>{region.docId} · page {region.page}</small></span><Icon name="pin" size={16} />
+                      <span className="evidence-jump-marker">{index + 1}</span><span><strong>{region.label ?? "Evidence region"}</strong><small>{region.docId} · page {region.page}</small></span><span className="evidence-jump-action"><Icon name="pin" size={16} /> Show in document</span>
                     </button>
                   ))}
                 </div>
