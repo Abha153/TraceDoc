@@ -1,0 +1,455 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S4b",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S4b",
+        "id_card_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S4b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "1791 HILLCREST DRIVE\nWESTMOOR, MI 89914",
+          "value": "1791 Hillcrest Drive, Westmoor, MI 89914",
+          "region": {
+            "docId": "id_card_S4b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.343225,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S4b",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "2566 Summit Street, Northgate, OR 36817",
+          "value": "2566 Summit Street, Northgate, OR 36817",
+          "region": {
+            "docId": "bank_statement_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.356868,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S4b-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "1791 Hillcrest Drive, Westmoor, MI 89914",
+          "value": "1791 Hillcrest Drive, Westmoor, MI 89914",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.335874,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S4b",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "2566 Summit Street, Northgate, OR 36817",
+          "value": "2566 Summit Street, Northgate, OR 36817",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.342938,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S4b-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S4b",
+        "loan_application_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4b",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 36,000.00",
+          "value": "36000.00",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S4b",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "4,515.41",
+          "value": "4515.41",
+          "region": {
+            "docId": "bank_statement_S4b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S4b-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Teodor Lindqvist",
+          "value": "Teodor Lindqvist",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.136131,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4b",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Teodor Lindqvyst",
+          "value": "Teodor Lindqvyst",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.141128,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S4b-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S4b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1993-11-24",
+          "value": "1993-11-24",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S4b",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1967-07-25",
+          "value": "1967-07-25",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S4b-5"
+    },
+    {
+      "nonFindingId": "NF-050",
+      "description": "Applicant and guarantor have similar names but are different people (token-sort ratio 93.8; different id_number and date of birth).",
+      "documents": [
+        "id_card_S4b",
+        "id_card_guarantor_S4b",
+        "loan_application_S4b"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S4b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "TEODOR LINDQVIST",
+          "value": "Teodor Lindqvist",
+          "region": {
+            "docId": "id_card_S4b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.336301,
+              0.053291
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "id_card_guarantor_S4b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "TEODOR LINDQVYST",
+          "value": "Teodor Lindqvyst",
+          "region": {
+            "docId": "id_card_guarantor_S4b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.350149,
+              0.053291
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Teodor Lindqvist",
+          "value": "Teodor Lindqvist",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.136131,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S4b",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Teodor Lindqvyst",
+          "value": "Teodor Lindqvyst",
+          "region": {
+            "docId": "loan_application_S4b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.141128,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        },
+        {
+          "docId": "id_card_S4b",
+          "field": "id_number",
+          "semanticType": "id_number",
+          "text": "SMP-4135-1474-ZN",
+          "value": "SMP-4135-1474-ZN",
+          "region": {
+            "docId": "id_card_S4b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.677116,
+              0.327399,
+              0.040752
+            ],
+            "label": "id_number"
+          }
+        },
+        {
+          "docId": "id_card_guarantor_S4b",
+          "field": "id_number",
+          "semanticType": "id_number",
+          "text": "SMP-5913-6215-YY",
+          "value": "SMP-5913-6215-YY",
+          "region": {
+            "docId": "id_card_guarantor_S4b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.677116,
+              0.327399,
+              0.040752
+            ],
+            "label": "id_number"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Different id_number: the two must stay two separate entities and must not be merged or reported as a name conflict.",
+      "entityExpectations": [
+        {
+          "role": "applicant",
+          "personId": "PS04B1"
+        },
+        {
+          "role": "guarantor",
+          "personId": "PS04B2",
+          "mustNotMergeWith": "PS04B1"
+        }
+      ]
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S4b",
+      "documents": [
+        "id_card_S4b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on id_card_guarantor_S4b",
+      "documents": [
+        "id_card_guarantor_S4b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on loan_application_S4b",
+      "documents": [
+        "loan_application_S4b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-104",
+      "description": "No forensic signal on bank_statement_S4b",
+      "documents": [
+        "bank_statement_S4b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}

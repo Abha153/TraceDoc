@@ -1,3 +1,5 @@
+@tailwind utilities;
+
 :root {
   font-family: "DM Sans", "Segoe UI", sans-serif;
   color: #172333;
@@ -638,3 +640,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+.sort-control { display: inline-flex; align-items: center; gap: 8px; color: #52606d; font-size: 12px; }
+.sort-control select { min-height: 34px; padding: 0 8px; border: 1px solid #cfd8dc; border-radius: 7px; color: #172333; background: #fff; font: inherit; }
+.sort-control .icon-button:disabled { opacity: .4; cursor: default; }
+.viewer-tooltip { display: grid; gap: 2px; min-width: 120px; color: #fff; background: #172333; font-size: 11px; line-height: 1.35; }
+.viewer-tooltip strong { font-size: 11px; text-transform: capitalize; }
+.viewer-tooltip span { color: #d3dde3; overflow-wrap: anywhere; }
+.viewer-tooltip em { color: #9fd8cc; font-style: normal; font-variant-numeric: tabular-nums; }
+.viewer-tooltip small { color: #b8c6cf; text-transform: capitalize; }
+.evidence-jump-action { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; color: var(--teal, #26877a); font-size: 11px; font-weight: 600; white-space: nowrap; }

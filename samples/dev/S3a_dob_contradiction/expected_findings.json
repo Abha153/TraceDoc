@@ -1,0 +1,59 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S3a",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "DOB_CONFLICT",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "high",
+      "documents": [
+        "id_card_S3a",
+        "loan_application_S3a"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "evidence": [
+        {
+          "docId": "id_card_S3a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "28 APR 1987",
+          "value": "1987-04-28",
+          "region": {
+            "docId": "id_card_S3a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.380878,
+              0.204748,
+              0.042319
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S3a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1990-04-28",
+          "value": "1990-04-28",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        }
+      ],
+      "scoring": "required",
+      "notes": "Applicant date of birth is 1987-04-28 on the ID card and 1990-04-28 on the application form. Both documents are rendered files with no edit; the difference is in the content, not the pixels."
+    }
+  ]
+}

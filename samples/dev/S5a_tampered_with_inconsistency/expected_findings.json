@@ -1,0 +1,93 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S5a",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "DOB_CONFLICT",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "high",
+      "documents": [
+        "id_card_S5a",
+        "loan_application_S5a"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "evidence": [
+        {
+          "docId": "id_card_S5a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "18 SEP 1980",
+          "value": "1980-09-18",
+          "region": {
+            "docId": "id_card_S5a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.380878,
+              0.201781,
+              0.042319
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S5a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1983-09-18",
+          "value": "1983-09-18",
+          "region": {
+            "docId": "loan_application_S5a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        }
+      ],
+      "scoring": "required",
+      "relatedFindings": [
+        "EF-002"
+      ],
+      "notes": "Applicant date of birth reads 1980-09-18 on one document and a different year on the other; the differing value sits in the edited region (see EF-002)."
+    },
+    {
+      "expectedId": "EF-002",
+      "type": "REGION_EVENT",
+      "category": "pdf_structure",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "documents": [
+        "loan_application_S5a"
+      ],
+      "tamperRef": "T-01",
+      "region": {
+        "docId": "loan_application_S5a",
+        "page": 1,
+        "bbox": [
+          0.606209,
+          0.207199,
+          0.095186,
+          0.015373
+        ],
+        "label": "date_of_birth"
+      },
+      "expectedAnalyzers": [
+        "pdf.fonts"
+      ],
+      "detectability": "core",
+      "scoring": "required",
+      "relatedFindings": [
+        "EF-001"
+      ],
+      "notes": "Value of 'date_of_birth' changed from '1980-09-18' to '1983-09-18' in an appended revision (incremental update); the original revision is still present in the file. (detectability: core; author's assessment, not a guarantee)"
+    }
+  ]
+}

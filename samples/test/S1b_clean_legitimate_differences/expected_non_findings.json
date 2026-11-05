@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S1b",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S1b",
+        "id_card_S1b"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S1b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "7145 MAPLE ROAD APT 7\nNORTHGATE, MI 39274",
+          "value": "7145 Maple Road Apt 7, Northgate, MI 39274",
+          "region": {
+            "docId": "id_card_S1b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.368942,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S1b",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "7282 Granite Avenue, Millford, NY 26465",
+          "value": "7282 Granite Avenue, Millford, NY 26465",
+          "region": {
+            "docId": "bank_statement_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.345904,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S1b-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S1b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S1b",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "7145 Maple Road Apt 7, Northgate, MI 39274",
+          "value": "7145 Maple Road Apt 7, Northgate, MI 39274",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.365945,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S1b",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "7282 Granite Avenue, Millford, NY 26465",
+          "value": "7282 Granite Avenue, Millford, NY 26465",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.33095,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S1b-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S1b",
+        "loan_application_S1b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S1b",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 31,000.00",
+          "value": "31000.00",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S1b",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "2,773.57",
+          "value": "2773.57",
+          "region": {
+            "docId": "bank_statement_S1b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S1b-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S1b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S1b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Teodor Brandt",
+          "value": "Teodor Brandt",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.118157,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S1b",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Mateus Verhoeven",
+          "value": "Mateus Verhoeven",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.154123,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S1b-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S1b"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S1b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1988-08-07",
+          "value": "1988-08-07",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S1b",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1985-11-22",
+          "value": "1985-11-22",
+          "region": {
+            "docId": "loan_application_S1b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S1b-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S1b",
+      "documents": [
+        "id_card_S1b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S1b",
+      "documents": [
+        "loan_application_S1b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S1b",
+      "documents": [
+        "bank_statement_S1b"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}

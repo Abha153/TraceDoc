@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S8a",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S8a",
+        "id_card_S8a"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S8a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "2256 LAKEVIEW DRIVE\nWESTMOOR, NC 13252",
+          "value": "2256 Lakeview Drive, Westmoor, NC 13252",
+          "region": {
+            "docId": "id_card_S8a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.333334,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S8a",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "4811 Granite Court, Ravenswood, OR 90939",
+          "value": "4811 Granite Court, Ravenswood, OR 90939",
+          "region": {
+            "docId": "bank_statement_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.376855,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S8a-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S8a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S8a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "2256 Lakeview Drive, Westmoor, NC 13252",
+          "value": "2256 Lakeview Drive, Westmoor, NC 13252",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.352878,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S8a",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "4811 Granite Court, Ravenswood, OR 90939",
+          "value": "4811 Granite Court, Ravenswood, OR 90939",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.361919,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S8a-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S8a",
+        "loan_application_S8a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S8a",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 19,000.00",
+          "value": "19000.00",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S8a",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "6,140.50",
+          "value": "6140.50",
+          "region": {
+            "docId": "bank_statement_S8a",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S8a-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S8a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S8a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Anneliese Okafor",
+          "value": "Anneliese Okafor",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.141128,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S8a",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Marisol Abernathy",
+          "value": "Marisol Abernathy",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.148102,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S8a-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S8a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S8a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1978-07-11",
+          "value": "1978-07-11",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S8a",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1979-08-25",
+          "value": "1979-08-25",
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S8a-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S8a",
+      "documents": [
+        "id_card_S8a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Control: genuine content only recompressed as JPEG quality 85; no edit was made."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S8a",
+      "documents": [
+        "loan_application_S8a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Control: genuine content only recompressed as JPEG quality 85; no edit was made."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S8a",
+      "documents": [
+        "bank_statement_S8a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Control: genuine content only recompressed as JPEG quality 85; no edit was made."
+    }
+  ]
+}

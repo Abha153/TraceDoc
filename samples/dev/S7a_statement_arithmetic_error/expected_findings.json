@@ -1,0 +1,60 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S7a",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "STATEMENT_TOTAL_MISMATCH",
+      "category": "context",
+      "observationStatus": "INCONSISTENT",
+      "severity": "medium",
+      "documents": [
+        "bank_statement_S7a"
+      ],
+      "ruleId": "R-STMT-TOTAL-ARITH",
+      "evidence": [
+        {
+          "docId": "bank_statement_S7a",
+          "field": "total_debits",
+          "semanticType": "statement_total",
+          "text": "2,205.10",
+          "value": "2205.10",
+          "region": {
+            "docId": "bank_statement_S7a",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.195124,
+              0.060503,
+              0.013036
+            ],
+            "label": "total_debits"
+          }
+        },
+        {
+          "docId": "bank_statement_S7a",
+          "field": "table_total_debits",
+          "semanticType": "statement_total",
+          "text": "2,205.10",
+          "value": "2205.10",
+          "region": {
+            "docId": "bank_statement_S7a",
+            "page": 1,
+            "bbox": [
+              0.597905,
+              0.746082,
+              0.057324,
+              0.012453
+            ],
+            "label": "table_total_debits"
+          }
+        }
+      ],
+      "listedSum": "2105.10",
+      "printedTotal": "2205.10",
+      "scoring": "required",
+      "notes": "Printed total debits 2205.10 but the listed transactions sum to 2105.10 (difference 100.00). The statement file is otherwise unedited: it is an arithmetic inconsistency in the content, not a pixel-level or structural edit."
+    }
+  ]
+}

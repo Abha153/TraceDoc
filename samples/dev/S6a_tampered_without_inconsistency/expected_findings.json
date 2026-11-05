@@ -1,0 +1,36 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S6a",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "REGION_EVENT",
+      "category": "pdf_structure",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "documents": [
+        "bank_statement_S6a"
+      ],
+      "tamperRef": "T-01",
+      "region": {
+        "docId": "bank_statement_S6a",
+        "page": 1,
+        "bbox": [
+          0.846271,
+          0.436001,
+          0.057324,
+          0.016453
+        ],
+        "label": "transaction_05_balance"
+      },
+      "expectedAnalyzers": [
+        "pdf.fonts"
+      ],
+      "detectability": "core",
+      "scoring": "required",
+      "relatedFindings": [],
+      "notes": "Single value 'transaction_05_balance' re-set from Helvetica 8.5 pt to Times-Roman 9.5 pt; every other value keeps the original font. (detectability: core; author's assessment, not a guarantee)"
+    }
+  ]
+}

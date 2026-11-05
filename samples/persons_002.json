@@ -1,0 +1,188 @@
+{
+  "_meta": {
+    "fictional": true,
+    "note": "All people, addresses, numbers and amounts are randomly generated fictional data for software testing. Not real, not for real use.",
+    "seed": 20260102,
+    "generator": "samples/generator (D1 set 002, built-in pools, no Faker)"
+  },
+  "persons": [
+    {
+      "person_id": "P003",
+      "role": "applicant",
+      "given_name": "Marisol",
+      "surname": "Ivanova",
+      "full_name": "Marisol Ivanova",
+      "date_of_birth": "1980-08-21",
+      "permanent_address": {
+        "street": "8696 Lakeview Road",
+        "city": "Brookhaven",
+        "state": "MI",
+        "postcode": "41461"
+      },
+      "current_address": {
+        "street": "318 Maple Lane",
+        "city": "Ashford Hollow",
+        "state": "NY",
+        "postcode": "11279"
+      },
+      "id_number": "SMP-2841-6239-RY",
+      "id_issue_date": "2024-12-27",
+      "id_expiry_date": "2034-12-27",
+      "signature_seed": 201926
+    },
+    {
+      "person_id": "P004",
+      "role": "guarantor",
+      "given_name": "Kwabena",
+      "surname": "Okafor",
+      "full_name": "Kwabena Okafor",
+      "date_of_birth": "1978-09-28",
+      "permanent_address": {
+        "street": "7882 Summit Road",
+        "city": "Pinehurst",
+        "state": "MN",
+        "postcode": "16743"
+      },
+      "current_address": {
+        "street": "6906 Harbor Street",
+        "city": "Northgate",
+        "state": "NY",
+        "postcode": "15322"
+      },
+      "id_number": "SMP-9201-8162-YM",
+      "id_issue_date": "2024-03-08",
+      "id_expiry_date": "2034-03-08",
+      "signature_seed": 81713
+    }
+  ],
+  "loan_application": {
+    "application_no": "APP-2026-294206",
+    "application_date": "2026-03-14",
+    "applicant_id": "P003",
+    "guarantor_id": "P004",
+    "guarantor_relationship": "Sibling",
+    "requested_amount": "26500.00",
+    "currency": "USD",
+    "purpose": "Home improvement",
+    "term_months": 48
+  },
+  "bank_account": {
+    "holder_id": "P003",
+    "bank_name": "Northwind Sample Bank",
+    "account_number": "NSB-5158-686345",
+    "currency": "USD",
+    "statement_period_start": "2026-02-01",
+    "statement_period_end": "2026-02-28",
+    "opening_balance": "3084.65",
+    "transactions": [
+      {
+        "date": "2026-02-03",
+        "description": "Salary - Brightwave Logistics Ltd",
+        "debit": null,
+        "credit": "4345.25"
+      },
+      {
+        "date": "2026-02-03",
+        "description": "Rent - Harbor View Apartments",
+        "debit": "1239.93",
+        "credit": null
+      },
+      {
+        "date": "2026-02-06",
+        "description": "Pharmacy - Wellspring Chemist",
+        "debit": "8.23",
+        "credit": null
+      },
+      {
+        "date": "2026-02-06",
+        "description": "ATM cash withdrawal",
+        "debit": "152.70",
+        "credit": null
+      },
+      {
+        "date": "2026-02-09",
+        "description": "Fuel - Roadrunner Fuel Stop",
+        "debit": "64.81",
+        "credit": null
+      },
+      {
+        "date": "2026-02-12",
+        "description": "Internet - FiberNest Broadband",
+        "debit": "39.43",
+        "credit": null
+      },
+      {
+        "date": "2026-02-13",
+        "description": "ATM cash withdrawal",
+        "debit": "112.84",
+        "credit": null
+      },
+      {
+        "date": "2026-02-14",
+        "description": "ATM cash withdrawal",
+        "debit": "171.94",
+        "credit": null
+      },
+      {
+        "date": "2026-02-16",
+        "description": "Transfer in - ref 5521",
+        "debit": null,
+        "credit": "394.94"
+      },
+      {
+        "date": "2026-02-16",
+        "description": "Fuel - Roadrunner Fuel Stop",
+        "debit": "29.99",
+        "credit": null
+      },
+      {
+        "date": "2026-02-16",
+        "description": "Pharmacy - Wellspring Chemist",
+        "debit": "9.23",
+        "credit": null
+      },
+      {
+        "date": "2026-02-17",
+        "description": "Restaurant - Olive and Thyme",
+        "debit": "61.56",
+        "credit": null
+      },
+      {
+        "date": "2026-02-17",
+        "description": "Streaming - Streamly Media",
+        "debit": "11.04",
+        "credit": null
+      },
+      {
+        "date": "2026-02-19",
+        "description": "Fuel - Roadrunner Fuel Stop",
+        "debit": "31.62",
+        "credit": null
+      },
+      {
+        "date": "2026-02-19",
+        "description": "Mobile - ClearTalk Wireless",
+        "debit": "30.74",
+        "credit": null
+      },
+      {
+        "date": "2026-02-22",
+        "description": "Refund - Pinecrest Outfitters",
+        "debit": null,
+        "credit": "40.46"
+      },
+      {
+        "date": "2026-02-22",
+        "description": "Electricity - Metro Power Co",
+        "debit": "64.98",
+        "credit": null
+      },
+      {
+        "date": "2026-02-27",
+        "description": "Electricity - Metro Power Co",
+        "debit": "63.94",
+        "credit": null
+      }
+    ]
+  }
+}

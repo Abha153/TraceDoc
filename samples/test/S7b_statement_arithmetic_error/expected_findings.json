@@ -1,0 +1,60 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S7b",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "STATEMENT_TOTAL_MISMATCH",
+      "category": "context",
+      "observationStatus": "INCONSISTENT",
+      "severity": "medium",
+      "documents": [
+        "bank_statement_S7b"
+      ],
+      "ruleId": "R-STMT-TOTAL-ARITH",
+      "evidence": [
+        {
+          "docId": "bank_statement_S7b",
+          "field": "total_credits",
+          "semanticType": "statement_total",
+          "text": "3,716.02",
+          "value": "3716.02",
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.220376,
+              0.060503,
+              0.013037
+            ],
+            "label": "total_credits"
+          }
+        },
+        {
+          "docId": "bank_statement_S7b",
+          "field": "table_total_credits",
+          "semanticType": "statement_total",
+          "text": "3,716.02",
+          "value": "3716.02",
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.712284,
+              0.746082,
+              0.057324,
+              0.012453
+            ],
+            "label": "table_total_credits"
+          }
+        }
+      ],
+      "listedSum": "3791.52",
+      "printedTotal": "3716.02",
+      "scoring": "required",
+      "notes": "Printed total credits 3716.02 but the listed transactions sum to 3791.52 (difference -75.50). The statement file is otherwise unedited: it is an arithmetic inconsistency in the content, not a pixel-level or structural edit."
+    }
+  ]
+}

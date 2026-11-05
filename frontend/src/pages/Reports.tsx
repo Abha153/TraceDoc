@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { InvestigationEvent } from "../../../contracts/types";
 import { api } from "../api/client";
-import { Breadcrumbs, Button, EmptyState, ErrorState, Icon, IntegrityBadge, LoadingState, PageHeader, StatusBadge } from "../components/ui";
+import { Breadcrumbs, Button, EmptyState, ErrorState, Icon, IntegrityBadge, LoadingState, PageHeader, SortButton, StatusBadge } from "../components/ui";
 import { mockMode } from "../config";
 import { createTextPdf, downloadBlob } from "../utils/exportPdf";
 
@@ -17,6 +17,7 @@ const unsupportedFeatures = mockMode
 export function ReportsPage() {
   const [caseId, setCaseId] = useState("CASE-001");
   const [eventType, setEventType] = useState("all");
+  const [eventSort, setEventSort] = useState<{ key: "type" | "targetId" | "actor" | "at"; descending: boolean } | null>(null);
   const [integrity, setIntegrity] = useState<Awaited<ReturnType<typeof api.integrity>> | null>(null);
   const [integrityError, setIntegrityError] = useState("");
   const casesQuery = useQuery({ queryKey: ["cases"], queryFn: api.listCases });
@@ -26,7 +27,16 @@ export function ReportsPage() {
   const eventsQuery = useQuery({ queryKey: ["events", activeCaseId], queryFn: () => api.events(activeCaseId), enabled: Boolean(activeCaseId) });
   const dossier = dossierQuery.data;
   const events = eventsQuery.data?.events ?? [];
-  const filteredEvents = useMemo(() => events.filter((event) => eventType === "all" || event.type === eventType), [events, eventType]);
+  const filteredEvents = useMemo(() => {
+    const rows = events.filter((event) => eventType === "all" || event.type === eventType);
+    if (!eventSort) return rows;
+    const { key, descending } = eventSort;
+    const sorted = [...rows].sort((a, b) => key === "at" ? Date.parse(a.at) - Date.parse(b.at) : String(a[key]).localeCompare(String(b[key])) || Date.parse(a.at) - Date.parse(b.at));
+    return descending ? sorted.reverse() : sorted;
+  }, [events, eventType, eventSort]);
+  const toggleEventSort = (key: "type" | "targetId" | "actor" | "at") =>
+    setEventSort((current) => current?.key === key ? { key, descending: !current.descending } : { key, descending: false });
+  const sortState = (key: string) => eventSort?.key === key ? (eventSort.descending ? "descending" as const : "ascending" as const) : "none" as const;
   const limitations = useMemo(() => {
     if (!dossier) return [];
     const statuses = Object.entries(dossier.analyzerStatuses).flatMap(([docId, analyzers]) =>
@@ -112,7 +122,7 @@ export function ReportsPage() {
       </div>
       <section className="panel event-panel">
         <div className="section-heading"><div><h2>Investigation event log</h2><p>{mockMode ? "Append-only activity from fixture records and this browser session." : "Append-only activity recorded by the backend."}</p></div><label className="event-filter"><span>Event</span><select value={eventType} onChange={(event) => setEventType(event.target.value)}><option value="all">All events</option>{["UPLOAD", "RERUN", "RECLASSIFY", "REVIEW", "COMMENT", "REOPEN", "EXPORT", "VIEW"].map((item) => <option key={item}>{item}</option>)}</select></label></div>
-        {filteredEvents.length ? <div className="table-wrap"><table className="data-table event-table"><thead><tr><th>Activity</th><th>Target</th><th>Actor</th><th>Time</th><th>Details</th></tr></thead><tbody>{filteredEvents.map((event) => <EventRow event={event} key={event.eventId} />)}</tbody></table></div> : <EmptyState title="No events match this filter" detail="Choose a different event type to review the log." />}
+        {filteredEvents.length ? <div className="table-wrap"><table className="data-table event-table"><thead><tr>{([["type", "Activity"], ["targetId", "Target"], ["actor", "Actor"], ["at", "Time"]] as const).map(([key, label]) => <th key={key} aria-sort={sortState(key)}><SortButton label={label} active={eventSort?.key === key} descending={Boolean(eventSort?.descending)} onClick={() => toggleEventSort(key)} /></th>)}<th>Details</th></tr></thead><tbody>{filteredEvents.map((event) => <EventRow event={event} key={event.eventId} />)}</tbody></table></div> : <EmptyState title="No events match this filter" detail="Choose a different event type to review the log." />}
       </section>
       <div className="priority-note"><span className="priority-note-icon"><Icon name="shield" size={17} /></span><p><strong>About this result.</strong> Investigation priority is a triage aid, not a probability or verdict. Review the underlying evidence and limitations before drawing conclusions.</p></div>
     </>

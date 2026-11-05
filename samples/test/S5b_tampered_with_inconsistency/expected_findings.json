@@ -1,0 +1,94 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S5b",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "DOB_CONFLICT",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "high",
+      "documents": [
+        "id_card_S5b",
+        "loan_application_S5b"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "evidence": [
+        {
+          "docId": "id_card_S5b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "20 AUG 1988",
+          "value": "1988-08-20",
+          "region": {
+            "docId": "id_card_S5b",
+            "page": 1,
+            "bbox": [
+              0.322933,
+              0.379831,
+              0.209206,
+              0.049063
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S5b",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1990-08-20",
+          "value": "1990-08-20",
+          "region": {
+            "docId": "loan_application_S5b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        }
+      ],
+      "scoring": "required",
+      "relatedFindings": [
+        "EF-002"
+      ],
+      "notes": "Applicant date of birth reads 1990-08-20 on one document and a different year on the other; the differing value sits in the edited region (see EF-002)."
+    },
+    {
+      "expectedId": "EF-002",
+      "type": "REGION_EVENT",
+      "category": "visual",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "documents": [
+        "id_card_S5b"
+      ],
+      "tamperRef": "T-01",
+      "region": {
+        "docId": "id_card_S5b",
+        "page": 1,
+        "bbox": [
+          0.320475,
+          0.376176,
+          0.21365,
+          0.056426
+        ],
+        "label": "date_of_birth"
+      },
+      "expectedAnalyzers": [
+        "image.ela",
+        "image.noise"
+      ],
+      "detectability": "core",
+      "scoring": "required",
+      "relatedFindings": [
+        "EF-001"
+      ],
+      "notes": "Value of 'date_of_birth' covered with the local paper colour and retyped as '20 AUG 1988' (was '20 AUG 1990'); the new digits are crisper than the scan. (detectability: core; author's assessment, not a guarantee)"
+    }
+  ]
+}
