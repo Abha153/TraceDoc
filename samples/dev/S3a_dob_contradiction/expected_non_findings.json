@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S3a",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S3a",
+        "id_card_S3a"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S3a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "5159 HARBOR DRIVE\nSTONEBRIDGE, TX 17146",
+          "value": "5159 Harbor Drive, Stonebridge, TX 17146",
+          "region": {
+            "docId": "id_card_S3a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.365975,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S3a",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "5848 Cedar Avenue, Northgate, WA 36667",
+          "value": "5848 Cedar Avenue, Northgate, WA 36667",
+          "region": {
+            "docId": "bank_statement_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.358863,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S3a-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S3a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S3a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "5159 Harbor Drive, Stonebridge, TX 17146",
+          "value": "5159 Harbor Drive, Stonebridge, TX 17146",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.344933,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S3a",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "5848 Cedar Avenue, Northgate, WA 36667",
+          "value": "5848 Cedar Avenue, Northgate, WA 36667",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.345958,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S3a-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S3a",
+        "loan_application_S3a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S3a",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 22,000.00",
+          "value": "22000.00",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S3a",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "3,980.80",
+          "value": "3980.80",
+          "region": {
+            "docId": "bank_statement_S3a",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S3a-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S3a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S3a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Anneliese Abernathy",
+          "value": "Anneliese Abernathy",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.169113,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S3a",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Ingrid Harrow",
+          "value": "Ingrid Harrow",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.111129,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S3a-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S3a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S3a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1990-04-28",
+          "value": "1990-04-28",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S3a",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1983-12-27",
+          "value": "1983-12-27",
+          "region": {
+            "docId": "loan_application_S3a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S3a-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S3a",
+      "documents": [
+        "id_card_S3a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S3a",
+      "documents": [
+        "loan_application_S3a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S3a",
+      "documents": [
+        "bank_statement_S3a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}

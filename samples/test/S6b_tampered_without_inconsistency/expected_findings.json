@@ -1,0 +1,37 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S6b",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "REGION_EVENT",
+      "category": "visual",
+      "observationStatus": "POTENTIAL_ANOMALY",
+      "severity": "medium",
+      "documents": [
+        "loan_application_S6b"
+      ],
+      "tamperRef": "T-01",
+      "region": {
+        "docId": "loan_application_S6b",
+        "page": 1,
+        "bbox": [
+          0.096214,
+          0.676929,
+          0.359425,
+          0.060897
+        ],
+        "label": "applicant_signature"
+      },
+      "expectedAnalyzers": [
+        "signature",
+        "image.ela"
+      ],
+      "detectability": "limited",
+      "scoring": "required",
+      "relatedFindings": [],
+      "notes": "The signature in 'applicant_signature' was erased and a different fictional signature (stroke seed 737373) was drawn in the same box. (detectability: limited; author's assessment, not a guarantee)"
+    }
+  ]
+}

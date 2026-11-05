@@ -1,0 +1,198 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "note": "dev = variant a (used while building and tuning); test = variant b (held out, never used to tune thresholds).",
+  "cases": [
+    {
+      "caseId": "S1a",
+      "pattern": "S1",
+      "patternName": "clean_legitimate_differences",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S1a_clean_legitimate_differences",
+      "persons": [
+        "PS01A1",
+        "PS01A2"
+      ]
+    },
+    {
+      "caseId": "S2a",
+      "pattern": "S2",
+      "patternName": "clean_name_transcription",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S2a_clean_name_transcription",
+      "persons": [
+        "PS02A1",
+        "PS02A2"
+      ]
+    },
+    {
+      "caseId": "S3a",
+      "pattern": "S3",
+      "patternName": "dob_contradiction",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S3a_dob_contradiction",
+      "persons": [
+        "PS03A1",
+        "PS03A2"
+      ]
+    },
+    {
+      "caseId": "S4a",
+      "pattern": "S4",
+      "patternName": "similar_names_different_people",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S4a_similar_names_different_people",
+      "persons": [
+        "PS04A1",
+        "PS04A2"
+      ]
+    },
+    {
+      "caseId": "S5a",
+      "pattern": "S5",
+      "patternName": "tampered_with_inconsistency",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S5a_tampered_with_inconsistency",
+      "persons": [
+        "PS05A1",
+        "PS05A2"
+      ]
+    },
+    {
+      "caseId": "S6a",
+      "pattern": "S6",
+      "patternName": "tampered_without_inconsistency",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S6a_tampered_without_inconsistency",
+      "persons": [
+        "PS06A1",
+        "PS06A2"
+      ]
+    },
+    {
+      "caseId": "S7a",
+      "pattern": "S7",
+      "patternName": "statement_arithmetic_error",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S7a_statement_arithmetic_error",
+      "persons": [
+        "PS07A1",
+        "PS07A2"
+      ]
+    },
+    {
+      "caseId": "S8a",
+      "pattern": "S8",
+      "patternName": "recompressed_controls",
+      "variant": "a",
+      "split": "dev",
+      "dir": "dev/S8a_recompressed_controls",
+      "persons": [
+        "PS08A1",
+        "PS08A2"
+      ]
+    },
+    {
+      "caseId": "S1b",
+      "pattern": "S1",
+      "patternName": "clean_legitimate_differences",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S1b_clean_legitimate_differences",
+      "persons": [
+        "PS01B1",
+        "PS01B2"
+      ]
+    },
+    {
+      "caseId": "S2b",
+      "pattern": "S2",
+      "patternName": "clean_name_transcription",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S2b_clean_name_transcription",
+      "persons": [
+        "PS02B1",
+        "PS02B2"
+      ]
+    },
+    {
+      "caseId": "S3b",
+      "pattern": "S3",
+      "patternName": "dob_contradiction",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S3b_dob_contradiction",
+      "persons": [
+        "PS03B1",
+        "PS03B2"
+      ]
+    },
+    {
+      "caseId": "S4b",
+      "pattern": "S4",
+      "patternName": "similar_names_different_people",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S4b_similar_names_different_people",
+      "persons": [
+        "PS04B1",
+        "PS04B2"
+      ]
+    },
+    {
+      "caseId": "S5b",
+      "pattern": "S5",
+      "patternName": "tampered_with_inconsistency",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S5b_tampered_with_inconsistency",
+      "persons": [
+        "PS05B1",
+        "PS05B2"
+      ]
+    },
+    {
+      "caseId": "S6b",
+      "pattern": "S6",
+      "patternName": "tampered_without_inconsistency",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S6b_tampered_without_inconsistency",
+      "persons": [
+        "PS06B1",
+        "PS06B2"
+      ]
+    },
+    {
+      "caseId": "S7b",
+      "pattern": "S7",
+      "patternName": "statement_arithmetic_error",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S7b_statement_arithmetic_error",
+      "persons": [
+        "PS07B1",
+        "PS07B2"
+      ]
+    },
+    {
+      "caseId": "S8b",
+      "pattern": "S8",
+      "patternName": "recompressed_controls",
+      "variant": "b",
+      "split": "test",
+      "dir": "test/S8b_recompressed_controls",
+      "persons": [
+        "PS08B1",
+        "PS08B2"
+      ]
+    }
+  ]
+}

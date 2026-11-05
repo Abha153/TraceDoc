@@ -1,0 +1,60 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S2b",
+  "bbox_format": "xywh",
+  "findings": [
+    {
+      "expectedId": "EF-001",
+      "type": "NAME_VARIANT_SPELLING",
+      "category": "cross_document",
+      "observationStatus": "INCONSISTENT",
+      "severity": "low",
+      "documents": [
+        "id_card_S2b",
+        "bank_statement_S2b"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "evidence": [
+        {
+          "docId": "id_card_S2b",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "IGNATIUS VERHOEVEN",
+          "value": "Ignatius Verhoeven",
+          "region": {
+            "docId": "id_card_S2b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.38279,
+              0.042319
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "bank_statement_S2b",
+          "field": "account_holder",
+          "semanticType": "full_name",
+          "text": "Ignatias Vorhoeven",
+          "value": "Ignatias Vorhoeven",
+          "region": {
+            "docId": "bank_statement_S2b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.145331,
+              0.169077,
+              0.015372
+            ],
+            "label": "account_holder"
+          }
+        }
+      ],
+      "tokenSortRatio": 88.9,
+      "scoring": "required",
+      "notes": "Spelling variant, token-sort ratio 88.9 (variant band 75-92). The account holder on the statement is a respelling of the ID card name; the link to the applicant may only be SUGGESTED, in which case confidence is capped. Not a tampering signal: no forensic finding is expected."
+    }
+  ]
+}

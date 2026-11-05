@@ -1,0 +1,3391 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S7b",
+  "pattern": "S7",
+  "patternName": "statement_arithmetic_error",
+  "variant": "b",
+  "split": "test",
+  "fictional": true,
+  "bbox_format": "xywh",
+  "persons": [
+    {
+      "person_id": "PS07B1",
+      "role": "applicant",
+      "full_name": "Darnell Nakamura",
+      "date_of_birth": "1980-04-28",
+      "id_number": "SMP-7500-7296-UE"
+    },
+    {
+      "person_id": "PS07B2",
+      "role": "guarantor",
+      "full_name": "Rashad Ivanova",
+      "date_of_birth": "1966-08-24",
+      "id_number": "SMP-7305-6465-SX"
+    }
+  ],
+  "documents": [
+    {
+      "doc_id": "id_card_S7b",
+      "doc_type": "id_card",
+      "variant": "original",
+      "role": "genuine",
+      "file": "id_card_S7b.png",
+      "format": "png",
+      "sha256": "35bba965bed18548aa2fb7c17c79f807f6ac1b134a476d32a8cd26d30e4051fd",
+      "bytes": 78409,
+      "set": "S7b",
+      "person_ids": [
+        "PS07B1"
+      ],
+      "derived_from": null,
+      "has_text_layer": false,
+      "size_px": {
+        "width": 1011,
+        "height": 638
+      },
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "semantic_type": "marker",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "SAMPLE",
+          "value": "SAMPLE",
+          "page": 1,
+          "bbox": [
+            0.749753,
+            0.031348,
+            0.962413,
+            0.125392
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.749753,
+              0.031348,
+              0.21266,
+              0.094044
+            ],
+            "label": "sample_marker"
+          }
+        },
+        {
+          "name": "photo",
+          "field_type": "photo",
+          "semantic_type": "photo",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.038576,
+            0.217868,
+            0.287834,
+            0.691223
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.038576,
+              0.217868,
+              0.249258,
+              0.473355
+            ],
+            "label": "photo"
+          }
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "semantic_type": "full_name",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "DARNELL NAKAMURA",
+          "value": "Darnell Nakamura",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.258621,
+            0.695351,
+            0.30094
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.258621,
+              0.37092,
+              0.042319
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "semantic_type": "dob",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "28 APR 1980",
+          "value": "1980-04-28",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.380878,
+            0.529179,
+            0.423197
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.380878,
+              0.204748,
+              0.042319
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "name": "issue_date",
+          "field_type": "date",
+          "semantic_type": "document_issue_date",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "04 SEP 2024",
+          "value": "2024-09-04",
+          "page": 1,
+          "bbox": [
+            0.710188,
+            0.387147,
+            0.877349,
+            0.423197
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.710188,
+              0.387147,
+              0.167161,
+              0.03605
+            ],
+            "label": "issue_date"
+          }
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "semantic_type": "address_permanent",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "7676 CEDAR AVENUE\nRAVENSWOOD, CO 50330",
+          "value": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.5,
+            0.697329,
+            0.603448
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.372898,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "SMP-7500-7296-UE",
+          "value": "SMP-7500-7296-UE",
+          "page": 1,
+          "bbox": [
+            0.324431,
+            0.677116,
+            0.65183,
+            0.717868
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.677116,
+              0.327399,
+              0.040752
+            ],
+            "label": "id_number"
+          }
+        },
+        {
+          "name": "expiry_date",
+          "field_type": "date",
+          "semantic_type": "document_expiry_date",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "04 SEP 2034",
+          "value": "2034-09-04",
+          "page": 1,
+          "bbox": [
+            0.710188,
+            0.681818,
+            0.877349,
+            0.717868
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.710188,
+              0.681818,
+              0.167161,
+              0.03605
+            ],
+            "label": "expiry_date"
+          }
+        },
+        {
+          "name": "signature",
+          "field_type": "signature",
+          "semantic_type": "signature",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.344214,
+            0.76489,
+            0.654797,
+            0.904389
+          ],
+          "region": {
+            "docId": "id_card_S7b",
+            "page": 1,
+            "bbox": [
+              0.344214,
+              0.76489,
+              0.310583,
+              0.139499
+            ],
+            "label": "signature"
+          }
+        }
+      ]
+    },
+    {
+      "doc_id": "loan_application_S7b",
+      "doc_type": "loan_application",
+      "variant": "original",
+      "role": "genuine",
+      "file": "loan_application_S7b.pdf",
+      "format": "pdf",
+      "sha256": "99e1b45f73e07a5c1e0678e65831f6d1a1a3d2a02cfd7471d7b4fdb49ecb9c05",
+      "bytes": 6039,
+      "set": "S7b",
+      "person_ids": [
+        "PS07B1",
+        "PS07B2"
+      ],
+      "derived_from": null,
+      "has_text_layer": true,
+      "pages": [
+        {
+          "page": 1,
+          "width_pt": 612.0,
+          "height_pt": 792.0
+        }
+      ],
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "semantic_type": "marker",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL APPLICATION",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.013662,
+            0.638154,
+            0.027866
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.013662,
+              0.551553,
+              0.014204
+            ],
+            "label": "sample_marker"
+          }
+        },
+        {
+          "name": "application_number",
+          "field_type": "identifier",
+          "semantic_type": "application_number",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "APP-2026-616863",
+          "value": "APP-2026-616863",
+          "page": 1,
+          "bbox": [
+            0.761271,
+            0.084725,
+            0.913399,
+            0.100097
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.761271,
+              0.084725,
+              0.152128,
+              0.015372
+            ],
+            "label": "application_number"
+          }
+        },
+        {
+          "name": "application_date",
+          "field_type": "date",
+          "semantic_type": "document_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.818212,
+            0.122604,
+            0.913399,
+            0.137976
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.818212,
+              0.122604,
+              0.095187,
+              0.015372
+            ],
+            "label": "application_date"
+          }
+        },
+        {
+          "name": "full_name",
+          "field_type": "text",
+          "semantic_type": "full_name",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "Darnell Nakamura",
+          "value": "Darnell Nakamura",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.207199,
+            0.234685,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.148084,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "name": "date_of_birth",
+          "field_type": "date",
+          "semantic_type": "dob",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "1980-04-28",
+          "value": "1980-04-28",
+          "page": 1,
+          "bbox": [
+            0.606209,
+            0.207199,
+            0.701395,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "name": "permanent_address",
+          "field_type": "text",
+          "semantic_type": "address_permanent",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "value": "7676 Cedar Avenue, Ravenswood, CO 50330",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.262755,
+            0.455529,
+            0.278128
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.368928,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "name": "current_address",
+          "field_type": "text",
+          "semantic_type": "address_current",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "63 Cedar Court, Ravenswood, GA 98076",
+          "value": "63 Cedar Court, Ravenswood, GA 98076",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.318311,
+            0.417551,
+            0.333683
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.33095,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        },
+        {
+          "name": "requested_loan_amount",
+          "field_type": "money",
+          "semantic_type": "requested_amount",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "USD 28,000.00",
+          "value": "28000.00",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.40922,
+            0.212757,
+            0.424592
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "name": "loan_term_months",
+          "field_type": "integer",
+          "semantic_type": "loan_term_months",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "48 months",
+          "value": "48",
+          "page": 1,
+          "bbox": [
+            0.439542,
+            0.40922,
+            0.52673,
+            0.424592
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.439542,
+              0.40922,
+              0.087188,
+              0.015372
+            ],
+            "label": "loan_term_months"
+          }
+        },
+        {
+          "name": "loan_purpose",
+          "field_type": "text",
+          "semantic_type": "loan_purpose",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Home improvement",
+          "value": "Home improvement",
+          "page": 1,
+          "bbox": [
+            0.665033,
+            0.40922,
+            0.825105,
+            0.424592
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.665033,
+              0.40922,
+              0.160072,
+              0.015372
+            ],
+            "label": "loan_purpose"
+          }
+        },
+        {
+          "name": "guarantor_full_name",
+          "field_type": "text",
+          "semantic_type": "full_name",
+          "true_person_id": "PS07B2",
+          "true_entity_role": "guarantor",
+          "text": "Rashad Ivanova",
+          "value": "Rashad Ivanova",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.497604,
+            0.219748,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.133147,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        },
+        {
+          "name": "guarantor_date_of_birth",
+          "field_type": "date",
+          "semantic_type": "dob",
+          "true_person_id": "PS07B2",
+          "true_entity_role": "guarantor",
+          "text": "1966-08-24",
+          "value": "1966-08-24",
+          "page": 1,
+          "bbox": [
+            0.606209,
+            0.497604,
+            0.701395,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        },
+        {
+          "name": "guarantor_relationship",
+          "field_type": "text",
+          "semantic_type": "guarantor_relationship",
+          "true_person_id": "PS07B2",
+          "true_entity_role": "guarantor",
+          "text": "Parent",
+          "value": "Parent",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.553159,
+            0.14282,
+            0.568532
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.553159,
+              0.056219,
+              0.015373
+            ],
+            "label": "guarantor_relationship"
+          }
+        },
+        {
+          "name": "applicant_signature",
+          "field_type": "signature",
+          "semantic_type": "signature",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.100163,
+            0.680934,
+            0.45866,
+            0.738258
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.100163,
+              0.680934,
+              0.358497,
+              0.057324
+            ],
+            "label": "applicant_signature"
+          }
+        },
+        {
+          "name": "applicant_signature_date",
+          "field_type": "date",
+          "semantic_type": "signature_date",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "applicant",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.138889,
+            0.780982,
+            0.217363,
+            0.794019
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.138889,
+              0.780982,
+              0.078474,
+              0.013037
+            ],
+            "label": "applicant_signature_date"
+          }
+        },
+        {
+          "name": "guarantor_signature",
+          "field_type": "signature",
+          "semantic_type": "signature",
+          "true_person_id": "PS07B2",
+          "true_entity_role": "guarantor",
+          "text": null,
+          "value": null,
+          "page": 1,
+          "bbox": [
+            0.538072,
+            0.680934,
+            0.896569,
+            0.738258
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.538072,
+              0.680934,
+              0.358497,
+              0.057324
+            ],
+            "label": "guarantor_signature"
+          }
+        },
+        {
+          "name": "guarantor_signature_date",
+          "field_type": "date",
+          "semantic_type": "signature_date",
+          "true_person_id": "PS07B2",
+          "true_entity_role": "guarantor",
+          "text": "2026-03-14",
+          "value": "2026-03-14",
+          "page": 1,
+          "bbox": [
+            0.576797,
+            0.780982,
+            0.655271,
+            0.794019
+          ],
+          "region": {
+            "docId": "loan_application_S7b",
+            "page": 1,
+            "bbox": [
+              0.576797,
+              0.780982,
+              0.078474,
+              0.013037
+            ],
+            "label": "guarantor_signature_date"
+          }
+        }
+      ]
+    },
+    {
+      "doc_id": "bank_statement_S7b",
+      "doc_type": "bank_statement",
+      "variant": "original",
+      "role": "genuine",
+      "file": "bank_statement_S7b.pdf",
+      "format": "pdf",
+      "sha256": "ede03aea7840f3c38ea35649cb264177424b9229d8e6da370d77140259499ad9",
+      "bytes": 3556,
+      "set": "S7b",
+      "person_ids": [
+        "PS07B1"
+      ],
+      "derived_from": null,
+      "has_text_layer": true,
+      "pages": [
+        {
+          "page": 1,
+          "width_pt": 612.0,
+          "height_pt": 792.0
+        }
+      ],
+      "fields": [
+        {
+          "name": "sample_marker",
+          "field_type": "marker",
+          "semantic_type": "marker",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "value": "SAMPLE DOCUMENT - FICTIONAL DATA - NOT A REAL STATEMENT",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.013662,
+            0.627255,
+            0.027866
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.013662,
+              0.540654,
+              0.014204
+            ],
+            "label": "sample_marker"
+          }
+        },
+        {
+          "name": "account_holder",
+          "field_type": "text",
+          "semantic_type": "full_name",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "account_holder",
+          "text": "Darnell Nakamura",
+          "value": "Darnell Nakamura",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.145331,
+            0.242701,
+            0.160703
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.145331,
+              0.1561,
+              0.015372
+            ],
+            "label": "account_holder"
+          }
+        },
+        {
+          "name": "account_holder_address",
+          "field_type": "text",
+          "semantic_type": "address_current",
+          "true_person_id": "PS07B1",
+          "true_entity_role": "account_holder",
+          "text": "63 Cedar Court, Ravenswood, GA 98076",
+          "value": "63 Cedar Court, Ravenswood, GA 98076",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.185735,
+            0.43148,
+            0.201107
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.344879,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        },
+        {
+          "name": "account_number",
+          "field_type": "identifier",
+          "semantic_type": "account_number",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "NSB-1025-306072",
+          "value": "NSB-1025-306072",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.226139,
+            0.239717,
+            0.241511
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.226139,
+              0.153116,
+              0.015372
+            ],
+            "label": "account_number"
+          }
+        },
+        {
+          "name": "statement_period",
+          "field_type": "date_range",
+          "semantic_type": "statement_period",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "01 Feb 2026 - 28 Feb 2026",
+          "value": "2026-02-01/2026-02-28",
+          "page": 1,
+          "bbox": [
+            0.086601,
+            0.266543,
+            0.309672,
+            0.281915
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.266543,
+              0.223071,
+              0.015372
+            ],
+            "label": "statement_period"
+          }
+        },
+        {
+          "name": "opening_balance",
+          "field_type": "money",
+          "semantic_type": "account_balance",
+          "semantic_detail": "opening",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "4,452.49",
+          "value": "4452.49",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.169871,
+            0.897059,
+            0.182908
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.169871,
+              0.060503,
+              0.013037
+            ],
+            "label": "opening_balance"
+          }
+        },
+        {
+          "name": "total_debits",
+          "field_type": "money",
+          "semantic_type": "statement_total",
+          "semantic_detail": "debits",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "2,202.02",
+          "value": "2202.02",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.195124,
+            0.897059,
+            0.20816
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.195124,
+              0.060503,
+              0.013036
+            ],
+            "label": "total_debits"
+          }
+        },
+        {
+          "name": "total_credits",
+          "field_type": "money",
+          "semantic_type": "statement_total",
+          "semantic_detail": "credits",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "3,716.02",
+          "value": "3716.02",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.220376,
+            0.897059,
+            0.233413
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.220376,
+              0.060503,
+              0.013037
+            ],
+            "label": "total_credits"
+          }
+        },
+        {
+          "name": "closing_balance",
+          "field_type": "money",
+          "semantic_type": "account_balance",
+          "semantic_detail": "closing",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,041.99",
+          "value": "6041.99",
+          "page": 1,
+          "bbox": [
+            0.836556,
+            0.256992,
+            0.897059,
+            0.270029
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        },
+        {
+          "name": "transaction_01_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "01 Feb 2026",
+          "value": "2026-02-01",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.352143,
+            0.177659,
+            0.364595
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.352143,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_01_date"
+          }
+        },
+        {
+          "name": "transaction_01_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Streaming - Streamly Media",
+          "value": "Streaming - Streamly Media",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.352143,
+            0.386163,
+            0.364595
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.352143,
+              0.175379,
+              0.012452
+            ],
+            "label": "transaction_01_description"
+          }
+        },
+        {
+          "name": "transaction_01_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "10.92",
+          "value": "10.92",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.352143,
+            0.655229,
+            0.364595
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.352143,
+              0.038018,
+              0.012452
+            ],
+            "label": "transaction_01_debit"
+          }
+        },
+        {
+          "name": "transaction_01_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "4,441.57",
+          "value": "4441.57",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.352143,
+            0.903595,
+            0.364595
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.352143,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_01_balance"
+          }
+        },
+        {
+          "name": "transaction_02_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "03 Feb 2026",
+          "value": "2026-02-03",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.373607,
+            0.177659,
+            0.38606
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.373607,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_02_date"
+          }
+        },
+        {
+          "name": "transaction_02_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Salary - Brightwave Logistics Ltd",
+          "value": "Salary - Brightwave Logistics Ltd",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.373607,
+            0.415511,
+            0.38606
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.373607,
+              0.204727,
+              0.012453
+            ],
+            "label": "transaction_02_description"
+          }
+        },
+        {
+          "name": "transaction_02_credit",
+          "field_type": "money",
+          "semantic_type": "transaction_credit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "3,275.58",
+          "value": "3275.58",
+          "page": 1,
+          "bbox": [
+            0.712284,
+            0.373607,
+            0.769608,
+            0.38606
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.712284,
+              0.373607,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_02_credit"
+          }
+        },
+        {
+          "name": "transaction_02_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "7,717.15",
+          "value": "7717.15",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.373607,
+            0.903595,
+            0.38606
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.373607,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_02_balance"
+          }
+        },
+        {
+          "name": "transaction_03_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "03 Feb 2026",
+          "value": "2026-02-03",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.395072,
+            0.177659,
+            0.407525
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.395072,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_03_date"
+          }
+        },
+        {
+          "name": "transaction_03_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Coffee - Bean Counter Cafe",
+          "value": "Coffee - Bean Counter Cafe",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.395072,
+            0.386205,
+            0.407525
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.395072,
+              0.175421,
+              0.012453
+            ],
+            "label": "transaction_03_description"
+          }
+        },
+        {
+          "name": "transaction_03_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "8.45",
+          "value": "8.45",
+          "page": 1,
+          "bbox": [
+            0.624933,
+            0.395072,
+            0.655229,
+            0.407525
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.624933,
+              0.395072,
+              0.030296,
+              0.012453
+            ],
+            "label": "transaction_03_debit"
+          }
+        },
+        {
+          "name": "transaction_03_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "7,708.70",
+          "value": "7708.70",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.395072,
+            0.903595,
+            0.407525
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.395072,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_03_balance"
+          }
+        },
+        {
+          "name": "transaction_04_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "04 Feb 2026",
+          "value": "2026-02-04",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.416537,
+            0.177659,
+            0.428989
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.416537,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_04_date"
+          }
+        },
+        {
+          "name": "transaction_04_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Rent - Harbor View Apartments",
+          "value": "Rent - Harbor View Apartments",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.416537,
+            0.407011,
+            0.428989
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.416537,
+              0.196227,
+              0.012452
+            ],
+            "label": "transaction_04_description"
+          }
+        },
+        {
+          "name": "transaction_04_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "1,175.97",
+          "value": "1175.97",
+          "page": 1,
+          "bbox": [
+            0.597905,
+            0.416537,
+            0.655229,
+            0.428989
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.597905,
+              0.416537,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_04_debit"
+          }
+        },
+        {
+          "name": "transaction_04_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,532.73",
+          "value": "6532.73",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.416537,
+            0.903595,
+            0.428989
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.416537,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_04_balance"
+          }
+        },
+        {
+          "name": "transaction_05_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "06 Feb 2026",
+          "value": "2026-02-06",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.438001,
+            0.177659,
+            0.450454
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.438001,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_05_date"
+          }
+        },
+        {
+          "name": "transaction_05_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.438001,
+            0.346025,
+            0.450454
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.438001,
+              0.135241,
+              0.012453
+            ],
+            "label": "transaction_05_description"
+          }
+        },
+        {
+          "name": "transaction_05_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "184.47",
+          "value": "184.47",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.438001,
+            0.655229,
+            0.450454
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.609489,
+              0.438001,
+              0.04574,
+              0.012453
+            ],
+            "label": "transaction_05_debit"
+          }
+        },
+        {
+          "name": "transaction_05_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,348.26",
+          "value": "6348.26",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.438001,
+            0.903595,
+            0.450454
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.438001,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_05_balance"
+          }
+        },
+        {
+          "name": "transaction_06_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "08 Feb 2026",
+          "value": "2026-02-08",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.459466,
+            0.177659,
+            0.471919
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.459466,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_06_date"
+          }
+        },
+        {
+          "name": "transaction_06_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.459466,
+            0.396969,
+            0.471919
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.459466,
+              0.186185,
+              0.012453
+            ],
+            "label": "transaction_06_description"
+          }
+        },
+        {
+          "name": "transaction_06_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "116.66",
+          "value": "116.66",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.459466,
+            0.655229,
+            0.471919
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.609489,
+              0.459466,
+              0.04574,
+              0.012453
+            ],
+            "label": "transaction_06_debit"
+          }
+        },
+        {
+          "name": "transaction_06_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,231.60",
+          "value": "6231.60",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.459466,
+            0.903595,
+            0.471919
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.459466,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_06_balance"
+          }
+        },
+        {
+          "name": "transaction_07_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "10 Feb 2026",
+          "value": "2026-02-10",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.480931,
+            0.177659,
+            0.493383
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.480931,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_07_date"
+          }
+        },
+        {
+          "name": "transaction_07_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.480931,
+            0.383816,
+            0.493383
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.480931,
+              0.173032,
+              0.012452
+            ],
+            "label": "transaction_07_description"
+          }
+        },
+        {
+          "name": "transaction_07_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "54.22",
+          "value": "54.22",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.480931,
+            0.655229,
+            0.493383
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.480931,
+              0.038018,
+              0.012452
+            ],
+            "label": "transaction_07_debit"
+          }
+        },
+        {
+          "name": "transaction_07_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,177.38",
+          "value": "6177.38",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.480931,
+            0.903595,
+            0.493383
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.480931,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_07_balance"
+          }
+        },
+        {
+          "name": "transaction_08_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "12 Feb 2026",
+          "value": "2026-02-12",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.502395,
+            0.177659,
+            0.514848
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.502395,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_08_date"
+          }
+        },
+        {
+          "name": "transaction_08_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Fuel - Roadrunner Fuel Stop",
+          "value": "Fuel - Roadrunner Fuel Stop",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.502395,
+            0.390052,
+            0.514848
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.502395,
+              0.179268,
+              0.012453
+            ],
+            "label": "transaction_08_description"
+          }
+        },
+        {
+          "name": "transaction_08_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "57.35",
+          "value": "57.35",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.502395,
+            0.655229,
+            0.514848
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.502395,
+              0.038018,
+              0.012453
+            ],
+            "label": "transaction_08_debit"
+          }
+        },
+        {
+          "name": "transaction_08_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,120.03",
+          "value": "6120.03",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.502395,
+            0.903595,
+            0.514848
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.502395,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_08_balance"
+          }
+        },
+        {
+          "name": "transaction_09_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.52386,
+            0.177659,
+            0.536312
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.52386,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_09_date"
+          }
+        },
+        {
+          "name": "transaction_09_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Groceries - Greenfield Market",
+          "value": "Groceries - Greenfield Market",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.52386,
+            0.396969,
+            0.536312
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.52386,
+              0.186185,
+              0.012452
+            ],
+            "label": "transaction_09_description"
+          }
+        },
+        {
+          "name": "transaction_09_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "117.42",
+          "value": "117.42",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.52386,
+            0.655229,
+            0.536312
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.609489,
+              0.52386,
+              0.04574,
+              0.012452
+            ],
+            "label": "transaction_09_debit"
+          }
+        },
+        {
+          "name": "transaction_09_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,002.61",
+          "value": "6002.61",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.52386,
+            0.903595,
+            0.536312
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.52386,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_09_balance"
+          }
+        },
+        {
+          "name": "transaction_10_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.545324,
+            0.177659,
+            0.557777
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.545324,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_10_date"
+          }
+        },
+        {
+          "name": "transaction_10_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.545324,
+            0.346025,
+            0.557777
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.545324,
+              0.135241,
+              0.012453
+            ],
+            "label": "transaction_10_description"
+          }
+        },
+        {
+          "name": "transaction_10_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "140.03",
+          "value": "140.03",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.545324,
+            0.655229,
+            0.557777
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.609489,
+              0.545324,
+              0.04574,
+              0.012453
+            ],
+            "label": "transaction_10_debit"
+          }
+        },
+        {
+          "name": "transaction_10_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,862.58",
+          "value": "5862.58",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.545324,
+            0.903595,
+            0.557777
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.545324,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_10_balance"
+          }
+        },
+        {
+          "name": "transaction_11_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "14 Feb 2026",
+          "value": "2026-02-14",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.566789,
+            0.177659,
+            0.579242
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.566789,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_11_date"
+          }
+        },
+        {
+          "name": "transaction_11_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.566789,
+            0.383816,
+            0.579242
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.566789,
+              0.173032,
+              0.012453
+            ],
+            "label": "transaction_11_description"
+          }
+        },
+        {
+          "name": "transaction_11_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "55.70",
+          "value": "55.70",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.566789,
+            0.655229,
+            0.579242
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.566789,
+              0.038018,
+              0.012453
+            ],
+            "label": "transaction_11_debit"
+          }
+        },
+        {
+          "name": "transaction_11_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,806.88",
+          "value": "5806.88",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.566789,
+            0.903595,
+            0.579242
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.566789,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_11_balance"
+          }
+        },
+        {
+          "name": "transaction_12_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "15 Feb 2026",
+          "value": "2026-02-15",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.588254,
+            0.177659,
+            0.600706
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.588254,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_12_date"
+          }
+        },
+        {
+          "name": "transaction_12_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Coffee - Bean Counter Cafe",
+          "value": "Coffee - Bean Counter Cafe",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.588254,
+            0.386205,
+            0.600706
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.588254,
+              0.175421,
+              0.012452
+            ],
+            "label": "transaction_12_description"
+          }
+        },
+        {
+          "name": "transaction_12_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "10.99",
+          "value": "10.99",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.588254,
+            0.655229,
+            0.600706
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.588254,
+              0.038018,
+              0.012452
+            ],
+            "label": "transaction_12_debit"
+          }
+        },
+        {
+          "name": "transaction_12_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,795.89",
+          "value": "5795.89",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.588254,
+            0.903595,
+            0.600706
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.588254,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_12_balance"
+          }
+        },
+        {
+          "name": "transaction_13_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "16 Feb 2026",
+          "value": "2026-02-16",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.609718,
+            0.177659,
+            0.622171
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.609718,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_13_date"
+          }
+        },
+        {
+          "name": "transaction_13_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "ATM cash withdrawal",
+          "value": "ATM cash withdrawal",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.609718,
+            0.346025,
+            0.622171
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.609718,
+              0.135241,
+              0.012453
+            ],
+            "label": "transaction_13_description"
+          }
+        },
+        {
+          "name": "transaction_13_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "168.16",
+          "value": "168.16",
+          "page": 1,
+          "bbox": [
+            0.609489,
+            0.609718,
+            0.655229,
+            0.622171
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.609489,
+              0.609718,
+              0.04574,
+              0.012453
+            ],
+            "label": "transaction_13_debit"
+          }
+        },
+        {
+          "name": "transaction_13_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,627.73",
+          "value": "5627.73",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.609718,
+            0.903595,
+            0.622171
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.609718,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_13_balance"
+          }
+        },
+        {
+          "name": "transaction_14_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "17 Feb 2026",
+          "value": "2026-02-17",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.631183,
+            0.177659,
+            0.643636
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.631183,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_14_date"
+          }
+        },
+        {
+          "name": "transaction_14_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.631183,
+            0.383816,
+            0.643636
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.631183,
+              0.173032,
+              0.012453
+            ],
+            "label": "transaction_14_description"
+          }
+        },
+        {
+          "name": "transaction_14_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "41.45",
+          "value": "41.45",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.631183,
+            0.655229,
+            0.643636
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.631183,
+              0.038018,
+              0.012453
+            ],
+            "label": "transaction_14_debit"
+          }
+        },
+        {
+          "name": "transaction_14_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,586.28",
+          "value": "5586.28",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.631183,
+            0.903595,
+            0.643636
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.631183,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_14_balance"
+          }
+        },
+        {
+          "name": "transaction_15_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "18 Feb 2026",
+          "value": "2026-02-18",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.652648,
+            0.177659,
+            0.6651
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.652648,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_15_date"
+          }
+        },
+        {
+          "name": "transaction_15_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Refund - Pinecrest Outfitters",
+          "value": "Refund - Pinecrest Outfitters",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.652648,
+            0.389275,
+            0.6651
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.652648,
+              0.178491,
+              0.012452
+            ],
+            "label": "transaction_15_description"
+          }
+        },
+        {
+          "name": "transaction_15_credit",
+          "field_type": "money",
+          "semantic_type": "transaction_credit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "69.65",
+          "value": "69.65",
+          "page": 1,
+          "bbox": [
+            0.73159,
+            0.652648,
+            0.769608,
+            0.6651
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.73159,
+              0.652648,
+              0.038018,
+              0.012452
+            ],
+            "label": "transaction_15_credit"
+          }
+        },
+        {
+          "name": "transaction_15_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "5,655.93",
+          "value": "5655.93",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.652648,
+            0.903595,
+            0.6651
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.652648,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_15_balance"
+          }
+        },
+        {
+          "name": "transaction_16_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "19 Feb 2026",
+          "value": "2026-02-19",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.674112,
+            0.177659,
+            0.686565
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.674112,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_16_date"
+          }
+        },
+        {
+          "name": "transaction_16_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Transfer in - ref 5521",
+          "value": "Transfer in - ref 5521",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.674112,
+            0.343733,
+            0.686565
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.674112,
+              0.132949,
+              0.012453
+            ],
+            "label": "transaction_16_description"
+          }
+        },
+        {
+          "name": "transaction_16_credit",
+          "field_type": "money",
+          "semantic_type": "transaction_credit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "446.29",
+          "value": "446.29",
+          "page": 1,
+          "bbox": [
+            0.723868,
+            0.674112,
+            0.769608,
+            0.686565
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.723868,
+              0.674112,
+              0.04574,
+              0.012453
+            ],
+            "label": "transaction_16_credit"
+          }
+        },
+        {
+          "name": "transaction_16_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,102.22",
+          "value": "6102.22",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.674112,
+            0.903595,
+            0.686565
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.674112,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_16_balance"
+          }
+        },
+        {
+          "name": "transaction_17_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "22 Feb 2026",
+          "value": "2026-02-22",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.695577,
+            0.177659,
+            0.70803
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.695577,
+              0.081254,
+              0.012453
+            ],
+            "label": "transaction_17_date"
+          }
+        },
+        {
+          "name": "transaction_17_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Streaming - Streamly Media",
+          "value": "Streaming - Streamly Media",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.695577,
+            0.386163,
+            0.70803
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.695577,
+              0.175379,
+              0.012453
+            ],
+            "label": "transaction_17_description"
+          }
+        },
+        {
+          "name": "transaction_17_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "12.15",
+          "value": "12.15",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.695577,
+            0.655229,
+            0.70803
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.695577,
+              0.038018,
+              0.012453
+            ],
+            "label": "transaction_17_debit"
+          }
+        },
+        {
+          "name": "transaction_17_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,090.07",
+          "value": "6090.07",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.695577,
+            0.903595,
+            0.70803
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.695577,
+              0.057324,
+              0.012453
+            ],
+            "label": "transaction_17_balance"
+          }
+        },
+        {
+          "name": "transaction_18_date",
+          "field_type": "date",
+          "semantic_type": "transaction_date",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "22 Feb 2026",
+          "value": "2026-02-22",
+          "page": 1,
+          "bbox": [
+            0.096405,
+            0.717042,
+            0.177659,
+            0.729494
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.096405,
+              0.717042,
+              0.081254,
+              0.012452
+            ],
+            "label": "transaction_18_date"
+          }
+        },
+        {
+          "name": "transaction_18_description",
+          "field_type": "text",
+          "semantic_type": "transaction_description",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "Mobile - ClearTalk Wireless",
+          "value": "Mobile - ClearTalk Wireless",
+          "page": 1,
+          "bbox": [
+            0.210784,
+            0.717042,
+            0.383816,
+            0.729494
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.210784,
+              0.717042,
+              0.173032,
+              0.012452
+            ],
+            "label": "transaction_18_description"
+          }
+        },
+        {
+          "name": "transaction_18_debit",
+          "field_type": "money",
+          "semantic_type": "transaction_debit",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "48.08",
+          "value": "48.08",
+          "page": 1,
+          "bbox": [
+            0.617211,
+            0.717042,
+            0.655229,
+            0.729494
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.617211,
+              0.717042,
+              0.038018,
+              0.012452
+            ],
+            "label": "transaction_18_debit"
+          }
+        },
+        {
+          "name": "transaction_18_balance",
+          "field_type": "money",
+          "semantic_type": "running_balance",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,041.99",
+          "value": "6041.99",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.717042,
+            0.903595,
+            0.729494
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.717042,
+              0.057324,
+              0.012452
+            ],
+            "label": "transaction_18_balance"
+          }
+        },
+        {
+          "name": "table_total_debits",
+          "field_type": "money",
+          "semantic_type": "statement_total",
+          "semantic_detail": "debits",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "2,202.02",
+          "value": "2202.02",
+          "page": 1,
+          "bbox": [
+            0.597905,
+            0.746082,
+            0.655229,
+            0.758535
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.597905,
+              0.746082,
+              0.057324,
+              0.012453
+            ],
+            "label": "table_total_debits"
+          }
+        },
+        {
+          "name": "table_total_credits",
+          "field_type": "money",
+          "semantic_type": "statement_total",
+          "semantic_detail": "credits",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "3,716.02",
+          "value": "3716.02",
+          "page": 1,
+          "bbox": [
+            0.712284,
+            0.746082,
+            0.769608,
+            0.758535
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.712284,
+              0.746082,
+              0.057324,
+              0.012453
+            ],
+            "label": "table_total_credits"
+          }
+        },
+        {
+          "name": "table_closing_balance",
+          "field_type": "money",
+          "semantic_type": "account_balance",
+          "semantic_detail": "closing",
+          "true_person_id": null,
+          "true_entity_role": null,
+          "text": "6,041.99",
+          "value": "6041.99",
+          "page": 1,
+          "bbox": [
+            0.846271,
+            0.746082,
+            0.903595,
+            0.758535
+          ],
+          "region": {
+            "docId": "bank_statement_S7b",
+            "page": 1,
+            "bbox": [
+              0.846271,
+              0.746082,
+              0.057324,
+              0.012453
+            ],
+            "label": "table_closing_balance"
+          }
+        }
+      ],
+      "tables": [
+        {
+          "name": "transactions",
+          "page": 1,
+          "columns": [
+            "date",
+            "description",
+            "debit",
+            "credit",
+            "balance"
+          ],
+          "rows": [
+            {
+              "row": 1,
+              "cells": {
+                "date": "transaction_01_date",
+                "description": "transaction_01_description",
+                "debit": "transaction_01_debit",
+                "balance": "transaction_01_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.352143,
+                0.903595,
+                0.364595
+              ]
+            },
+            {
+              "row": 2,
+              "cells": {
+                "date": "transaction_02_date",
+                "description": "transaction_02_description",
+                "credit": "transaction_02_credit",
+                "balance": "transaction_02_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.373607,
+                0.903595,
+                0.38606
+              ]
+            },
+            {
+              "row": 3,
+              "cells": {
+                "date": "transaction_03_date",
+                "description": "transaction_03_description",
+                "debit": "transaction_03_debit",
+                "balance": "transaction_03_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.395072,
+                0.903595,
+                0.407525
+              ]
+            },
+            {
+              "row": 4,
+              "cells": {
+                "date": "transaction_04_date",
+                "description": "transaction_04_description",
+                "debit": "transaction_04_debit",
+                "balance": "transaction_04_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.416537,
+                0.903595,
+                0.428989
+              ]
+            },
+            {
+              "row": 5,
+              "cells": {
+                "date": "transaction_05_date",
+                "description": "transaction_05_description",
+                "debit": "transaction_05_debit",
+                "balance": "transaction_05_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.438001,
+                0.903595,
+                0.450454
+              ]
+            },
+            {
+              "row": 6,
+              "cells": {
+                "date": "transaction_06_date",
+                "description": "transaction_06_description",
+                "debit": "transaction_06_debit",
+                "balance": "transaction_06_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.459466,
+                0.903595,
+                0.471919
+              ]
+            },
+            {
+              "row": 7,
+              "cells": {
+                "date": "transaction_07_date",
+                "description": "transaction_07_description",
+                "debit": "transaction_07_debit",
+                "balance": "transaction_07_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.480931,
+                0.903595,
+                0.493383
+              ]
+            },
+            {
+              "row": 8,
+              "cells": {
+                "date": "transaction_08_date",
+                "description": "transaction_08_description",
+                "debit": "transaction_08_debit",
+                "balance": "transaction_08_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.502395,
+                0.903595,
+                0.514848
+              ]
+            },
+            {
+              "row": 9,
+              "cells": {
+                "date": "transaction_09_date",
+                "description": "transaction_09_description",
+                "debit": "transaction_09_debit",
+                "balance": "transaction_09_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.52386,
+                0.903595,
+                0.536312
+              ]
+            },
+            {
+              "row": 10,
+              "cells": {
+                "date": "transaction_10_date",
+                "description": "transaction_10_description",
+                "debit": "transaction_10_debit",
+                "balance": "transaction_10_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.545324,
+                0.903595,
+                0.557777
+              ]
+            },
+            {
+              "row": 11,
+              "cells": {
+                "date": "transaction_11_date",
+                "description": "transaction_11_description",
+                "debit": "transaction_11_debit",
+                "balance": "transaction_11_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.566789,
+                0.903595,
+                0.579242
+              ]
+            },
+            {
+              "row": 12,
+              "cells": {
+                "date": "transaction_12_date",
+                "description": "transaction_12_description",
+                "debit": "transaction_12_debit",
+                "balance": "transaction_12_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.588254,
+                0.903595,
+                0.600706
+              ]
+            },
+            {
+              "row": 13,
+              "cells": {
+                "date": "transaction_13_date",
+                "description": "transaction_13_description",
+                "debit": "transaction_13_debit",
+                "balance": "transaction_13_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.609718,
+                0.903595,
+                0.622171
+              ]
+            },
+            {
+              "row": 14,
+              "cells": {
+                "date": "transaction_14_date",
+                "description": "transaction_14_description",
+                "debit": "transaction_14_debit",
+                "balance": "transaction_14_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.631183,
+                0.903595,
+                0.643636
+              ]
+            },
+            {
+              "row": 15,
+              "cells": {
+                "date": "transaction_15_date",
+                "description": "transaction_15_description",
+                "credit": "transaction_15_credit",
+                "balance": "transaction_15_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.652648,
+                0.903595,
+                0.6651
+              ]
+            },
+            {
+              "row": 16,
+              "cells": {
+                "date": "transaction_16_date",
+                "description": "transaction_16_description",
+                "credit": "transaction_16_credit",
+                "balance": "transaction_16_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.674112,
+                0.903595,
+                0.686565
+              ]
+            },
+            {
+              "row": 17,
+              "cells": {
+                "date": "transaction_17_date",
+                "description": "transaction_17_description",
+                "debit": "transaction_17_debit",
+                "balance": "transaction_17_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.695577,
+                0.903595,
+                0.70803
+              ]
+            },
+            {
+              "row": 18,
+              "cells": {
+                "date": "transaction_18_date",
+                "description": "transaction_18_description",
+                "debit": "transaction_18_debit",
+                "balance": "transaction_18_balance"
+              },
+              "bbox": [
+                0.096405,
+                0.717042,
+                0.903595,
+                0.729494
+              ]
+            }
+          ],
+          "totals_row": {
+            "cells": {
+              "debit": "table_total_debits",
+              "credit": "table_total_credits",
+              "balance": "table_closing_balance"
+            },
+            "bbox": [
+              0.597905,
+              0.746082,
+              0.903595,
+              0.758535
+            ]
+          },
+          "bbox": [
+            0.096405,
+            0.352143,
+            0.903595,
+            0.758535
+          ]
+        }
+      ]
+    }
+  ],
+  "genuine_sources": [],
+  "tamper_ground_truth": [],
+  "legitimate_differences": [
+    "LD-S7b-1",
+    "LD-S7b-2",
+    "LD-S7b-3",
+    "LD-S7b-4",
+    "LD-S7b-5"
+  ]
+}

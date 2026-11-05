@@ -6,11 +6,32 @@ import { api } from "../api/client";
 import { mockMode as MOCK_MODE } from "../config";
 import { Breadcrumbs, Button, EmptyState, ErrorState, Icon, LoadingState, PageHeader, StatusBadge } from "../components/ui";
 
+export type CaseSortKey = "default" | "priority" | "title" | "documents" | "newest";
+const PRIORITY_RANK = { low: 1, moderate: 2, high: 3, critical: 4 } as const;
+
+export function sortCases(items: CaseSummary[], key: CaseSortKey, descending: boolean): CaseSummary[] {
+  if (key === "default") return items;
+  const value = (c: CaseSummary): number | string => {
+    if (key === "priority") return c.priority ? PRIORITY_RANK[c.priority.priorityBand] : 0; // no priority yet sorts as lowest
+    if (key === "title") return c.case.title.toLowerCase();
+    if (key === "documents") return c.documents.length;
+    return Date.parse(c.case.createdAt);
+  };
+  const out = [...items].sort((a, b) => {
+    const x = value(a), y = value(b);
+    const cmp = typeof x === "string" ? x.localeCompare(String(y)) : Number(x) - Number(y);
+    return cmp || a.case.caseId.localeCompare(b.case.caseId);
+  });
+  return descending ? out.reverse() : out;
+}
+
 export function CasesPage({ mockMode }: { mockMode: boolean }) {
   const [query, setQuery] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [showCreate, setShowCreate] = useState(false);
   const [formError, setFormError] = useState("");
+  const [sortKey, setSortKey] = useState<CaseSortKey>("default");
+  const [descending, setDescending] = useState(false);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const casesQuery = useQuery({ queryKey: ["cases"], queryFn: api.listCases });
@@ -31,9 +52,9 @@ export function CasesPage({ mockMode }: { mockMode: boolean }) {
     },
     onError: (error) => setFormError(error instanceof Error ? error.message : "Could not create case."),
   });
-  const filteredCases = useMemo(() => (summariesQuery.data ?? []).filter((summary) =>
+  const filteredCases = useMemo(() => sortCases((summariesQuery.data ?? []).filter((summary) =>
     `${summary.case.title} ${summary.case.caseId}`.toLowerCase().includes(query.toLowerCase()),
-  ), [query, summariesQuery.data]);
+  ), sortKey, descending), [query, summariesQuery.data, sortKey, descending]);
 
   if (casesQuery.isLoading || summariesQuery.isLoading) return <LoadingState label="Loading case records" />;
   if (casesQuery.isError) return <ErrorState error={casesQuery.error} retry={() => void casesQuery.refetch()} />;
@@ -59,7 +80,19 @@ export function CasesPage({ mockMode }: { mockMode: boolean }) {
           <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search cases" aria-label="Search cases" />
           {query && <button aria-label="Clear search" onClick={() => setQuery("")}><Icon name="close" size={15} /></button>}
         </div>
-        <span className="result-count">{filteredCases.length} {filteredCases.length === 1 ? "case" : "cases"}</span>
+        <div className="sort-control">
+          <label htmlFor="case-sort">Sort by</label>
+          <select id="case-sort" value={sortKey} onChange={(event) => setSortKey(event.target.value as CaseSortKey)}>
+            <option value="default">Recorded order</option>
+            <option value="priority">Investigation priority</option>
+            <option value="title">Title</option>
+            <option value="documents">Document count</option>
+            <option value="newest">Created date</option>
+          </select>
+          <button type="button" className="icon-button" disabled={sortKey === "default"} onClick={() => setDescending((value) => !value)}
+            aria-label={descending ? "Sorted descending. Switch to ascending" : "Sorted ascending. Switch to descending"}>{descending ? "↓" : "↑"}</button>
+        </div>
+        <span className="result-count" role="status">{filteredCases.length} {filteredCases.length === 1 ? "case" : "cases"}</span>
       </div>
       {filteredCases.length === 0 ? (
         <EmptyState title="No cases match" detail={query ? "Try another case name or ID." : mockMode ? "Create a case to start a local fixture session." : "No cases are available from the configured backend."} />

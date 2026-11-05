@@ -1,0 +1,306 @@
+{
+  "schema": "tracedocs-scenario-1",
+  "caseId": "S7a",
+  "bbox_format": "xywh",
+  "non_findings": [
+    {
+      "nonFindingId": "NF-001",
+      "description": "Permanent address on the ID card differs from the current address on the bank statement.",
+      "documents": [
+        "bank_statement_S7a",
+        "id_card_S7a"
+      ],
+      "fields": [
+        {
+          "docId": "id_card_S7a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "2237 MEADOW ROAD\nWESTMOOR, AZ 25392",
+          "value": "2237 Meadow Road, Westmoor, AZ 25392",
+          "region": {
+            "docId": "id_card_S7a",
+            "page": 1,
+            "bbox": [
+              0.324431,
+              0.5,
+              0.327399,
+              0.103448
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "bank_statement_S7a",
+          "field": "account_holder_address",
+          "semanticType": "address_current",
+          "text": "4503 Maple Street Apt 23, Millford, CO 45757",
+          "value": "4503 Maple Street Apt 23, Millford, CO 45757",
+          "region": {
+            "docId": "bank_statement_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.185735,
+              0.381852,
+              0.015372
+            ],
+            "label": "account_holder_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent address on the ID card differs from the current address on the bank statement.",
+      "legitimateDifferenceId": "LD-S7a-1"
+    },
+    {
+      "nonFindingId": "NF-002",
+      "description": "Permanent and current address on the same application form are different on purpose.",
+      "documents": [
+        "loan_application_S7a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7a",
+          "field": "permanent_address",
+          "semanticType": "address_permanent",
+          "text": "2237 Meadow Road, Westmoor, AZ 25392",
+          "value": "2237 Meadow Road, Westmoor, AZ 25392",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.262755,
+              0.343927,
+              0.015373
+            ],
+            "label": "permanent_address"
+          }
+        },
+        {
+          "docId": "loan_application_S7a",
+          "field": "current_address",
+          "semanticType": "address_current",
+          "text": "4503 Maple Street Apt 23, Millford, CO 45757",
+          "value": "4503 Maple Street Apt 23, Millford, CO 45757",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.318311,
+              0.366915,
+              0.015372
+            ],
+            "label": "current_address"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-ADDR-MAY-DIFFER",
+      "reason": "MAY_DIFFER: Permanent and current address on the same application form are different on purpose.",
+      "legitimateDifferenceId": "LD-S7a-2"
+    },
+    {
+      "nonFindingId": "NF-003",
+      "description": "Requested loan amount is not a balance; the two are different concepts.",
+      "documents": [
+        "bank_statement_S7a",
+        "loan_application_S7a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7a",
+          "field": "requested_loan_amount",
+          "semanticType": "requested_amount",
+          "text": "USD 30,500.00",
+          "value": "30500.00",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.40922,
+              0.126156,
+              0.015372
+            ],
+            "label": "requested_loan_amount"
+          }
+        },
+        {
+          "docId": "bank_statement_S7a",
+          "field": "closing_balance",
+          "semanticType": "account_balance",
+          "text": "7,492.47",
+          "value": "7492.47",
+          "region": {
+            "docId": "bank_statement_S7a",
+            "page": 1,
+            "bbox": [
+              0.836556,
+              0.256992,
+              0.060503,
+              0.013037
+            ],
+            "label": "closing_balance"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-AMOUNT-NOT-COMPARABLE",
+      "reason": "NOT_COMPARABLE: Requested loan amount is not a balance; the two are different concepts.",
+      "legitimateDifferenceId": "LD-S7a-3"
+    },
+    {
+      "nonFindingId": "NF-004",
+      "description": "The guarantor is a different person; name and date of birth must not be compared to the applicant's.",
+      "documents": [
+        "loan_application_S7a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7a",
+          "field": "full_name",
+          "semanticType": "full_name",
+          "text": "Yelena Castellanos",
+          "value": "Yelena Castellanos",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.207199,
+              0.158113,
+              0.015373
+            ],
+            "label": "full_name"
+          }
+        },
+        {
+          "docId": "loan_application_S7a",
+          "field": "guarantor_full_name",
+          "semanticType": "full_name",
+          "text": "Beatrix Harrow",
+          "value": "Beatrix Harrow",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.086601,
+              0.497604,
+              0.122111,
+              0.015372
+            ],
+            "label": "guarantor_full_name"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-NAME-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S7a-4"
+    },
+    {
+      "nonFindingId": "NF-005",
+      "description": "Guarantor date of birth differs from the applicant's.",
+      "documents": [
+        "loan_application_S7a"
+      ],
+      "fields": [
+        {
+          "docId": "loan_application_S7a",
+          "field": "date_of_birth",
+          "semanticType": "dob",
+          "text": "1995-03-05",
+          "value": "1995-03-05",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.207199,
+              0.095186,
+              0.015373
+            ],
+            "label": "date_of_birth"
+          }
+        },
+        {
+          "docId": "loan_application_S7a",
+          "field": "guarantor_date_of_birth",
+          "semanticType": "dob",
+          "text": "1976-05-27",
+          "value": "1976-05-27",
+          "region": {
+            "docId": "loan_application_S7a",
+            "page": 1,
+            "bbox": [
+              0.606209,
+              0.497604,
+              0.095186,
+              0.015372
+            ],
+            "label": "guarantor_date_of_birth"
+          }
+        }
+      ],
+      "forbiddenTypes": [
+        "*"
+      ],
+      "ruleId": "R-DOB-MUST-AGREE",
+      "reason": "Applicant and guarantor are different people; their identity fields are not compared.",
+      "legitimateDifferenceId": "LD-S7a-5"
+    },
+    {
+      "nonFindingId": "NF-101",
+      "description": "No forensic signal on id_card_S7a",
+      "documents": [
+        "id_card_S7a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-102",
+      "description": "No forensic signal on loan_application_S7a",
+      "documents": [
+        "loan_application_S7a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    },
+    {
+      "nonFindingId": "NF-103",
+      "description": "No forensic signal on bank_statement_S7a",
+      "documents": [
+        "bank_statement_S7a"
+      ],
+      "fields": [],
+      "forbiddenTypes": [
+        "REGION_EVENT",
+        "TEXT_LAYER_MISMATCH"
+      ],
+      "ruleId": null,
+      "reason": "Genuine, unedited document (ground truth)."
+    }
+  ]
+}
