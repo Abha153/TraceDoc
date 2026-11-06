@@ -11,7 +11,11 @@ const schema = z.object({
   MAX_UPLOAD_BYTES: z.coerce.number().int().positive().default(25 * 1024 * 1024),
   PIPELINE_VERSION: z.string().min(1).default("0.1.0"),
   REASONING_MODE: z.enum(["engine", "stub"]).default("engine"), // stub: recorded fixture output, mock analysis only
-  ANALYSIS_MODE: z.enum(["mock"]).default("mock"), // "http" arrives with B11
+  ANALYSIS_MODE: z.enum(["mock", "http"]).default("mock"), // http: the real Python service (ocr-service)
+  ANALYSIS_URL: z.string().url().default("http://127.0.0.1:8000"),
+  ANALYSIS_TIMEOUT_MS: z.coerce.number().int().positive().default(110_000), // per call; keep below JOB_TIMEOUT_MS
+  ANALYSIS_RETRY_DELAY_MS: z.coerce.number().int().min(0).default(500),
+  CONTRACTS_DIR: z.string().min(1).default("../contracts"), // analyze.schema.json is read from here
   FIXTURES_DIR: z.string().min(1).default("../contracts/fixtures"),
   JOB_TIMEOUT_MS: z.coerce.number().int().positive().default(120_000),
   JOB_MAX_ATTEMPTS: z.coerce.number().int().min(1).max(10).default(3),
@@ -37,7 +41,11 @@ export interface AppConfig {
   dataDir: string;
   pipelineVersion: string;
   reasoningMode: "engine" | "stub";
-  analysisMode: "mock";
+  analysisMode: "mock" | "http";
+  analysisUrl: string;
+  analysisTimeoutMs: number;
+  analysisRetryDelayMs: number;
+  contractsDir: string;
   fixturesDir: string;
   jobTimeoutMs: number;
   jobMaxAttempts: number;
@@ -64,6 +72,12 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     throw new ConfigError(`Invalid environment: ${detail}`);
   }
   const e = parsed.data;
+  if (e.REASONING_MODE === "stub" && e.ANALYSIS_MODE !== "mock") {
+    throw new ConfigError("Invalid environment: REASONING_MODE=stub only works with ANALYSIS_MODE=mock (the stub matches documents to fixtures by hash)");
+  }
+  if (e.ANALYSIS_MODE === "http" && e.ANALYSIS_TIMEOUT_MS >= e.JOB_TIMEOUT_MS) {
+    throw new ConfigError("Invalid environment: ANALYSIS_TIMEOUT_MS must be smaller than JOB_TIMEOUT_MS, or the job timeout hides the service's own error");
+  }
   return {
     nodeEnv: e.NODE_ENV,
     port: e.PORT,
@@ -72,6 +86,10 @@ export function loadConfig(env: Record<string, string | undefined>): AppConfig {
     pipelineVersion: e.PIPELINE_VERSION,
     reasoningMode: e.REASONING_MODE,
     analysisMode: e.ANALYSIS_MODE,
+    analysisUrl: e.ANALYSIS_URL.replace(/\/+$/, ""),
+    analysisTimeoutMs: e.ANALYSIS_TIMEOUT_MS,
+    analysisRetryDelayMs: e.ANALYSIS_RETRY_DELAY_MS,
+    contractsDir: e.CONTRACTS_DIR,
     fixturesDir: e.FIXTURES_DIR,
     jobTimeoutMs: e.JOB_TIMEOUT_MS,
     jobMaxAttempts: e.JOB_MAX_ATTEMPTS,

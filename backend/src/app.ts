@@ -35,6 +35,7 @@ import { UploadService } from "./services/upload.js";
 import { Worker } from "./services/worker.js";
 import type { AnalysisClient } from "./services/analysisClient.js";
 import { MockAnalysisClient } from "./services/mockAnalysisClient.js";
+import { HttpAnalysisClient, createAnalyzeValidator } from "./services/httpAnalysisClient.js";
 import {
   JsonAnalysisRepository,
   JsonCaseRepository,
@@ -100,7 +101,16 @@ export function buildDeps(config: AppConfig, logger: Logger, overrides: DepOverr
     maxAttempts: config.jobMaxAttempts,
   });
   const analysisClient =
-    overrides.analysisClient ?? new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest, storage });
+    overrides.analysisClient ??
+    (config.analysisMode === "http"
+      ? new HttpAnalysisClient({
+          baseUrl: config.analysisUrl,
+          timeoutMs: config.analysisTimeoutMs,
+          retryDelayMs: config.analysisRetryDelayMs,
+          validate: createAnalyzeValidator(config.contractsDir),
+          logger,
+        })
+      : new MockAnalysisClient({ fixturesDir: config.fixturesDir, manifest, storage }));
   const worker = new Worker({
     jobs,
     client: analysisClient,

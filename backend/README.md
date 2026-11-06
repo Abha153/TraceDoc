@@ -172,3 +172,21 @@ npm run typecheck
 - The built-in PDF fonts cover Latin-1 and common punctuation; any other character is printed as `?` rather than corrupting the page.
   Crops are clipped from each page image, which is embedded once and reused (at most 8 crops per evidence item; the JSON lists all regions).
 - Tests read the text of an uncompressed PDF (`compress: false`) and count the `Do` operators to check the crops, so no PDF-parsing library is needed.
+
+## Real analysis service client (B11)
+
+- `ANALYSIS_MODE=http` uses `HttpAnalysisClient` (`src/services/httpAnalysisClient.ts`): `POST {ANALYSIS_URL}/analyze` with `{"docId": ...}` (nothing
+  else: the service rejects extra keys). The service reads the original from the **shared `DATA_DIR`**; the defaults of backend and service differ,
+  so set it explicitly for both. Full details, the PowerShell run commands and the failure table are in `docs/ANALYSIS_INTEGRATION.md`.
+- The response is validated against `contracts/analyze.schema.json` with ajv (now a runtime dependency), then checked for the value ranges the
+  contract documents but the generated schema does not enforce (0..1 boxes and confidences, regions on an existing page of this document).
+  A response that fails either check, or names another document, is a permanent failure and is never stored.
+- Per-call timeout (`ANALYSIS_TIMEOUT_MS`), one retry after a dropped connection or HTTP 502/503/504 (`ANALYSIS_RETRY_DELAY_MS`), no retry after a
+  timeout or a cancel. 404/409/415/422 and other 4xx are permanent and carry the service's own reason; 5xx is transient.
+- Analyzers that fail inside the service arrive as `ERROR`/`UNAVAILABLE` in `analyzerStatuses`: the job becomes **PARTIAL** (all of them shown per
+  job). If **no** analyzer succeeded, or the service reports no analyzers at all, the job is **FAILED**, never a clean DONE. Such a document goes to
+  the reasoning engine as a failed document (coverage drops), and its rendered pages stay available.
+- On startup the backend pings `GET /health` and logs whether the service is reachable; it does not refuse to start.
+- `test/httpClient.test.ts` uses a fake service (contract fixtures, bad responses, every status, retries, timeouts, cancellation, and the whole
+  backend end to end). `test/realService.test.ts` is opt-in (`REAL_ANALYSIS_URL`, `REAL_ANALYSIS_DATA_DIR`, see the docs) and was run against the O1
+  service from this repo.

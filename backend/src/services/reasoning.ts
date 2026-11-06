@@ -111,7 +111,8 @@ export class ReasoningPipeline {
         .at(-1);
       if (latest && (latest.status === "QUEUED" || latest.status === "RUNNING")) pending = true;
       const analysis = await this.d.analysis.get(doc.docId);
-      if (analysis) done.push(analysis);
+      // An analysis that reports no analyzers at all analysed nothing (only pages were rendered): treat it as failed, not as clean.
+      if (analysis && Object.keys(analysis.analyzerStatuses).length > 0) done.push(analysis);
       else missing.push(doc.docId);
     }
     // analyzers that ran for the documents we do have; a failed document gets all of them as ERROR

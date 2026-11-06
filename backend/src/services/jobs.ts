@@ -98,7 +98,8 @@ export class JobService {
       const entries = Object.entries(resp.analyzerStatuses);
       const available = entries.filter(([, s]) => s === "AVAILABLE").length;
       const broken = entries.filter(([, s]) => s === "ERROR" || s === "UNAVAILABLE").length;
-      const status: JobStatus = broken === 0 ? "DONE" : available > 0 ? "PARTIAL" : "FAILED";
+      // No analyzer succeeded (or none reported at all) means nothing was analysed. That is a failure, never a clean DONE.
+      const status: JobStatus = available === 0 ? "FAILED" : broken === 0 ? "DONE" : "PARTIAL";
 
       const analyzers: Record<string, AnalyzerProgress> = {};
       for (const [id, s] of entries) {
@@ -115,7 +116,9 @@ export class JobService {
       }
       const { error: _drop, ...rest } = job;
       const done: Job = { ...rest, status, analyzers, updatedAt: at };
-      if (status === "FAILED") done.error = "no analyzer produced a usable result";
+      if (status === "FAILED") {
+        done.error = entries.length === 0 ? "the analysis service reported no analyzers, so nothing was analysed" : "no analyzer produced a usable result";
+      }
       await this.repo.put(done);
       return done;
     });

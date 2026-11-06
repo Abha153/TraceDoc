@@ -121,6 +121,25 @@ describe("results", () => {
     expect(done.analyzers["signature"]).toMatchObject({ state: "UNAVAILABLE", analyzerStatus: "UNAVAILABLE" });
   });
 
+  it("FAILED when the service reports no analyzers at all: nothing was analysed, so it is never a clean DONE", async () => {
+    const { svc } = await setup();
+    await svc.enqueue({ caseId: "C", docId: "D-a" });
+    const run = (await svc.claimNext())!;
+    const done = await svc.complete(run.jobId, resp("D-a", {}));
+    expect(done.status).toBe("FAILED");
+    expect(done.error).toBe("the analysis service reported no analyzers, so nothing was analysed");
+    expect(done.analyzers).toEqual({});
+  });
+
+  it("FAILED when every analyzer is NOT_APPLICABLE (none actually ran)", async () => {
+    const { svc } = await setup();
+    await svc.enqueue({ caseId: "C", docId: "D-a" });
+    const run = (await svc.claimNext())!;
+    const done = await svc.complete(run.jobId, resp("D-a", { "pdf.fonts": "NOT_APPLICABLE", "image.ela": "NOT_APPLICABLE" }));
+    expect(done.status).toBe("FAILED");
+    expect(done.error).toBe("no analyzer produced a usable result");
+  });
+
   it("FAILED when no analyzer produced anything", async () => {
     const { svc } = await setup();
     await svc.enqueue({ caseId: "C", docId: "D-a" });
