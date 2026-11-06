@@ -36,8 +36,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_001",
       "source_file": "genuine/loan_application_001.pdf",
-      "sha256": "b836374c0031c136f04880ecd23ae7edbe9d145193e4d583a2f10a53674bde2b",
-      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "sha256": "6ca8cdfdee6cac500c1c0812fc299233e998649780dca7c805ae1d154a0c1244",
+      "source_sha256": "f7e704310ac078515ee45e434572d8d4ad25b2894dcc1aeb4e3c094bf23e4066",
       "fictional": true,
       "original_value": "USD 21,500.00",
       "edited_value": "USD 51,500.00"
@@ -110,8 +110,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_001_scan",
       "source_file": "genuine/loan_application_001_scan.jpg",
-      "sha256": "6df059ad1e1235d895a632fb355fd88be22a75058b8c21411a717ae65d70c6d1",
-      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "sha256": "5c6228516c400d27a1af19f9345e0a88fc379fe3da5a9ef3bc92e499f5f084af",
+      "source_sha256": "9f249fbff454d6cc07d0aec868d06b7679db5489227fb01a04d6750afc836aa8",
       "fictional": true,
       "original_value": "USD 21,500.00",
       "edited_value": "USD 51,500.00"
@@ -193,8 +193,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_001_scan",
       "source_file": "genuine/loan_application_001_scan.jpg",
-      "sha256": "63106d79e50fa9a7ddd0fad696e7e8fe97d932910d1d4de2354384cd45ed4eed",
-      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "sha256": "b4a046cc4c3a2aeaac96feb769fd9c28802ea7e3d663aef540e13bf11584ca12",
+      "source_sha256": "9f249fbff454d6cc07d0aec868d06b7679db5489227fb01a04d6750afc836aa8",
       "fictional": true,
       "replacement_signature_seed": 424242
     },
@@ -303,8 +303,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_002",
       "source_file": "genuine/loan_application_002.pdf",
-      "sha256": "66fbf9ea2a1d880b2a6a8e6b5552ee61eedffba7ccb6148dda55f9b455d99343",
-      "source_sha256": "56ebfb1500dfc9c8490a6c9079bf787f9c25c2c745d89717fd72a5e4b86b43ac",
+      "sha256": "1f6d2f2b4fd4d7f1f8b646ef08986dc0a2d5d48370160cb62561289377a358ea",
+      "source_sha256": "12cb99d146baa999d5d35e0b8679d2872e40e81120a7c6820ba08cb3d80afb26",
       "fictional": true,
       "visible_value": "USD 26,500.00",
       "hidden_value": "USD 56,500.00",
@@ -341,8 +341,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_002",
       "source_file": "genuine/loan_application_002.pdf",
-      "sha256": "b9ebc7f39b4b5cfe74aac3bbb42f5c336cf6dbc8d38caba387d01aff2760820d",
-      "source_sha256": "56ebfb1500dfc9c8490a6c9079bf787f9c25c2c745d89717fd72a5e4b86b43ac",
+      "sha256": "41a36e25ac6e485793d711065f067a2453f70c2163adc2a8833a7b3db88b4f94",
+      "source_sha256": "12cb99d146baa999d5d35e0b8679d2872e40e81120a7c6820ba08cb3d80afb26",
       "fictional": true,
       "visible_value": "1980-08-21",
       "hidden_value": "1969-12-31",
@@ -379,8 +379,8 @@
       "expected_finding": false,
       "source_doc_id": "loan_application_001_scan",
       "source_file": "genuine/loan_application_001_scan.jpg",
-      "sha256": "df2c73ae513df45aa9e37d177f5e4aca898e81be36777946d59fe226e219142c",
-      "source_sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
+      "sha256": "ea366d4215e80d96bdfa91958b6b11a2ba20d306bd793e259800d86bdb69730c",
+      "source_sha256": "9f249fbff454d6cc07d0aec868d06b7679db5489227fb01a04d6750afc836aa8",
       "fictional": true,
       "jpeg_quality": 85
     },
@@ -450,8 +450,8 @@
       "expected_finding": false,
       "source_doc_id": "loan_application_001",
       "source_file": "genuine/loan_application_001.pdf",
-      "sha256": "8de66e7509a030865bdd442b0bd24842956765fb48744bc0bbcd3d19509a0c88",
-      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "sha256": "20666e0739dc851415ab334411f24fb0e204e38e78e5d3b12ae514f74813d8d0",
+      "source_sha256": "f7e704310ac078515ee45e434572d8d4ad25b2894dcc1aeb4e3c094bf23e4066",
       "fictional": true
     },
     {
@@ -485,8 +485,8 @@
       "expected_finding": false,
       "source_doc_id": "loan_application_001",
       "source_file": "genuine/loan_application_001.pdf",
-      "sha256": "12dc04ffcc7fcc62aee79bff0c938fb7fe31c7793a975311d8ccbbe587273ed7",
-      "source_sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
+      "sha256": "cf6b34f0df578f830fb81f3a0522ba810495f3924f39e8cad32c216db0745347",
+      "source_sha256": "f7e704310ac078515ee45e434572d8d4ad25b2894dcc1aeb4e3c094bf23e4066",
       "fictional": true
     }
   ]

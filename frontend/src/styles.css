@@ -650,3 +650,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .viewer-tooltip em { color: #9fd8cc; font-style: normal; font-variant-numeric: tabular-nums; }
 .viewer-tooltip small { color: #b8c6cf; text-transform: capitalize; }
 .evidence-jump-action { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; color: var(--teal, #26877a); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.sort-control .icon-button { width: 34px; height: 34px; display: inline-grid; place-items: center; border: 1px solid #cfd8dc; border-radius: 7px; background: #fff; color: #172333; font-size: 14px; cursor: pointer; }
+.sort-control .icon-button:hover:not(:disabled) { border-color: #26877a; color: #26877a; }
+
+.getting-started { margin-bottom: 18px; padding: 12px 15px; border: 1px solid #cfe3df; border-radius: 11px; background: #f4faf8; color: var(--ink); font-size: 13px; line-height: 1.55; }
+.getting-started summary { cursor: pointer; font-weight: 700; color: var(--teal-dark); }
+.getting-started summary:focus-visible, .getting-started a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.getting-started ol { margin: 10px 0 8px; padding-left: 20px; display: grid; gap: 4px; }
+.getting-started a { color: var(--teal-dark); font-weight: 600; text-decoration: underline; }
+.getting-started-note { margin: 4px 0 0; color: var(--muted); font-size: 12px; }

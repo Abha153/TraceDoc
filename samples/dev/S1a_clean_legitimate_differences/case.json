@@ -296,8 +296,8 @@
       "role": "genuine",
       "file": "loan_application_S1a.pdf",
       "format": "pdf",
-      "sha256": "a7f4d16f2646b8f4a084ebdacd351d6c1995cb41d00198198d4543dde68e1d17",
-      "bytes": 6069,
+      "sha256": "bbf7513597193985492bd7b7d3b3dd6626822aad6160b2d9a255926a8e930026",
+      "bytes": 6161,
       "set": "S1a",
       "person_ids": [
         "PS01A1",
@@ -419,6 +419,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS01A1",
+          "true_entity_role": "applicant",
+          "text": "SMP-5736-7706-BY",
+          "value": "SMP-5736-7706-BY",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.541549,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_S1a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.164098,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -608,6 +635,33 @@
               0.015372
             ],
             "label": "guarantor_full_name"
+          }
+        },
+        {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS01A2",
+          "true_entity_role": "guarantor",
+          "text": "SMP-8116-5019-VL",
+          "value": "SMP-8116-5019-VL",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.539554,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_S1a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.162103,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
           }
         },
         {

@@ -303,8 +303,8 @@
       "role": "control",
       "file": "loan_application_S8a.jpg",
       "format": "jpg",
-      "sha256": "d6a09826a9b1adf7c70a06f7eb4c737212b148eedaa8429ccc7c7cd2ec528903",
-      "bytes": 240885,
+      "sha256": "f94b7d8cea0198bcb07b2ec8cd8ad2652dde5c889e827c39d29034ee176dd15f",
+      "bytes": 251209,
       "set": "S8a",
       "person_ids": [
         "PS08A1",
@@ -429,6 +429,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS08A1",
+          "true_entity_role": "applicant",
+          "text": "SMP-1277-6966-XO",
+          "value": "SMP-1277-6966-XO",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.543544,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.166093,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -618,6 +645,33 @@
               0.015372
             ],
             "label": "guarantor_full_name"
+          }
+        },
+        {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS08A2",
+          "true_entity_role": "guarantor",
+          "text": "SMP-7960-4670-WP",
+          "value": "SMP-7960-4670-WP",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.546528,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_S8a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.169077,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
           }
         },
         {
@@ -3407,7 +3461,7 @@
     },
     {
       "file": "_genuine_source/loan_application_S8a.pdf",
-      "sha256": "2aa7bcda16dc9b7474047b553c15e3d27a68eb8e11da1cb6811b667ced526492",
+      "sha256": "5d96a6158fcda51f1f6a8a7ceffe2241a057aceab2ae5d6252f1c708ca20f902",
       "note": "unedited original from which a case document was derived"
     }
   ],

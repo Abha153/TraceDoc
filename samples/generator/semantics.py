@@ -19,6 +19,7 @@ SEMANTIC = {
     "loan_application": {
         "sample_marker": "marker", "application_number": "application_number",
         "application_date": "document_date", "full_name": "full_name", "date_of_birth": "dob",
+        "id_number": "id_number", "guarantor_id_number": "id_number",
         "permanent_address": "address_permanent", "current_address": "address_current",
         "requested_loan_amount": "requested_amount", "loan_term_months": "loan_term_months",
         "loan_purpose": "loan_purpose", "guarantor_full_name": "full_name",

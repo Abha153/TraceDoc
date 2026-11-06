@@ -12,8 +12,17 @@ from .common import field, fmt_address
 from .signature import place, signature_strokes
 
 W, H = 1011, 638  # CR80 aspect at ~300 dpi
-# Liberation Sans/Mono (metric-compatible with Arial/Courier). Override with TRACEDOCS_FONT_DIR.
-FONT_DIR = Path(os.environ.get("TRACEDOCS_FONT_DIR", "/usr/share/fonts/truetype/liberation"))
+# Liberation Sans/Mono (metric-compatible with Arial/Courier, SIL OFL 1.1), bundled in generator/fonts/ so the output is
+# the same on Linux, macOS and Windows. Search order: TRACEDOCS_FONT_DIR (explicit override), the bundled folder, then
+# common system folders as a last resort.
+BUNDLED_FONT_DIR = Path(__file__).resolve().parent / "fonts"
+SYSTEM_FONT_DIRS = (Path("/usr/share/fonts/truetype/liberation"), Path("/usr/share/fonts/liberation"),
+                    Path("/usr/share/fonts/liberation-fonts"), Path("/Library/Fonts"))
+
+
+def font_dirs() -> list[Path]:
+    override = os.environ.get("TRACEDOCS_FONT_DIR")
+    return ([Path(override)] if override else []) + [BUNDLED_FONT_DIR, *SYSTEM_FONT_DIRS]
 
 NAVY = (20, 40, 80)
 INK = (15, 15, 15)
@@ -23,12 +32,16 @@ BAND = (214, 230, 242)
 SIG_INK = (20, 30, 120)
 
 
+def find_font(name: str) -> Path:
+    for d in font_dirs():
+        if (d / name).is_file():
+            return d / name
+    raise FileNotFoundError(f"Font {name} not found in: " + ", ".join(str(d) for d in font_dirs())
+                            + ". It should be in samples/generator/fonts/; or set TRACEDOCS_FONT_DIR.")
+
+
 def _font(name: str, size: int):
-    path = FONT_DIR / name
-    if not path.exists():
-        raise SystemExit(f"Font {path} not found. Install Liberation fonts (fonts-liberation) "
-                         "or set TRACEDOCS_FONT_DIR to a folder containing it.")
-    return ImageFont.truetype(str(path), size)
+    return ImageFont.truetype(str(find_font(name)), size)
 
 
 def _fmt_date(iso: str) -> str:

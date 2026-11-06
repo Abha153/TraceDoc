@@ -2900,8 +2900,8 @@
       "role": "tampered",
       "file": "loan_application_S6b.jpg",
       "format": "jpg",
-      "sha256": "b48e81f0300624527968450b26aeffb25b494fc1128cdea6d85156c8651f08c6",
-      "bytes": 398966,
+      "sha256": "32f50b32c17447d1cf87703db8fa61ff2e6ff443afe1cb0edc5b6c97b51f2789",
+      "bytes": 403643,
       "set": "S6b",
       "person_ids": [
         "PS06B1",
@@ -3030,6 +3030,33 @@
               0.01674
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS06B1",
+          "true_entity_role": "applicant",
+          "text": "SMP-8636-3462-RJ",
+          "value": "SMP-8636-3462-RJ",
+          "page": 1,
+          "bbox": [
+            0.382098,
+            0.206,
+            0.544426,
+            0.22299
+          ],
+          "region": {
+            "docId": "loan_application_S6b",
+            "page": 1,
+            "bbox": [
+              0.382098,
+              0.206,
+              0.162328,
+              0.01699
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -3222,6 +3249,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS06B2",
+          "true_entity_role": "guarantor",
+          "text": "SMP-1843-9116-DW",
+          "value": "SMP-1843-9116-DW",
+          "page": 1,
+          "bbox": [
+            0.377244,
+            0.496381,
+            0.547552,
+            0.513449
+          ],
+          "region": {
+            "docId": "loan_application_S6b",
+            "page": 1,
+            "bbox": [
+              0.377244,
+              0.496381,
+              0.170308,
+              0.017068
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -3390,12 +3444,12 @@
   "genuine_sources": [
     {
       "file": "_genuine_source/_scan_loan_application_S6b.jpg",
-      "sha256": "30406f14946fdb1a7b9eff08c2fde39ea73a93f85aa4295f90f956bb8c5bef88",
+      "sha256": "d08b361cf1a43339a9d1dd5b2a49c762b4cfcb37cf47270e63c93019e31deb97",
       "note": "unedited original from which a case document was derived"
     },
     {
       "file": "_genuine_source/loan_application_S6b.pdf",
-      "sha256": "a3b96f0023aee8e1297e929ca5ce4671130fa44652e48aa7b691e22d3c08f53a",
+      "sha256": "a8d7414e53ba331a7841b08244d4bc1c569df4a2576a35d43582461cbcc91ccc",
       "note": "unedited original from which a case document was derived"
     }
   ],
@@ -3430,8 +3484,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_S6b",
       "source_file": "_genuine_source/_scan_loan_application_S6b.jpg",
-      "sha256": "b48e81f0300624527968450b26aeffb25b494fc1128cdea6d85156c8651f08c6",
-      "source_sha256": "30406f14946fdb1a7b9eff08c2fde39ea73a93f85aa4295f90f956bb8c5bef88",
+      "sha256": "32f50b32c17447d1cf87703db8fa61ff2e6ff443afe1cb0edc5b6c97b51f2789",
+      "source_sha256": "d08b361cf1a43339a9d1dd5b2a49c762b4cfcb37cf47270e63c93019e31deb97",
       "fictional": true,
       "replacement_signature_seed": 737373,
       "id": "T-01"

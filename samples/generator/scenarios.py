@@ -346,36 +346,45 @@ def build_s1(case: Case, v: str):
 
 
 def build_s2(case: Case, v: str):
+    """A name respelled on ONE document. Both variants are comparable by the engine because the ID card and the
+    application form print the same id_number (that is what links them); a respelling on the bank statement could
+    not be compared (no shared identifier), so it is not used."""
     a = case.by_id[case.ids[0]]
     g, s, ratio = name_variant(a["given_name"], a["surname"], 4000 + (0 if v == "a" else 17), 76, 91, both=True)
     alt = _set_name(case.persons, case.ids[0], g, s)
-    e, _ = case.id_card()
-    case.add(e, "genuine")
     if v == "a":   # respelled on the application form
+        e, _ = case.id_card()
         ea, _ = case.application(persons=alt)
-        case.add(ea, "genuine")
-        eb, _ = case.statement()
-        case.add(eb, "genuine")
-        other, field_o = ea, "full_name"
-        note = "The name on the form is a respelling of the ID card name (no id_number on the form to link them)."
-    else:           # respelled on the bank statement (account holder)
+        where = "application form"
+    else:          # respelled on the ID card
+        e, _ = case.id_card(persons=alt)
         ea, _ = case.application()
-        case.add(ea, "genuine")
-        eb, _ = case.statement(persons=alt)
-        case.add(eb, "genuine")
-        other, field_o = eb, "account_holder"
-        note = ("The account holder on the statement is a respelling of the ID card name; the link to the applicant "
-                "may only be SUGGESTED, in which case confidence is capped.")
+        where = "ID card"
+    eb, _ = case.statement()
+    for d in (e, ea, eb):
+        case.add(d, "genuine")
     finding = {
         "expectedId": "EF-001", "type": "NAME_VARIANT_SPELLING", "category": "cross_document",
         "observationStatus": "INCONSISTENT", "severity": "low",
-        "documents": [e["doc_id"], other["doc_id"]], "ruleId": "R-NAME-MUST-AGREE",
-        "evidence": [_ev(e, "full_name"), _ev(other, field_o)],
+        "documents": [e["doc_id"], ea["doc_id"]], "ruleId": "R-NAME-MUST-AGREE",
+        "evidence": [_ev(e, "full_name"), _ev(ea, "full_name")],
         "tokenSortRatio": round(ratio, 1), "scoring": "required",
-        "notes": f"Spelling variant, token-sort ratio {ratio:.1f} (variant band 75-92). {note} "
-                 "Not a tampering signal: no forensic finding is expected."}
+        "notes": f"Spelling variant on the {where}, token-sort ratio {ratio:.1f} (variant band 75-92); both documents "
+                 "print the same id_number, so they belong to one entity. Not a tampering signal: no forensic "
+                 "finding is expected."}
+    # the respelled document also differs from the bank statement, linked to the applicant only by a SUGGESTED link
+    respelled = ea if v == "a" else e
+    second = {
+        "expectedId": "EF-002", "type": "NAME_VARIANT_SPELLING", "category": "cross_document",
+        "observationStatus": "INCONSISTENT", "severity": "low",
+        "documents": [respelled["doc_id"], eb["doc_id"]], "ruleId": "R-NAME-MUST-AGREE",
+        "evidence": [_ev(respelled, "full_name"), _ev(eb, "account_holder")],
+        "tokenSortRatio": round(ratio, 1), "scoring": "optional",
+        "notes": "The same respelling also differs from the account holder on the bank statement. The statement is "
+                 "linked to the applicant only by a SUGGESTED link (no shared identifier), so this finding is optional "
+                 "and its confidence is expected to be capped."}
     nf = _legit_nonfindings(case) + _forensic_nonfindings(case, set(), "Genuine, unedited document (ground truth).")
-    return [finding], nf
+    return [finding, second], nf
 
 
 def build_s3(case: Case, v: str):
@@ -520,7 +529,9 @@ def build_s7(case: Case, v: str):
         "ruleId": "R-STMT-TOTAL-ARITH",
         "evidence": [_ev(eb, f"total_{label}"), _ev(eb, kind)],
         "listedSum": money(st[key]), "printedTotal": money(printed_val), "scoring": "required",
-        "notes": f"Printed total {label} {money(printed_val)} but the listed transactions sum to {money(st[key])} "
+        "notes": ("KNOWN ENGINE GAP at the time of writing: the arithmetic rule only sums credit rows against the credits total, "
+                  "so a wrong DEBITS total is not checked yet. " if key == "total_debits" else "")
+                 + f"Printed total {label} {money(printed_val)} but the listed transactions sum to {money(st[key])} "
                  f"(difference {money(delta)}). The statement file is otherwise unedited: it is an arithmetic "
                  "inconsistency in the content, not a pixel-level or structural edit."}
     nf = _legit_nonfindings(case) + _forensic_nonfindings(case, set(), "Genuine, unedited document (ground truth).")

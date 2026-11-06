@@ -2900,8 +2900,8 @@
       "role": "tampered",
       "file": "loan_application_S5a.pdf",
       "format": "pdf",
-      "sha256": "37a9a85f929e132c0df6ca3133601e26023f12298b8075f53f5264238ad72b1a",
-      "bytes": 10021,
+      "sha256": "50fa09d8bb1a8eb26ed379ed08c23aab9cbbdde0cddaddbdf5ad6be14ee51780",
+      "bytes": 10178,
       "set": "S5a",
       "person_ids": [
         "PS05A1",
@@ -3023,6 +3023,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS05A1",
+          "true_entity_role": "applicant",
+          "text": "SMP-1701-9929-AK",
+          "value": "SMP-1701-9929-AK",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.541549,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_S5a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.164098,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -3218,6 +3245,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "PS05A2",
+          "true_entity_role": "guarantor",
+          "text": "SMP-2028-7337-DP",
+          "value": "SMP-2028-7337-DP",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.542538,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_S5a",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.165087,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -3386,7 +3440,7 @@
   "genuine_sources": [
     {
       "file": "_genuine_source/loan_application_S5a.pdf",
-      "sha256": "16b7db67d23179cbc856eefc350c514d5db4097e3f1574266a651895b33f8f22",
+      "sha256": "7cf9288574b520029c611e11b81cf4235d0fed6ce872bb09401a5a420ddf418a",
       "note": "unedited original from which a case document was derived"
     }
   ],
@@ -3421,8 +3475,8 @@
       "expected_finding": true,
       "source_doc_id": "loan_application_S5a",
       "source_file": "_genuine_source/loan_application_S5a.pdf",
-      "sha256": "37a9a85f929e132c0df6ca3133601e26023f12298b8075f53f5264238ad72b1a",
-      "source_sha256": "16b7db67d23179cbc856eefc350c514d5db4097e3f1574266a651895b33f8f22",
+      "sha256": "50fa09d8bb1a8eb26ed379ed08c23aab9cbbdde0cddaddbdf5ad6be14ee51780",
+      "source_sha256": "7cf9288574b520029c611e11b81cf4235d0fed6ce872bb09401a5a420ddf418a",
       "fictional": true,
       "original_value": "1980-09-18",
       "edited_value": "1983-09-18",

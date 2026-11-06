@@ -181,8 +181,12 @@ def test_s1_legitimate_differences_are_non_findings(built, cid):
 def test_s2_spelling_variant_in_engine_band(built, cid):
     _, _, cases = built
     c = cases[cid]
-    (f,) = c["findings"]
-    assert f["type"] == "NAME_VARIANT_SPELLING" and f["severity"] == "low" and f["observationStatus"] == "INCONSISTENT"
+    f, second = c["findings"]
+    assert f["type"] == second["type"] == "NAME_VARIANT_SPELLING" and f["severity"] == "low"
+    assert f["observationStatus"] == "INCONSISTENT" and f["scoring"] == "required" and second["scoring"] == "optional"
+    # the required pair is ID card vs application form (linked by the id_number both print)
+    assert {d.split("_S2")[0] for d in f["documents"]} == {"id_card", "loan_application"}
+    assert any(d.startswith("bank_statement") for d in second["documents"])
     a, b = f["evidence"]
     r = S.token_sort_ratio(a["value"], b["value"])
     assert 75 <= r < 92 and abs(r - f["tokenSortRatio"]) < 0.1
