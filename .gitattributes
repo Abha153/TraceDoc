@@ -1,0 +1,6 @@
+﻿
+# Preserve binary document and image fixtures on all platforms.
+*.pdf -text
+*.png -text
+*.jpg -text
+*.jpeg -text

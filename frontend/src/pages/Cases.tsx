@@ -74,6 +74,18 @@ export function CasesPage({ mockMode }: { mockMode: boolean }) {
         <div><span className="overview-icon overview-icon-amber"><Icon name="file" /></span><span><strong>{summariesQuery.data?.reduce((total, item) => total + item.documents.length, 0) ?? 0}</strong><small>Documents recorded</small></span></div>
         <div><span className="overview-icon overview-icon-blue"><Icon name="clock" /></span><span><strong>{mockMode ? "Fixture" : "Backend"}</strong><small>Data mode</small></span></div>
       </div>
+      <details className="getting-started" open>
+        <summary>Getting started: how to review a case</summary>
+        <ol>
+          <li><strong>Pick a case</strong> below{mockMode && summariesQuery.data?.[0] ? <> or <Link to={`/cases/${summariesQuery.data[0].case.caseId}`}>open the demo case</Link></> : null}. Its page shows each document and which checks ran on it.</li>
+          <li><strong>Read the findings.</strong> Each one says what was observed, why it may have a harmless explanation, and what to verify. They are observations, not conclusions.</li>
+          <li><strong>Look at the evidence.</strong> Every finding can open the document at the exact region it refers to.</li>
+          <li><strong>Record your decision.</strong> Confirm, dismiss (with a reason) or mark inconclusive. Your review never replaces the machine observation.</li>
+        </ol>
+        <p className="getting-started-note">{mockMode
+          ? "This demo shows recorded results. Uploaded files are accepted but are not analysed, so they produce no new findings."
+          : "Until the analysis service is connected, only the recorded sample documents are analysed. Any other file is reported as not analysed, which is never the same as clean."}</p>
+      </details>
       <div className="section-toolbar">
         <div className="search-field">
           <Icon name="search" size={17} />

@@ -1,0 +1,6 @@
+# Generated sample documents are binary: never convert line endings (hashes in manifests would no longer match).
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ttf binary

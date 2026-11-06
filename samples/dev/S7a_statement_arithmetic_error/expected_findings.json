@@ -54,7 +54,7 @@
       "listedSum": "2105.10",
       "printedTotal": "2205.10",
       "scoring": "required",
-      "notes": "Printed total debits 2205.10 but the listed transactions sum to 2105.10 (difference 100.00). The statement file is otherwise unedited: it is an arithmetic inconsistency in the content, not a pixel-level or structural edit."
+      "notes": "KNOWN ENGINE GAP at the time of writing: the arithmetic rule only sums credit rows against the credits total, so a wrong DEBITS total is not checked yet. Printed total debits 2205.10 but the listed transactions sum to 2105.10 (difference 100.00). The statement file is otherwise unedited: it is an arithmetic inconsistency in the content, not a pixel-level or structural edit."
     }
   ]
 }

@@ -183,6 +183,7 @@ class _PdfEdit:
         Path(dst).parent.mkdir(parents=True, exist_ok=True)
         self.pdf.save(dst, static_id=True, compress_streams=True,
                       object_stream_mode=pikepdf.ObjectStreamMode.disable)
+        self.pdf.close()          # Windows keeps an open file locked
 
 
 def _s(text: str):
@@ -440,6 +441,8 @@ def tamper_incremental_edit(src: Path, dst: Path, doc: dict, field: str, *, base
             f"startxref\n{xref_off}\n%%EOF\n").encode()
     Path(dst).parent.mkdir(parents=True, exist_ok=True)
     Path(dst).write_bytes(bytes(out))
+    pdf0.close()
+    ed.pdf.close()
     return _entry(type_="pdf_incremental_save", role="tampered", dst=dst, base=base, src=src, doc=doc, page=1,
                   xyxy=f["bbox"], field=field, modality="digital_pdf", expected_finding=True,
                   description=f"Value of '{field}' changed from {f['text']!r} to {new_text!r} in an appended "

@@ -114,7 +114,8 @@ def render_application(persons: dict, out_path: Path):
         pg.line(x, y + 29, x + w, y + 29)
 
     section(138, "1. Applicant details")
-    entry("Full name", a["full_name"], M, 150, 300, "full_name")
+    entry("Full name", a["full_name"], M, 150, 180, "full_name")
+    entry("ID number", a["id_number"], 232, 150, 130, "id_number", "identifier")
     entry("Date of birth (YYYY-MM-DD)", a["date_of_birth"], 372, 150, 186, "date_of_birth", "date")
     entry("Permanent address", fmt_address(a["permanent_address"]), M, 194, 504, "permanent_address")
     entry("Current address", fmt_address(a["current_address"]), M, 238, 504, "current_address")
@@ -126,7 +127,8 @@ def render_application(persons: dict, out_path: Path):
     entry("Purpose", app["purpose"], 408, 310, 150, "loan_purpose")
 
     section(368, "3. Guarantor")
-    entry("Guarantor full name", g["full_name"], M, 380, 300, "guarantor_full_name")
+    entry("Guarantor full name", g["full_name"], M, 380, 180, "guarantor_full_name")
+    entry("Guarantor ID number", g["id_number"], 232, 380, 130, "guarantor_id_number", "identifier")
     entry("Date of birth (YYYY-MM-DD)", g["date_of_birth"], 372, 380, 186, "guarantor_date_of_birth", "date")
     entry("Relationship to applicant", app["guarantor_relationship"], M, 424, 200, "guarantor_relationship")
 

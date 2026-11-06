@@ -1323,8 +1323,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_001.pdf",
       "format": "pdf",
-      "sha256": "d14d5ef37a966e24e2bf7fb143efecb809f5df4f6e7ba986484846ab83388d9f",
-      "bytes": 5784,
+      "sha256": "f7e704310ac078515ee45e434572d8d4ad25b2894dcc1aeb4e3c094bf23e4066",
+      "bytes": 5970,
       "set": "001",
       "person_ids": [
         "P001",
@@ -1446,6 +1446,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P001",
+          "true_entity_role": "applicant",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.544533,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_001",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.167082,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -1638,6 +1665,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P002",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9396-3013-BI",
+          "value": "SMP-9396-3013-BI",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.534557,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_001",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.157106,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -1808,8 +1862,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_001_scan.jpg",
       "format": "jpg",
-      "sha256": "54e5f8439577a44e326702a6afdbf5b50b9ca8e79707ef081d9528cea5844db7",
-      "bytes": 402657,
+      "sha256": "9f249fbff454d6cc07d0aec868d06b7679db5489227fb01a04d6750afc836aa8",
+      "bytes": 407312,
       "set": "001",
       "person_ids": [
         "P001",
@@ -1938,6 +1992,33 @@
               0.017074
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P001",
+          "true_entity_role": "applicant",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.370462,
+            0.206613,
+            0.537884,
+            0.224371
+          ],
+          "region": {
+            "docId": "loan_application_001_scan",
+            "page": 1,
+            "bbox": [
+              0.370462,
+              0.206613,
+              0.167422,
+              0.017758
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -2130,6 +2211,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P002",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9396-3013-BI",
+          "value": "SMP-9396-3013-BI",
+          "page": 1,
+          "bbox": [
+            0.377415,
+            0.49711,
+            0.534862,
+            0.514726
+          ],
+          "region": {
+            "docId": "loan_application_001_scan",
+            "page": 1,
+            "bbox": [
+              0.377415,
+              0.49711,
+              0.157447,
+              0.017616
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -2300,8 +2408,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_001_scan_hard.jpg",
       "format": "jpg",
-      "sha256": "a0028cab61d4d5fe25aa8dff42b961e02d848bf78a143d2bbdce985bbe2352bd",
-      "bytes": 311768,
+      "sha256": "23436d0325cfadf5db28c8c21c259f1c97029db2578ea9fc37646e4dd5bd59c9",
+      "bytes": 314156,
       "set": "001",
       "person_ids": [
         "P001",
@@ -2430,6 +2538,33 @@
               0.019072
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P001",
+          "true_entity_role": "applicant",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.392021,
+            0.20362,
+            0.55977,
+            0.224184
+          ],
+          "region": {
+            "docId": "loan_application_001_scan_hard",
+            "page": 1,
+            "bbox": [
+              0.392021,
+              0.20362,
+              0.167749,
+              0.020564
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -2622,6 +2757,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P002",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9396-3013-BI",
+          "value": "SMP-9396-3013-BI",
+          "page": 1,
+          "bbox": [
+            0.376874,
+            0.493789,
+            0.534654,
+            0.514042
+          ],
+          "region": {
+            "docId": "loan_application_001_scan_hard",
+            "page": 1,
+            "bbox": [
+              0.376874,
+              0.493789,
+              0.15778,
+              0.020253
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -2792,8 +2954,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_001_recompressed.jpg",
       "format": "jpg",
-      "sha256": "cadb95e6706d27e45a5959072047c9f9324828db205afdff696b864ddc41ce3a",
-      "bytes": 240634,
+      "sha256": "6e06e47d284229414e06267bbcff047308f2f7c8a7935fbb4ee752359cbc8b09",
+      "bytes": 250671,
       "set": "001",
       "person_ids": [
         "P001",
@@ -2918,6 +3080,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P001",
+          "true_entity_role": "applicant",
+          "text": "SMP-1106-2705-BM",
+          "value": "SMP-1106-2705-BM",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.544533,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_001_recompressed",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.167082,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -3107,6 +3296,33 @@
               0.015372
             ],
             "label": "guarantor_full_name"
+          }
+        },
+        {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P002",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9396-3013-BI",
+          "value": "SMP-9396-3013-BI",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.534557,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_001_recompressed",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.157106,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
           }
         },
         {
@@ -14802,8 +15018,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_002.pdf",
       "format": "pdf",
-      "sha256": "56ebfb1500dfc9c8490a6c9079bf787f9c25c2c745d89717fd72a5e4b86b43ac",
-      "bytes": 6272,
+      "sha256": "12cb99d146baa999d5d35e0b8679d2872e40e81120a7c6820ba08cb3d80afb26",
+      "bytes": 6466,
       "set": "002",
       "person_ids": [
         "P003",
@@ -14925,6 +15141,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P003",
+          "true_entity_role": "applicant",
+          "text": "SMP-2841-6239-RY",
+          "value": "SMP-2841-6239-RY",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.542538,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_002",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.165087,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -15117,6 +15360,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P004",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9201-8162-YM",
+          "value": "SMP-9201-8162-YM",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.544533,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_002",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.167082,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -15287,8 +15557,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_002_scan.jpg",
       "format": "jpg",
-      "sha256": "e936025b914961b6044b78c4b2edbeac60502349cac93972f6cdfcefa6e5632b",
-      "bytes": 403195,
+      "sha256": "1f37a2135142c2ed9d5b04b8473e06b9d5f43504412dcee02aade1071f138112",
+      "bytes": 407983,
       "set": "002",
       "person_ids": [
         "P003",
@@ -15417,6 +15687,33 @@
               0.017234
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P003",
+          "true_entity_role": "applicant",
+          "text": "SMP-2841-6239-RY",
+          "value": "SMP-2841-6239-RY",
+          "page": 1,
+          "bbox": [
+            0.370396,
+            0.206636,
+            0.535826,
+            0.224389
+          ],
+          "region": {
+            "docId": "loan_application_002_scan",
+            "page": 1,
+            "bbox": [
+              0.370396,
+              0.206636,
+              0.16543,
+              0.017753
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -15609,6 +15906,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P004",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9201-8162-YM",
+          "value": "SMP-9201-8162-YM",
+          "page": 1,
+          "bbox": [
+            0.377414,
+            0.496962,
+            0.544839,
+            0.514742
+          ],
+          "region": {
+            "docId": "loan_application_002_scan",
+            "page": 1,
+            "bbox": [
+              0.377414,
+              0.496962,
+              0.167425,
+              0.01778
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -15779,8 +16103,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_002_scan_hard.jpg",
       "format": "jpg",
-      "sha256": "5ca7355e00d013cb1b7d65d1a53cdae52ef52457bb8269ac7f5ca98f4076a5d1",
-      "bytes": 310758,
+      "sha256": "d85cb6788aeae458bb7acae7083ce2a9506ad66263df5b22da38d0e15a750b11",
+      "bytes": 313190,
       "set": "002",
       "person_ids": [
         "P003",
@@ -15909,6 +16233,33 @@
               0.019019
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P003",
+          "true_entity_role": "applicant",
+          "text": "SMP-2841-6239-RY",
+          "value": "SMP-2841-6239-RY",
+          "page": 1,
+          "bbox": [
+            0.390689,
+            0.203926,
+            0.556394,
+            0.223963
+          ],
+          "region": {
+            "docId": "loan_application_002_scan_hard",
+            "page": 1,
+            "bbox": [
+              0.390689,
+              0.203926,
+              0.165705,
+              0.020037
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -16101,6 +16452,33 @@
           }
         },
         {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P004",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9201-8162-YM",
+          "value": "SMP-9201-8162-YM",
+          "page": 1,
+          "bbox": [
+            0.376918,
+            0.494136,
+            0.544617,
+            0.514228
+          ],
+          "region": {
+            "docId": "loan_application_002_scan_hard",
+            "page": 1,
+            "bbox": [
+              0.376918,
+              0.494136,
+              0.167699,
+              0.020092
+            ],
+            "label": "guarantor_id_number"
+          }
+        },
+        {
           "name": "guarantor_date_of_birth",
           "field_type": "date",
           "semantic_type": "dob",
@@ -16271,8 +16649,8 @@
       "role": "genuine",
       "file": "genuine/loan_application_002_recompressed.jpg",
       "format": "jpg",
-      "sha256": "6e74d87167683c58035f5947346e1abbfb72c3471b43df92ce071dca3b4675ac",
-      "bytes": 242419,
+      "sha256": "6169c82177d2cd4ed8ac0eff832bb15b456132ca26f48a8c612aba5fa54affc4",
+      "bytes": 252803,
       "set": "002",
       "person_ids": [
         "P003",
@@ -16397,6 +16775,33 @@
               0.015373
             ],
             "label": "full_name"
+          }
+        },
+        {
+          "name": "id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P003",
+          "true_entity_role": "applicant",
+          "text": "SMP-2841-6239-RY",
+          "value": "SMP-2841-6239-RY",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.207199,
+            0.542538,
+            0.222572
+          ],
+          "region": {
+            "docId": "loan_application_002_recompressed",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.207199,
+              0.165087,
+              0.015373
+            ],
+            "label": "id_number"
           }
         },
         {
@@ -16586,6 +16991,33 @@
               0.015372
             ],
             "label": "guarantor_full_name"
+          }
+        },
+        {
+          "name": "guarantor_id_number",
+          "field_type": "identifier",
+          "semantic_type": "id_number",
+          "true_person_id": "P004",
+          "true_entity_role": "guarantor",
+          "text": "SMP-9201-8162-YM",
+          "value": "SMP-9201-8162-YM",
+          "page": 1,
+          "bbox": [
+            0.377451,
+            0.497604,
+            0.544533,
+            0.512976
+          ],
+          "region": {
+            "docId": "loan_application_002_recompressed",
+            "page": 1,
+            "bbox": [
+              0.377451,
+              0.497604,
+              0.167082,
+              0.015372
+            ],
+            "label": "guarantor_id_number"
           }
         },
         {

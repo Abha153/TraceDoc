@@ -25,9 +25,10 @@ def sha256_file(path: Path) -> str:
 
 def write_json(path: Path, obj) -> None:
     Path(path).write_text(
-        json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+        json.dumps(obj, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
-
 
 def money(d) -> str:
     """Machine value for money: plain decimal string, 2dp."""
