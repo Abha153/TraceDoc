@@ -572,3 +572,8 @@ a.stat-card:hover { border-color: var(--faint); background: var(--raised); }
   .main-column { margin: 0; }
   body, .panel { color: #000; background: #fff; }
 }
+
+/* ---------- exports ---------- */
+.export-group { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.export-button { height: 32px; padding: 0 11px; font-size: 12px; }
+.findings-list .export-group { margin: 0 0 12px; }

@@ -9,6 +9,7 @@ import { bandTone } from "../components/Ring";
 import { EmptyState, ErrorState, Icon, PageHeader, StatusBadge } from "../components/ui";
 import { mockMode, pageRenderUrl } from "../config";
 import { fixturePageUrls } from "../mockData";
+import { downloadFindingsCsv, downloadResultsJson, type ExportDocument } from "../utils/exportFindings";
 import { ANALYZER_IDS, DOC_TYPE_LABEL, analyzerCoverage, bandLabel, findingsForDocument, humanize, observationLabel, relativeTime, severityRank } from "../lib/format";
 
 type Filter = "all" | "needs-review" | "no-findings" | "partial" | "failed";
@@ -145,6 +146,7 @@ export function HomePage() {
   }
   if (summaries.isError) return <ErrorState error={summaries.error} retry={() => void summaries.refetch()} />;
 
+  const exportDocs: ExportDocument[] = rows.map((row) => ({ docId: row.doc.docId, caseId: row.doc.caseId, caseTitle: row.caseTitle, filename: row.doc.filename, status: row.status, analyzersRan: row.ran, analyzersPossible: row.possible, findings: row.findings }));
   const withFindings = rows.filter((row) => row.findings.length > 0).length;
   const partialOrFailed = rows.filter((row) => row.status === "PARTIAL" || row.status === "FAILED").length;
 
@@ -178,6 +180,10 @@ export function HomePage() {
                     <option value="date">Date</option><option value="findings">Findings</option><option value="priority">Priority</option>
                   </select>
                 </label>
+                <span className="export-group" role="group" aria-label="Export all findings and results">
+                  <button type="button" className="button button-secondary export-button" disabled={findingsLoading} title="Every finding across all cases, one row per finding" onClick={() => downloadFindingsCsv(exportDocs, "tracedocs")}><Icon name="download" size={14} /> Export CSV</button>
+                  <button type="button" className="button button-secondary export-button" disabled={findingsLoading} title="Documents, findings with evidence and review status" onClick={() => downloadResultsJson(exportDocs, mockMode ? "fixture" : "live", "tracedocs")}><Icon name="download" size={14} /> Export JSON</button>
+                </span>
                 <button type="button" className="chip" aria-pressed={grouped} onClick={() => setParam("group", grouped ? null : "1")}>Group by case</button>
               </div>
             </div>

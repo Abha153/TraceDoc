@@ -9,6 +9,8 @@ import { ReviewPanel } from "../../components/ReviewPanel";
 import { Confidence, EmptyState, ErrorState, Icon, StatusBadge } from "../../components/ui";
 import { analyzerCoverage, humanize, observationLabel, severityRank } from "../../lib/format";
 import { prefersReducedMotion } from "../../lib/motion";
+import { mockMode } from "../../config";
+import { downloadFindingsCsv, downloadResultsJson, type ExportDocument } from "../../utils/exportFindings";
 import type { DocumentContext } from "./useDocumentContext";
 
 const OBSERVATION = ["OBSERVED", "INCONSISTENT", "POTENTIAL_ANOMALY", "INCONCLUSIVE"] as const;
@@ -43,6 +45,7 @@ export function FindingsTab({ context, docId }: { context: DocumentContext; docI
     }, 0);
   }
 
+  const exportDocs: ExportDocument[] = [{ docId, caseId: context.caseId, caseTitle: context.summary.data?.case.title ?? context.caseId, filename: context.record?.filename ?? docId, status: context.status ?? "DONE", analyzersRan: context.record ? analyzerCoverage(context.record.processing).ran : 0, analyzersPossible: context.record ? analyzerCoverage(context.record.processing).possible : 0, findings: all }];
   if (context.findings.isLoading) return <div aria-busy="true"><Skeleton height={80} /></div>;
   if (context.findings.isError) return <ErrorState error={context.findings.error} retry={() => void context.findings.refetch()} />;
   if (all.length === 0) {
@@ -58,6 +61,10 @@ export function FindingsTab({ context, docId }: { context: DocumentContext; docI
           <label><span className="label">Review</span><select aria-label="Review status" value={review} onChange={(event) => setParam("review", event.target.value)}><option value="all">All</option>{REVIEW.map((item) => <option key={item} value={item}>{humanize(item)}</option>)}</select></label>
         </div>
         <p className="result-count" role="status">{visible.length} of {all.length} findings</p>
+        <div className="export-group" role="group" aria-label="Download this document's findings">
+          <button type="button" className="button button-secondary export-button" onClick={() => downloadFindingsCsv(exportDocs, docId)}><Icon name="download" size={14} /> CSV</button>
+          <button type="button" className="button button-secondary export-button" onClick={() => downloadResultsJson(exportDocs, mockMode ? "fixture" : "live", docId)}><Icon name="download" size={14} /> JSON</button>
+        </div>
         {visible.length === 0 ? <EmptyState title="No findings match" detail="Change or clear the filters." action={<button type="button" className="button button-secondary" onClick={() => setParams({}, { replace: true })}>Reset filters</button>} /> : (
           <div className="finding-card-list">{visible.map((item) => <FindingCard key={item.finding.findingId} item={item} selected={item.finding.findingId === selectedId} onSelect={() => select(item.finding.findingId)} />)}</div>
         )}
