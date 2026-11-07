@@ -46,7 +46,7 @@ test("golden path by keyboard-reachable controls: case, finding, show in documen
 });
 
 test("viewer is operable by keyboard and shows a value-and-confidence tooltip on hover and focus", async ({ page }) => {
-  await page.goto("/documents/D-02");
+  await page.goto("/documents/D-02/evidence");
   const regions = page.locator("rect.region-box");
   await expect(regions.first()).toBeVisible();
   await regions.first().hover({ force: true });
@@ -97,7 +97,7 @@ test("every control on the main views has an accessible name", async ({ page }) 
     await page.waitForLoadState("networkidle");
     expect(await unnamedControls(page), route).toEqual([]);
   }
-  await page.goto("/documents/D-02");
+  await page.goto("/documents/D-02/evidence");
   await expect(page.locator("rect.region-box").first()).toBeVisible();
   expect(await unnamedControls(page), "document viewer").toEqual([]);
 });

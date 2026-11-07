@@ -80,6 +80,7 @@ export function Icon({ name, size = 18 }: { name: string; size?: number }) {
     check: "m5 12 4 4L19 6",
     logout: "M10 17l5-5-5-5m5 5H3m9-9h8v18h-8",
     filter: "M4 5h16M7 12h10m-7 7h4",
+    copy: "M9 9h10v10H9V9Zm-4 6V5h10",
     overview: "M3 3h8v8H3V3Zm10 0h8v5h-8V3ZM3 13h8v8H3v-8Zm10-3h8v11h-8V10Z",
     scanner: "M4 8V5a1 1 0 0 1 1-1h3m8 0h3a1 1 0 0 1 1 1v3m0 8v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16",
     investigation: "M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm5-2 5 5M11 8v3l2 1",

@@ -1,4 +1,4 @@
-import { Component, useEffect, useMemo, useRef, useState } from "react";
+import { Component, useEffect, useRef, useState } from "react";
 import type { ErrorInfo, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { api } from "../api/client";
 import { apiBase } from "../config";
 import { LAST_VIEWED_EVENT, readLastViewed } from "../lib/lastViewed";
 import type { LastViewed } from "../lib/lastViewed";
-import { tabIndex, transitionKey } from "../lib/routes";
+import { transitionKey } from "../lib/routes";
 import { Icon } from "./ui";
 
 export class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
@@ -112,20 +112,12 @@ export function AppShell({ children, mockMode }: { children: ReactNode; mockMode
   const [search, setSearch] = useState("");
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const previousPath = useRef<string>("");
   const location = useLocation();
   const navigate = useNavigate();
   const displayName = readDisplayName();
   const initials = displayName.split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
   const system = useSystemStatus(mockMode);
   const lastViewed = useLastViewed();
-
-  const direction = useMemo(() => {
-    const from = tabIndex(previousPath.current);
-    const to = tabIndex(location.pathname);
-    return from !== null && to !== null && from !== to ? (to > from ? "forward" : "back") : "none";
-  }, [location.pathname]);
-  useEffect(() => { previousPath.current = location.pathname; }, [location.pathname]);
 
   useEffect(() => {
     if (!sidebarOpen) return;
@@ -222,7 +214,7 @@ export function AppShell({ children, mockMode }: { children: ReactNode; mockMode
           <span>{mockMode ? "Recorded synthetic outputs only. The bundled sample documents are analysed from recordings; other files receive no analysis." : "Live backend. Observations are potential anomalies for human review, never verdicts."}</span>
         </div>
         <main className="main-content">
-          <div className="route-view" key={transitionKey(location.pathname)} data-direction={direction}>
+          <div className="route-view" key={transitionKey(location.pathname)} data-direction="none">
             <ErrorBoundary>{children}</ErrorBoundary>
           </div>
         </main>

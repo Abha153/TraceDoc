@@ -15,7 +15,8 @@ const LoginPage = lazy(() => import("./pages/Login").then((module) => ({ default
 const ReportsPage = lazy(() => import("./pages/Reports").then((module) => ({ default: module.ReportsPage })));
 const HomePage = lazy(() => import("./pages/Home").then((module) => ({ default: module.HomePage })));
 const ScannerPage = lazy(() => import("./pages/Scanner").then((module) => ({ default: module.ScannerPage })));
-const DocumentPage = lazy(() => import("./pages/Document").then((module) => ({ default: module.DocumentPage })));
+const DocumentWorkspace = lazy(() => import("./pages/workspace/DocumentWorkspace").then((module) => ({ default: module.DocumentWorkspace })));
+const DocumentIndexRedirect = lazy(() => import("./pages/workspace/DocumentWorkspace").then((module) => ({ default: module.DocumentIndexRedirect })));
 
 function ProtectedLayout() {
   const location = useLocation();
@@ -63,8 +64,8 @@ export function App() {
               <Route path="/cases" element={<CasesPage mockMode={MOCK_MODE} />} />
               <Route path="/cases/:caseId" element={<CaseDetailPage />} />
               <Route path="/upload" element={<Navigate to="/scanner" replace />} />
-              <Route path="/documents/:docId" element={<DocumentPage />} />
-              <Route path="/documents/:docId/:tab" element={<DocumentPage />} />
+              <Route path="/documents/:docId" element={<DocumentIndexRedirect />} />
+              <Route path="/documents/:docId/:tab" element={<DocumentWorkspace />} />
               <Route path="/findings" element={<FindingsPage />} />
               <Route path="/findings/:findingId" element={<FindingDetailPage />} />
               <Route path="/compare/:findingId" element={<ComparePage />} />

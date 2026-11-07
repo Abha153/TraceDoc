@@ -55,3 +55,23 @@ test("reduced motion: route content fades instead of sliding", async ({ page }) 
   const name = await page.locator(".route-view").evaluate((element) => getComputedStyle(element).animationName);
   expect(name).toBe("fade-only");
 });
+
+test("workspace: the header and dock stay mounted across the tabs and Next step walks to Scan another document", async ({ page }) => {
+  await page.goto("/documents/D-01/overview");
+  const title = page.getByRole("heading", { level: 1, name: "id_card_aarav.png" });
+  await expect(title).toBeVisible();
+  await title.evaluate((element) => { (element as HTMLElement).dataset.mounted = "yes"; });
+  const dock = page.getByRole("navigation", { name: "Document sections" });
+  for (const tab of ["Investigation", "Findings", "Evidence", "Entities & Graph", "Report"]) {
+    await dock.getByRole("link", { name: new RegExp(`^${tab}`) }).click();
+    await expect(dock.getByRole("link", { name: new RegExp(`^${tab}`) })).toHaveAttribute("aria-current", "page");
+    await expect(title).toHaveAttribute("data-mounted", "yes");
+  }
+  await page.goto("/documents/D-01/overview");
+  for (const next of ["investigation", "findings", "evidence", "report"]) {
+    await dock.getByRole("link", { name: /next step/i }).click();
+    await expect(page).toHaveURL(new RegExp(`/documents/D-01/${next}$`));
+  }
+  await expect(dock.getByRole("link", { name: /scan another document/i })).toBeVisible();
+  expect(await page.locator("body").innerText()).not.toMatch(BANNED);
+});

@@ -30,7 +30,7 @@ test("renders Cytoscape and opens an assertion-linked document region", async ({
   await page.getByRole("button", { name: /document: D-01 id_card/i }).click();
 
   await expect(page).toHaveURL(/\/documents\/D-01$/);
-  await expect(page.locator(".region-active")).toBeVisible();
+  await expect(page.locator(".region-active").first()).toBeVisible();
 });
 
 test("keeps the workspace usable on narrow screens with keyboard-operable navigation", async ({ page }) => {
