@@ -4,7 +4,7 @@ import type { FindingWithReview } from "../../../../contracts/api";
 import { api } from "../../api/client";
 import { Chip, Skeleton } from "../../components/Primitives";
 import { Gauge, bandTone } from "../../components/Ring";
-import { EmptyState, Icon, StatusBadge } from "../../components/ui";
+import { Icon, StatusBadge } from "../../components/ui";
 import { mockMode } from "../../config";
 import { ANALYZER_IDS, analyzerCoverage, bandLabel, humanize, observationLabel, pct, relativeTime, severityRank } from "../../lib/format";
 import type { DocumentContext } from "./useDocumentContext";
@@ -187,37 +187,5 @@ export function InvestigationTab({ context, docId }: { context: DocumentContext;
         </section>
       </div>
     </div>
-  );
-}
-
-/* ------- Findings, Entities and Report: interim views, completed in the next batch ------- */
-
-export function FindingsTab({ context }: { context: DocumentContext }) {
-  const ranked = rankFindings(context.docFindings);
-  return (
-    <section className="panel" aria-label="Findings for this document">
-      <div className="section-line"><p className="label">Findings for this document</p><span className="scope-tag">{ranked.length} found</span></div>
-      <WhyFlagged findings={ranked} emptyText="No anomalies observed by the analyzers that ran for this document." />
-    </section>
-  );
-}
-
-export function EntitiesTab({ context }: { context: DocumentContext }) {
-  return (
-    <EmptyState
-      title="Entities and graph are case-wide"
-      detail={`${context.entities.data?.entities.length ?? 0} entities were resolved across ${context.caseId}. The relationship graph spans every document in the case.`}
-      action={<Link className="button button-primary" to="/entities">Open entities and graph</Link>}
-    />
-  );
-}
-
-export function ReportTab({ context }: { context: DocumentContext }) {
-  return (
-    <EmptyState
-      title="Report is case-wide"
-      detail={`The dossier for ${context.caseId} covers every document, with review history and integrity results.`}
-      action={<Link className="button button-primary" to="/reports">Open reports</Link>}
-    />
   );
 }

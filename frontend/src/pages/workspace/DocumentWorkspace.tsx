@@ -9,8 +9,11 @@ import { fixturePageUrls } from "../../mockData";
 import { useRecordLastViewed } from "../../lib/lastViewed";
 import { DOC_TABS } from "../../lib/routes";
 import type { DocTab } from "../../lib/routes";
-import { DocumentPage } from "../Document";
-import { EntitiesTab, FindingsTab, InvestigationTab, OverviewTab, ReportTab } from "./Tabs";
+import { InvestigationTab, OverviewTab } from "./Tabs";
+import { FindingsTab } from "./FindingsTab";
+import { EvidenceTab } from "./EvidenceTab";
+import { ReportView } from "../../components/ReportView";
+import { EntitiesPage } from "../Entities";
 import { useDocumentContext } from "./useDocumentContext";
 
 /** `/documents/:docId` with no tab: a "show in document" link carrying a region goes to Evidence, everything else to Overview. */
@@ -62,10 +65,10 @@ export function DocumentWorkspace() {
       <div className="route-view workspace-content" key={tab} data-direction={direction.current.value}>
         {tab === "overview" && <OverviewTab context={context} docId={docId} />}
         {tab === "investigation" && <InvestigationTab context={context} docId={docId} />}
-        {tab === "findings" && <FindingsTab context={context} />}
-        {tab === "evidence" && <DocumentPage embedded />}
-        {tab === "entities" && <EntitiesTab context={context} />}
-        {tab === "report" && <ReportTab context={context} />}
+        {tab === "findings" && <FindingsTab context={context} docId={docId} />}
+        {tab === "evidence" && <EvidenceTab context={context} docId={docId} />}
+        {tab === "entities" && <div className="tab-stack"><div className="section-line"><p className="label">Entities and graph</p><span className="scope-tag">Case-wide</span></div><EntitiesPage caseId={context.caseId} embedded /></div>}
+        {tab === "report" && <ReportView caseId={context.caseId} />}
       </div>
       <Dock
         docId={docId}

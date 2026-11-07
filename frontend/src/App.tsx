@@ -13,6 +13,7 @@ const FindingsPage = lazy(() => import("./pages/Findings").then((module) => ({ d
 const EntitiesPage = lazy(() => import("./pages/Entities").then((module) => ({ default: module.EntitiesPage })));
 const LoginPage = lazy(() => import("./pages/Login").then((module) => ({ default: module.LoginPage })));
 const ReportsPage = lazy(() => import("./pages/Reports").then((module) => ({ default: module.ReportsPage })));
+const CaseReportPage = lazy(() => import("./pages/CaseReport").then((module) => ({ default: module.CaseReportPage })));
 const HomePage = lazy(() => import("./pages/Home").then((module) => ({ default: module.HomePage })));
 const ScannerPage = lazy(() => import("./pages/Scanner").then((module) => ({ default: module.ScannerPage })));
 const DocumentWorkspace = lazy(() => import("./pages/workspace/DocumentWorkspace").then((module) => ({ default: module.DocumentWorkspace })));
@@ -62,6 +63,7 @@ export function App() {
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/documents" element={<Navigate to="/" replace />} />
               <Route path="/cases" element={<CasesPage mockMode={MOCK_MODE} />} />
+              <Route path="/cases/:caseId/report" element={<CaseReportPage />} />
               <Route path="/cases/:caseId" element={<CaseDetailPage />} />
               <Route path="/upload" element={<Navigate to="/scanner" replace />} />
               <Route path="/documents/:docId" element={<DocumentIndexRedirect />} />

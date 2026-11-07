@@ -11,6 +11,7 @@ import type {
 } from "../../../contracts/api";
 import type {
   AnalyzerStatus,
+  DocType,
   DocumentRecord,
   Finding,
   InvestigationEvent,
@@ -73,6 +74,7 @@ function reasoning(caseId: string): ReasoningOutput | undefined {
 }
 
 /** In fixture mode only recorded sample files (D-01.png, D-02.png, D-03.pdf, ...) can be analysed: they map to a recorded document. */
+const pageTypeOverrides = new Map<string, DocType>();
 const SAMPLE_NAME = /^(D-\d{2})\.(png|pdf|jpe?g|tiff?)$/i;
 
 function recordedDocument(docId: string): DocumentRecord | undefined {
@@ -325,6 +327,34 @@ export const handlers = [
       ? HttpResponse.json(additionalJobs.has(jobId) ? progression(job) : job)
       : HttpResponse.json({ error: { code: "JOB_NOT_FOUND", message: "Job not found." } }, { status: 404 });
   }),
+  http.patch(`${API}/documents/:docId/pages/:n/type`, async ({ params, request }) => {
+    const docId = String(params.docId);
+    const page = Number(params.n);
+    const body = await request.json() as { docType?: string };
+    const recorded = recordedDocument(docId);
+    if (!recorded || !fixtureAnalysis[docId]?.pages.some((item) => item.page === page)) {
+      return HttpResponse.json({ error: { code: "PAGE_NOT_FOUND", message: "Page not found." } }, { status: 404 });
+    }
+    if (!body.docType) {
+      return HttpResponse.json({ error: { code: "DOCTYPE_REQUIRED", message: "A document type is required." } }, { status: 400 });
+    }
+    pageTypeOverrides.set(`${docId}:${page}`, body.docType as DocType);
+    const now = new Date().toISOString();
+    const job: Job = {
+      jobId: `DEMO-RERUN-${Date.now().toString(36).toUpperCase()}`,
+      caseId: recorded.caseId,
+      docId,
+      pipelineVersion: recorded.pipelineVersion,
+      status: "QUEUED",
+      analyzers: Object.fromEntries(Object.keys(recorded.processing).map((analyzer) => [analyzer, { state: "PENDING" as const }])),
+      attempts: 1,
+      maxAttempts: 3,
+      createdAt: now,
+      updatedAt: now,
+    };
+    additionalJobs.set(job.jobId, job);
+    return HttpResponse.json(job, { status: 202 });
+  }),
   http.get(`${API}/documents/:docId`, ({ params }) => {
     const docId = String(params.docId);
     const document = fixtureCases.flatMap((item) => item.documents).find((item) => item.docId === docId)
@@ -335,7 +365,10 @@ export const handlers = [
     const analysis = fixtureAnalysis[docId];
     return HttpResponse.json({
       document,
-      pages: analysis?.pages ?? [],
+      pages: (analysis?.pages ?? []).map((item) => {
+        const override = pageTypeOverrides.get(`${docId}:${item.page}`);
+        return override ? { ...item, docType: override, docTypeOverriddenBy: "fixture-analyst" } : item;
+      }),
       fields: analysis?.fields ?? [],
     });
   }),
@@ -379,6 +412,9 @@ export const handlers = [
     }
     if (body.action === "COMMENT" && !body.comment?.trim()) {
       return HttpResponse.json({ error: { code: "COMMENT_REQUIRED", message: "A comment is required." } }, { status: 400 });
+    }
+    if (body.action === "REOPEN" && (reviewStatus.get(findingId) ?? "UNREVIEWED") === "UNREVIEWED") {
+      return HttpResponse.json({ error: { code: "NOT_REVIEWED", message: "This finding has not been reviewed, so there is nothing to reopen." } }, { status: 409 });
     }
     const caseId = existing.finding.caseId;
     const previousStatus = reviewStatus.get(findingId) ?? "UNREVIEWED";

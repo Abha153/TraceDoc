@@ -16,14 +16,14 @@ const roleLabel: Record<EntityRole, string> = {
   unknown: "Unknown role",
 };
 
-export function EntitiesPage() {
-  const [caseId, setCaseId] = useState("CASE-001");
+export function EntitiesPage({ caseId: fixedCaseId, embedded = false }: { caseId?: string; embedded?: boolean } = {}) {
+  const [caseId, setCaseId] = useState(fixedCaseId ?? "CASE-001");
   const [selectedEntity, setSelectedEntity] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const casesQuery = useQuery({ queryKey: ["cases"], queryFn: api.listCases });
   const cases = casesQuery.data ?? [];
-  const activeCaseId = cases.some((item) => item.caseId === caseId) ? caseId : cases[0]?.caseId ?? "";
+  const activeCaseId = fixedCaseId ?? (cases.some((item) => item.caseId === caseId) ? caseId : cases[0]?.caseId ?? "");
   const entityQuery = useQuery({ queryKey: ["entities", activeCaseId], queryFn: () => api.entities(activeCaseId), enabled: Boolean(activeCaseId) });
   const assertionQuery = useQuery({ queryKey: ["assertions", activeCaseId], queryFn: () => api.assertions(activeCaseId), enabled: Boolean(activeCaseId) });
   const graphQuery = useQuery({ queryKey: ["graph", activeCaseId], queryFn: () => api.graph(activeCaseId), enabled: Boolean(activeCaseId) });
@@ -60,8 +60,8 @@ export function EntitiesPage() {
 
   return (
     <>
-      <Breadcrumbs items={[{ label: "Entities" }]} />
-      <PageHeader eyebrow="Contextual evidence" title="Entities & assertions" description="Resolved and suggested links stay distinct. Similar names alone do not merge people." actions={<select className="compact-select" value={activeCaseId} onChange={(event) => { setCaseId(event.target.value); setSelectedEntity(null); }} aria-label="Select case">{cases.map((item) => <option key={item.caseId} value={item.caseId}>{item.caseId}</option>)}</select>} />
+      {!embedded && <Breadcrumbs items={[{ label: "Entities" }]} />}
+      {!embedded && <PageHeader eyebrow="Contextual evidence" title="Entities & assertions" description="Resolved and suggested links stay distinct. Similar names alone do not merge people." actions={<select className="compact-select" value={activeCaseId} onChange={(event) => { setCaseId(event.target.value); setSelectedEntity(null); }} aria-label="Select case">{cases.map((item) => <option key={item.caseId} value={item.caseId}>{item.caseId}</option>)}</select>} />}
       <div className="entity-layout">
         <section className="panel entity-list-panel">
           <div className="section-heading section-heading-tight"><div><h2>Case entities</h2><p>{entities.length} entity records</p></div></div>
