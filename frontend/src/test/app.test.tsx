@@ -1,91 +1,95 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it, vi } from "vitest";
-import type { UploadResponse } from "../../../contracts/api";
-import type { DocumentRecord, Job } from "../../../contracts/types";
 import { App } from "../App";
-import { registerFixtureUpload } from "../mocks/handlers";
 import { parseContractFixture } from "../parseContractFixture";
 import { server } from "./setup";
 
 vi.mock("../components/CytoscapeGraph", () => ({ CytoscapeGraph: () => null }));
+vi.mock("../config", async (importOriginal) => ({ ...(await importOriginal<typeof import("../config")>()), jobPollIntervalMs: 30 }));
 
 async function signIn(user: ReturnType<typeof userEvent.setup>) {
   await user.click(await screen.findByRole("button", { name: /sign in/i }));
-  expect(await screen.findByRole("heading", { name: "Cases" })).toBeInTheDocument();
+  expect(await screen.findByRole("heading", { name: "Analysed documents" })).toBeInTheDocument();
+}
+
+async function openCases(user: ReturnType<typeof userEvent.setup>) {
+  await user.click(screen.getByRole("link", { name: /^Cases$/ }));
+  await screen.findByRole("heading", { name: "Cases" });
 }
 
 describe("fixture workspace", () => {
-  it("creates a case inline, validates and uploads a file, polls and retries a job, and focuses reviewed evidence", async () => {
+  it("creates a case inline, validates and uploads a file, and polls it to a result that is never presented as clean", async () => {
     const user = userEvent.setup({ applyAccept: false });
-    const now = new Date().toISOString();
-    const docId = "TEST-UPLOAD-DOC";
-    const jobId = "TEST-UPLOAD-JOB";
-    const document: DocumentRecord = {
-      docId,
-      caseId: "CASE-TEST",
-      filename: "evidence.pdf",
-      sha256: "0".repeat(64),
-      mimeType: "application/pdf",
-      pageCount: 1,
-      processing: { ocr: "UNAVAILABLE" },
-      pipelineVersion: "fixture-test",
-      receivedAt: now,
-    };
-    const queuedJob: Job = {
-      jobId,
-      caseId: "CASE-TEST",
-      docId,
-      pipelineVersion: "fixture-test",
-      status: "QUEUED",
-      analyzers: { ocr: { state: "PENDING" } },
-      attempts: 1,
-      maxAttempts: 3,
-      createdAt: now,
-      updatedAt: now,
-    };
-    server.use(http.post("*/api/v1/cases/:caseId/documents", async ({ params }) => {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-      const caseId = String(params.caseId);
-      const response: UploadResponse = {
-        caseId,
-        documents: [{ ...document, caseId }],
-        jobs: [{ ...queuedJob, caseId }],
-      };
-      registerFixtureUpload(response);
-      return HttpResponse.json(response, { status: 202 });
-    }));
-
     render(<App />);
     await signIn(user);
-    await user.click(screen.getByRole("link", { name: /upload/i }));
-    await screen.findByRole("heading", { name: "Upload documents" });
-    await user.click(screen.getByRole("button", { name: "Create case" }));
+    await user.click(screen.getByRole("link", { name: /document scanner/i }));
+    await screen.findByRole("heading", { name: "Scan documents" });
+    await user.click(screen.getByRole("button", { name: "New case" }));
     await user.type(screen.getByLabelText("New case title"), "Evidence intake test");
     await user.click(screen.getByRole("button", { name: "Create and select case" }));
     await waitFor(() => expect(screen.queryByLabelText("New case title")).not.toBeInTheDocument());
 
-    const fileInput = screen.getByLabelText("Choose documents");
     const pdf = new File(["%PDF-1.4"], "evidence.pdf", { type: "application/pdf" });
     const unsupported = new File(["text"], "notes.txt", { type: "text/plain" });
-    await user.upload(fileInput, [pdf, unsupported]);
+    await user.upload(screen.getByLabelText("Choose documents"), [pdf, unsupported]);
     expect(screen.getByText("notes.txt: file type is not supported.")).toBeInTheDocument();
     expect(screen.getByText("evidence.pdf")).toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "Upload 1 file" }));
+    await user.click(screen.getByRole("button", { name: "Analyse 1 file" }));
 
-    expect(await screen.findByRole("progressbar", { name: "File upload progress" })).toHaveAttribute("aria-valuenow", "100");
-    expect(await screen.findByText("QUEUED")).toBeInTheDocument();
-    expect(await screen.findAllByText("RUNNING", {}, { timeout: 10_000 })).not.toHaveLength(0);
-    await screen.findByRole("button", { name: /retry fixture job/i }, { timeout: 10_000 });
-    expect(await screen.findByText("Fixture mode: no document analysis is performed.")).toBeInTheDocument();
-    expect(await screen.findByText("PARTIAL")).toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: /retry fixture job/i }));
-    expect(await screen.findByText("QUEUED")).toBeInTheDocument();
-    expect(await screen.findByText(/Attempt 2 \/ 3/)).toBeInTheDocument();
-    expect(await screen.findByText("DONE", {}, { timeout: 10_000 })).toBeInTheDocument();
-    expect(screen.getByText("The fixture job completed; no new analysis results were produced.")).toBeInTheDocument();
+    expect(await screen.findByText("No analyzer ran, so this is not a clean result.", {}, { timeout: 10_000 })).toBeInTheDocument();
+    expect(screen.getByText("0 / 7")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Investigation priority: not yet available" })).toBeInTheDocument();
+  });
 
+  it("analyses the recorded sample documents and opens a dock pre-filled for the selected document", async () => {
+    const user = userEvent.setup();
+    server.use(http.get("*/samples/:file", () => new HttpResponse(new Uint8Array([1, 2, 3]), { headers: { "Content-Type": "image/png" } })));
+    render(<App />);
+    await signIn(user);
+    await user.click(screen.getByRole("link", { name: /document scanner/i }));
+    await user.click(await screen.findByRole("button", { name: "Use sample documents" }));
+    await screen.findByText("D-03.pdf");
+    expect(screen.getByText(/Only the recorded sample documents/)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Analyse 3 files" }));
+
+    expect(await screen.findByRole("img", { name: /Investigation priority: High, score 69 out of 100/ }, { timeout: 10_000 })).toBeInTheDocument();
+    const dock = screen.getByRole("navigation", { name: "Document sections" });
+    expect(within(dock).getByLabelText("2 findings")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /open investigation/i })).toHaveAttribute("href", "/documents/D-01/overview");
+    expect(within(dock).getByRole("link", { name: /next step/i })).toHaveAttribute("href", "/documents/D-01/overview");
+    await user.click(screen.getByRole("button", { name: "bank_statement_aarav.pdf" }));
+    expect(screen.getByRole("link", { name: /open investigation/i })).toHaveAttribute("href", "/documents/D-03/overview");
+  });
+
+  it("keeps other documents navigable when one upload fails and disables the dock for the failed one", async () => {
+    const user = userEvent.setup({ applyAccept: false });
+    render(<App />);
+    await signIn(user);
+    await user.click(screen.getByRole("link", { name: /document scanner/i }));
+    await screen.findByRole("heading", { name: "Scan documents" });
+    await user.upload(screen.getByLabelText("Choose documents"), [
+      new File(["x"], "D-01.png", { type: "image/png" }),
+      new File(["%PDF-1.4"], "fail-evidence.pdf", { type: "application/pdf" }),
+    ]);
+    await user.click(screen.getByRole("button", { name: "Analyse 2 files" }));
+
+    const failedChip = await screen.findByRole("button", { name: /fail-evidence\.pdf \(failed\)/ }, { timeout: 10_000 });
+    const dock = screen.getByRole("navigation", { name: "Document sections" });
+    expect(within(dock).getByRole("link", { name: /Overview/ })).toHaveAttribute("href", "/documents/D-01/overview");
+    await user.click(failedChip);
+    expect(await screen.findByText(/Fixture failure simulation for a file named with 'fail'/)).toBeInTheDocument();
+    expect(within(screen.getByRole("navigation", { name: "Document sections" })).getAllByRole("link", { name: /Overview/ })[0]).toHaveAttribute("aria-disabled", "true");
+    expect(screen.getByRole("link", { name: /open investigation/i })).toHaveAttribute("aria-disabled", "true");
+    await user.click(screen.getByRole("button", { name: "id_card_aarav.png" }));
+    expect(within(screen.getByRole("navigation", { name: "Document sections" })).getByRole("link", { name: /Overview/ })).not.toHaveAttribute("aria-disabled");
+  });
+
+  it("focuses reviewed evidence from the findings list", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await signIn(user);
     await user.click(screen.getByRole("link", { name: /findings/i }));
     await user.click(await screen.findByRole("link", { name: /DOB CONFLICT/i }));
     expect(await screen.findAllByText("INCONSISTENT")).not.toHaveLength(0);
@@ -102,6 +106,7 @@ describe("fixture workspace", () => {
     const user = userEvent.setup();
     render(<App />);
     await signIn(user);
+    await openCases(user);
     await user.click(screen.getByRole("button", { name: /new case/i }));
     await user.type(screen.getByLabelText("Case title"), "Case list creation test");
     await user.click(screen.getByRole("button", { name: "Create case" }));
@@ -112,6 +117,7 @@ describe("fixture workspace", () => {
     const user = userEvent.setup();
     render(<App />);
     await signIn(user);
+    await openCases(user);
     await user.click(screen.getByRole("link", { name: /CASE-002/ }));
     await user.click(await screen.findByRole("link", { name: "Review findings" }));
 
@@ -130,56 +136,6 @@ describe("fixture workspace", () => {
 
     await user.click(screen.getByRole("button", { name: /confidence/i }));
     expect(screen.getByRole("columnheader", { name: /confidence/i })).toHaveAttribute("aria-sort", "descending");
-  });
-
-  it("shows simulated job failures and their analyzer reasons without presenting them as clean results", async () => {
-    const user = userEvent.setup({ applyAccept: false });
-    const now = new Date().toISOString();
-    const docId = "TEST-FAILED-DOC";
-    const jobId = "TEST-FAILED-JOB";
-    const document: DocumentRecord = {
-      docId,
-      caseId: "CASE-001",
-      filename: "fail-evidence.pdf",
-      sha256: "1".repeat(64),
-      mimeType: "application/pdf",
-      pageCount: 1,
-      processing: { ocr: "UNAVAILABLE" },
-      pipelineVersion: "fixture-test",
-      receivedAt: now,
-    };
-    const job: Job = {
-      jobId,
-      caseId: "CASE-001",
-      docId,
-      pipelineVersion: "fixture-test",
-      status: "QUEUED",
-      analyzers: { ocr: { state: "PENDING" } },
-      attempts: 1,
-      maxAttempts: 3,
-      createdAt: now,
-      updatedAt: now,
-    };
-    server.use(http.post("*/api/v1/cases/:caseId/documents", ({ params }) => {
-      const response: UploadResponse = {
-        caseId: String(params.caseId),
-        documents: [document],
-        jobs: [job],
-      };
-      registerFixtureUpload(response);
-      return HttpResponse.json(response, { status: 202 });
-    }));
-
-    render(<App />);
-    await signIn(user);
-    await user.click(screen.getByRole("link", { name: /upload/i }));
-    await screen.findByRole("heading", { name: "Upload documents" });
-    await user.upload(screen.getByLabelText("Choose documents"), new File(["%PDF-1.4"], "fail-evidence.pdf", { type: "application/pdf" }));
-    await user.click(screen.getByRole("button", { name: "Upload 1 file" }));
-
-    expect(await screen.findByText("FAILED", {}, { timeout: 10_000 })).toBeInTheDocument();
-    expect(await screen.findByText(/Fixture failure simulation for a file named with 'fail'/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /retry fixture job/i })).toBeInTheDocument();
   });
 
   it("requires dismissal reasons, records review history, supports comments and reopen, and rolls back a failed update", async () => {

@@ -1,3 +1,4 @@
+import { useRecordLastViewed } from "../lib/lastViewed";
 import { useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -164,6 +165,7 @@ export function CaseDetailPage() {
   const { caseId = "" } = useParams();
   const summaryQuery = useQuery({ queryKey: ["case", caseId], queryFn: () => api.getCase(caseId) });
   const relatedQuery = useQuery({ queryKey: ["related", caseId], queryFn: () => api.related(caseId), enabled: summaryQuery.isSuccess });
+  useRecordLastViewed(summaryQuery.data ? { path: `/cases/${summaryQuery.data.case.caseId}`, label: summaryQuery.data.case.title, caseId: summaryQuery.data.case.caseId } : null);
   if (summaryQuery.isLoading) return <LoadingState label="Loading case" />;
   if (summaryQuery.isError) return <ErrorState error={summaryQuery.error} retry={() => void summaryQuery.refetch()} />;
   const summary = summaryQuery.data;

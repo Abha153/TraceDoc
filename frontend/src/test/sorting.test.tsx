@@ -41,7 +41,7 @@ describe("sortCases", () => {
 
 async function signIn(user: ReturnType<typeof userEvent.setup>) {
   await user.click(await screen.findByRole("button", { name: /sign in/i }));
-  expect(await screen.findByRole("heading", { name: "Cases" })).toBeInTheDocument();
+  expect(await screen.findByRole("heading", { name: "Analysed documents" })).toBeInTheDocument();
 }
 
 describe("sorting in the UI", () => {
@@ -50,6 +50,8 @@ describe("sorting in the UI", () => {
     window.history.pushState({}, "", "/login");
     render(<App />);
     await signIn(user);
+    await user.click(screen.getByRole("link", { name: /^Cases$/ }));
+    await screen.findByRole("heading", { name: "Cases" });
     const titles = () => screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent ?? "").filter((t) => !/create/i.test(t));
     await screen.findAllByRole("link", { name: /open case/i });
     const recorded = titles();

@@ -16,22 +16,15 @@ export function LoginPage({ mockMode }: { mockMode: boolean }) {
     onSuccess: (session) => {
       localStorage.setItem("tracedocs.session", JSON.stringify(session));
       const state = location.state as { from?: { pathname?: string } } | null;
-      navigate(state?.from?.pathname ?? "/cases", { replace: true });
+      navigate(state?.from?.pathname ?? "/", { replace: true });
     },
   });
-  if (stored) return <Navigate to="/cases" replace />;
+  if (stored) return <Navigate to="/" replace />;
   return (
     <main className="login-layout">
-      <section className="login-brand-panel">
-        <div className="login-brand"><span className="brand-mark">T</span><strong>TraceDocs</strong></div>
-        <div className="login-brand-copy"><p className="eyebrow">Evidence-led review</p><h1>Clarity begins<br />with the record.</h1><p>Inspect document evidence, compare recorded assertions, and keep machine observations separate from analyst review.</p></div>
-        <div className="login-footer-copy"><Icon name="shield" size={16} /> Synthetic fixtures · no live analysis</div>
-        <div className="login-orbit login-orbit-one" /><div className="login-orbit login-orbit-two" />
-      </section>
       <section className="login-form-panel">
         <form className="login-card" onSubmit={(event) => { event.preventDefault(); login.mutate(); }}>
-          <div className="login-mobile-brand"><span className="brand-mark">T</span><strong>TraceDocs</strong></div>
-          <p className="eyebrow">Analyst workspace</p><h2>Welcome back</h2><p className="login-subtitle">Sign in to continue to the local review workspace.</p>
+          <p className="eyebrow login-eyebrow"><Icon name="shield" size={14} /> TraceDocs analyst access</p><h2>Sign in</h2>
           <label className="field-label" htmlFor="username">Email or analyst ID</label>
           <input id="username" className="text-input" value={username} onChange={(event) => setUsername(event.target.value)} autoComplete="username" required />
           <label className="field-label password-label" htmlFor="password">Password</label>

@@ -16,7 +16,7 @@ import type {
   UploadResponse,
 } from "../../../contracts/api";
 import type { DocumentDetail } from "../../../contracts/api";
-import type { ReviewRequest } from "../../../contracts/api";
+import type { ReclassifyRequest, ReviewRequest } from "../../../contracts/api";
 import type { Job } from "../../../contracts/types";
 import { apiBase } from "../config";
 
@@ -69,6 +69,9 @@ export const api = {
   createCase: (body: CreateCaseRequest) => request<Case>("/cases", jsonBody(body)),
   getCase: (caseId: string) => request<CaseSummary>(`/cases/${encodeURIComponent(caseId)}`),
   getDocument: (docId: string) => request<DocumentDetail>(`/documents/${encodeURIComponent(docId)}`),
+  /** PATCH /documents/:docId/pages/:n/type. The backend logs the correction and queues a re-run, returned as a Job. */
+  reclassify: (docId: string, page: number, body: ReclassifyRequest) =>
+    request<Job>(`/documents/${encodeURIComponent(docId)}/pages/${page}/type`, { ...jsonBody(body), method: "PATCH" }),
   getJob: (jobId: string) => request<Job>(`/jobs/${encodeURIComponent(jobId)}`),
   upload: (caseId: string, files: File[], onProgress?: (progress: UploadProgress) => void) => {
     const body = new FormData();
@@ -129,6 +132,13 @@ export const api = {
       }
       throw error;
     }
+  },
+  /** GET /cases/:id/dossier (PDF). Returns null when the route does not exist so the caller can fall back to a local export. */
+  dossierPdf: async (caseId: string): Promise<Blob | null> => {
+    const response = await fetch(`${apiBase}/cases/${encodeURIComponent(caseId)}/dossier`, { credentials: "include" });
+    if (response.status === 404) return null;
+    if (!response.ok) throw new ApiError("The dossier could not be exported.", response.status);
+    return response.blob();
   },
   dossier: async (caseId: string): Promise<DossierView> => {
     try {

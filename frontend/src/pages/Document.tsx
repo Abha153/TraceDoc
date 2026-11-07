@@ -1,3 +1,4 @@
+import { useRecordLastViewed } from "../lib/lastViewed";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation, useParams } from "react-router-dom";
 import type { Region } from "../../../contracts/types";
@@ -7,7 +8,7 @@ import { Breadcrumbs, EmptyState, ErrorState, LoadingState, PageHeader, StatusBa
 import { mockMode } from "../config";
 import { fixtureAnalysis } from "../mockData";
 
-export function DocumentPage() {
+export function DocumentPage({ embedded = false }: { embedded?: boolean } = {}) {
   const { docId = "" } = useParams();
   const location = useLocation();
   const documentQuery = useQuery({ queryKey: ["document", docId], queryFn: () => api.getDocument(docId) });
@@ -17,13 +18,14 @@ export function DocumentPage() {
     ? location.state.region
     : undefined;
   const initialRegion = isRegion(candidateRegion) && candidateRegion.docId === docId ? candidateRegion : undefined;
+  useRecordLastViewed(!embedded && document ? { path: `/documents/${docId}`, label: document.document.filename, caseId: document.document.caseId, docId } : null);
   if (documentQuery.isLoading) return <LoadingState label="Loading document" />;
   if (documentQuery.isError) return <ErrorState error={documentQuery.error} retry={() => void documentQuery.refetch()} />;
   if (!document) return <EmptyState title="Document unavailable" detail="No document detail is recorded for this ID." />;
   return (
     <>
-      <Breadcrumbs items={[{ label: "Cases", to: "/cases" }, { label: document.document.caseId, to: `/cases/${document.document.caseId}` }, { label: document.document.filename }]} />
-      <PageHeader eyebrow={`${document.document.docId} · ${document.document.mimeType}`} title={document.document.filename} description={`${document.document.pageCount} page · Pipeline ${document.document.pipelineVersion}`} actions={<Link className="button button-secondary" to={`/cases/${document.document.caseId}`}>Back to case</Link>} />
+      {!embedded && <Breadcrumbs items={[{ label: "Cases", to: "/cases" }, { label: document.document.caseId, to: `/cases/${document.document.caseId}` }, { label: document.document.filename }]} />}
+      {!embedded && <PageHeader eyebrow={`${document.document.docId} · ${document.document.mimeType}`} title={document.document.filename} description={`${document.document.pageCount} page · Pipeline ${document.document.pipelineVersion}`} actions={<Link className="button button-secondary" to={`/cases/${document.document.caseId}`}>Back to case</Link>} />}
       <div className="document-processing-strip">{Object.entries(document.document.processing).map(([name, status]) => <div key={name}><span>{name}</span><StatusBadge status={status} /></div>)}</div>
       {analysis || !mockMode ? (
         <DocumentViewer docId={docId} title={document.document.filename} fields={analysis?.fields ?? document.fields} signals={analysis?.signals ?? []} initialRegion={initialRegion} pageCount={document.document.pageCount} />
