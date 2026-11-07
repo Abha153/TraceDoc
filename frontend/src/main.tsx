@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import { ErrorBoundary } from "./components/AppShell";
-import "./styles.css";
+import "./styles/legacy.css";
+import "./styles/theme.css";
 
 async function start() {
   if (import.meta.env.VITE_USE_MOCKS !== "false") {

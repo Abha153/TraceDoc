@@ -33,7 +33,7 @@ test("renders Cytoscape and opens an assertion-linked document region", async ({
 });
 
 test("uploads a supported file through the fixture request path", async ({ page }) => {
-  await page.getByRole("link", { name: "Upload" }).click();
+  await page.getByRole("link", { name: "Document Scanner" }).click();
   await page.getByLabel("Choose documents").setInputFiles({
     name: "browser-evidence.pdf",
     mimeType: "application/pdf",

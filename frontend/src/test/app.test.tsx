@@ -59,7 +59,7 @@ describe("fixture workspace", () => {
 
     render(<App />);
     await signIn(user);
-    await user.click(screen.getByRole("link", { name: /upload/i }));
+    await user.click(screen.getByRole("link", { name: /document scanner/i }));
     await screen.findByRole("heading", { name: "Upload documents" });
     await user.click(screen.getByRole("button", { name: "Create case" }));
     await user.type(screen.getByLabelText("New case title"), "Evidence intake test");
@@ -172,7 +172,7 @@ describe("fixture workspace", () => {
 
     render(<App />);
     await signIn(user);
-    await user.click(screen.getByRole("link", { name: /upload/i }));
+    await user.click(screen.getByRole("link", { name: /document scanner/i }));
     await screen.findByRole("heading", { name: "Upload documents" });
     await user.upload(screen.getByLabelText("Choose documents"), new File(["%PDF-1.4"], "fail-evidence.pdf", { type: "application/pdf" }));
     await user.click(screen.getByRole("button", { name: "Upload 1 file" }));

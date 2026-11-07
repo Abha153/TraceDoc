@@ -56,7 +56,9 @@ export function App() {
           <Routes>
             <Route path="/login" element={<LoginPage mockMode={MOCK_MODE} />} />
             <Route element={<ProtectedLayout />}>
-              <Route path="/" element={<Navigate to="/cases" replace />} />
+              <Route path="/" element={<CasesPage mockMode={MOCK_MODE} />} />
+              <Route path="/scanner" element={<UploadPage mockMode={MOCK_MODE} />} />
+              <Route path="/documents" element={<Navigate to="/" replace />} />
               <Route path="/cases" element={<CasesPage mockMode={MOCK_MODE} />} />
               <Route path="/cases/:caseId" element={<CaseDetailPage />} />
               <Route path="/upload" element={<UploadPage mockMode={MOCK_MODE} />} />

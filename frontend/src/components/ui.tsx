@@ -21,7 +21,7 @@ const badgeClass: Record<BadgeStatus, string> = {
   CONFIRMED: "badge-emerald",
   DISMISSED: "badge-slate",
   AVAILABLE: "badge-emerald",
-  UNAVAILABLE: "badge-amber",
+  UNAVAILABLE: "badge-slate",
   ERROR: "badge-red",
   NOT_APPLICABLE: "badge-slate",
   low: "badge-slate",
@@ -80,6 +80,12 @@ export function Icon({ name, size = 18 }: { name: string; size?: number }) {
     check: "m5 12 4 4L19 6",
     logout: "M10 17l5-5-5-5m5 5H3m9-9h8v18h-8",
     filter: "M4 5h16M7 12h10m-7 7h4",
+    overview: "M3 3h8v8H3V3Zm10 0h8v5h-8V3ZM3 13h8v8H3v-8Zm10-3h8v11h-8V10Z",
+    scanner: "M4 8V5a1 1 0 0 1 1-1h3m8 0h3a1 1 0 0 1 1 1v3m0 8v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16",
+    investigation: "M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm5-2 5 5M11 8v3l2 1",
+    documents: "M7 3h8l4 4v14H7V3Zm8 0v4h4M4 7v14h11",
+    bell: "M6 16V11a6 6 0 1 1 12 0v5l2 2H4l2-2Zm4 4a2 2 0 0 0 4 0",
+    help: "M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
     pin: "M12 22s7-6.1 7-13a7 7 0 1 0-14 0c0 6.9 7 13 7 13Zm0-10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
   };
   return (

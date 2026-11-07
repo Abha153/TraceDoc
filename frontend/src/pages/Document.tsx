@@ -1,3 +1,4 @@
+import { useRecordLastViewed } from "../lib/lastViewed";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation, useParams } from "react-router-dom";
 import type { Region } from "../../../contracts/types";
@@ -17,6 +18,7 @@ export function DocumentPage() {
     ? location.state.region
     : undefined;
   const initialRegion = isRegion(candidateRegion) && candidateRegion.docId === docId ? candidateRegion : undefined;
+  useRecordLastViewed(document ? { path: `/documents/${docId}`, label: document.document.filename, caseId: document.document.caseId, docId } : null);
   if (documentQuery.isLoading) return <LoadingState label="Loading document" />;
   if (documentQuery.isError) return <ErrorState error={documentQuery.error} retry={() => void documentQuery.refetch()} />;
   if (!document) return <EmptyState title="Document unavailable" detail="No document detail is recorded for this ID." />;
