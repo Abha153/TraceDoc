@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import type { FindingWithReview } from "../../../contracts/api";
-import { analyzerCoverage, findingsForDocument, formatBytes, relativeTime, scoreOutOf100 } from "./format";
+import { analyzerCoverage, findingsForDocument, formatBytes, humanize, relativeTime, scoreOutOf100 } from "./format";
 import { readLastViewed, writeLastViewed } from "./lastViewed";
 import { tabIndex, transitionKey } from "./routes";
 
@@ -37,5 +37,21 @@ describe("routes and last viewed", () => {
     expect(readLastViewed()?.path).toBe("/documents/D-01/overview");
     localStorage.setItem("tracedocs.lastViewed", "{not json");
     expect(readLastViewed()).toBeNull();
+  });
+});
+
+import { toHex } from "./format";
+describe("toHex", () => {
+  it("renders bytes as lowercase hex", () => {
+    expect(toHex(new Uint8Array([0, 15, 255]))).toBe("000fff");
+  });
+});
+
+describe("humanize", () => {
+  it("splits camelCase measurement keys and keeps enum and dotted ids readable", () => {
+    expect(humanize("ruleType")).toBe("Rule type");
+    expect(humanize("entityResolution")).toBe("Entity resolution");
+    expect(humanize("POTENTIAL_ANOMALY")).toBe("Potential anomaly");
+    expect(humanize("pdf.textlayer")).toBe("Pdf textlayer");
   });
 });

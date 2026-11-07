@@ -1,11 +1,11 @@
 import { expect, test, type Page } from "@playwright/test";
 
-const ROUTES = ["/cases", "/scanner", "/findings", "/entities", "/reports"];
+const ROUTES = ["/", "/cases", "/scanner", "/findings", "/entities", "/reports"];
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page.getByRole("heading", { name: "Cases" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Analysed documents" })).toBeVisible();
 });
 
 async function unnamedControls(page: Page) {
@@ -26,6 +26,7 @@ async function unnamedControls(page: Page) {
 }
 
 test("golden path by keyboard-reachable controls: case, finding, show in document, review", async ({ page }) => {
+  await page.goto("/cases");
   await page.getByRole("link", { name: /CASE-001/ }).first().click();
   await page.getByRole("link", { name: "Review findings" }).click();
   await page.getByRole("link", { name: /DOB CONFLICT/ }).click();
@@ -68,6 +69,7 @@ test("viewer is operable by keyboard and shows a value-and-confidence tooltip on
 });
 
 test("case list can be sorted and says which way", async ({ page }) => {
+  await page.goto("/cases");
   await page.getByLabel("Sort by").selectOption("title");
   await expect(page.getByRole("button", { name: /sorted ascending/i })).toBeEnabled();
   const titles = async () => (await page.locator(".case-card h2").allTextContents()).map((t) => t.toLowerCase());

@@ -3,10 +3,11 @@ import { expect, test } from "@playwright/test";
 test.beforeEach(async ({ page }) => {
   await page.goto("/login");
   await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page.getByRole("heading", { name: "Cases" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Analysed documents" })).toBeVisible();
 });
 
 test("opens a case, focuses finding evidence, and records analyst review", async ({ page }) => {
+  await page.getByRole("link", { name: /^Cases$/ }).click();
   await page.getByRole("link", { name: /CASE-001/ }).first().click();
   await expect(page).toHaveURL(/\/cases\/CASE-001$/);
   await page.getByRole("link", { name: "Review findings" }).click();
@@ -30,19 +31,6 @@ test("renders Cytoscape and opens an assertion-linked document region", async ({
 
   await expect(page).toHaveURL(/\/documents\/D-01$/);
   await expect(page.locator(".region-active")).toBeVisible();
-});
-
-test("uploads a supported file through the fixture request path", async ({ page }) => {
-  await page.getByRole("link", { name: "Document Scanner" }).click();
-  await page.getByLabel("Choose documents").setInputFiles({
-    name: "browser-evidence.pdf",
-    mimeType: "application/pdf",
-    buffer: Buffer.from("%PDF-1.4"),
-  });
-  await page.getByRole("button", { name: "Upload 1 file" }).click();
-
-  await expect(page.getByText("QUEUED")).toBeVisible();
-  await expect(page.getByText("Fixture mode: no document analysis is performed.").first()).toBeVisible();
 });
 
 test("keeps the workspace usable on narrow screens with keyboard-operable navigation", async ({ page }) => {

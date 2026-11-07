@@ -219,7 +219,7 @@ export function AppShell({ children, mockMode }: { children: ReactNode; mockMode
         </header>
         <div className={`mock-banner ${mockMode ? "" : "backend-banner"}`} role="note">
           <strong>{mockMode ? "Fixture mode" : "Backend mode"}</strong>
-          <span>{mockMode ? "Recorded synthetic outputs only. Uploads are not analyzed and do not produce new findings." : "Live backend. Observations are potential anomalies for human review, never verdicts."}</span>
+          <span>{mockMode ? "Recorded synthetic outputs only. The bundled sample documents are analysed from recordings; other files receive no analysis." : "Live backend. Observations are potential anomalies for human review, never verdicts."}</span>
         </div>
         <main className="main-content">
           <div className="route-view" key={transitionKey(location.pathname)} data-direction={direction}>

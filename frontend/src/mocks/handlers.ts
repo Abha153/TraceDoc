@@ -72,6 +72,37 @@ function reasoning(caseId: string): ReasoningOutput | undefined {
   return fixtureReasoning[caseId];
 }
 
+/** In fixture mode only recorded sample files (D-01.png, D-02.png, D-03.pdf, ...) can be analysed: they map to a recorded document. */
+const SAMPLE_NAME = /^(D-\d{2})\.(png|pdf|jpe?g|tiff?)$/i;
+
+function recordedDocument(docId: string): DocumentRecord | undefined {
+  return fixtureCases.flatMap((item) => item.documents).find((document) => document.docId === docId);
+}
+
+function recordedSampleFor(filename: string): DocumentRecord | undefined {
+  const match = SAMPLE_NAME.exec(filename);
+  return match ? recordedDocument(match[1].toUpperCase()) : undefined;
+}
+
+/** Recorded lifecycle: queued, then running with half of the analyzers reported, then the recorded analyzer statuses. */
+function recordedProgression(job: Job, recorded: DocumentRecord, count: number): Job {
+  const entries = Object.entries(recorded.processing);
+  const settled = (status: AnalyzerStatus) => ({
+    state: status === "AVAILABLE" ? "DONE" as const : status,
+    analyzerStatus: status,
+    message: status === "AVAILABLE" ? undefined : `Recorded fixture reports this analyzer as ${status}.`,
+  });
+  const running = count === 2;
+  const analyzers: Job["analyzers"] = Object.fromEntries(entries.map(([name, status], index) => [
+    name,
+    running && index >= Math.ceil(entries.length / 2) ? { state: "RUNNING" as const } : settled(status),
+  ]));
+  const incomplete = entries.some(([, status]) => status === "UNAVAILABLE" || status === "ERROR");
+  const updated: Job = { ...job, status: running ? "RUNNING" : incomplete ? "PARTIAL" : "DONE", analyzers, updatedAt: new Date().toISOString() };
+  additionalJobs.set(job.jobId, updated);
+  return updated;
+}
+
 function currentFindings(caseId: string): FindingWithReview[] {
   return (reasoning(caseId)?.findings ?? []).map((finding) => ({
     finding,
@@ -103,6 +134,8 @@ function progression(job: Job): Job {
   const count = (pollingCounts.get(job.jobId) ?? 0) + 1;
   pollingCounts.set(job.jobId, count);
   if (count === 1) return job;
+  const recorded = recordedDocument(job.docId);
+  if (recorded) return recordedProgression(job, recorded, count);
 
   const filename = caseDocuments(job.caseId).find((document) => document.docId === job.docId)?.filename ?? "";
   const failureFixture = /fail/i.test(filename);
@@ -239,9 +272,12 @@ export const handlers = [
       return HttpResponse.json({ error: { code: "CASE_NOT_FOUND", message: "Case not found." } }, { status: 404 });
     }
     const formData = await request.formData();
-    const files = formData.getAll("files").filter((value): value is File => value instanceof File);
+    const files = formData.getAll("files").filter((value): value is File => typeof value !== "string");
     const now = new Date().toISOString();
+    const recordedFor = files.map((file) => recordedSampleFor(file.name));
     const documents: DocumentRecord[] = files.map((file, index) => {
+      const recorded = recordedFor[index];
+      if (recorded) return recorded;
       const docId = `DEMO-${Date.now().toString(36).toUpperCase()}-${index + 1}`;
       const processing = Object.fromEntries(
         ["ocr", "pdf.textlayer", "pdf.fonts", "image.ela", "image.noise", "image.copymove", "signature"]
@@ -262,9 +298,9 @@ export const handlers = [
     const jobs: Job[] = documents.map((document, index) => {
       const job: Job = {
         jobId: `DEMO-JOB-${Date.now().toString(36).toUpperCase()}-${index + 1}`,
-        caseId,
+        caseId: document.caseId,
         docId: document.docId,
-        pipelineVersion: "fixture-only",
+        pipelineVersion: document.pipelineVersion,
         status: "QUEUED",
         analyzers: Object.fromEntries(
           Object.keys(document.processing).map((analyzer) => [analyzer, { state: "PENDING" }]),
@@ -277,7 +313,8 @@ export const handlers = [
       return job;
     });
     const response: UploadResponse = { caseId, documents, jobs };
-    registerFixtureUpload(response);
+    // Recorded samples already belong to their recorded case; only genuinely new documents are added.
+    registerFixtureUpload({ ...response, documents: documents.filter((_, index) => !recordedFor[index]) });
     return HttpResponse.json(response, { status: 202 });
   }),
   http.get(`${API}/jobs/:jobId`, ({ params }) => {

@@ -13,7 +13,8 @@ const FindingsPage = lazy(() => import("./pages/Findings").then((module) => ({ d
 const EntitiesPage = lazy(() => import("./pages/Entities").then((module) => ({ default: module.EntitiesPage })));
 const LoginPage = lazy(() => import("./pages/Login").then((module) => ({ default: module.LoginPage })));
 const ReportsPage = lazy(() => import("./pages/Reports").then((module) => ({ default: module.ReportsPage })));
-const UploadPage = lazy(() => import("./pages/Upload").then((module) => ({ default: module.UploadPage })));
+const HomePage = lazy(() => import("./pages/Home").then((module) => ({ default: module.HomePage })));
+const ScannerPage = lazy(() => import("./pages/Scanner").then((module) => ({ default: module.ScannerPage })));
 const DocumentPage = lazy(() => import("./pages/Document").then((module) => ({ default: module.DocumentPage })));
 
 function ProtectedLayout() {
@@ -56,20 +57,21 @@ export function App() {
           <Routes>
             <Route path="/login" element={<LoginPage mockMode={MOCK_MODE} />} />
             <Route element={<ProtectedLayout />}>
-              <Route path="/" element={<CasesPage mockMode={MOCK_MODE} />} />
-              <Route path="/scanner" element={<UploadPage mockMode={MOCK_MODE} />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/documents" element={<Navigate to="/" replace />} />
               <Route path="/cases" element={<CasesPage mockMode={MOCK_MODE} />} />
               <Route path="/cases/:caseId" element={<CaseDetailPage />} />
-              <Route path="/upload" element={<UploadPage mockMode={MOCK_MODE} />} />
+              <Route path="/upload" element={<Navigate to="/scanner" replace />} />
               <Route path="/documents/:docId" element={<DocumentPage />} />
+              <Route path="/documents/:docId/:tab" element={<DocumentPage />} />
               <Route path="/findings" element={<FindingsPage />} />
               <Route path="/findings/:findingId" element={<FindingDetailPage />} />
               <Route path="/compare/:findingId" element={<ComparePage />} />
               <Route path="/entities" element={<EntitiesPage />} />
               <Route path="/reports" element={MOCK_MODE ? <ReportsPage /> : <BackendUnavailablePage feature="Reports" endpoints={["GET /cases/{caseId}/dossier", "GET /cases/{caseId}/events", "GET /cases/{caseId}/integrity"]} />} />
             </Route>
-            <Route path="*" element={<Navigate to="/cases" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

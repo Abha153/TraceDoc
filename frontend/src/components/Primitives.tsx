@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import type { Tone } from "./Ring";
+import { Icon } from "./ui";
 
 export function Chip({ tone, children, dot = true, className = "", ...rest }: { tone?: Tone | "blue"; children: React.ReactNode; dot?: boolean } & React.HTMLAttributes<HTMLSpanElement>) {
   return <span className={`chip ${tone ? `chip-${tone}` : ""} ${className}`} {...rest}>{dot && <i className="chip-dot" aria-hidden="true" />}{children}</span>;
 }
 
-export function StatCard({ label, value, hint, tone, to }: { label: string; value: React.ReactNode; hint?: string; tone?: "red" | "amber"; to?: string }) {
+export function StatCard({ label, value, hint, tone, to, icon }: { label: string; value: React.ReactNode; hint?: string; tone?: "red" | "amber" | "green"; to?: string; icon?: string }) {
   const body = (
     <>
+      <div className="stat-card-top"><span className="big-number">{value}</span>{icon && <span className="stat-card-icon" aria-hidden="true"><Icon name={icon} size={18} /></span>}</div>
       <p className="label">{label}</p>
-      <span className="big-number">{value}</span>
       {hint && <small>{hint}</small>}
     </>
   );
